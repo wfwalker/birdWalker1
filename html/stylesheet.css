@@ -28,11 +28,12 @@ A:hover {text-decoration:underline; color:#ff6666}
 
 .headertext {margin-top: 10pt; margin-bottom: 10pt; font: 14pt Times, Serif}
 .pagetitle {font: 18pt Times, Serif}
+.pagesubtitle {font: 16pt Times, Serif; font-style: italic}
 .report-content {margin-left: 5%; margin-right: 5%}
 
 /* Styles for items within lists */
-.noteworthy-species {font: 10pt Arial; font-style: italic}
-.sighting-notes {font: 10pt Arial; font-style: italic; margin-left: 5%}
+.noteworthy-species {font-style: italic}
+.sighting-notes {font-style: italic; margin-left: 5%; margin-right: 5%}
 
 /* Styles used by wacky order-by-month table */
 
