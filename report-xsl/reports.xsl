@@ -4,6 +4,60 @@
 	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
+	<!-- *** YEAR REPORT *** -->
+
+	<xsl:template match="generate-year-report">
+		<!-- define my report parameter -->
+		<xsl:variable name="year-name" select="@year-name"/>
+
+		<xsl:message>generate report for year <xsl:value-of select="$year-name"/></xsl:message>
+		<xsl:message>species with non excluded sighting<xsl:value-of select="count(species[sighting[not(exclude)]])"/></xsl:message>
+		<xsl:message>species <xsl:value-of select="count(species)"/></xsl:message>
+
+		<xsl:variable
+			name="year-sightings"
+			select="species/sighting"/>
+
+		<!-- select="$sightings/sightingset/sighting[not(exclude)]/abbreviation"/ -->
+
+		<xsl:variable
+			name="year-species"
+			select="species[sighting[not(exclude)]]"/>
+
+		<HEAD>
+		<xsl:call-template name="style-block"/>
+		<TITLE>Index of Species seen in <xsl:value-of select="$year-name"/></TITLE>
+		</HEAD>
+
+		<BODY BGCOLOR="#FFFFFF">
+			<xsl:call-template name="species-navigation-block"/>
+
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<xsl:value-of select="$year-name"/> Species List
+					</TD>
+				</TR>
+			</TABLE>
+
+			<DIV CLASS="headertext">
+				Our annual list for <xsl:value-of select="$year-name"/> contains <xsl:value-of select="count($year-species)"/> species,
+				including <xsl:value-of select="count($year-sightings/first)"/> new species.
+			</DIV>
+
+			<xsl:call-template name="two-column-table">
+				<xsl:with-param name="in-entry-list" select="$year-species"/>
+			</xsl:call-template>
+
+			<P></P>
+
+			<xsl:call-template name="species-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
+		</BODY>
+	</xsl:template>
+
+
 	<!-- *** LOCATION REPORT *** -->
 
 	<xsl:template match="generate-location-report">
@@ -66,7 +120,7 @@
 				</TR>
 			</TABLE>
 
-			<xsl:apply-templates select="location/notes"/>
+			<xsl:apply-templates mode="report-content" select="location/notes"/>
 
 			<DIV CLASS="headertext">
 				<xsl:value-of select="count(species)"/> species observed at <xsl:value-of select="location/name"/>,
@@ -169,7 +223,7 @@
 			</TR>
 			</TABLE>
 
-			<xsl:apply-templates select="species/notes"/>
+			<xsl:apply-templates mode="report-content" select="species/notes"/>
 
 			<DIV CLASS="headertext">
 				<xsl:value-of select="species/common-name"/> observed at <xsl:value-of select="count(location)"/> locations
@@ -236,7 +290,7 @@
 						<IMG SRC="images/trip.gif" ALIGN="LEFT"/>
 						<xsl:value-of select="trip/name"/>
 						<BR/>
-						<SPAN CLASS="pagesubtitle"><xsl:value-of select="trip/date"/></SPAN>
+						<SPAN CLASS="pagesubtitle"><xsl:apply-templates select="trip/date"/></SPAN>
 					</TD>
 				</TR>
 				<TR>
@@ -269,7 +323,7 @@
 			</TABLE>
 
 
-			<xsl:apply-templates select="trip/notes"/>
+			<xsl:apply-templates mode="report-content" select="trip/notes"/>
 
 			<xsl:for-each select="location">
 				<xsl:variable name="this-location-name" select="name"/>
