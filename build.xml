@@ -218,9 +218,10 @@
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/birdwalker"
        		userid="walker"
-       		password="ludwig0"
-			passive="yes"
+       		password="0flandiwi"
+			passive="no"
 			verbose="yes"
+			skipFailedTransfers="yes"
        		depends="yes"
        		binary="no">
     		<fileset dir="html">
