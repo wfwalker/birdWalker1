@@ -4,11 +4,11 @@
 
 <!-- it doesn't make sense that order should have species-id!! -->
 <!-- notes for order, family, subfamily, genus are being throw away!! -->
-<!ELEMENT order (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | common-name | taxonomy-id | report-url | notes)*>
-<!ELEMENT family (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | common-name | taxonomy-id | report-url | notes)*>
-<!ELEMENT subfamily (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | common-name | taxonomy-id | report-url | notes)*>
-<!ELEMENT genus (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | common-name | taxonomy-id | report-url | notes)*>
-<!ELEMENT species (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | common-name | taxonomy-id | report-url | notes)*>
+<!ELEMENT order (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | url | common-name | taxonomy-id | filename-stem | notes)*>
+<!ELEMENT family (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | url | common-name | taxonomy-id | filename-stem | notes)*>
+<!ELEMENT subfamily (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | url | common-name | taxonomy-id | filename-stem | notes)*>
+<!ELEMENT genus (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | url | common-name | taxonomy-id | filename-stem | notes)*>
+<!ELEMENT species (order-id | family-id | subfamily-id | genus-id | species-id | abbreviation | latin-name | url | common-name | taxonomy-id | filename-stem | notes)*>
 
 <!ELEMENT order-id (#PCDATA)>
 <!ELEMENT family-id (#PCDATA)>
@@ -19,7 +19,8 @@
 
 <!ELEMENT abbreviation (#PCDATA)>
 <!ELEMENT latin-name (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
 <!ELEMENT common-name (#PCDATA)>
-<!ELEMENT report-url (#PCDATA)>
+<!ELEMENT filename-stem (#PCDATA)>
 <!ELEMENT notes (p)*>
 <!ELEMENT p (#PCDATA)>

@@ -2,7 +2,7 @@
 
 <!ELEMENT locationset (location)*>
 
-<!ELEMENT location (name | url | notes | city | state | county | latitude | longitude | system | report-url)*>
+<!ELEMENT location (name | url | notes | city | state | county | latitude | longitude | system | filename-stem)*>
 
 <!ELEMENT name (#PCDATA)>
 <!ELEMENT url (#PCDATA)>
@@ -14,4 +14,4 @@
 <!ELEMENT latitude (#PCDATA)>
 <!ELEMENT longitude (#PCDATA)>
 <!ELEMENT system (#PCDATA)>
-<!ELEMENT report-url (#PCDATA)>
+<!ELEMENT filename-stem (#PCDATA)>

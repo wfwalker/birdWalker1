@@ -2,7 +2,7 @@
 
 <!ELEMENT tripset (trip)*>
 
-<!ELEMENT trip (name | date | leader | url | notes | report-url)*>
+<!ELEMENT trip (name | date | leader | url | notes | filename-stem)*>
 
 <!ELEMENT name (#PCDATA)>
 <!ELEMENT date (#PCDATA)>
@@ -10,4 +10,4 @@
 <!ELEMENT url (#PCDATA)>
 <!ELEMENT notes (p)*>
 <!ELEMENT p (#PCDATA)>
-<!ELEMENT report-url (#PCDATA)>
+<!ELEMENT filename-stem (#PCDATA)>
