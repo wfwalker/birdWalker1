@@ -10,52 +10,7 @@
 	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
-	<xsl:template match="generate-annual-species-index">
-		<!-- define my report parameter -->
-		<xsl:variable name="in-year" select="@in-year"/>
-
-		<xsl:message>generate index for year <xsl:value-of select="$in-year"/></xsl:message>
-
-		<xsl:variable
-			name="year-sightings"
-			select="$sightings/sightingset/sighting[not(exclude) and contains(date, $in-year)]"/>
-
-		<xsl:variable
-			name="year-species"
-			select="$species/taxonomyset/species[abbreviation=$year-sightings/abbreviation]"/>
-
-		<HEAD>
-		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Species seen in <xsl:value-of select="$in-year"/></TITLE>
-		</HEAD>
-
-		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="species-navigation-block"/>
-
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
-				<TR>
-					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
-						<xsl:value-of select="$in-year"/> Species List
-					</TD>
-				</TR>
-			</TABLE>
-
-			<DIV CLASS="headertext">
-				Our annual list for <xsl:value-of select="$in-year"/> contains <xsl:value-of select="count($year-species)"/> species,
-				including <xsl:value-of select="count($year-sightings/first)"/> new species.
-			</DIV>
-
-			<xsl:call-template name="two-column-table">
-				<xsl:with-param name="in-entry-list" select="$year-species"/>
-			</xsl:call-template>
-
-			<P></P>
-
-			<xsl:call-template name="species-navigation-block"/>
-			<xsl:call-template name="page-footer"/>
-		</BODY>
-	</xsl:template>
+	<!-- ALL-TIME COUNTY SPECIES LIST -->
 
 	<xsl:template match="generate-county-species-index">
 		<!-- define my report parameters -->
@@ -119,7 +74,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.6 2001/11/30 02:55:18 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.7 2001/12/04 17:10:56 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -139,12 +94,12 @@
 					<A HREF="./location-index.html">location reports</A>.
 				In addition, I have generated a species list for each
 				year we've been bird watching (
-					<A HREF="1996-species-index.html">1996</A>,
-					<A HREF="1997-species-index.html">1997</A>,
-					<A HREF="1998-species-index.html">1998</A>,
-					<A HREF="1999-species-index.html">1999</A>,
-					<A HREF="2000-species-index.html">2000</A>,
-					<A HREF="2001-species-index.html">2001</A>),
+					<A HREF="1996.html">1996</A>,
+					<A HREF="1997.html">1997</A>,
+					<A HREF="1998.html">1998</A>,
+					<A HREF="1999.html">1999</A>,
+					<A HREF="2000.html">2000</A>,
+					<A HREF="2001.html">2001</A>),
 				each state we've taken trips in (
 					<A HREF="ca-species-index.html">California</A>,
 					<A HREF="ma-species-index.html">Massachusetts</A>,
@@ -300,6 +255,11 @@
 		<!-- define my report parameters -->
 		<xsl:variable name="in-state" select="@in-state"/>
 
+		<xsl:message>
+			generate species index for state <xsl:value-of select="$in-state"/>
+			"<xsl:value-of select="$miscellaneous/miscellaneous/stateset/state[@abbreviation=$in-state]/@name"/>"
+		</xsl:message>
+
 		<!-- define my variables -->
 		<xsl:variable
 			name="state-locations"
@@ -317,7 +277,7 @@
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Species seen in <xsl:value-of select="$in-state"/></TITLE>
+		<TITLE>Index of Species seen in <xsl:value-of select="$miscellaneous/miscellaneous/stateset/state[abbreviation=$in-state]/@name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
