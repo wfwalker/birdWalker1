@@ -77,7 +77,7 @@
 
 		<echo>
 			<xsl:attribute name="file">sources/trips/<xsl:value-of select="@filename-stem"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE generate-trip-report SYSTEM "file:dtds/generate-report.dtd"&gt;
+			&lt;!DOCTYPE generate-trip-report SYSTEM "file:birdwalker.dtd"&gt;
 			&lt;generate-trip-report trip-date="<xsl:value-of select="date"/>"&gt;
 
 			&lt;trip

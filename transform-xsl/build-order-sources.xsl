@@ -54,7 +54,7 @@
 
 		<echo>
 			<xsl:attribute name="file"><xsl:value-of select="$order-sources-path"/><xsl:value-of select="@filename-stem"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE generate-order-report SYSTEM "file:dtds/generate-report.dtd"&gt;
+			&lt;!DOCTYPE generate-order-report SYSTEM "file:birdwalker.dtd"&gt;
 			&lt;generate-order-report order-id="<xsl:value-of select="@order-id"/>"&gt;
 
 			&lt;order

@@ -1,4 +1,4 @@
-<!DOCTYPE tripset SYSTEM "file:dtds/trips.dtd"><tripset><trip name="From Field List 1" date="1996-02-10" leader="Steve Shunk?" url="" filename-stem="1996-02-10-from-field-list-1"><notes><p>We think this might be the trip we took with Jacques and Marianne</p></notes></trip>
+<!DOCTYPE tripset SYSTEM "file:birdwalker.dtd"><tripset><trip name="From Field List 1" date="1996-02-10" leader="Steve Shunk?" url="" filename-stem="1996-02-10-from-field-list-1"><notes><p>We think this might be the trip we took with Jacques and Marianne</p></notes></trip>
 <trip name="From Field List 2" date="1996-02-11" leader="Mary and Bill?" url="" filename-stem="1996-02-11-from-field-list-2"></trip>
 <trip name="From Field List 3" date="1996-03-15" leader="Mary and Bill?" url="" filename-stem="1996-03-15-from-field-list-3"></trip>
 <trip name="Lunch with Andria and Sumit" date="1996-07-06" leader="Mary and Bill" url="" filename-stem="1996-07-06-lunch-with-andria-and-sumit"></trip>

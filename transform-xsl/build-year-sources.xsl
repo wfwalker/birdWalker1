@@ -71,7 +71,7 @@
 
 		<echo>
 			<xsl:attribute name="file">sources/years/<xsl:value-of select="@name"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE generate-year-report SYSTEM "file:dtds/generate-report.dtd"&gt;
+			&lt;!DOCTYPE generate-year-report SYSTEM "file:birdwalker.dtd"&gt;
 			&lt;generate-year-report year-name="<xsl:value-of select="@name"/>"&gt;
 
 			&lt;year name=&quot;<xsl:value-of select="@name"/>&quot;/&gt;

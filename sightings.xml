@@ -1,4 +1,4 @@
-<!DOCTYPE sightingset SYSTEM "file:dtds/sightingset.dtd"><sightingset><sighting date="1996-02-10" abbreviation="ameavo" location-name="Unknown" first="true"></sighting>
+<!DOCTYPE sightingset SYSTEM "file:birdwalker.dtd"><sightingset><sighting date="1996-02-10" abbreviation="ameavo" location-name="Unknown" first="true"></sighting>
 <sighting date="1996-02-10" abbreviation="amecoo" location-name="Unknown" first="true"></sighting>
 <sighting date="1996-02-10" abbreviation="amwpel" location-name="Unknown" first="true"></sighting>
 <sighting date="1996-02-10" abbreviation="amewig" location-name="Unknown" first="true"></sighting>

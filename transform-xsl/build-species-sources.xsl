@@ -77,7 +77,7 @@
 
 		<echo>
 			<xsl:attribute name="file">sources/species/<xsl:value-of select="@filename-stem"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE generate-species-report SYSTEM "file:dtds/generate-report.dtd"&gt;
+			&lt;!DOCTYPE generate-species-report SYSTEM "file:birdwalker.dtd"&gt;
 			&lt;generate-species-report abbreviation="<xsl:value-of select="@abbreviation"/>"&gt;
 
 			&lt;species

@@ -63,7 +63,7 @@
 
 		<echo>
 			<xsl:attribute name="file">sources/locations/<xsl:value-of select="@filename-stem"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE generate-location-report SYSTEM "file:dtds/generate-report.dtd"&gt;
+			&lt;!DOCTYPE generate-location-report SYSTEM "file:birdwalker.dtd"&gt;
 			&lt;generate-location-report location-name="<xsl:value-of select="@name"/>"&gt;
 
 			&lt;location

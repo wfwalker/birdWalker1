@@ -5,7 +5,7 @@
 	<!-- BUILDING SOURCES -->
 
 	<target name="validate">
-		<antstructure output="dtds/project.dtd"/>
+		<!-- antstructure output="dtds/project.dtd"/ -->
 		<xmlvalidate taskname="sightingset" file="sightings.xml"/>
 		<xmlvalidate taskname="locationset" file="locations.xml"/>
 		<xmlvalidate taskname="tripset" file="flat-trips.xml"/>
@@ -26,6 +26,7 @@
 			<fileset dir="${basedir}/sources">
 			    <include name="**/*.xml"/>
 				<exclude name="**/index.xml"/>
+				<exclude name="indices/*.xml"/>
 			</fileset>
 			<fileset dir="${basedir}" includes="build-*-sources.xml"/>
 		</delete>
