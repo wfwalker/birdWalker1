@@ -47,7 +47,7 @@
 			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
 			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
 			&lt;taxonomy-id&gt;<xsl:value-of select="taxonomy-id"/>&lt;/taxonomy-id&gt;
-			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
+			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 
 			<xsl:apply-templates select="notes"/>
 
@@ -65,7 +65,7 @@
 			&lt;latitude&gt;<xsl:value-of select="latitude"/>&lt;/latitude&gt;
 			&lt;longitude&gt;<xsl:value-of select="longitude"/>&lt;/longitude&gt;
 			&lt;system&gt;<xsl:value-of select="system"/>&lt;/system&gt;
-			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
+			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 			<xsl:apply-templates select="notes"/>
 		&lt;/location&gt;
 	</xsl:template>
@@ -90,7 +90,7 @@
 		<xsl:message>Building Source XML for Trip '<xsl:value-of select="name"/>'</xsl:message>
 
 		<echo>
-			<xsl:attribute name="file">sources/trips/<xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:attribute name="file">sources/trips/<xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
 			&lt;generate-trip-report trip-date="<xsl:value-of select="date"/>"&gt;
 
 			&lt;trip&gt;
@@ -98,7 +98,7 @@
 				&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
 				&lt;leader&gt;<xsl:value-of select="leader"/>&lt;/leader&gt;
 				&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-				&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
+				&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 				<xsl:apply-templates select="notes"/>
 			&lt;/trip&gt;
 

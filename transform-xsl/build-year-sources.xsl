@@ -26,7 +26,7 @@
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
 			&lt;leader&gt;<xsl:value-of select="leader"/>&lt;/leader&gt;
 			&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
+			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
 		&lt;/trip&gt;
 	</xsl:template>
@@ -58,7 +58,7 @@
 			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
 			&lt;taxonomy-id&gt;<xsl:value-of select="taxonomy-id"/>&lt;/taxonomy-id&gt;
 			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
-			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
+			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 
 			<xsl:apply-templates select="$in-sightings[abbreviation=$this/abbreviation]"/>
 		&lt;/species&gt;
@@ -84,7 +84,7 @@
 			select="$species/taxonomyset/species[abbreviation=$year-sightings/abbreviation]"/>
 
 		<echo>
-			<xsl:attribute name="file">sources/years/<xsl:value-of select="@name"/>.html</xsl:attribute>
+			<xsl:attribute name="file">sources/years/<xsl:value-of select="@name"/>.xml</xsl:attribute>
 			&lt;generate-year-report year-name="<xsl:value-of select="@name"/>"&gt;
 
 			&lt;year&gt;

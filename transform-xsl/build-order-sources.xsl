@@ -73,7 +73,7 @@
 			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
 			&lt;taxonomy-id&gt;<xsl:value-of select="taxonomy-id"/>&lt;/taxonomy-id&gt;
 			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
-			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
+			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 
 			<xsl:apply-templates select="$species-sightings"/>
 		&lt;/species&gt;
@@ -87,7 +87,7 @@
 			select="."/>
 
 		<echo>
-			<xsl:attribute name="file"><xsl:value-of select="$order-sources-path"/><xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:attribute name="file"><xsl:value-of select="$order-sources-path"/><xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
 			&lt;generate-order-report order-id="<xsl:value-of select="order-id"/>"&gt;
 
 			&lt;order&gt;

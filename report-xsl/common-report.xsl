@@ -81,7 +81,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.20 2002/01/03 17:34:04 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.21 2002/01/22 17:27:30 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -217,7 +217,7 @@
 
 	<xsl:template match="trip">
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="name"/>
 			<xsl:text> </xsl:text>
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="date"/></SPAN>
@@ -230,7 +230,7 @@
 
 	<xsl:template match="location">
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="name"/>
 			<xsl:text> </xsl:text>
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="city"/>, <xsl:value-of select="state"/></SPAN>
@@ -240,7 +240,7 @@
 
 	<xsl:template match="order">
 		<B><A>
-			<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:attribute name="HREF"><xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 			<xsl:text> </xsl:text>
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="latin-name"/></SPAN>
@@ -350,7 +350,7 @@
 
 					<TD ALIGN="RIGHT">
 						<A>
-							<xsl:attribute name="HREF"><xsl:value-of select="$the-order/report-url"/></xsl:attribute>
+							<xsl:attribute name="HREF"><xsl:value-of select="$the-order/filename-stem"/>.html</xsl:attribute>
 							<xsl:value-of select="$the-order/common-name"/>
 						</A>
 					</TD>
