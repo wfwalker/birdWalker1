@@ -1,7 +1,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method = "html" indent="no"/>
 
+	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
+
+	<!-- define my background color, used for table headers, etc -->
+	<xsl:param name="my-background-color" select="$location-background-color"/>
 
 	<xsl:template match="*">
 		<HTML>
@@ -11,7 +15,7 @@
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="location-navigation-block"/>
 
 			<H1><IMG SRC="images/location.gif"/>Index of Location Reports</H1>
 
@@ -19,7 +23,7 @@
 				<xsl:with-param name="location-list" select="$locations/locationset/location"/>
 			</xsl:call-template>
 
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="location-navigation-block"/>
 		</BODY>
 
 		</HTML>

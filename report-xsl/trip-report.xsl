@@ -1,8 +1,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method = "html" indent="yes"/>
 
+	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
+	<!-- define my background color, used for table headers, etc -->
+	<xsl:variable name="my-background-color" select="$trip-background-color"/>
+
+	<!-- define my report parameters -->
 	<xsl:param name="in-trip-date"/>
 
 	<xsl:variable
@@ -20,19 +25,21 @@
 	<xsl:variable
 		name="trip-locations"
 		select="$locations/locationset/location[name=$trip-sightings/location]"/>
+	
 
 	<xsl:template match="*">
 		<HTML>
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Trip Report for <xsl:value-of select="$trip-record/name"/></TITLE>
-		<xsl:comment> $Id$ </xsl:comment>
+		<xsl:comment> $Id: trip-report.xsl,v 1.4 2001/09/09 02:01:01 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="trip-navigation-block"/>
 
-			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0" BGCOLOR="#EEEEEE">
+			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0">
+				<xsl:attribute name="BGCOLOR"><xsl:value-of select="$my-background-color"/></xsl:attribute>
 				<TR>
 					<TD NOWRAP="TRUE">
 						<xsl:value-of select="$trip-record/date"/><BR/>
@@ -75,7 +82,7 @@
 				<xsl:with-param name="sighting-list" select="$trip-sightings[string-length(notes/p)>0]"/>
 			</xsl:call-template>
 
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="trip-navigation-block"/>
 		</BODY>
 
 		</HTML>

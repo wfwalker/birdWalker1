@@ -1,7 +1,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method = "html" indent="no"/>
 
+	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
+
+	<!-- define my background color, used for table headers, etc -->
+	<xsl:param name="my-background-color" select="$species-background-color"/>
 
 	<xsl:variable
 		name="non-excluded-abbreviations"
@@ -15,7 +19,7 @@
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="species-navigation-block"/>
 
 			<H1><IMG SRC="images/species.gif"/>Index of Species Reports</H1>
 
@@ -35,7 +39,7 @@
 				<xsl:with-param name="item-kind">total sightings</xsl:with-param>
 			</xsl:call-template>
 
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="species-navigation-block"/>
 		</BODY>
 
 		</HTML>

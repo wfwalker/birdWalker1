@@ -1,8 +1,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method = "html" indent="yes"/>
 
+	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
+	<!-- define my background color, used for table headers, etc -->
+	<xsl:variable name="my-background-color" select="$location-background-color"/>
+
+	<!-- define my report parameters -->
 	<xsl:param name="in-location"/>
 
 	<xsl:variable
@@ -21,18 +26,20 @@
 		name="location-species"
 		select="$species/taxonomyset/species[abbreviation=$location-sightings/abbreviation]"/>
 
+
 	<xsl:template match="*">
 		<HTML>
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Location Report for <xsl:value-of select="$in-location"/></TITLE>
-		<xsl:comment> $Id$ </xsl:comment>
+		<xsl:comment> $Id: location-report.xsl,v 1.5 2001/09/09 02:01:01 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="location-navigation-block"/>
 
-			<TABLE WIDTH="100%" BGCOLOR="#EEEEEE" BORDER="0" CELLPADDING="5" CELLSPACING="0">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0">
+				<xsl:attribute name="BGCOLOR"><xsl:value-of select="$my-background-color"/></xsl:attribute>
 				<TR>
 					<TD NOWRAP="TRUE">
 						<xsl:value-of select="$location-record/city"/>,<BR/>
@@ -100,7 +107,7 @@
 				</xsl:call-template>
 			</xsl:if>
 	
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="location-navigation-block"/>
 		</BODY>
 
 		</HTML>

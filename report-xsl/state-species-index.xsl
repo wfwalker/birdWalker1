@@ -1,8 +1,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method = "html" indent="no"/>
 
+	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
+	<!-- define my background color, used for table headers, etc -->
+	<xsl:param name="my-background-color" select="$species-background-color"/>
+
+	<!-- define my report parameters -->
 	<xsl:param name="in-state"/>
 
 	<xsl:param name="state-locations" select="$locations/locationset/location[state[text()=$in-state]]"/>
@@ -17,7 +22,7 @@
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="species-navigation-block"/>
 
 			<H1><IMG SRC="images/species.gif"/>Index of Species seen in <xsl:value-of select="$in-state"/></H1>
 
@@ -25,7 +30,7 @@
 				<xsl:with-param name="species-list" select="$species/taxonomyset/species[abbreviation=$state-sightings/abbreviation]"/>
 			</xsl:call-template>
 
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="species-navigation-block"/>
 		</BODY>
 
 		</HTML>

@@ -2,10 +2,17 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	version="1.0">
 
+	<!-- define variables containing all the source data -->
 	<xsl:variable name="sightings" select="document('../sightings.xml')"/>
 	<xsl:variable name="trips" select="document('../flat-trips.xml')"/>
 	<xsl:variable name="species" select="document('../flat-species.xml')"/>
 	<xsl:variable name="locations" select="document('../locations.xml')"/>
+
+	<!-- define background colors to be used by each of the four kinds of pages -->
+	<xsl:variable name="home-background-color">darkgray</xsl:variable>
+	<xsl:variable name="species-background-color">lightgreen</xsl:variable>
+	<xsl:variable name="location-background-color">khaki</xsl:variable>
+	<xsl:variable name="trip-background-color">lightblue</xsl:variable>
 
 	<!-- a template for inserting cascading style sheets -->
 
@@ -16,29 +23,94 @@
 		P {font: 10pt Tahoma}
 		H1 {font: 18pt Tahoma}
 		H2 {font: 12pt Tahoma}
-		.tablehead {font: 10pt Tahoma; font-weight: bold; background-color: #EEEEEE}
+		.tablehead {font: 10pt Tahoma; font-weight: bold}
 		.sightinghead {font: 10pt Tahoma; background-color: #EEEEFF}
 		.navigationblock {font: 10pt Tahoma; background-color: #DDDDDD}
 		</STYLE>
 	</xsl:template>
 
+	<!-- define four different navigation blocks, one for each kind of page -->
+
+	<xsl:template name="home-navigation-block">
+		<xsl:call-template name="navigation-block">
+			<xsl:with-param name="home-bgcolor"><xsl:value-of select="$home-background-color"/></xsl:with-param>
+			<xsl:with-param name="species-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="location-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="trip-bgcolor">#DDDDDD</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template name="species-navigation-block">
+		<xsl:call-template name="navigation-block">
+			<xsl:with-param name="home-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="species-bgcolor"><xsl:value-of select="$species-background-color"/></xsl:with-param>
+			<xsl:with-param name="location-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="trip-bgcolor">#DDDDDD</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template name="location-navigation-block">
+		<xsl:call-template name="navigation-block">
+			<xsl:with-param name="home-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="species-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="location-bgcolor"><xsl:value-of select="$location-background-color"/></xsl:with-param>
+			<xsl:with-param name="trip-bgcolor">#DDDDDD</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template name="trip-navigation-block">
+		<xsl:call-template name="navigation-block">
+			<xsl:with-param name="home-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="species-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="location-bgcolor">#DDDDDD</xsl:with-param>
+			<xsl:with-param name="trip-bgcolor"><xsl:value-of select="$trip-background-color"/></xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- define the underlying template for all four kinds of navigation block -->
+
 	<xsl:template name="navigation-block">
+		<xsl:param name="home-bgcolor"/>
+		<xsl:param name="species-bgcolor"/>
+		<xsl:param name="location-bgcolor"/>
+		<xsl:param name="trip-bgcolor"/>
+
 		<TABLE WIDTH="100%" CELLPADDING="10">
 			<TR>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./cover-page.html"><CODE>&lt;birdWalker&gt;</CODE></A></TD>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./species-index.html">Species Reports</A></TD>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./location-index.html">Location Reports</A></TD>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./trip-index.html">Trip Reports</A></TD>
+				<TD ALIGN="CENTER" WIDTH="25%">
+					<xsl:attribute name="BGCOLOR"><xsl:value-of select="$home-bgcolor"/></xsl:attribute>
+					<A HREF="./cover-page.html"><CODE>&lt;birdWalker&gt;</CODE></A>
+				</TD>
+				<TD ALIGN="CENTER" WIDTH="25%">
+					<xsl:attribute name="BGCOLOR"><xsl:value-of select="$species-bgcolor"/></xsl:attribute>
+					<A HREF="./species-index.html">Species Reports</A>
+				</TD>
+				<TD ALIGN="CENTER" WIDTH="25%">
+					<xsl:attribute name="BGCOLOR"><xsl:value-of select="$location-bgcolor"/></xsl:attribute>
+					<A HREF="./location-index.html">Location Reports</A>
+				</TD>
+				<TD ALIGN="CENTER" WIDTH="25%">
+					<xsl:attribute name="BGCOLOR"><xsl:value-of select="$trip-bgcolor"/></xsl:attribute>
+					<A HREF="./trip-index.html">Trip Reports</A>
+				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id$ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.6 2001/09/09 02:01:11 walker Exp $ </xsl:comment>
 	</xsl:template>
+
+	<!-- define the template for tableheaders -->
+	<!-- note that this template uses a background color that must be defined in any XSL that includes common-report.xsl -->
 
 	<xsl:template name="tableheader">
 		<xsl:param name="title-string"/>
 
 		<TABLE WIDTH="100%">
-			<TR><TD CLASS="tablehead" WIDTH="100%"><xsl:value-of select="$title-string"/></TD></TR>
+			<TR>
+				<TD CLASS="tablehead" WIDTH="100%">
+					<xsl:attribute name="BGCOLOR"><xsl:value-of select="$my-background-color"/></xsl:attribute>
+					<xsl:value-of select="$title-string"/>
+				</TD>
+			</TR>
 		</TABLE>
 	</xsl:template>
 
