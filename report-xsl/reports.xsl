@@ -44,11 +44,124 @@
 				including <xsl:value-of select="count($year-sightings/first)"/> new species.
 			</DIV>
 
+<!--
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="$year-species"/>
 			</xsl:call-template>
+-->
 
 			<P></P>
+
+
+			<TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0">
+
+			<!-- paper checklist-style table, showing trips and species -->
+
+			<xsl:for-each select="/generate-year-report/species">
+
+				<!-- print the headings every 20 rows -->
+
+				<xsl:if test="(position() mod 20) = 1">
+					<TR>
+						<TD> </TD>
+						<xsl:for-each select="/generate-year-report/trip">
+							<xsl:variable name="the-trip" select="."/>
+							<xsl:variable name="the-trip-index" select="position()"/>
+							<xsl:variable name="previous-trip" select="/generate-year-report/trip[position()=($the-trip-index - 1)]"/>
+
+							<!-- only repeat the month part of the column heading if it is different from last time -->
+							<xsl:if test="substring($previous-trip/date, 6, 2)!=substring(date/text(), 6, 2)">
+								<TD VALIGN="BOTTOM">
+									<xsl:attribute name="COLSPAN">
+										<xsl:value-of select="count(/generate-year-report/trip[substring(date, 6, 2)=substring($the-trip/date, 6, 2)])"/>
+									</xsl:attribute>
+
+									<xsl:value-of select="$miscellaneous/miscellaneous/monthset/month[@index=substring($the-trip/date/text(), 6, 2)]/@abbreviation"/><BR/>
+								</TD>
+							</xsl:if>
+						</xsl:for-each>
+					</TR>
+
+					<TR>
+						<TD> </TD>
+						<xsl:for-each select="/generate-year-report/trip">
+							<TD VALIGN="BOTTOM">
+								<xsl:if test="(position() mod 2) = 0">
+									<xsl:attribute name="class">year-col-color</xsl:attribute>
+								</xsl:if>
+
+								<xsl:value-of select="substring(date/text(), 9, 1)"/><BR/>
+								<xsl:value-of select="substring(date/text(), 10, 1)"/>
+							</TD>
+						</xsl:for-each>
+					</TR>
+				</xsl:if>
+
+				<!-- print the species name, followed by the X's for each trip -->
+				<xsl:variable name="the-species" select="."/>
+				<TR>
+					<!-- alternating background colors -->
+					<xsl:if test="(position() mod 2) = 0">
+						<xsl:attribute name="class">year-row-color</xsl:attribute>
+					</xsl:if>
+
+					<TD><A>
+						<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+						<xsl:value-of select="common-name"/>
+					</A></TD>
+
+					<!-- iterate through all the trips, looking for sightings of this species -->
+
+					<xsl:for-each select="/generate-year-report/trip">
+						<xsl:variable name="the-trip" select="."/>
+						<TD>
+						<xsl:if test="(position() mod 2) = 0">
+							<xsl:attribute name="class">year-col-color</xsl:attribute>
+						</xsl:if>
+						<xsl:choose>
+							<xsl:when test="count($the-species/sighting[date=$the-trip/date]) > 0">X</xsl:when>
+							<xsl:otherwise><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></xsl:otherwise>
+						</xsl:choose>
+						</TD>
+					</xsl:for-each>
+				</TR>
+			</xsl:for-each>
+
+
+			<!-- loop through the trips one last time, showing species totals and month species totals -->
+				<TR>
+					<TD>Month</TD>
+					<xsl:for-each select="/generate-year-report/trip">
+						<xsl:variable name="the-trip" select="."/>
+						<xsl:variable name="the-trip-index" select="position()"/>
+						<xsl:variable name="previous-trip" select="/generate-year-report/trip[position()=($the-trip-index - 1)]"/>
+
+						<!-- only repeat the month part of the column heading if it is different from last time -->
+						<xsl:if test="substring($previous-trip/date, 6, 2)!=substring(date/text(), 6, 2)">
+							<TD VALIGN="BOTTOM">
+								<xsl:attribute name="COLSPAN">
+									<xsl:value-of select="count(/generate-year-report/trip[substring(date, 6, 2)=substring($the-trip/date, 6, 2)])"/>
+								</xsl:attribute>
+
+								<xsl:value-of select="count(/generate-year-report/species[sighting[substring(date, 6, 2)=substring($the-trip/date/text(), 6, 2)]])"/><BR/>
+							</TD>
+						</xsl:if>
+					</xsl:for-each>
+				</TR>
+
+				<!-- <TR>
+					<TD>Trip</TD>
+					<xsl:for-each select="/generate-year-report/trip">
+						<xsl:variable name="the-trip" select="."/>
+						<TD VALIGN="BOTTOM">
+							<xsl:value-of select="count(/generate-year-report/species[sighting[date=$the-trip/date]])"/><BR/>
+						</TD>
+					</xsl:for-each>
+				</TR> -->
+			</TABLE>
+
+			<P>
+			</P>
 
 			<xsl:call-template name="species-navigation-block"/>
 			<xsl:call-template name="page-footer"/>
@@ -127,7 +240,6 @@
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="species"/>
-				<xsl:with-param name="in-entry-kind" select="'species'"/>
 			</xsl:call-template>
 
 			<DIV CLASS="headertext">
@@ -136,7 +248,6 @@
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="trip"/>
-				<xsl:with-param name="in-entry-kind" select="'trips'"/>
 			</xsl:call-template>
 
 			<xsl:if test="count(trip) > 15">
@@ -203,12 +314,23 @@
 				<TD NOWRAP="TRUE">
 					<A>
 						<xsl:attribute name="HREF">
-							<xsl:value-of select="order/report-url"/>
+							<xsl:value-of select="order/filename-stem"/>.html
 						</xsl:attribute>
 						<I><xsl:value-of select="order/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="order/common-name"/>
 					</A><BR/>
 					<I><xsl:value-of select="family/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="family/common-name"/>
 				</TD>
+				<xsl:if test="string-length(species/url)>0">
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
+					<TD NOWRAP="TRUE">
+						<A>
+						<xsl:attribute name="HREF">
+						<xsl:value-of select="species/url"/>
+						</xsl:attribute>
+						Species Website
+						</A>
+					</TD>
+				</xsl:if>
 				<TD NOWRAP="TRUE">|<BR/>|</TD>
 				<TD NOWRAP="TRUE">
 					<!-- note, the following expressions assume sightings are in chronological order -->
@@ -229,7 +351,6 @@
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="location"/>
-				<xsl:with-param name="in-entry-kind" select="'locations'"/>
 			</xsl:call-template>
 
 			<DIV CLASS="headertext">
@@ -238,7 +359,6 @@
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="trip"/>
-				<xsl:with-param name="in-entry-kind" select="'trips'"/>
 			</xsl:call-template>
 
 			<xsl:if test="count(trip/sighting) > 15">
@@ -305,7 +425,7 @@
 								<xsl:attribute name="HREF">
 									<xsl:value-of select="trip/url"/>
 								</xsl:attribute>
-								<xsl:value-of select="trip/url"/>
+								Trip Website
 							</A>
 						</TD>
 					</xsl:if>
@@ -333,16 +453,13 @@
 				<DIV CLASS="headertext">
 					<xsl:value-of select="count($this-location-species)"/> species seen at
 					<A>
-						<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
+						<xsl:attribute name="HREF"><xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 						<xsl:value-of select="$this-location-name"/>
 					</A>
 				</DIV>
 
 				<xsl:call-template name="two-column-table">
-					<xsl:with-param name="in-extra-title" select="$this-location-name"/>
-					<xsl:with-param name="in-extra-url" select="report-url"/>
 					<xsl:with-param name="in-entry-list" select="$this-location-species"/>
-					<xsl:with-param name="in-entry-kind" select="'species'"/>
 				</xsl:call-template>
 			</xsl:for-each>
 
@@ -409,7 +526,6 @@
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="species[sighting]"/>
-				<xsl:with-param name="in-entry-kind" select="'species'"/>
 			</xsl:call-template>
 
 			<xsl:if test="count(species/sighting) > 15">
