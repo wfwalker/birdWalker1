@@ -83,7 +83,7 @@
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: index.xsl,v 1.2 2001/10/02 16:12:31 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.1 2001/10/04 15:38:43 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -221,7 +221,9 @@
 				<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
 			</xsl:call-template>
 
-			<xsl:call-template name="order-table"/>
+			<xsl:call-template name="order-table">
+				<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+			</xsl:call-template>
 
 			<xsl:call-template name="monthly-distribution">
 				<xsl:with-param name="dated-items" select="$sightings/sightingset/sighting"/>
