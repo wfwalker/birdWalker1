@@ -5,9 +5,9 @@
 		<P>
 		All the pages on this site have links at the top and bottom leading to the
 		indices of 
-			<A HREF="../indices/species-index.html">species reports</A>,
-			<A HREF="../indices/trip-index.html">trip reports</A>, and
-			<A HREF="../indices/location-index.html">location reports</A>.
+			<A HREF="../species/index.html">species reports</A>,
+			<A HREF="../trips/index.html">trip reports</A>, and
+			<A HREF="../locations/index.html">location reports</A>.
 		In addition, I have generated a species list for each
 		year we've been bird watching (
 			<A HREF="../years/1996.html">1996</A>,
@@ -16,7 +16,8 @@
 			<A HREF="../years/1999.html">1999</A>,
 			<A HREF="../years/2000.html">2000</A>,
 			<A HREF="../years/2001.html">2001</A>,
-			<A HREF="../years/2002.html">2002</A>),
+			<A HREF="../years/2002.html">2002</A>,
+			<A HREF="../years/2003.html">2003</A>),
 		each state we've taken trips in (
 			<A HREF="../indices/ca-species-index.html">California</A>,
 			<A HREF="../indices/ma-species-index.html">Massachusetts</A>,
