@@ -35,6 +35,12 @@ A:hover {text-decoration:underline; color:#ff6666}
 .noteworthy-species {font-style: italic}
 .sighting-notes {font-style: italic; margin-left: 5%; margin-right: 5%}
 
+/* Styles used in new tabular year report */
+
+.year-plain {font: 10pt Courier}
+.year-col-color {font: 10pt Courier; background-color: #DDDDDD}
+.year-row-color {font: 10pt Courier; background-color: #EEEEEE}
+
 /* Styles used by wacky order-by-month table */
 
 .density0 {background-color: #EEEEEE}
