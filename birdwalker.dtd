@@ -1,0 +1,100 @@
+
+<!ELEMENT generate-trip-report (trip, species+, location+)>
+<!ATTLIST generate-trip-report trip-date CDATA #REQUIRED>
+
+<!ELEMENT generate-species-report (species, location+, trip+, order, family?, subfamily?, genus?)>
+<!ATTLIST generate-species-report abbreviation CDATA #REQUIRED>
+
+<!ELEMENT generate-location-report (location, species*, trip*)>
+<!ATTLIST generate-location-report location-name CDATA #REQUIRED>
+
+<!ELEMENT generate-order-report (order, family+, subfamily*, genus+, species+)>
+<!ATTLIST generate-order-report order-id CDATA #REQUIRED>
+
+<!ELEMENT generate-year-report (year, species+, trip+)>
+<!ATTLIST generate-year-report year-name  CDATA #REQUIRED>
+
+<!ELEMENT taxonomyset (species | genus | subfamily | family | order)+>
+<!ELEMENT sightingset (sighting+)>
+<!ELEMENT locationset (location+)>
+<!ELEMENT tripset (trip+)>
+
+<!ELEMENT year EMPTY> 
+<!ATTLIST year name CDATA #REQUIRED>
+
+<!ELEMENT trip (sighting*, notes*)>
+<!ATTLIST trip name CDATA #REQUIRED>
+<!ATTLIST trip date CDATA #REQUIRED>
+<!ATTLIST trip leader CDATA #REQUIRED>
+<!ATTLIST trip url CDATA #REQUIRED>
+<!ATTLIST trip filename-stem CDATA #REQUIRED>
+
+<!ELEMENT sighting (notes*)>
+<!ATTLIST sighting abbreviation CDATA #IMPLIED>
+<!ATTLIST sighting date CDATA #IMPLIED>
+<!ATTLIST sighting location-name CDATA #IMPLIED>
+<!ATTLIST sighting exclude CDATA #IMPLIED>
+<!ATTLIST sighting first CDATA #IMPLIED>
+<!ATTLIST sighting photo CDATA #IMPLIED>
+
+<!ELEMENT species (notes*, sighting*)>
+<!ATTLIST species species-id CDATA #IMPLIED>
+<!ATTLIST species family-id CDATA #IMPLIED>
+<!ATTLIST species subfamily-id CDATA #IMPLIED>
+<!ATTLIST species genus-id CDATA #IMPLIED>
+<!ATTLIST species order-id CDATA #IMPLIED>
+<!ATTLIST species abbreviation CDATA #REQUIRED>
+<!ATTLIST species url CDATA #IMPLIED>
+<!ATTLIST species latin-name CDATA #REQUIRED>
+<!ATTLIST species common-name CDATA #REQUIRED>
+<!ATTLIST species taxonomy-id CDATA #REQUIRED>
+<!ATTLIST species filename-stem CDATA #REQUIRED>
+
+<!ELEMENT location (notes*)>
+<!ATTLIST location name CDATA #REQUIRED>
+<!ATTLIST location url CDATA #REQUIRED>
+<!ATTLIST location city CDATA #REQUIRED>
+<!ATTLIST location state CDATA #REQUIRED>
+<!ATTLIST location county CDATA #REQUIRED>
+<!ATTLIST location latitude CDATA #REQUIRED>
+<!ATTLIST location longitude CDATA #REQUIRED>
+<!ATTLIST location system CDATA #REQUIRED>
+<!ATTLIST location filename-stem CDATA #REQUIRED>
+
+<!ELEMENT order EMPTY >
+<!ATTLIST order url CDATA #IMPLIED>
+<!ATTLIST order filename-stem CDATA #IMPLIED>
+<!ATTLIST order order-id CDATA #IMPLIED>
+<!ATTLIST order taxonomy-id CDATA #IMPLIED>
+<!ATTLIST order latin-name CDATA #REQUIRED>
+<!ATTLIST order common-name CDATA #REQUIRED>
+
+<!ELEMENT subfamily EMPTY >
+<!ATTLIST subfamily url CDATA #IMPLIED>
+<!ATTLIST subfamily filename-stem CDATA #IMPLIED>
+<!ATTLIST subfamily latin-name CDATA #REQUIRED>
+<!ATTLIST subfamily taxonomy-id CDATA #IMPLIED>
+<!ATTLIST subfamily family-id CDATA #IMPLIED>
+<!ATTLIST subfamily order-id CDATA #IMPLIED>
+<!ATTLIST subfamily common-name CDATA #REQUIRED>
+
+<!ELEMENT family EMPTY >
+<!ATTLIST family latin-name CDATA #REQUIRED>
+<!ATTLIST family family-id CDATA #IMPLIED>
+<!ATTLIST family order-id CDATA #IMPLIED>
+<!ATTLIST family taxonomy-id CDATA #IMPLIED>
+<!ATTLIST family url CDATA #IMPLIED>
+<!ATTLIST family filename-stem CDATA #IMPLIED>
+<!ATTLIST family common-name CDATA #REQUIRED>
+
+<!ELEMENT genus (notes*) >
+<!ATTLIST genus latin-name CDATA #REQUIRED>
+<!ATTLIST genus family-id CDATA #IMPLIED>
+<!ATTLIST genus order-id CDATA #IMPLIED>
+<!ATTLIST genus url CDATA #IMPLIED>
+<!ATTLIST genus filename-stem CDATA #IMPLIED>
+<!ATTLIST genus taxonomy-id CDATA #IMPLIED>
+<!ATTLIST genus common-name CDATA #REQUIRED>
+
+<!ELEMENT notes (p)*>
+<!ELEMENT p (#PCDATA)>
