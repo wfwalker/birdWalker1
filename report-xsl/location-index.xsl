@@ -24,6 +24,7 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="location-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>

@@ -15,6 +15,8 @@
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
+			<xsl:comment>$Id$</xsl:comment>
+
 			<xsl:call-template name="home-navigation-block"/>
 
 			<CENTER>

@@ -37,6 +37,7 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="trip-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>

@@ -36,6 +36,7 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="species-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>
