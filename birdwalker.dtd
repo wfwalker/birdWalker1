@@ -37,7 +37,7 @@
 <!ATTLIST sighting first CDATA #IMPLIED>
 <!ATTLIST sighting photo CDATA #IMPLIED>
 
-<!ELEMENT species (notes*, sighting*)>
+<!ELEMENT species (notes*, sighting*, location*, trip*)>
 <!ATTLIST species species-id CDATA #IMPLIED>
 <!ATTLIST species family-id CDATA #IMPLIED>
 <!ATTLIST species subfamily-id CDATA #IMPLIED>
