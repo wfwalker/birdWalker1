@@ -23,6 +23,14 @@
 		<year name="2001"><date>2001-01-01</date></year>
 	</yearset>
 
+	<stateset>
+		<state abbreviation="CA" name="California"/>
+		<state abbreviation="MA" name="Massachusetts"/>
+		<state abbreviation="IL" name="Illinois"/>
+		<state abbreviation="WI" name="Wisconsin"/>
+		<state abbreviation="OR" name="Oregon"/>
+		<state abbreviation="AZ" name="Arizona"/>
+	</stateset>
 
 	<orderset>
 
