@@ -11,10 +11,11 @@
 		<STYLE>
 		TD {font: 10pt Tahoma}
 		BODY {font: 10pt Tahoma}
+		P {font: 10pt Tahoma}
 		H1 {font: 18pt Tahoma}
 		H2 {font: 12pt Tahoma}
-		.tablehead {font: 10pt Tahoma; background-color: #EEEEEE}
-		.sightinghead {font: 10pt Tahoma; background-color: #DDDDEE}
+		.tablehead {font: 10pt Tahoma; font-weight: bold; background-color: #EEEEEE}
+		.sightinghead {font: 10pt Tahoma; background-color: #EEEEFF}
 		.navigationblock {font: 10pt Tahoma; background-color: #DDDDDD}
 		</STYLE>
 	</xsl:template>
@@ -23,9 +24,9 @@
 		<TABLE WIDTH="100%" CELLPADDING="10">
 			<TR>
 				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><CODE>&lt;birdWalker&gt;</CODE></TD>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./species-index.html">Species</A></TD>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./location-index.html">Locations</A></TD>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./trip-index.html">Trips</A></TD>
+				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./species-index.html">Species List</A></TD>
+				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./location-index.html">Location List</A></TD>
+				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./trip-index.html">Trip List</A></TD>
 			</TR>
 		</TABLE>
 	</xsl:template>
@@ -33,8 +34,8 @@
 	<xsl:template name="tableheader">
 		<xsl:param name="title-string"/>
 
-		<TABLE WIDTH="100%" CLASS="tablehead">
-			<TR><TD WIDTH="100%"><xsl:value-of select="$title-string"/></TD></TR>
+		<TABLE WIDTH="100%">
+			<TR><TD CLASS="tablehead" WIDTH="100%"><xsl:value-of select="$title-string"/></TD></TR>
 		</TABLE>
 	</xsl:template>
 
@@ -46,7 +47,7 @@
 		<P>
 			<xsl:call-template name="tableheader">
 				<xsl:with-param name="title-string">
-					<xsl:value-of select="count($species-list)"/> species:
+					<xsl:value-of select="count($species-list)"/> species
 				</xsl:with-param>
 			</xsl:call-template>
 
@@ -54,12 +55,12 @@
 				<TR>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$species-list[position() &lt;= (count($species-list) div 2)]">
-							<xsl:with-param name="suffix"><BR/></xsl:with-param>
+							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$species-list[position() &gt; (count($species-list) div 2)]">
-							<xsl:with-param name="suffix"><BR/></xsl:with-param>
+							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 				</TR>
@@ -74,7 +75,7 @@
 			<xsl:call-template name="tableheader">
 				<xsl:with-param name="title-string">
 					<xsl:value-of select="count($location-list)"/>
-					location<xsl:if test="count($location-list)>1">s</xsl:if>:
+					location<xsl:if test="count($location-list)>1">s</xsl:if>
 				</xsl:with-param>
 			</xsl:call-template>
 
@@ -82,12 +83,12 @@
 				<TR>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$location-list[position() &lt;= (count($location-list) div 2)]">
-							<xsl:with-param name="suffix"><BR/></xsl:with-param>
+							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$location-list[position() &gt; (count($location-list) div 2)]">
-							<xsl:with-param name="suffix"><BR/></xsl:with-param>
+							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 				</TR>
@@ -95,21 +96,25 @@
 		</P>
 	</xsl:template>
 
+	<!-- displays a collection of noteworthy sightings -->
+
 	<xsl:template name="sightings-table">
 		<xsl:param name="sighting-list"/>
 
-		<P>
-			<xsl:call-template name="tableheader">
-				<xsl:with-param name="title-string">
-					<xsl:value-of select="count($sighting-list)"/>
-					sighting<xsl:if test="count($sighting-list)>1">s</xsl:if>:
-				</xsl:with-param>
-			</xsl:call-template>
-
-			<TABLE CELLPADDING="10">
-				<xsl:apply-templates select="$sighting-list[position()=1 or position()=last() or string-length(notes)>0]"/>
-			</TABLE>
-		</P>
+		<xsl:if test="count($sighting-list) > 1">
+			<P>
+				<xsl:call-template name="tableheader">
+					<xsl:with-param name="title-string">
+						<xsl:value-of select="count($sighting-list)"/>
+						sighting note<xsl:if test="count($sighting-list)>1">s</xsl:if>
+					</xsl:with-param>
+				</xsl:call-template>
+	
+				<TABLE WIDTH="100%" CELLPADDING="10">
+					<xsl:apply-templates select="$sighting-list"/>
+				</TABLE>
+			</P>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template name="trip-table">
@@ -119,7 +124,7 @@
 			<xsl:call-template name="tableheader">
 				<xsl:with-param name="title-string">
 					<xsl:value-of select="count($trip-list)"/>
-					trip<xsl:if test="count($trip-list)>1">s</xsl:if>:
+					trip<xsl:if test="count($trip-list)>1">s</xsl:if>
 				</xsl:with-param>
 			</xsl:call-template>
 
@@ -127,12 +132,12 @@
 				<TR>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$trip-list[position() &lt;= (count($trip-list) div 2)]">
-							<xsl:with-param name="suffix"><BR/></xsl:with-param>
+							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$trip-list[position() &gt; (count($trip-list) div 2)]">
-							<xsl:with-param name="suffix"><BR/></xsl:with-param>
+							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 				</TR>
@@ -143,7 +148,7 @@
 	<xsl:template match="notes">
 		<P>
 			<xsl:call-template name="tableheader">
-				<xsl:with-param name="title-string">notes:</xsl:with-param>
+				<xsl:with-param name="title-string">notes</xsl:with-param>
 			</xsl:call-template>
 
 			<xsl:copy-of select="."/>
@@ -153,61 +158,65 @@
 	<!-- templates for names of and hyperlinks to various entities -->
 
 	<xsl:template match="species">
-		<xsl:param name="suffix"/>
+		<xsl:param name="create-link"/>
 
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+			<xsl:if test="string-length($create-link) > 0">
+				<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+			</xsl:if>
 			<xsl:value-of select="common-name"/>
 		</A>
-
-		<xsl:copy-of select="$suffix"/>
+		<BR/>
 	</xsl:template>
 
-	<xsl:template match="sighting">
-		<xsl:variable name="this" select="."/>
+	<xsl:template name="sighting-entry">
+		<xsl:param name="sighting-record"/>
+		<xsl:param name="aux-record-1"/>
+		<xsl:param name="aux-record-2"/>
 
 		<TR>
 			<TD>
-				<DIV CLASS="sightinghead">
-				<xsl:apply-templates select="$species/taxonomyset/species[abbreviation=$this/abbreviation]">
-					<xsl:with-param name="suffix"> * </xsl:with-param>
-				</xsl:apply-templates>
-				<xsl:apply-templates select="$trips/tripset/trip[date=$this/date]">
-					<xsl:with-param name="suffix"> * </xsl:with-param>
-				</xsl:apply-templates>
-				<xsl:apply-templates select="$locations/locationset/location[name=$this/location]"/>
-				</DIV>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<xsl:if test="position()=1">First sighting </xsl:if>
-				<xsl:if test="position()=last()">Latest sighting </xsl:if>
-				<xsl:value-of select="notes"/>
+				<!-- nested table for displaying the two aux records and their links -->
+				<TABLE WIDTH="100%">
+					<TR>
+						<TD WIDTH="25%" ALIGN="LEFT" CLASS="sightinghead">
+							<xsl:apply-templates select="$aux-record-1">
+							</xsl:apply-templates>
+							<xsl:apply-templates select="$aux-record-2">
+							</xsl:apply-templates>
+						</TD>
+						<TD WIDTH="75%" ALIGN="LEFT">
+							<xsl:value-of select="notes"/>
+						</TD>
+					</TR>
+				</TABLE>
 			</TD>
 		</TR>
 	</xsl:template>
 
 	<xsl:template match="trip">
-		<xsl:param name="suffix"/>
+		<xsl:param name="create-link"/>
 
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
-			<xsl:value-of select="name"/> (<xsl:value-of select="date"/>, <xsl:value-of select="leader"/>)
+			<xsl:if test="string-length($create-link)>0">
+				<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
+			</xsl:if>
+			<xsl:value-of select="name"/> (<xsl:value-of select="date"/>)
 		</A>
-
-		<xsl:copy-of select="$suffix"/>
+		<BR/>
 	</xsl:template>
 
 	<xsl:template match="location">
-		<xsl:param name="suffix"/>
+		<xsl:param name="create-link"/>
 
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:if test="string-length($create-link) > 0">
+				<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
+			</xsl:if>
+
 			<xsl:value-of select="name"/> (<xsl:value-of select="city"/>, <xsl:value-of select="state"/>)
 		</A>
-
-		<xsl:copy-of select="$suffix"/>
+		<BR/>
 	</xsl:template>
 
 </xsl:stylesheet>
