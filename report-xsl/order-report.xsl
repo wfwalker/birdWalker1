@@ -43,7 +43,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Species Report for Order <xsl:value-of select="$order-record/latin-name"/></TITLE>
-		<xsl:comment> $Id: order-report.xsl,v 1.4 2001/09/13 15:45:19 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: order-report.xsl,v 1.5 2001/09/18 01:54:07 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -53,16 +53,16 @@
 				<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 
 				<TR>
-					<TD NOWRAP="TRUE">
+					<TD CLASS="info-block" NOWRAP="TRUE">
 						<xsl:value-of select="count($order-all-families)"/> families<BR/>
 						<xsl:value-of select="count($order-all-subfamilies)"/> subfamilies
 					</TD>
-					<TD NOWRAP="TRUE">|<BR/>|</TD>
-					<TD NOWRAP="TRUE">
+					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE">
 						<xsl:value-of select="count($order-all-genera)"/> genera<BR/>
 						<xsl:value-of select="count($order-all-species)"/> species
 					</TD>
-					<TD NOWRAP="TRUE" WIDTH="90%">
+					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 						<P><BR/></P>
 					</TD>
 				</TR>
@@ -97,6 +97,7 @@
 			</xsl:if>
 
 			<xsl:call-template name="species-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>
