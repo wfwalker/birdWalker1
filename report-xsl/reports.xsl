@@ -157,7 +157,9 @@
 							</xsl:choose>
 	
 							<xsl:choose>
-								<xsl:when test="count($the-species/sighting[date=$the-trip/date]) > 0">X</xsl:when>
+								<xsl:when test="count($the-species/sighting[date=$the-trip/date]/first) > 0">F</xsl:when>
+								<xsl:when test="count($the-species/sighting[date=$the-trip/date]/exclude) > 0">e</xsl:when>
+								<xsl:when test="count($the-species/sighting[date=$the-trip/date][not(exclude)]) > 0">X</xsl:when>
 								<xsl:otherwise><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></xsl:otherwise>
 							</xsl:choose>
 						</TD>
