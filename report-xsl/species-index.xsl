@@ -11,16 +11,28 @@
 		<HTML>
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Life Species</TITLE>
+		<TITLE>Index of Species Reports</TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
-			<H1><IMG SRC="images/species.gif"/>Index of Life Species</H1>
+			<H1><IMG SRC="images/species.gif"/>Index of Species Reports</H1>
 
 			<xsl:call-template name="species-table">
 				<xsl:with-param name="species-list" select="$species/taxonomyset/species[abbreviation=$non-excluded-abbreviations]"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="order-table"/>
+
+			<xsl:call-template name="monthly-distribution">
+				<xsl:with-param name="dated-items" select="$sightings/sightingset/sighting"/>
+				<xsl:with-param name="item-kind">total sightings</xsl:with-param>
+			</xsl:call-template>
+	
+			<xsl:call-template name="yearly-distribution">
+				<xsl:with-param name="dated-items" select="$sightings/sightingset/sighting"/>
+				<xsl:with-param name="item-kind">total sightings</xsl:with-param>
 			</xsl:call-template>
 
 			<xsl:call-template name="navigation-block"/>
