@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.9 2003/03/20 01:33:29 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.10 2003/04/11 06:09:52 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -186,7 +186,10 @@
 		<xsl:text> </xsl:text>
 		<xsl:value-of select="$day-index"/>
 		<xsl:text>, </xsl:text>
-		<xsl:value-of select="$year-index"/>
+		<a>
+		  <xsl:attribute name="href">../years/<xsl:value-of select="$year-index"/>.html</xsl:attribute>
+		  <xsl:value-of select="$year-index"/>
+		</a>
 	</xsl:template>
 		
 	<!-- How to display sightings -->
@@ -318,7 +321,7 @@
 
 	<xsl:template match="generate-year-report/species/sighting[@first]">F</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[@exclude]">e</xsl:template>
-	<xsl:template match="generate-year-report/species/sighting[not(@exclude)]">X</xsl:template>
+	<xsl:template match="generate-year-report/species/sighting[not(@exclude) and not(@first) and not(@photo)]">X</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[@photo]">
 	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="@date"/>-<xsl:value-of select="../@abbreviation"/>.jpg</xsl:attribute>P</A>
 	</xsl:template>
@@ -536,9 +539,12 @@
 					    <IMG SRC="../images/species.gif" ALIGN="LEFT"/>
 					</xsl:if>
 					<xsl:if test="count(trip[sighting/@photo])>0">
+					<a>
+					<xsl:attribute name="href">../images/<xsl:value-of select="trip[sighting/@photo]/@date"/>-<xsl:value-of select="species/@abbreviation"/>.jpg</xsl:attribute>
 					<IMG>
-					    <xsl:attribute name="SRC">../images/tn_<xsl:value-of select="trip[sighting/@photo]/@date"/>-<xsl:value-of select="species/@abbreviation"/>.jpg</xsl:attribute>
+					    <xsl:attribute name="src">../images/tn_<xsl:value-of select="trip[sighting/@photo]/@date"/>-<xsl:value-of select="species/@abbreviation"/>.jpg</xsl:attribute>
 					</IMG>
+					</a>
 					</xsl:if>
 				</TD>
 				<TD COLSPAN="10" CLASS="pagetitle">
@@ -815,7 +821,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.9 2003/03/20 01:33:29 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.10 2003/04/11 06:09:52 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
