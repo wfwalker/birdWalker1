@@ -1,0 +1,50 @@
+/* birdWalker style sheet */
+
+/* styles for familiar HTML elements */
+
+TD {font: 10pt Arial}
+BODY {font: 10pt Arial}
+P {font: 10pt Arial}
+H1 {font: 18pt Times, Serif}
+H2 {font: 12pt Arial}
+
+/* Styles relating to anchors */
+
+A {text-decoration:none; color:#111155}
+A:hover {text-decoration:underline; color:#ff6666}
+.anchor-subtitle {font: 8pt Arial; font-style: italic}
+
+/* styles used for the navigation links at the top and bottom of the page */
+
+.navigation-text {font: 10pt Arial; font-weight: bold}
+
+.default-color {background-color: #A9A9A9}
+.home-color {background-color: #D3D3D3}
+.species-color {background-color: #E3D3D3}
+.location-color {background-color: #D3E6D3}
+.trip-color {background-color: #D3D3E9}
+
+/* Styles for section headers, page titles, and overall report content */
+
+.headertext {margin-top: 10pt; margin-bottom: 10pt; font: 14pt Times, Serif}
+.pagetitle {font: 18pt Times, Serif}
+.report-content {margin-left: 5%; margin-right: 5%}
+
+/* Styles for items within lists */
+.noteworthy-species {font: 10pt Arial; font-style: italic}
+.sighting-notes {font: 10pt Arial; font-style: italic; margin-left: 5%}
+
+/* Styles used by wacky order-by-month table */
+
+.density0 {background-color: #EEEEEE}
+.density1 {background-color: #DDDDDD}
+.density2 {background-color: #CCCCCC}
+.density3 {background-color: #BBBBBB}
+.density4 {background-color: #AAAAAA}
+.density5 {background-color: #999999}
+.density6 {background-color: #888888}
+.density7 {background-color: #777777}
+.density8 {background-color: #666666}
+.density9 {background-color: #555555}
+.density10 {color: #FFFFFF; background-color: #444444}
+
