@@ -10,6 +10,10 @@
 		<xmlvalidate taskname="validate locations" file="locations.xml"/>
 		<xmlvalidate taskname="validate trips" file="flat-trips.xml"/>
 		<xmlvalidate taskname="validate species" file="flat-species.xml"/>
+
+		<xmlvalidate taskname="validate species reports">
+			<fileset dir="sources" includes="species/*.xml" excludes="**/index.xml"/>
+		</xmlvalidate>
 	</target>
 	
 	<target
@@ -126,52 +130,20 @@
 		<replace file="html/index.html" token="../" value=""/>
 	</target>
 
-	<target name="upload-to-shout">
-		<input message="ftp password" addproperty="ftp-password"/>
+	<target name="build-tar">
+		<delete file="${basedir}/birdhtml.tgz"/>
 
-		<ftp server="duracef.shout.net"
-       		remotedir="public_html/birdwalker"
-       		userid="walker"
-       		password="${ftp-password}"
-			passive="no"
-			verbose="yes"
-			skipFailedTransfers="yes"
-       		depends="yes"
-       		binary="no"
-			description="Copy the stylesheet">
-    		<fileset dir="html">
-      			<include name="stylesheet.css"/>
-    		</fileset>
-  		</ftp>
-
-		<ftp server="duracef.shout.net"
-       		remotedir="public_html/birdwalker/images"
-       		userid="walker"
-       		password="${ftp-password}"
-			passive="yes"
-			verbose="yes"
-       		depends="yes"
-       		binary="yes"
-			description="Copy the images">
-    		<fileset dir="html/images">
-      			<include name="*.gif"/>
-      			<include name="*.jpg"/>
-      			<include name="*.JPG"/>
-    		</fileset>
-  		</ftp>
-
-		<ftp server="duracef.shout.net"
-       		remotedir="public_html/birdwalker"
-       		userid="walker"
-       		password="${ftp-password}"
-			passive="yes"
-			verbose="yes"
-       		depends="yes"
-       		binary="no"
-			description="Copy the web pages">
-    		<fileset dir="html">
-      			<include name="**/*.html"/>
-    		</fileset>
-  		</ftp>
+		<tar destfile="${basedir}/birdhtml.tgz" compression="gzip">
+			<tarfileset dir="${basedir}/html">
+				<include name="index.html"/>
+				<include name="indices/**"/>
+				<include name="locations/**"/>
+				<include name="orders/**"/>
+				<include name="species/**"/>
+				<include name="stylesheet.css"/>
+				<include name="trips/**"/>
+				<include name="years/**"/>
+			</tarfileset>
+		</tar>
 	</target>
 </project>
