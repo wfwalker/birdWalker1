@@ -12,7 +12,7 @@
 		<TITLE>Index of Trip Reports</TITLE>
 		</HEAD>
 
-		<BODY>
+		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
 			<H1><IMG SRC="images/trip.gif"/>Index of Trip Reports</H1>

@@ -14,7 +14,7 @@
 		<TITLE>Index of Species seen in <xsl:value-of select="$in-year"/></TITLE>
 		</HEAD>
 
-		<BODY>
+		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
 			<H1><IMG SRC="images/species.gif"/>Index of Species seen in <xsl:value-of select="$in-year"/></H1>

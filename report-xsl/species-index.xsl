@@ -14,7 +14,7 @@
 		<TITLE>Index of Life Species</TITLE>
 		</HEAD>
 
-		<BODY>
+		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
 			<H1><IMG SRC="images/species.gif"/>Index of Life Species</H1>

@@ -55,7 +55,7 @@
 		<TITLE>Species Report for <xsl:value-of select="$species-record/common-name"/></TITLE>
 		</HEAD>
 
-		<BODY>
+		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
 			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0" BGCOLOR="#EEEEEE">

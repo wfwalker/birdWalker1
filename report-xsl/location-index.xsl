@@ -10,7 +10,7 @@
 		<TITLE>Index of Location Reports</TITLE>
 		</HEAD>
 
-		<BODY>
+		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
 			<H1><IMG SRC="images/location.gif"/>Index of Location Reports</H1>
