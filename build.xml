@@ -6,24 +6,27 @@
 
 	<target name="validate">
 		<antstructure output="dtds/project.dtd"/>
-		<xmlvalidate taskname="validate sightings" file="sightings.xml"/>
-		<xmlvalidate taskname="validate locations" file="locations.xml"/>
-		<xmlvalidate taskname="validate trips" file="flat-trips.xml"/>
-		<xmlvalidate taskname="validate species" file="flat-species.xml"/>
+		<xmlvalidate taskname="sightingset" file="sightings.xml"/>
+		<xmlvalidate taskname="locationset" file="locations.xml"/>
+		<xmlvalidate taskname="tripset" file="flat-trips.xml"/>
+		<xmlvalidate taskname="taxonomyset" file="flat-species.xml"/>
 
-		<xmlvalidate taskname="validate species reports">
-			<fileset dir="sources" includes="species/*.xml" excludes="**/index.xml"/>
+		<xmlvalidate taskname="reports">
+			<fileset dir="sources">
+			    <include name="**/*.xml"/>
+				<exclude name="**/index.xml"/>
+				<exclude name="**/indices/**"/>
+			</fileset>
 		</xmlvalidate>
 	</target>
 	
 	<target
 		name="clean-sources">
 		<delete>
-			<fileset dir="${basedir}/sources/locations" includes="*.xml" excludes="index.xml"/>
-			<fileset dir="${basedir}/sources/trips" includes="*.xml" excludes="index.xml"/>
-			<fileset dir="${basedir}/sources/years" includes="*.xml" excludes="index.xml"/>
-			<fileset dir="${basedir}/sources/species" includes="*.xml" excludes="index.xml"/>
-			<fileset dir="${basedir}/sources/orders" includes="*.xml" excludes="index.xml"/>
+			<fileset dir="${basedir}/sources">
+			    <include name="**/*.xml"/>
+				<exclude name="**/index.xml"/>
+			</fileset>
 			<fileset dir="${basedir}" includes="build-*-sources.xml"/>
 		</delete>
 	</target>
@@ -76,6 +79,8 @@
 		<ant antfile="build-order-sources.xml"/>
 	</target>
 
+	<target name="build-sources" depends="build-species-sources, build-year-sources, build-trip-sources, build-location-sources, build-order-sources">
+	</target>
 
 	<!-- DEBUGGING / DEVELOPMENT, SINGLE PAGE TARGETS -->
 
