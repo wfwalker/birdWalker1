@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.3 2002/08/23 01:14:01 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.4 2002/08/23 01:32:41 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -144,14 +144,14 @@
 	<xsl:template match="species/sighting/photo">
 	    <xsl:message>number one</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>photo</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.JPG</xsl:attribute>photo</A>
 		</SPAN>
 	</xsl:template>
 
 	<xsl:template match="generate-species-report/trip/sighting/photo">
 	    <xsl:message>number two</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../../species/abbreviation"/>.jpg</xsl:attribute>photo</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../../species/abbreviation"/>.JPG</xsl:attribute>photo</A>
 		</SPAN>
 	</xsl:template>
 
@@ -159,7 +159,7 @@
 	<xsl:template match="generate-location-report/species/sighting/photo">
 	    <xsl:message>number three</xsl:message>
 		<DIV CLASS="sighting-notes">
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.JPG</xsl:attribute>
 			<xsl:value-of select="../date"/> photo
 		</A>
 		</DIV>
@@ -486,7 +486,7 @@
 	<xsl:template match="generate-year-report/species/sighting[exclude]">e</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[not(exclude)]">X</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[photo]">
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>P</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="date"/>-<xsl:value-of select="../abbreviation"/>.JPG</xsl:attribute>P</A>
 	</xsl:template>
 
 
@@ -808,7 +808,14 @@
 			<TR>
 			    <TD VALIGN="TOP" ROWSPAN="2">
 				    <!-- optionally replace this image with the photo -->
-					<IMG SRC="../images/species.gif" ALIGN="LEFT"/>
+					<xsl:if test="count(trip[sighting/photo])=0">
+					    <IMG SRC="../images/species.gif" ALIGN="LEFT"/>
+					</xsl:if>
+					<xsl:if test="count(trip[sighting/photo])>0">
+					<IMG>
+					    <xsl:attribute name="SRC">../images/TN_<xsl:value-of select="trip[sighting/photo]/date"/>-<xsl:value-of select="species/abbreviation"/>.JPG</xsl:attribute>
+					</IMG>
+					</xsl:if>
 				</TD>
 				<TD COLSPAN="10" CLASS="pagetitle">
 					<xsl:value-of select="species/common-name"/>
@@ -1104,7 +1111,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.3 2002/08/23 01:14:01 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.4 2002/08/23 01:32:41 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -1336,7 +1343,7 @@
 
 	<!-- special-purpose template for formatting photo links, used only in the photo index -->
 	<xsl:template match="sightingset/sighting/photo">
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.JPG</xsl:attribute>
 			<img><xsl:attribute name="SRC">../images/TN_<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.JPG</xsl:attribute></img>
 			<xsl:apply-templates select="../date"/>
 			<xsl:text>, </xsl:text>
