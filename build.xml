@@ -139,7 +139,7 @@
 			processor="xalan">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
+			<include name="*.html"/>
 		</style>
 
 		<style
