@@ -23,7 +23,7 @@
 	<xsl:template name="navigation-block">
 		<TABLE WIDTH="100%" CELLPADDING="10">
 			<TR>
-				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><CODE>&lt;birdWalker&gt;</CODE></TD>
+				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./cover-page.html"><CODE>&lt;birdWalker&gt;</CODE></A></TD>
 				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./species-index.html">Species List</A></TD>
 				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./location-index.html">Location List</A></TD>
 				<TD ALIGN="CENTER" BGCOLOR="#DDDDDD" WIDTH="25%"><A HREF="./trip-index.html">Trip List</A></TD>
