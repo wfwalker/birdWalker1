@@ -74,7 +74,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.9 2002/01/22 17:27:14 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.10 2002/02/06 16:48:24 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -110,6 +110,8 @@
 					<A HREF="santa-clara-county-species-index.html">Santa Clara</A>,
 					<A HREF="monterey-county-species-index.html">Monterey</A>,
 					<A HREF="san-mateo-county-species-index.html">San Mateo</A>).
+				I've included my
+					<A HREF="./photo-index.html">experimental digiscoping photos</A> using a Canon Powershot S40 and Pentax ED spotting scope.
 				</P>
 			</DIV>
 
@@ -158,6 +160,13 @@
 				<A HREF="http://www.filemaker.com/index.html">
 					<I>FileMaker Pro</I> database, FileMaker Inc.<BR/>
 					http://www.filemaker.com/index.html
+				</A>
+			</P>
+
+			<P>
+				<A HREF="http://www.paradisebirding.com/sys-tmpl/door/">
+					Steve Shunk, Paradise Birding<BR/>
+					http://www.paradisebirding.com/sys-tmpl/door/
 				</A>
 			</P>
 			</DIV>
@@ -372,6 +381,53 @@
 			<P></P>
 
 			<xsl:call-template name="trip-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
+		</BODY>
+	</xsl:template>
+
+	<!-- special-purpose template for formatting photo links, used only in the photo index -->
+	<xsl:template match="sightingset/sighting/photo">
+	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>
+			<img><xsl:attribute name="SRC">./images/TN_<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.JPG</xsl:attribute></img>
+			<xsl:apply-templates select="../date"/>
+			<xsl:text>, </xsl:text>
+			<xsl:apply-templates select="$species/taxonomyset/species[abbreviation=current()/../abbreviation]/common-name"/><xsl:text> at </xsl:text>
+			<xsl:value-of select="../location"/>
+		</A>
+		<BR/>
+	</xsl:template>
+
+	<xsl:template match="generate-photo-index">
+		<HEAD>
+		<xsl:call-template name="style-block"/>
+		<TITLE>Index of Photos</TITLE>
+		</HEAD>
+
+		<xsl:message>generate photo index</xsl:message>
+
+		<BODY BGCOLOR="#FFFFFF">
+			<xsl:call-template name="species-navigation-block"/>
+
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						Index of Photos
+					</TD>
+				</TR>
+			</TABLE>
+
+			<DIV CLASS="headertext">
+				This database contains <xsl:value-of select="count($sightings/sightingset/sighting/photo)"/> photos
+			</DIV>
+
+		 	<xsl:call-template name="two-column-table">
+				<xsl:with-param name="in-entry-list" select="$sightings/sightingset/sighting/photo"/>
+			</xsl:call-template>
+
+			<P></P>
+
+			<xsl:call-template name="species-navigation-block"/>
 			<xsl:call-template name="page-footer"/>
 		</BODY>
 	</xsl:template>
