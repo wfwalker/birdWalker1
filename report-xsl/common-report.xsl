@@ -81,7 +81,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.16 2001/11/06 17:18:59 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.17 2001/11/19 17:15:09 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -103,10 +103,12 @@
 			<TABLE WIDTH="90%">
 				<TR>
 					<TD VALIGN="TOP" WIDTH="50%">
-						<xsl:apply-templates select="$in-entry-list[position() &lt; 1 + (count($in-entry-list) div 2)]"/>
+						<xsl:apply-templates select="$in-entry-list[position() &lt; 1 + (count($in-entry-list) div 2)]">
+						</xsl:apply-templates>
 					</TD>
 					<TD VALIGN="TOP" WIDTH="50%">
-						<xsl:apply-templates select="$in-entry-list[position() &gt;= 1 + (count($in-entry-list) div 2)]"/>
+						<xsl:apply-templates select="$in-entry-list[position() &gt;= 1 + (count($in-entry-list) div 2)]">
+						</xsl:apply-templates>
 					</TD>
 				</TR>
 			</TABLE>
@@ -165,7 +167,9 @@
 	<xsl:template match="trip">
 		<A>
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
-			<xsl:value-of select="name"/> (<xsl:value-of select="date"/>)
+			<xsl:value-of select="name"/>
+			<xsl:text> </xsl:text>
+			<SPAN CLASS="anchor-subtitle">(<xsl:value-of select="date"/>)</SPAN>
 		</A>
 
 		<BR/>
@@ -176,7 +180,9 @@
 	<xsl:template match="location">
 		<A>
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
-			<xsl:value-of select="name"/> (<xsl:value-of select="city"/>, <xsl:value-of select="state"/>)
+			<xsl:value-of select="name"/>
+			<xsl:text> </xsl:text>
+			<SPAN CLASS="anchor-subtitle">(<xsl:value-of select="city"/>, <xsl:value-of select="state"/>)</SPAN>
 		</A>
 		<BR/>
 	</xsl:template>
@@ -186,7 +192,7 @@
 			<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="common-name"/>
 			<xsl:text> </xsl:text>
-			<I>(<xsl:value-of select="latin-name"/>)</I>
+			<SPAN CLASS="anchor-subtitle">(<xsl:value-of select="latin-name"/>)</SPAN>
 		</A></B>
 		<BR/>
 	</xsl:template>
@@ -199,6 +205,8 @@
 		<xsl:with-param name="in-bar-count"/>
 
 		<TD ALIGN="CENTER" VALIGN="BOTTOM">
+			<xsl:value-of select="$in-height"/><BR/>
+
 			<IMG SRC="images/blue.gif" WIDTH="20">
 				<xsl:attribute name="HEIGHT"><xsl:value-of select="1 + ((20 * $in-bar-count * $in-height) div $in-maximum)"/></xsl:attribute>
 			</IMG>
@@ -217,10 +225,10 @@
 				<TABLE>
 					<TR>
 						<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
-							<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
+							<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
 		
 							<xsl:call-template name="vertical-bar">
-								<xsl:with-param name="in-height" select="count($in-dated-items[starts-with(date, $date-prefix)])"/>
+								<xsl:with-param name="in-height" select="count($in-dated-items[contains(date, $date-prefix)])"/>
 								<xsl:with-param name="in-maximum" select="$item-count"/>
 								<xsl:with-param name="in-bar-count">12</xsl:with-param>
 							</xsl:call-template>
@@ -299,11 +307,11 @@
 					<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
 						<xsl:variable
 							name="date-prefix"
-							select="concat(@index, '/')"/>
+							select="concat('-', @index, '-')"/>
 
 						<xsl:variable
 							name="trips-this-month"
-							select="$in-trips[starts-with(date, $date-prefix)]"/>
+							select="$in-trips[contains(date, $date-prefix)]"/>
 
 						<xsl:variable
 							name="order-sightings-this-month"
