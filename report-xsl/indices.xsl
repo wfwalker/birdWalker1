@@ -17,12 +17,12 @@
 		<xsl:message>generate index for year <xsl:value-of select="$in-year"/></xsl:message>
 
 		<xsl:variable
-			name="year-abbreviations"
-			select="$sightings/sightingset/sighting[not(exclude) and contains(date, $in-year)]/abbreviation"/>
+			name="year-sightings"
+			select="$sightings/sightingset/sighting[not(exclude) and contains(date, $in-year)]"/>
 
 		<xsl:variable
 			name="year-species"
-			select="$species/taxonomyset/species[abbreviation=$year-abbreviations]"/>
+			select="$species/taxonomyset/species[abbreviation=$year-sightings/abbreviation]"/>
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
@@ -32,7 +32,7 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
@@ -42,7 +42,8 @@
 			</TABLE>
 
 			<DIV CLASS="headertext">
-				Our annual list for <xsl:value-of select="$in-year"/> contains <xsl:value-of select="count($year-species)"/> species
+				Our annual list for <xsl:value-of select="$in-year"/> contains <xsl:value-of select="count($year-species)"/> species,
+				including <xsl:value-of select="count($year-sightings/first)"/> new species.
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -76,7 +77,7 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
@@ -118,7 +119,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.5 2001/11/26 17:27:59 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.6 2001/11/30 02:55:18 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -216,7 +217,7 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="location-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="images/location.gif" ALIGN="MIDDLE"/>
@@ -263,7 +264,7 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
@@ -322,7 +323,7 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
@@ -365,7 +366,7 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="trip-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="trip-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="trip-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="images/trip.gif" ALIGN="MIDDLE"/>
