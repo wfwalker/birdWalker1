@@ -152,9 +152,24 @@
 
 	<target name="upload-to-shout">
 		<ftp server="duracef.shout.net"
+       		remotedir="public_html/sekrit/birds/images"
+       		userid="walker"
+       		password="ludwig0"
+			passive="yes"
+			verbose="yes"
+       		depends="yes"
+       		binary="no">
+    		<fileset dir="html/images">
+      			<include name="*.gif"/>
+    		</fileset>
+  		</ftp>
+
+		<ftp server="duracef.shout.net"
        		remotedir="public_html/sekrit/birds"
        		userid="walker"
        		password="ludwig0"
+			passive="yes"
+			verbose="yes"
        		depends="yes"
        		binary="no">
     		<fileset dir="html">
