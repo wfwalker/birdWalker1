@@ -5,8 +5,14 @@
 	<!-- PRODUCTION TARGETS -->
 
 	<target
-		name="indices"
-		description="generate main life species, life trip, and life location indices">
+		name="main-indices"
+		description="generate main index, species report index, location report index, trip report index">
+
+		<style
+			in="build.xml"
+			out="html/index.html"
+			destdir="html"
+			style="report-xsl/index.xsl"/>
 
 		<style
 			in="build.xml"
@@ -117,40 +123,41 @@
 	</target>
 
 	<target
-		name="cover-page"
-		description="generate a cover page">
-
-		<style
-			in="build.xml"
-			out="html/cover-page.html"
-			destdir="html"
-			style="report-xsl/cover-page.xsl"/>
-
-	</target>
-
-	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="cover-page, indices, state-indices, annual-indices, county-indices">
+		depends="main-indices, state-indices, annual-indices, county-indices">
 
 		<exec executable="build-locations.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
 		</exec>
 
 		<exec executable="build-species.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
 		</exec>
 
 		<exec executable="build-trips.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
 		</exec>
 
 		<exec executable="build-orders.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
 		</exec>
 	</target>
 
 	<target name="upload-to-shout">
+		<ftp server="duracef.shout.net"
+       		remotedir="public_html/sekrit/birds"
+       		userid="walker"
+       		password="ludwig0"
+			passive="yes"
+			verbose="yes"
+       		depends="yes"
+       		binary="no">
+    		<fileset dir="html">
+      			<include name="stylesheet.css"/>
+    		</fileset>
+  		</ftp>
+
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/sekrit/birds/images"
        		userid="walker"
@@ -189,7 +196,7 @@
 			out="html/SAMPLE TRIP REPORT.html"
 			destdir="html"
 			style="report-xsl/trip-report.xsl">
-			<param name="in-trip-date" expression="'11/11/1999'"/>
+			<param name="in-trip-date" expression="'9/15/2001'"/>
 		</style>
 
 	</target>
@@ -231,7 +238,7 @@
 			out="html/SAMPLE ORDER REPORT.html"
 			destdir="html"
 			style="report-xsl/order-report.xsl">
-			<param name="in-order-id" expression="'22'"/>
+			<param name="in-order-id" expression="'2'"/>
 		</style>
 
 	</target>
