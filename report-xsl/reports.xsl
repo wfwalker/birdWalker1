@@ -6,7 +6,7 @@
 
 	<xsl:template match="*">
 		<HTML>
-		<xsl:comment> $Id: reports.xsl,v 1.2 2001/10/11 01:10:35 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: reports.xsl,v 1.3 2001/11/02 01:49:34 walker Exp $ </xsl:comment>
 		<xsl:apply-templates select="*"/>
 		</HTML>
 	</xsl:template>
@@ -78,13 +78,13 @@
 			</H1>
 
 			<xsl:apply-templates select="location/notes[p[string-length(text())>0]]">
-				<xsl:with-param name="in-header-style">location-navigationblock</xsl:with-param>
+				<xsl:with-param name="in-header-style" select="'location-navigationblock'"/>
 			</xsl:apply-templates>
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="species"/>
 				<xsl:with-param name="in-entry-kind" select="'species'"/>
-				<xsl:with-param name="in-header-style">location-navigationblock</xsl:with-param>
+				<xsl:with-param name="in-header-style" select="'location-navigationblock'"/>
 			</xsl:call-template>
 
 			<xsl:call-template name="two-column-table">
@@ -97,13 +97,13 @@
 				<xsl:call-template name="monthly-distribution">
 					<xsl:with-param name="dated-items" select="trip"/>
 					<xsl:with-param name="item-kind">trips</xsl:with-param>
-					<xsl:with-param name="in-header-style">location-navigationblock</xsl:with-param>
+					<xsl:with-param name="in-header-style" select="'location-navigationblock'"/>
 				</xsl:call-template>
 	
 				<xsl:call-template name="yearly-distribution">
 					<xsl:with-param name="dated-items" select="trip"/>
 					<xsl:with-param name="item-kind">trips</xsl:with-param>
-					<xsl:with-param name="in-header-style">location-navigationblock</xsl:with-param>
+					<xsl:with-param name="in-header-style" select="'location-navigationblock'"/>
 				</xsl:call-template>
 			</xsl:if>
 	
@@ -164,8 +164,8 @@
 				<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
 				<TD CLASS="info-block" NOWRAP="TRUE">
 					<!-- note, the following expressions assume sightings are in chronological order -->
-					first seen <xsl:value-of select="species/sighting[position()=1]/date"/><BR/>
-					last seen <xsl:value-of select="species/sighting[position()=last()]/date"/><BR/>
+					first seen <xsl:value-of select="trip[position()=1]/sighting/date"/><BR/>
+					last seen <xsl:value-of select="trip[position()=last()]/sighting/date"/><BR/>
 				</TD>
 				<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
@@ -274,7 +274,7 @@
 			</H1>
 
 			<xsl:apply-templates select="trip/notes[p[string-length(text())>0]]">
-				<xsl:with-param name="in-header-style">trip-navigationblock</xsl:with-param>
+				<xsl:with-param name="in-header-style" select="'trip-navigationblock'"/>
 			</xsl:apply-templates>
 
 			<xsl:for-each select="location">
@@ -349,13 +349,13 @@
 				<xsl:call-template name="monthly-distribution">
 					<xsl:with-param name="dated-items" select="species/sighting"/>
 					<xsl:with-param name="item-kind">sightings</xsl:with-param>
-					<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+					<xsl:with-param name="in-header-style" select="'species-navigationblock'"/>
 				</xsl:call-template>
 	
 				<xsl:call-template name="yearly-distribution">
 					<xsl:with-param name="dated-items" select="species/sighting"/>
 					<xsl:with-param name="item-kind">sightings</xsl:with-param>
-					<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+					<xsl:with-param name="in-header-style" select="'species-navigationblock'"/>
 				</xsl:call-template>
 			</xsl:if>
 
