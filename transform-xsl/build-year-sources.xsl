@@ -40,6 +40,10 @@
 		&lt;/sighting&gt;
 	</xsl:template>
 
+	<xsl:template match="orderset">
+		<xsl:message>THIS SHOULD NOT BE HAPPENING</xsl:message>	
+	</xsl:template>
+
 	<xsl:template match="species">
 		<xsl:param name="in-sightings"/>
 
