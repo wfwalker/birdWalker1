@@ -117,7 +117,13 @@
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="build-species-sources, build-trip-sources, build-year-sources, build-location-sources, build-order-sources, build-pages">
+		depends="build-species-sources, build-trip-sources, build-year-sources, build-location-sources, build-order-sources, build-pages, build-top-index">
+	</target>
+
+	<target
+	    name="build-top-index">
+		<copy file="html/indices/index.html" tofile="html/index.html"/>
+		<replace file="html/index.html" token="../" value=""/>
 	</target>
 
 	<target name="upload-to-shout">
