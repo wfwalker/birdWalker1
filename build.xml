@@ -2,6 +2,46 @@
 
 <project name="birding-xml" default="build-all">
 
+	<!-- BUILDING SOURCES -->
+	
+	<target
+		name="build-sources"
+		description="build three ant XML project files that will build the source xml files for trips">
+	
+		<style
+			taskname="build-location-sources"
+			style="transform-xsl/build-location-sources.xsl"
+			in="locations.xml"
+			out="build-location-sources.xml"
+			force="true"
+			processor="xalan">
+		</style>
+
+		<style
+			taskname="build-trip-sources"
+			style="transform-xsl/build-trip-sources.xsl"
+			in="flat-trips.xml"
+			out="build-trip-sources.xml"
+			force="true"
+			processor="xalan">
+		</style>
+	
+		<style
+			taskname="build-species-sources"
+			style="transform-xsl/build-species-sources.xsl"
+			in="flat-species.xml"
+			out="build-species-sources.xml"
+			force="true"
+			processor="xalan">
+		</style>
+	
+		<ant taskname="create-location-sources" antfile="build-location-sources.xml"/>
+		<ant taskname="create-trip-sources" antfile="build-trip-sources.xml"/>
+		<ant taskname="create-species-sources" antfile="build-species-sources.xml"/>
+	</target>
+
+	<!-- PRE-REQUISITES -->
+
 	<target
 		name="require-source"
 		unless="source"
@@ -17,6 +57,8 @@
 
 		<fail message="please define a report kind on the command line"/>
 	</target>
+
+	<!-- DEBUGGING / DEVELOPMENT, SINGLE PAGE TARGETS -->
 
 	<target
 		name="build-index"
@@ -84,6 +126,17 @@
 		depends="set-timestamp">
 
 		<style
+			taskname="order-reports"
+			style="report-xsl/reports.xsl"
+			destdir="html"
+			basedir="sources/orders"
+			processor="xalan">
+
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="*.xml"/>
+		</style>
+
+		<style
 			taskname="species-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
@@ -91,7 +144,7 @@
 			processor="xalan">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
+			<include name="*.html"/>
 		</style>
 
 		<style
@@ -102,7 +155,7 @@
 			processor="xalan">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
+			<include name="*.html"/>
 		</style>
 
 		<style
@@ -113,7 +166,7 @@
 			processor="xalan">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
+			<include name="*.html"/>
 		</style>
 	</target>
 
