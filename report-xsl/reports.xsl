@@ -4,13 +4,6 @@
 	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
-	<xsl:template match="*">
-		<HTML>
-		<xsl:comment> $Id: reports.xsl,v 1.5 2001/11/19 17:15:46 walker Exp $ </xsl:comment>
-		<xsl:apply-templates select="*"/>
-		</HTML>
-	</xsl:template>
-
 	<!-- *** LOCATION REPORT *** -->
 
 	<xsl:template match="generate-location-report">
@@ -29,55 +22,55 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="location-navigation-block"/>
 
-			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-infoblock">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/location.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="images/location.gif" ALIGN="LEFT"/>
 						<xsl:value-of select="location/name"/>
+						<BR/>
+						<SPAN CLASS="pagesubtitle">
+							<xsl:value-of select="location/city"/><xsl:text>, </xsl:text><xsl:value-of select="location/state"/>
+						</SPAN>
 					</TD>
 				</TR>
 
 				<TR>
-					<TD ALIGN="RIGHT" CLASS="info-block" NOWRAP="TRUE">
-						Nearest City<BR/>County
-					</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE">
-						<xsl:value-of select="location/city"/><xsl:text>, </xsl:text><xsl:value-of select="location/state"/><BR/>
-						<xsl:value-of select="location/county"/>
-					</TD>
-					<xsl:if test="string-length(location/url)>0">
-						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-						<TD CLASS="info-block" NOWRAP="TRUE">
+					<TD NOWRAP="TRUE">
+						<xsl:value-of select="location/county"/> County
+
+						<xsl:if test="string-length(location/url)>0">
+							<BR/>
 							<A>
 								<xsl:attribute name="HREF">
 									<xsl:value-of select="location/url"/>
 								</xsl:attribute>
-								Web Info
+								Location Website
 							</A>
-						</TD>
 					</xsl:if>
+					</TD>
 					<xsl:if test="string-length(location/latitude)>0">
-						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-						<TD ALIGN="RIGHT" CLASS="info-block" NOWRAP="TRUE">
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
+						<TD ALIGN="RIGHT" NOWRAP="TRUE">
 							<xsl:text>N </xsl:text><xsl:value-of select="location/latitude"/>&#176;<BR/>
 							<xsl:text>W </xsl:text><xsl:value-of select="location/longitude"/>&#176;
 						</TD>
 					</xsl:if>
-					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE">
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
+					<TD NOWRAP="TRUE">
 						first visited <xsl:value-of select="species/sighting[position()=1]/date"/><BR/>
 						last visited <xsl:value-of select="species/sighting[position()=last()]/date"/><BR/>
 					</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
+					<TD NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
 					</TD>
 				</TR>
 			</TABLE>
 
-			<xsl:apply-templates select="location/notes[p[string-length(text())>0]]"/>
+			<xsl:apply-templates select="location/notes"/>
 
 			<DIV CLASS="headertext">
-				<xsl:value-of select="count(species)"/> species observed at <xsl:value-of select="location/name"/>
+				<xsl:value-of select="count(species)"/> species observed at <xsl:value-of select="location/name"/>,
+				including <xsl:value-of select="count(species/sighting/first)"/> first sightings.
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -141,19 +134,21 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="species-infoblock" CELLPADDING="5" BORDER="0">
+			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="species-color" CELLPADDING="5" BORDER="0">
 
 			<TR>
 				<TD COLSPAN="10" CLASS="pagetitle">
-					<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+					<IMG SRC="images/species.gif" ALIGN="LEFT"/>
 					<xsl:value-of select="species/common-name"/>
-					<xsl:text> </xsl:text><I>(<xsl:value-of select="species/latin-name"/>)</I>
+					<!-- <xsl:text> </xsl:text> -->
+					<BR/>
+					<SPAN CLASS="pagesubtitle"><xsl:value-of select="species/latin-name"/></SPAN>
 				</TD>
 			</TR>
 
 			<TR>
-				<TD ALIGN="RIGHT" CLASS="info-block" NOWRAP="TRUE">Order<BR/>Family</TD>
-				<TD CLASS="info-block" NOWRAP="TRUE">
+				<TD ALIGN="RIGHT" NOWRAP="TRUE">Order<BR/>Family</TD>
+				<TD NOWRAP="TRUE">
 					<A>
 						<xsl:attribute name="HREF">
 							<xsl:value-of select="order/report-url"/>
@@ -162,19 +157,19 @@
 					</A><BR/>
 					<I><xsl:value-of select="family/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="family/common-name"/>
 				</TD>
-				<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-				<TD CLASS="info-block" NOWRAP="TRUE">
+				<TD NOWRAP="TRUE">|<BR/>|</TD>
+				<TD NOWRAP="TRUE">
 					<!-- note, the following expressions assume sightings are in chronological order -->
 					first seen <xsl:value-of select="trip[position()=1]/sighting/date"/><BR/>
 					last seen <xsl:value-of select="trip[position()=last()]/sighting/date"/><BR/>
 				</TD>
-				<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
+				<TD NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
 				</TD>
 			</TR>
 			</TABLE>
 
-			<xsl:apply-templates select="species/notes[p[string-length(text())>0]]"/>
+			<xsl:apply-templates select="species/notes"/>
 
 			<DIV CLASS="headertext">
 				<xsl:value-of select="species/common-name"/> observed at <xsl:value-of select="count(location)"/> locations
@@ -235,21 +230,25 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="trip-navigation-block"/>
 
-			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="trip-navigationblock" CELLPADDING="5" BORDER="0">
+			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="trip-color" CELLPADDING="5" BORDER="0">
 				<TR>
 					<TD COLSPAN="6" CLASS="pagetitle">
-						<IMG SRC="images/trip.gif" ALIGN="MIDDLE"/>
-						<xsl:value-of select="trip/date"/> "<xsl:value-of select="trip/name"/>"
+						<IMG SRC="images/trip.gif" ALIGN="LEFT"/>
+						<xsl:value-of select="trip/name"/>
+						<BR/>
+						<SPAN CLASS="pagesubtitle"><xsl:value-of select="trip/date"/></SPAN>
 					</TD>
 				</TR>
 				<TR>
-					<TD CLASS="info-block" NOWRAP="TRUE">
-						<xsl:value-of select="trip/date"/><BR/>
+					<TD NOWRAP="TRUE">
+						Leader
+					</TD>
+					<TD NOWRAP="TRUE">
 						<xsl:value-of select="trip/leader"/>
 					</TD>
 					<xsl:if test="string-length(trip/url)>0">
-						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-						<TD CLASS="info-block" NOWRAP="TRUE">
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
+						<TD NOWRAP="TRUE">
 							<A>
 								<xsl:attribute name="HREF">
 									<xsl:value-of select="trip/url"/>
@@ -258,19 +257,19 @@
 							</A>
 						</TD>
 					</xsl:if>
-					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE">
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
+					<TD NOWRAP="TRUE">
 						<xsl:value-of select="count(species)"/> species<BR/>
 						<xsl:value-of select="count(location)"/> locations
 					</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
+					<TD NOWRAP="TRUE" WIDTH="90%">
 						<P><BR/></P>
 					</TD>
 				</TR>
 			</TABLE>
 
 
-			<xsl:apply-templates select="trip/notes[p[string-length(text())>0]]"/>
+			<xsl:apply-templates select="trip/notes"/>
 
 			<xsl:for-each select="location">
 				<xsl:variable name="this-location-name" select="name"/>
@@ -318,30 +317,43 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="species-navigationblock" CELLPADDING="5" BORDER="0">
+			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="species-color" CELLPADDING="5" BORDER="0">
 				<TR>
-					<TD CLASS="pagetitle" NOWRAP="TRUE" COLSPAN="4">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>Order <xsl:value-of select="order/latin-name"/>
-						"<xsl:value-of select="order/common-name"/>"
+					<TD CLASS="pagetitle" NOWRAP="TRUE" COLSPAN="6">
+						<IMG SRC="images/species.gif" ALIGN="LEFT"/>
+						<xsl:value-of select="order/latin-name"/>
+						<BR/>
+						<SPAN CLASS="pagesubtitle"><xsl:value-of select="order/common-name"/></SPAN>
 					</TD>
 				</TR>
 
 				<TR>
-					<TD CLASS="info-block" NOWRAP="TRUE">
-						<xsl:value-of select="count(family)"/> families<BR/>
-						<xsl:value-of select="count(subfamily)"/> subfamilies
+					<TD NOWRAP="TRUE">
+						Families<BR/>Subfamilies
 					</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE">
-						<xsl:value-of select="count(genus)"/> genera<BR/>
-						<xsl:value-of select="count(species)"/> species
+					<TD NOWRAP="TRUE">
+						<xsl:value-of select="count(family)"/><BR/>
+						<xsl:value-of select="count(subfamily)"/>
 					</TD>
-					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
+					<TD NOWRAP="TRUE">
+						Genera<BR/>Species
+					</TD>
+					<TD NOWRAP="TRUE">
+						<xsl:value-of select="count(genus)"/><BR/>
+						<xsl:value-of select="count(species)"/>
+					</TD>
+					<TD NOWRAP="TRUE" WIDTH="90%">
 						<P><BR/></P>
 					</TD>
 				</TR>
 			</TABLE>
 
+			<DIV CLASS="headertext">
+				Our Life List includes <xsl:value-of select="count(species[sighting])"/>
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="order/common-name"/>
+			</DIV>
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="species[sighting]"/>
