@@ -9,35 +9,41 @@
 		description="build three ant XML project files that will build the source xml files for trips">
 	
 		<style
-			taskname="build-location-sources"
-			style="transform-xsl/build-location-sources.xsl"
-			in="locations.xml"
-			out="build-location-sources.xml"
-			force="true"
+			taskname="build-species-sources"
+			style="transform-xsl/build-species-sources.xsl"
+			in="flat-species.xml"
+			out="build-species-sources.xml"
 			processor="xalan">
 		</style>
-
+		<ant taskname="create-species-sources" antfile="build-species-sources.xml"/>
+	
+		<style
+			taskname="build-order-sources"
+			style="transform-xsl/build-order-sources.xsl"
+			in="flat-species.xml"
+			out="build-order-sources.xml"
+			processor="xalan">
+		</style>
+		<ant taskname="create-order-sources" antfile="build-order-sources.xml"/>
+	
 		<style
 			taskname="build-trip-sources"
 			style="transform-xsl/build-trip-sources.xsl"
 			in="flat-trips.xml"
 			out="build-trip-sources.xml"
-			force="true"
 			processor="xalan">
 		</style>
+		<ant taskname="create-trip-sources" antfile="build-trip-sources.xml"/>
 	
 		<style
-			taskname="build-species-sources"
-			style="transform-xsl/build-species-sources.xsl"
-			in="flat-species.xml"
-			out="build-species-sources.xml"
-			force="true"
+			taskname="build-location-sources"
+			style="transform-xsl/build-location-sources.xsl"
+			in="locations.xml"
+			out="build-location-sources.xml"
 			processor="xalan">
 		</style>
-	
 		<ant taskname="create-location-sources" antfile="build-location-sources.xml"/>
-		<ant taskname="create-trip-sources" antfile="build-trip-sources.xml"/>
-		<ant taskname="create-species-sources" antfile="build-species-sources.xml"/>
+
 	</target>
 
 	<!-- PRE-REQUISITES -->
@@ -173,7 +179,7 @@
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="build-reports, build-indices">
+		depends="build-sources, build-reports, build-indices">
 	</target>
 
 	<target name="upload-to-shout">
