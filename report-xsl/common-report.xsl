@@ -81,7 +81,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.19 2001/12/05 04:09:19 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.20 2002/01/03 17:34:04 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -97,7 +97,6 @@
 	<!-- templates to create table sections used in many kinds of reports -->
 
 	<xsl:template name="two-column-table">
-		<xsl:message>two-column table</xsl:message>
 		<xsl:param name="in-entry-list"/>
 
 		<DIV CLASS="report-content">
@@ -120,38 +119,32 @@
 	<!-- notes shown either as report content, or as sighting notes -->
 
 	<xsl:template mode="report-content" match="notes">
-		<xsl:message>mode report-content notes</xsl:message>
 		<DIV CLASS="report-content"><xsl:apply-templates select="p"/></DIV>
 	</xsl:template>
 
 	<xsl:template mode="sighting-notes" match="notes">
-		<xsl:message>mode sighting-notes notes</xsl:message>
 		<DIV CLASS="sighting-notes"><xsl:apply-templates select="p"/></DIV>
 	</xsl:template>
 
 	<!-- displays a paragraph of text -->
 
 	<xsl:template match="p">
-		<xsl:message>generic paragraph</xsl:message>
 		<P><xsl:value-of select="."/></P>
 	</xsl:template>
 
 	<!-- displays a first sighting note, with or without date -->
 
 	<xsl:template mode="with-date" match="sighting/first">
-		<xsl:message>with date species sighting first</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text><xsl:value-of select="../date"/>, first sighting</SPAN>
 	</xsl:template>
 
 	<xsl:template mode="without-date" match="sighting/first">
-		<xsl:message>wihtout date species sighting first</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>first sighting</SPAN>
 	</xsl:template>
 
 	<!-- template to display dates -->
 
 	<xsl:template match="date">
-		<xsl:message>generic date</xsl:message>
 		<xsl:variable name="month-index" select="substring(text(), 6, 2)"/>
 		<xsl:variable name="day-index" select="substring(text(), 9, 2)"/>
 		<xsl:variable name="year-index" select="substring(text(), 1, 4)"/>
@@ -167,28 +160,24 @@
 
 
 	<xsl:template match="/generate-species-report/trip/sighting">
-		<xsl:message>species trip sighting</xsl:message>
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="notes/p"/>
 		</DIV>
 	</xsl:template>
 
 	<xsl:template match="/generate-trip-report/species/sighting">
-		<xsl:message>trip species sighting</xsl:message>
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="notes/p"/>
 		</DIV>
 	</xsl:template>
 
 	<xsl:template match="/generate-location-report/species/sighting">
-		<xsl:message>location species sighting</xsl:message>
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="date"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
 	</xsl:template>
 
 	<xsl:template match="/generate-order-report/species/sighting">
-		<xsl:message>order species sighting</xsl:message>
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="date"/>, <xsl:value-of select="location"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
@@ -197,7 +186,6 @@
 	<!-- templates to display the names of, and links to, the basic report pages -->
 
 	<xsl:template match="species">
-		<xsl:message>generic species</xsl:message>
 		<A>
 			<xsl:if test="sighting/notes or sighting/first">
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
@@ -214,7 +202,6 @@
 	</xsl:template>
 
 	<xsl:template match="generate-year-report/species">
-		<xsl:message>year species</xsl:message>
 		<A>
 			<xsl:if test="sighting/first">
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
@@ -229,7 +216,6 @@
 	</xsl:template>
 
 	<xsl:template match="trip">
-		<xsl:message>generic trip</xsl:message>
 		<A>
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/>
@@ -243,7 +229,6 @@
 	</xsl:template>
 
 	<xsl:template match="location">
-		<xsl:message>generic location</xsl:message>
 		<A>
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/>
@@ -254,7 +239,6 @@
 	</xsl:template>
 
 	<xsl:template match="order">
-		<xsl:message>generic order</xsl:message>
 		<B><A>
 			<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="common-name"/>
@@ -267,9 +251,9 @@
 	<!-- draw a blue vertical bar using an image tag with height and width attributes -->
 
 	<xsl:template name="vertical-bar">
-		<xsl:with-param name="in-height"/>
-		<xsl:with-param name="in-maximum"/>
-		<xsl:with-param name="in-bar-count"/>
+		<xsl:param name="in-height"/>
+		<xsl:param name="in-maximum"/>
+		<xsl:param name="in-bar-count"/>
 
 		<TD ALIGN="CENTER" VALIGN="BOTTOM">
 			<xsl:value-of select="$in-height"/><BR/>
@@ -297,7 +281,7 @@
 							<xsl:call-template name="vertical-bar">
 								<xsl:with-param name="in-height" select="count($in-dated-items[contains(date, $date-prefix)])"/>
 								<xsl:with-param name="in-maximum" select="$item-count"/>
-								<xsl:with-param name="in-bar-count">12</xsl:with-param>
+								<xsl:with-param name="in-bar-count" select="'12'"/>
 							</xsl:call-template>
 						</xsl:for-each>
 					</TR>
