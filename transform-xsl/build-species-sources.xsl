@@ -9,12 +9,6 @@
 	<xsl:template match="taxonomyset">
 		<project name="build-species-sources" default="build-all">
 			<target name="build-all">
-				<delete>
-					<xsl:attribute name="dir"><xsl:value-of select="$species-sources-path"/></xsl:attribute>
-				</delete>
-				<mkdir>
-					<xsl:attribute name="dir"><xsl:value-of select="$species-sources-path"/></xsl:attribute>
-				</mkdir>
 				<xsl:apply-templates select="species[abbreviation=$sightings/sightingset/sighting/abbreviation]"/>
 				<!-- xsl:apply-templates select="species"/ -->
 			</target>

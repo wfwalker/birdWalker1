@@ -15,11 +15,11 @@
 	<target
 		name="clean-sources">
 		<delete>
-			<fileset dir="${basedir}/sources/locations" includes="*.xml"/>
-			<fileset dir="${basedir}/sources/trips" includes="*.xml"/>
-			<fileset dir="${basedir}/sources/years" includes="*.xml"/>
-			<fileset dir="${basedir}/sources/species" includes="*.xml"/>
-			<fileset dir="${basedir}/sources/orders" includes="*.xml"/>
+			<fileset dir="${basedir}/sources/locations" includes="*.xml" excludes="index.xml"/>
+			<fileset dir="${basedir}/sources/trips" includes="*.xml" excludes="index.xml"/>
+			<fileset dir="${basedir}/sources/years" includes="*.xml" excludes="index.xml"/>
+			<fileset dir="${basedir}/sources/species" includes="*.xml" excludes="index.xml"/>
+			<fileset dir="${basedir}/sources/orders" includes="*.xml" excludes="index.xml"/>
 			<fileset dir="${basedir}" includes="build-*-sources.xml"/>
 		</delete>
 	</target>

@@ -9,12 +9,6 @@
 	<xsl:template match="taxonomyset">
 		<project name="build-order-sources" default="build-all">
 			<target name="build-all">
-				<delete>
-					<xsl:attribute name="dir"><xsl:value-of select="$order-sources-path"/></xsl:attribute>
-				</delete>
-				<mkdir>
-					<xsl:attribute name="dir"><xsl:value-of select="$order-sources-path"/></xsl:attribute>
-				</mkdir>
 				<xsl:apply-templates select="order"/>
 			</target>
 		</project>

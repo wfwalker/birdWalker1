@@ -9,12 +9,6 @@
 	<xsl:template match="locationset">
 		<project name="build-location-sources" default="build-all">
 			<target name="build-all">
-				<delete>
-					<xsl:attribute name="dir"><xsl:value-of select="$location-sources-path"/></xsl:attribute>
-				</delete>
-				<mkdir>
-					<xsl:attribute name="dir"><xsl:value-of select="$location-sources-path"/></xsl:attribute>
-				</mkdir>
 				<xsl:apply-templates select="location"/>
 			</target>
 		</project>

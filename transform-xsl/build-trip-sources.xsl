@@ -9,12 +9,6 @@
 	<xsl:template match="tripset">
 		<project name="build-trip-sources" default="build-all">
 			<target name="build-all">
-				<delete>
-					<xsl:attribute name="dir"><xsl:value-of select="$trip-sources-path"/></xsl:attribute>
-				</delete>
-				<mkdir>
-					<xsl:attribute name="dir"><xsl:value-of select="$trip-sources-path"/></xsl:attribute>
-				</mkdir>
 				<xsl:apply-templates select="trip"/>
 			</target>
 		</project>

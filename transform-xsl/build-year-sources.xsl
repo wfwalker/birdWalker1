@@ -9,12 +9,6 @@
 	<xsl:template match="yearset">
 		<project name="build-year-sources" default="build-all">
 			<target name="build-all">
-				<delete>
-					<xsl:attribute name="dir"><xsl:value-of select="$year-sources-path"/></xsl:attribute>
-				</delete>
-				<mkdir>
-					<xsl:attribute name="dir"><xsl:value-of select="$year-sources-path"/></xsl:attribute>
-				</mkdir>
 				<xsl:apply-templates select="year"/>
 			</target>
 		</project>
