@@ -1,1 +1,89 @@
-<generate-cover-page-index/>
+<generate-cover-page-index>
+	<DIV CLASS="headertext">How to navigate</DIV>
+
+	<DIV CLASS="report-content">
+		<P>
+		All the pages on this site have links at the top and bottom leading to the
+		indices of 
+			<A HREF="../indices/species-index.html">species reports</A>,
+			<A HREF="../indices/trip-index.html">trip reports</A>, and
+			<A HREF="../indices/location-index.html">location reports</A>.
+		In addition, I have generated a species list for each
+		year we've been bird watching (
+			<A HREF="../years/1996.html">1996</A>,
+			<A HREF="../years/1997.html">1997</A>,
+			<A HREF="../years/1998.html">1998</A>,
+			<A HREF="../years/1999.html">1999</A>,
+			<A HREF="../years/2000.html">2000</A>,
+			<A HREF="../years/2001.html">2001</A>,
+			<A HREF="../years/2002.html">2002</A>),
+		each state we've taken trips in (
+			<A HREF="../indices/ca-species-index.html">California</A>,
+			<A HREF="../indices/ma-species-index.html">Massachusetts</A>,
+			<A HREF="../indices/il-species-index.html">Illinois</A>,
+			<A HREF="../indices/or-species-index.html">Oregon</A>),
+		and some of our favorite counties (
+			<A HREF="../indices/santa-clara-county-species-index.html">Santa Clara</A>,
+			<A HREF="../indices/monterey-county-species-index.html">Monterey</A>,
+			<A HREF="../indices/san-mateo-county-species-index.html">San Mateo</A>).
+		I've included my
+			<A HREF="../indices/photo-index.html">experimental digiscoping photos</A> using a Canon Powershot S40 and Pentax ED spotting scope.
+		</P>
+	</DIV>
+
+	<DIV CLASS="headertext">How it works</DIV>
+
+	<DIV CLASS="report-content">
+		<P>While in the field, I record my observations using a Palm V and its Memo Pad application.
+		Each of these trip lists includes a date, location, and collection of six-letter abbreviations,
+		one for each species seen.</P>
+
+		<P>After the trip, I import these trip lists into a FileMaker database. The database consists of
+		four tables; Sightings, Locations, Trips, and Species. The Species table is prepopulated with
+		Mr. Shipman's collection of abbreviations, latin names, and common names for all the species on
+		the ABA list. The other three tables are generated from my field notes.</P>
+				
+		<P>To generate these web page reports, I first export the data from the FileMaker database into XML.
+		I transform the XML data into a series of web pages using XSL templates and Apache's Xalan
+		(an XSLT engine).</P>
+	</DIV>
+
+	<DIV CLASS="headertext">References</DIV>
+
+	<DIV CLASS="report-content">
+		<P>
+			<A HREF="http://www.nmt.edu/~shipman/z/nom/6home.html">
+			<I>A robust bird code system: the six-letter code</I>, John Shipman<BR/>
+			http://www.nmt.edu/~shipman/z/nom/6home.html
+			</A>
+		</P>
+
+		<P>
+			<A HREF="http://xml.apache.org/xalan-j/index.html">
+			<I>Xalan: An XSLT Engine</I>, the Apache XML Project<BR/>
+			http://xml.apache.org/xalan-j/index.html
+			</A>
+		</P>
+
+		<P>
+			<A HREF="http://www.aou.org/aou/birdlist.html">
+			Americal Ornithological Union Checklist of North American Birds<BR/>
+			http://www.aou.org/aou/birdlist.html
+			</A>
+		</P>
+
+		<P>
+			<A HREF="http://www.filemaker.com/index.html">
+			<I>FileMaker Pro</I> database, FileMaker Inc.<BR/>
+			http://www.filemaker.com/index.html
+			</A>
+		</P>
+
+		<P>
+			<A HREF="http://www.paradisebirding.com/sys-tmpl/door/">
+			Steve Shunk, Paradise Birding<BR/>
+			http://www.paradisebirding.com/sys-tmpl/door/
+			</A>
+		</P>
+	</DIV>
+</generate-cover-page-index>
