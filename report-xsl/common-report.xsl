@@ -81,7 +81,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.22 2002/05/01 01:39:59 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.23 2002/07/16 15:37:04 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -142,6 +142,16 @@
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>first sighting</SPAN>
 	</xsl:template>
 
+	<!-- how to display the fact that a sighting has been excluded from life list counting -->
+
+	<xsl:template mode="with-date" match="sighting/exclude">
+		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text><xsl:value-of select="../date"/>, excluded</SPAN>
+	</xsl:template>
+
+	<xsl:template mode="without-date" match="sighting/exclude">
+		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>excluded</SPAN>
+	</xsl:template>
+
 	<!-- template to display dates -->
 
 	<xsl:template match="date">
@@ -156,8 +166,7 @@
 		<xsl:value-of select="$year-index"/>
 	</xsl:template>
 		
-	<!-- templates for names of and hyperlinks to various entities -->
-
+	<!-- How to display sightings -->
 
 	<xsl:template match="/generate-species-report/trip/sighting">
 		<DIV CLASS="sighting-notes">
@@ -183,7 +192,7 @@
 		</DIV>
 	</xsl:template>
 
-	<!-- templates to display the names of, and links to, the basic report pages -->
+	<!-- how to display species names -->
 
 	<xsl:template match="species">
 		<A>
@@ -196,6 +205,7 @@
 		</A>
 
 		<xsl:apply-templates mode="without-date" select="sighting/first"/>
+		<xsl:apply-templates mode="without-date" select="sighting/exclude"/>
 		<BR/>
 
 		<xsl:apply-templates select="sighting[notes]"/>
@@ -207,14 +217,29 @@
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
 
-			<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 		</A>
 
 		<xsl:apply-templates mode="with-date" select="sighting/first"/>
+		<xsl:apply-templates mode="with-date" select="sighting/exclude"/>
 		<BR/>
 	</xsl:template>
 
+	<xsl:template match="generate-order-report/species">
+		<A>
+			<xsl:if test="sighting[not(exclude)]">
+				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
+			</xsl:if>
+
+			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+			<xsl:value-of select="common-name"/>
+		</A>
+
+		<BR/>
+	</xsl:template>
+
+	<!-- how to display trip names -->
 	<xsl:template match="trip">
 		<A>
 			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
