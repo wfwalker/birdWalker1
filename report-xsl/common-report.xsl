@@ -85,7 +85,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.7 2001/09/13 15:46:20 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.8 2001/09/18 01:55:07 walker Exp $ </xsl:comment>
 	</xsl:template>
 
 	<!-- define the template for tableheaders -->
@@ -96,7 +96,7 @@
 
 		<TABLE WIDTH="100%">
 			<TR>
-				<TD CLASS="tablehead" WIDTH="100%">
+				<TD WIDTH="100%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 					<xsl:value-of select="$title-string"/>
 				</TD>
@@ -108,13 +108,29 @@
 
 	<xsl:template name="species-table">
 		<xsl:param name="species-list"/>
+		<xsl:param name="extra-title"/>
+		<xsl:param name="extra-url"/>
 
 		<P>
-			<xsl:call-template name="tableheader">
-				<xsl:with-param name="title-string">
-					<xsl:value-of select="count($species-list)"/> species
-				</xsl:with-param>
-			</xsl:call-template>
+			<!-- used to call the tableheader template here -->
+			<!-- can't use the table header template anymore, since I wanna have url's in the header -->
+			<TABLE WIDTH="100%">
+				<TR>
+					<TD WIDTH="100%">
+						<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
+
+						<xsl:if test="string-length($extra-title)">
+							<A>
+								<xsl:attribute name="HREF"><xsl:value-of select="$extra-url"/></xsl:attribute>
+								<xsl:value-of select="$extra-title"/>
+							</A>
+							<xsl:text>, </xsl:text>
+						</xsl:if>
+
+						<xsl:value-of select="count($species-list)"/> species
+					</TD>
+				</TR>
+			</TABLE>
 
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
@@ -246,13 +262,13 @@
 				<!-- nested table for displaying the two aux records and their links -->
 				<TABLE WIDTH="100%">
 					<TR>
-						<TD WIDTH="25%" ALIGN="LEFT" CLASS="sightinghead">
+						<TD VALIGN="TOP" WIDTH="25%" ALIGN="LEFT" CLASS="sightinghead">
 							<xsl:apply-templates select="$aux-record-1">
 							</xsl:apply-templates>
 							<xsl:apply-templates select="$aux-record-2">
 							</xsl:apply-templates>
 						</TD>
-						<TD WIDTH="75%" ALIGN="LEFT">
+						<TD WIDTH="75%" VALIGN="TOP" ALIGN="LEFT">
 							<xsl:value-of select="notes"/>
 						</TD>
 					</TR>
