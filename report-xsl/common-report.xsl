@@ -82,7 +82,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.11 2001/10/04 15:40:30 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.12 2001/10/10 16:11:27 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -298,45 +298,38 @@
 		<BR/>
 	</xsl:template>
 
+	<xsl:template match="order">
+		<A>
+			<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
+			<I>(<xsl:value-of select="latin-name"/>)</I>
+			<xsl:text> </xsl:text><xsl:value-of select="common-name"/>
+		</A>
+		<BR/>
+	</xsl:template>
+
 	<xsl:template name="order-table">
 		<xsl:param name="in-header-style"/>
 
+		<xsl:variable name="order-list" select="$species/taxonomyset/order"/>
+
 		<xsl:call-template name="tableheader">
 			<xsl:with-param name="in-title-string">
-				22 orders
+				<xsl:value-of select="count($order-list)"/> orders
 			</xsl:with-param>
 			<xsl:with-param name="in-header-style" select="$in-header-style"/>
 		</xsl:call-template>
 
 		<TABLE CELLPADDING="10" WIDTH="100%">
-		<TR>
-		<TD WIDTH="50%">
-		<A HREF="gaviiformes.html"><I>(Gaviiformes)</I> Loons</A><BR/>
-		<A HREF="podicipediformes.html"><I>(Podicipediformes)</I> Grebes</A><BR/>
-		<A HREF="procellariiformes.html"><I>(Procellariiformes)</I> Tube-nosed Swimmers</A><BR/>
-		<A HREF="pelecaniformes.html"><I>(Pelecaniformes)</I> Totipalmate Swimmers</A><BR/>
-		<A HREF="ciconiiformes.html"><I>(Ciconiiformes)</I> Herons, Ibises, Storks and Allies</A><BR/>
-		<A HREF="phoenicopteriformes.html"><I>(Phoenicopteriformes)</I> Flamingos</A><BR/>
-		<A HREF="anseriformes.html"><I>(Anseriformes)</I> Screamers, Swans, Geese and Ducks</A><BR/>
-		<A HREF="falconiformes.html"><I>(Falconiformes)</I> Diurnal Birds of Prey</A><BR/>
-		<A HREF="galliformes.html"><I>(Galliformes)</I> Gallinaceous Birds</A><BR/>
-		<A HREF="gruiformes.html"><I>(Gruiformes)</I> Rails, Cranes and Allies</A><BR/>
-		<A HREF="charadriiformes.html"><I>(Charadriiformes)</I> Shorebirds, Gulls, Auks and Allies</A><BR/>
-		</TD>
-		<TD WIDTH="50%">
-		<A HREF="columbiformes.html"><I>(Columbiformes)</I> Sandgrouse, Pigeons and Doves</A><BR/>
-		<A HREF="psittaciformes.html"><I>(Psittaciformes)</I> Parrots and Allies</A><BR/>
-		<A HREF="cuculiformes.html"><I>(Cuculiformes)</I> Cuckoos and Allies</A><BR/>
-		<A HREF="strigiformes.html"><I>(Strigiformes)</I> Owls</A><BR/>
-		<A HREF="caprimulgiformes.html"><I>(Caprimulgiformes)</I> Goatsuckers, Oilbirds and Allies</A><BR/>
-		<A HREF="apodiformes.html"><I>(Apodiformes)</I> Swifts and Hummingbirds</A><BR/>
-		<A HREF="trogoniformes.html"><I>(Trogoniformes)</I> Trogons</A><BR/>
-		<A HREF="upupiformes.html"><I>(Upupiformes)</I> Hoopoes and Allies</A><BR/>
-		<A HREF="coraciiformes.html"><I>(Coraciiformes)</I> Rollers, Motmots, Kingfishers and Allies</A><BR/>
-		<A HREF="piciformes.html"><I>(Piciformes)</I> Puffbirds, Toucans, Woodpeckers and Allies</A><BR/>
-		<A HREF="passeriformes.html"><I>(Passeriformes)</I> Passerine Bird</A><BR/>
-		</TD>
-		</TR>
+			<TR>
+				<TD WIDTH="50%">
+					<xsl:apply-templates select="$order-list[position() &lt; 1 + (count($order-list) div 2)]">
+					</xsl:apply-templates>
+				</TD>
+				<TD WIDTH="50%">
+					<xsl:apply-templates select="$order-list[position() &gt;= 1 + (count($order-list) div 2)]">
+					</xsl:apply-templates>
+				</TD>
+			</TR>
 		</TABLE>
 	</xsl:template>
 
