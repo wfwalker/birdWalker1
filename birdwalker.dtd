@@ -3,7 +3,7 @@
 <!ATTLIST generate-trip-report trip-date CDATA #REQUIRED>
 
 <!ELEMENT generate-species-report (species, location+, trip+, order, family?, subfamily?, genus?)>
-<!ATTLIST generate-species-report abbreviation CDATA #REQUIRED>
+<!ATTLIST generate-species-report abbreviation IDREF #REQUIRED>
 
 <!ELEMENT generate-location-report (location, species*, trip*)>
 <!ATTLIST generate-location-report location-name CDATA #REQUIRED>
@@ -27,10 +27,10 @@
 <!ATTLIST trip date CDATA #REQUIRED>
 <!ATTLIST trip leader CDATA #REQUIRED>
 <!ATTLIST trip url CDATA #REQUIRED>
-<!ATTLIST trip filename-stem CDATA #REQUIRED>
+<!ATTLIST trip filename-stem NMTOKEN #REQUIRED>
 
 <!ELEMENT sighting (notes*)>
-<!ATTLIST sighting abbreviation CDATA #IMPLIED>
+<!ATTLIST sighting abbreviation NMTOKEN #IMPLIED>
 <!ATTLIST sighting date CDATA #IMPLIED>
 <!ATTLIST sighting location-name CDATA #IMPLIED>
 <!ATTLIST sighting exclude CDATA #IMPLIED>
@@ -43,12 +43,12 @@
 <!ATTLIST species subfamily-id CDATA #IMPLIED>
 <!ATTLIST species genus-id CDATA #IMPLIED>
 <!ATTLIST species order-id CDATA #IMPLIED>
-<!ATTLIST species abbreviation CDATA #REQUIRED>
+<!ATTLIST species abbreviation ID #REQUIRED>
 <!ATTLIST species url CDATA #IMPLIED>
 <!ATTLIST species latin-name CDATA #REQUIRED>
 <!ATTLIST species common-name CDATA #REQUIRED>
 <!ATTLIST species taxonomy-id CDATA #REQUIRED>
-<!ATTLIST species filename-stem CDATA #REQUIRED>
+<!ATTLIST species filename-stem NMTOKEN #REQUIRED>
 
 <!ELEMENT location (notes*)>
 <!ATTLIST location name CDATA #REQUIRED>
