@@ -9,6 +9,15 @@
 		description="build three ant XML project files that will build the source xml files for trips">
 	
 		<style
+			taskname="build-year-sources"
+			style="transform-xsl/build-year-sources.xsl"
+			in="misc.xml"
+			out="build-year-sources.xml"
+			processor="xalan">
+		</style>
+		<ant taskname="create-year-sources" antfile="build-year-sources.xml"/>
+	
+		<style
 			taskname="build-species-sources"
 			style="transform-xsl/build-species-sources.xsl"
 			in="flat-species.xml"
@@ -130,6 +139,17 @@
 	<target
 		name="build-reports"
 		depends="set-timestamp">
+
+		<style
+			taskname="year-reports"
+			style="report-xsl/reports.xsl"
+			destdir="html"
+			basedir="sources/years"
+			processor="xalan">
+
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="*.html"/>
+		</style>
 
 		<style
 			taskname="order-reports"
