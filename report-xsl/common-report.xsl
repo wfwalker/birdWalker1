@@ -16,37 +16,37 @@
 
 	<xsl:template name="home-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class" select="'home-navigationblock'"/>
-			<xsl:with-param name="species-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="location-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="trip-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="home-class" select="'home-color'"/>
+			<xsl:with-param name="species-class" select="'default-color'"/>
+			<xsl:with-param name="location-class" select="'default-color'"/>
+			<xsl:with-param name="trip-class" select="'default-color'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="species-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="species-class" select="'species-navigationblock'"/>
-			<xsl:with-param name="location-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="trip-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="home-class" select="'default-color'"/>
+			<xsl:with-param name="species-class" select="'species-color'"/>
+			<xsl:with-param name="location-class" select="'default-color'"/>
+			<xsl:with-param name="trip-class" select="'default-color'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="location-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="species-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="location-class" select="'location-navigationblock'"/>
-			<xsl:with-param name="trip-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="home-class" select="'default-color'"/>
+			<xsl:with-param name="species-class" select="'default-color'"/>
+			<xsl:with-param name="location-class" select="'location-color'"/>
+			<xsl:with-param name="trip-class" select="'default-color'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="trip-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="species-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="location-class" select="'default-navigationblock'"/>
-			<xsl:with-param name="trip-class" select="'trip-navigationblock'"/>
+			<xsl:with-param name="home-class" select="'default-color'"/>
+			<xsl:with-param name="species-class" select="'default-color'"/>
+			<xsl:with-param name="location-class" select="'default-color'"/>
+			<xsl:with-param name="trip-class" select="'trip-color'"/>
 		</xsl:call-template>
 	</xsl:template>
 
@@ -62,26 +62,26 @@
 			<TR>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$home-class"/></xsl:attribute>
-					<A HREF="./index.html"><CODE>&lt;birdWalker&gt;</CODE></A>
+					<SPAN CLASS="navigation-text"><A HREF="./index.html"><CODE>&lt;birdWalker&gt;</CODE></A></SPAN>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$species-class"/></xsl:attribute>
 					<xsl:if test="starts-with($species-class, 'default')"><IMG SRC="images/species.gif" ALIGN="MIDDLE"/></xsl:if>
-					<A HREF="./species-index.html">Species Reports</A>
+					<SPAN CLASS="navigation-text"><A HREF="./species-index.html">Species Reports</A></SPAN>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$location-class"/></xsl:attribute>
 					<xsl:if test="starts-with($location-class, 'default')"><IMG SRC="images/location.gif" ALIGN="MIDDLE"/></xsl:if>
-					<A HREF="./location-index.html">Location Reports</A>
+					<SPAN CLASS="navigation-text"><A HREF="./location-index.html">Location Reports</A></SPAN>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$trip-class"/></xsl:attribute>
 					<xsl:if test="starts-with($trip-class, 'default')"><IMG SRC="images/trip.gif" ALIGN="MIDDLE"/></xsl:if>
-					<A HREF="./trip-index.html">Trip Reports</A>
+					<SPAN CLASS="navigation-text"><A HREF="./trip-index.html">Trip Reports</A></SPAN>
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.17 2001/11/19 17:15:09 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.18 2001/11/30 02:55:36 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -117,13 +117,36 @@
 
 	<!-- displays a set of notes (typically species notes, location notes, or trip notes) -->
 
-	<xsl:template match="notes">
-		<DIV CLASS="report-content">
-			<xsl:copy-of select="p"/>
-		</DIV>
+	<xsl:template match="location/notes">
+		<xsl:message>location notes</xsl:message>
+		<DIV CLASS="report-content"><xsl:apply-templates select="p"/></DIV>
+	</xsl:template>
+
+	<xsl:template match="trip/notes">
+		<xsl:message>trip notes</xsl:message>
+		<DIV CLASS="report-content"><xsl:apply-templates select="p"/></DIV>
+	</xsl:template>
+
+	<xsl:template match="species/notes">
+		<xsl:message>species notes</xsl:message>
+		<DIV CLASS="report-content"><xsl:apply-templates select="p"/></DIV>
+	</xsl:template>
+
+	<xsl:template match="sighting/notes">
+		<xsl:message>sighting notes</xsl:message>
+		<DIV CLASS="sighting-notes"><xsl:apply-templates select="p"/></DIV>
+	</xsl:template>
+
+	<xsl:template match="p">
+		<P><xsl:value-of select="."/></P>
+	</xsl:template>
+
+	<xsl:template match="sighting/first">
+		<DIV CLASS="sighting-notes"><xsl:value-of select="../date"/>, first sighting</DIV>
 	</xsl:template>
 
 	<!-- templates for names of and hyperlinks to various entities -->
+
 
 	<xsl:template match="/generate-species-report/trip/sighting">
 		<DIV CLASS="sighting-notes">
@@ -138,6 +161,7 @@
 	</xsl:template>
 
 	<xsl:template match="/generate-location-report/species/sighting">
+		<xsl:message>location species sighting</xsl:message>
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="date"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
@@ -151,7 +175,7 @@
 
 	<xsl:template match="species">
 		<A>
-			<xsl:if test="sighting/notes[p[string-length(text())>0]]">
+			<xsl:if test="sighting/notes or sighting/first">
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
 
@@ -160,7 +184,8 @@
 		</A>
 
 		<BR/>
-		<xsl:apply-templates select="sighting[notes[p[string-length(text())>0]]]"/>
+		<xsl:apply-templates select="sighting/first"/>
+		<xsl:apply-templates select="sighting[notes]"/>
 
 	</xsl:template>
 
@@ -169,11 +194,11 @@
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/>
 			<xsl:text> </xsl:text>
-			<SPAN CLASS="anchor-subtitle">(<xsl:value-of select="date"/>)</SPAN>
+			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="date"/></SPAN>
 		</A>
 
 		<BR/>
-		<xsl:apply-templates select="sighting[notes[p[string-length(text())>0]]]"/>
+		<xsl:apply-templates select="sighting[notes]"/>
 
 	</xsl:template>
 
@@ -182,7 +207,7 @@
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/>
 			<xsl:text> </xsl:text>
-			<SPAN CLASS="anchor-subtitle">(<xsl:value-of select="city"/>, <xsl:value-of select="state"/>)</SPAN>
+			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="city"/>, <xsl:value-of select="state"/></SPAN>
 		</A>
 		<BR/>
 	</xsl:template>
@@ -192,7 +217,7 @@
 			<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="common-name"/>
 			<xsl:text> </xsl:text>
-			<SPAN CLASS="anchor-subtitle">(<xsl:value-of select="latin-name"/>)</SPAN>
+			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="latin-name"/></SPAN>
 		</A></B>
 		<BR/>
 	</xsl:template>
