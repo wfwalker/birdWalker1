@@ -6,7 +6,7 @@
 
 	<xsl:variable name="trip-sources-path">sources/trips/</xsl:variable>
 
-	<xsl:template match="*">
+	<xsl:template match="tripset">
 		<project name="build-trip-sources" default="build-all">
 			<target name="build-all">
 				<delete>
@@ -33,10 +33,6 @@
 	<xsl:template match="species">
 		<xsl:param name="in-sightings"/>
 
-		<xsl:variable
-			name="this"
-			select="."/>
-
 		&lt;species&gt;
 			&lt;order-id&gt;<xsl:value-of select="order-id"/>&lt;/order-id&gt;
 			&lt;family-id&gt;<xsl:value-of select="family-id"/>&lt;/family-id&gt;
@@ -51,7 +47,7 @@
 
 			<xsl:apply-templates select="notes"/>
 
-			<xsl:apply-templates select="$in-sightings[abbreviation=$this/abbreviation]"/>
+			<xsl:apply-templates select="$in-sightings[abbreviation=current()/abbreviation]"/>
 		&lt;/species&gt;
 	</xsl:template>
 

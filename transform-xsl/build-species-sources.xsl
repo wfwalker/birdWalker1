@@ -6,7 +6,7 @@
 
 	<xsl:variable name="species-sources-path">sources/species/</xsl:variable>
 
-	<xsl:template match="*">
+	<xsl:template match="taxonomyset">
 		<project name="build-species-sources" default="build-all">
 			<target name="build-all">
 				<delete>
@@ -16,6 +16,7 @@
 					<xsl:attribute name="dir"><xsl:value-of select="$species-sources-path"/></xsl:attribute>
 				</mkdir>
 				<xsl:apply-templates select="species[abbreviation=$sightings/sightingset/sighting/abbreviation]"/>
+				<!-- sl:apply-templates select="species"/ -->
 			</target>
 		</project>
 	</xsl:template>
@@ -24,17 +25,13 @@
 		<xsl:param
 			name="in-sightings"/>
 
-		<xsl:variable
-			name="this"
-			select="."/>
-
 		&lt;trip&gt;
 			&lt;name&gt;<xsl:value-of select="name"/>&lt;/name&gt;
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
 			&lt;leader&gt;<xsl:value-of select="leader"/>&lt;/leader&gt;
 			&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
 			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
-			<xsl:apply-templates select="$in-sightings[date=$this/date]"/>
+			<xsl:apply-templates select="$in-sightings[date=current()/date]"/>
 		&lt;/trip&gt;
 	</xsl:template>
 
@@ -93,12 +90,8 @@
 
 	<xsl:template match="species">
 		<xsl:variable
-			name="this"
-			select="."/>
-
-		<xsl:variable
 			name="species-sightings"
-			select="$sightings/sightingset/sighting[abbreviation=$this/abbreviation]"/>
+			select="$sightings/sightingset/sighting[abbreviation=current()/abbreviation]"/>
 
 		<xsl:variable
 			name="species-locations"
@@ -137,21 +130,21 @@
 			</xsl:apply-templates>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/order[order-id=$this/order-id]"/>
+				select="$species/taxonomyset/order[order-id=current()/order-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/family[order-id=$this/order-id and
-														family-id=$this/family-id]"/>
+				select="$species/taxonomyset/family[order-id=current()/order-id and
+														family-id=current()/family-id]"/>
 			<xsl:apply-templates
-				select="$species/taxonomyset/subfamily[order-id=$this/order-id and
-														family-id=$this/family-id and
-														subfamily-id=$this/subfamily-id]"/>
+				select="$species/taxonomyset/subfamily[order-id=current()/order-id and
+														family-id=current()/family-id and
+														subfamily-id=current()/subfamily-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/genus[order-id=$this/order-id and
-														family-id=$this/family-id and
-														subfamily-id=$this/subfamily-id and
-														genus-id=$this/genus-id]"/>
+				select="$species/taxonomyset/genus[order-id=current()/order-id and
+														family-id=current()/family-id and
+														subfamily-id=current()/subfamily-id and
+														genus-id=current()/genus-id]"/>
 
 	
 			&lt;/generate-species-report&gt;

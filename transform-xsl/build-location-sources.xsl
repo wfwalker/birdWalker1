@@ -43,10 +43,6 @@
 	<xsl:template match="species">
 		<xsl:param name="in-sightings"/>
 
-		<xsl:variable
-			name="this"
-			select="."/>
-
 		&lt;species&gt;
 			&lt;order-id&gt;<xsl:value-of select="order-id"/>&lt;/order-id&gt;
 			&lt;family-id&gt;<xsl:value-of select="family-id"/>&lt;/family-id&gt;
@@ -60,7 +56,7 @@
 			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
 			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 
-			<xsl:apply-templates select="$in-sightings[abbreviation=$this/abbreviation]"/>
+			<xsl:apply-templates select="$in-sightings[abbreviation=current()/abbreviation]"/>
 		&lt;/species&gt;
 	</xsl:template>
 
@@ -68,12 +64,8 @@
 		<xsl:message>Building Source XML for Location '<xsl:value-of select="name"/>'</xsl:message>
 
 		<xsl:variable
-			name="this"
-			select="."/>
-
-		<xsl:variable
 			name="location-sightings"
-			select="$sightings/sightingset/sighting[location=$this/name]"/>
+			select="$sightings/sightingset/sighting[location=current()/name]"/>
 
 		<xsl:variable
 			name="location-trips"

@@ -6,7 +6,7 @@
 
 	<xsl:variable name="order-sources-path">sources/orders/</xsl:variable>
 
-	<xsl:template match="*">
+	<xsl:template match="taxonomyset">
 		<project name="build-order-sources" default="build-all">
 			<target name="build-all">
 				<delete>
@@ -59,12 +59,8 @@
 
 	<xsl:template match="species">
 		<xsl:variable
-			name="this"
-			select="."/>
-
-		<xsl:variable
 			name="species-sightings"
-			select="$sightings/sightingset/sighting[abbreviation=$this/abbreviation]"/>
+			select="$sightings/sightingset/sighting[abbreviation=current()/abbreviation]"/>
 
 		&lt;species&gt;
 			&lt;species-id&gt;<xsl:value-of select="species-id"/>&lt;/species-id&gt;
@@ -82,10 +78,6 @@
 	<xsl:template match="order">
 		<xsl:message>Building Source XML for Order '<xsl:value-of select="latin-name"/>'</xsl:message>
 
-		<xsl:variable
-			name="this"
-			select="."/>
-
 		<echo>
 			<xsl:attribute name="file"><xsl:value-of select="$order-sources-path"/><xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
 			&lt;generate-order-report order-id="<xsl:value-of select="order-id"/>"&gt;
@@ -97,16 +89,16 @@
 			&lt;/order&gt;
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/family[order-id=$this/order-id]"/>
+				select="$species/taxonomyset/family[order-id=current()/order-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/subfamily[order-id=$this/order-id]"/>
+				select="$species/taxonomyset/subfamily[order-id=current()/order-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/genus[order-id=$this/order-id]"/>
+				select="$species/taxonomyset/genus[order-id=current()/order-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/species[order-id=$this/order-id]"/>
+				select="$species/taxonomyset/species[order-id=current()/order-id]"/>
 
 			&lt;/generate-order-report&gt;
 		</echo>
