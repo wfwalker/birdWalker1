@@ -5,29 +5,19 @@
 	<!-- BUILDING SOURCES -->
 
 	<target name="validate">
-		<!-- antstructure output="dtds/project.dtd"/ -->
 		<xmlvalidate taskname="sightingset" file="sightings.xml" failonerror="false"/>
 		<xmlvalidate taskname="locationset" file="locations.xml" failonerror="false"/>
 		<xmlvalidate taskname="tripset" file="flat-trips.xml" failonerror="false"/>
 		<xmlvalidate taskname="taxonomyset" file="flat-species.xml" failonerror="false"/>
-
-		<xmlvalidate taskname="reports" failonerror="false">
-			<fileset dir="sources">
-			    <include name="**/*.xml"/>
-				<exclude name="**/index.xml"/>
-				<exclude name="**/indices/**"/>
-			</fileset>
+		<xmlvalidate taskname="reports" failonerror="false" warn="true">
+		  <fileset dir="sources">
+		    <include name="**/*.xml"/>
+		    <exclude name="**/index.xml"/>
+		    <exclude name="**/indices/**"/>
+		  </fileset>
 		</xmlvalidate>
 	</target>
 
-	<target name="test-validate">
-		<xmlvalidate taskname="reports">
-			<fileset dir="sources">
-			    <include name="trips/*.xml"/>
-			</fileset>
-		</xmlvalidate>
-	</target>
-	
 	<target
 		name="clean-sources">
 		<delete>
