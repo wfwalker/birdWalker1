@@ -4,11 +4,6 @@
 
 	<xsl:param name="in-tstamp"/>
 
-	<!-- define variables containing all the source data -->
-	<xsl:variable name="sightings" select="document('../sightings.xml')"/>
-	<xsl:variable name="trips" select="document('../flat-trips.xml')"/>
-	<xsl:variable name="species" select="document('../flat-species.xml')"/>
-	<xsl:variable name="locations" select="document('../locations.xml')"/>
 	<xsl:variable name="miscellaneous" select="document('../misc.xml')"/>
 
 	<!-- a template for inserting cascading style sheets -->
@@ -83,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.13 2001/10/11 01:09:51 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.14 2001/10/24 16:16:47 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -126,8 +121,9 @@
 
 	<!-- templates to create table sections used in many kinds of reports -->
 
-	<xsl:template name="species-table">
-		<xsl:param name="in-species-list"/>
+	<xsl:template name="two-column-table">
+		<xsl:param name="in-entry-list"/>
+		<xsl:param name="in-entry-kind"/>
 		<xsl:param name="in-extra-title"/>
 		<xsl:param name="in-extra-url"/>
 		<xsl:param name="in-header-style"/>
@@ -135,7 +131,9 @@
 		<P>
 			<xsl:call-template name="tableheader">
 				<xsl:with-param name="in-title-string">
-					<xsl:value-of select="count($in-species-list)"/> species
+					<xsl:value-of select="count($in-entry-list)"/>
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="$in-entry-kind"/>
 				</xsl:with-param>
 				<xsl:with-param name="in-extra-url" select="$in-extra-url"/>
 				<xsl:with-param name="in-extra-title" select="$in-extra-title"/>
@@ -144,97 +142,18 @@
 
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
-					<TD WIDTH="50%">
-						<xsl:apply-templates select="$in-species-list[position() &lt; 1 + (count($in-species-list) div 2)]"/>
+					<TD VALIGN="TOP" WIDTH="50%">
+						<xsl:apply-templates select="$in-entry-list[position() &lt; 1 + (count($in-entry-list) div 2)]"/>
 					</TD>
-					<TD WIDTH="50%">
-						<xsl:apply-templates select="$in-species-list[position() &gt;= 1 + (count($in-species-list) div 2)]"/>
-					</TD>
-				</TR>
-			</TABLE>
-		</P>
-	</xsl:template>
-
-	<xsl:template name="location-table">
-		<xsl:param name="location-list"/>
-		<xsl:param name="in-header-style"/>
-
-		<P>
-			<xsl:call-template name="tableheader">
-				<xsl:with-param name="in-title-string">
-					<xsl:value-of select="count($location-list)"/>
-					location<xsl:if test="count($location-list)!=1">s</xsl:if>
-				</xsl:with-param>
-				<xsl:with-param name="in-header-style" select="$in-header-style"/>
-			</xsl:call-template>
-
-			<TABLE CELLPADDING="10" WIDTH="100%">
-				<TR>
-					<TD WIDTH="50%">
-						<xsl:apply-templates select="$location-list[position() &lt; 1 + (count($location-list) div 2)]">
-						</xsl:apply-templates>
-					</TD>
-					<TD WIDTH="50%">
-						<xsl:apply-templates select="$location-list[position() &gt;= 1 + (count($location-list) div 2)]">
-						</xsl:apply-templates>
+					<TD VALIGN="TOP" WIDTH="50%">
+						<xsl:apply-templates select="$in-entry-list[position() &gt;= 1 + (count($in-entry-list) div 2)]"/>
 					</TD>
 				</TR>
 			</TABLE>
 		</P>
 	</xsl:template>
 
-	<!-- displays a collection of noteworthy sightings -->
-
-	<xsl:template name="sightings-table">
-		<xsl:param name="sighting-list"/>
-		<xsl:param name="in-header-style"/>
-
-		<xsl:if test="count($sighting-list) > 0">
-			<P>
-				<xsl:call-template name="tableheader">
-					<xsl:with-param name="in-title-string">
-						<xsl:value-of select="count($sighting-list)"/>
-						sighting note<xsl:if test="count($sighting-list)!=1">s</xsl:if>
-					</xsl:with-param>
-					<xsl:with-param name="in-header-style" select="$in-header-style"/>
-				</xsl:call-template>
-	
-				<TABLE WIDTH="100%" CELLPADDING="10">
-					<xsl:apply-templates select="$sighting-list"/>
-				</TABLE>
-			</P>
-		</xsl:if>
-	</xsl:template>
-
-	<!-- displays a list of trips -->
-
-	<xsl:template name="trip-table">
-		<xsl:param name="trip-list"/>
-		<xsl:param name="in-header-style"/>
-
-		<P>
-			<xsl:call-template name="tableheader">
-				<xsl:with-param name="in-title-string">
-					<xsl:value-of select="count($trip-list)"/>
-					trip<xsl:if test="count($trip-list)!=1">s</xsl:if>
-				</xsl:with-param>
-				<xsl:with-param name="in-header-style" select="$in-header-style"/>
-			</xsl:call-template>
-
-			<TABLE CELLPADDING="10" WIDTH="100%">
-				<TR>
-					<TD WIDTH="50%">
-						<xsl:apply-templates select="$trip-list[position() &lt; 1 + (count($trip-list) div 2)]">
-						</xsl:apply-templates>
-					</TD>
-					<TD WIDTH="50%">
-						<xsl:apply-templates select="$trip-list[position() &gt;= 1 + (count($trip-list) div 2)]">
-						</xsl:apply-templates>
-					</TD>
-				</TR>
-			</TABLE>
-		</P>
-	</xsl:template>
+	<!-- displays a set of notes (typically species notes, location notes, or trip notes) -->
 
 	<xsl:template match="notes">
 		<xsl:param name="in-header-style"/>
@@ -251,36 +170,37 @@
 
 	<!-- templates for names of and hyperlinks to various entities -->
 
+	<xsl:template match="/generate-species-report/trip/sighting">
+		<DIV CLASS="sighting-notes">
+			<xsl:value-of select="notes/p"/>
+		</DIV>
+	</xsl:template>
+
+	<xsl:template match="/generate-trip-report/species/sighting">
+		<DIV CLASS="sighting-notes">
+			<xsl:value-of select="notes/p"/>
+		</DIV>
+	</xsl:template>
+
+	<xsl:template match="/generate-location-report/species/sighting">
+		<DIV CLASS="sighting-notes">
+			<xsl:value-of select="date"/>, <xsl:value-of select="notes/p"/>
+		</DIV>
+	</xsl:template>
+
 	<xsl:template match="species">
-		<xsl:param name="this" select="."/>
 		<A>
+			<xsl:if test="sighting/notes[p[string-length(text())>0]]">
+				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
+			</xsl:if>
+
 			<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 		</A>
+
+		<xsl:apply-templates select="sighting[notes[p[string-length(text())>0]]]"/>
+
 		<BR/>
-	</xsl:template>
-
-	<!-- this template to be called by the sighting template provided by each report -->
-
-	<xsl:template name="sighting-entry">
-		<xsl:param name="sighting-record"/>
-		<xsl:param name="title-string"/>
-
-		<TR>
-			<TD>
-				<!-- nested table for displaying the two aux records and their links -->
-				<TABLE WIDTH="100%">
-					<TR>
-						<TD VALIGN="TOP" WIDTH="25%" ALIGN="LEFT" CLASS="sightinghead">
-							<xsl:value-of select="$title-string"/>
-						</TD>
-						<TD WIDTH="75%" VALIGN="TOP" ALIGN="LEFT">
-							<xsl:value-of select="notes"/>
-						</TD>
-					</TR>
-				</TABLE>
-			</TD>
-		</TR>
 	</xsl:template>
 
 	<xsl:template match="trip">
@@ -288,6 +208,9 @@
 			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/> (<xsl:value-of select="date"/>)
 		</A>
+
+		<xsl:apply-templates select="sighting[notes[p[string-length(text())>0]]]"/>
+
 		<BR/>
 	</xsl:template>
 
