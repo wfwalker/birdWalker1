@@ -16,7 +16,7 @@
 					<xsl:attribute name="dir"><xsl:value-of select="$species-sources-path"/></xsl:attribute>
 				</mkdir>
 				<xsl:apply-templates select="species[abbreviation=$sightings/sightingset/sighting/abbreviation]"/>
-				<!-- sl:apply-templates select="species"/ -->
+				<!-- xsl:apply-templates select="species"/ -->
 			</target>
 		</project>
 	</xsl:template>
@@ -53,9 +53,8 @@
 		&lt;sighting&gt;
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
 			&lt;location&gt;<xsl:value-of select="location"/>&lt;/location&gt;
-			<xsl:if test="first">&lt;first&gt;true&lt;/first&gt;</xsl:if>
-			<xsl:if test="exclude">&lt;exclude&gt;true&lt;/exclude&gt;</xsl:if>
-			<xsl:apply-templates select="notes"/>
+
+			<xsl:apply-templates select="exclude | first | photo | notes"/>
 		&lt;/sighting&gt;
 	</xsl:template>
 
@@ -101,6 +100,7 @@
 
 		<echo>
 			<xsl:attribute name="file">sources/species/<xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
+			&lt;!DOCTYPE sightingset SYSTEM "file:dtds/species-report-source.dtd"&gt;
 			&lt;generate-species-report abbreviation="<xsl:value-of select="abbreviation"/>"&gt;
 
 			&lt;species&gt;
