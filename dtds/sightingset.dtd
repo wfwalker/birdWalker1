@@ -2,11 +2,11 @@
 
 <!ELEMENT sightingset (sighting)*>
 
-<!ELEMENT sighting (abbreviation | date | location | first | exclude | photo | notes)*>
+<!ELEMENT sighting (date, abbreviation, location-name, notes*, exclude?, photo?, first?)>
 
 <!ELEMENT abbreviation (#PCDATA)>
 <!ELEMENT date (#PCDATA)>
-<!ELEMENT location (#PCDATA)>
+<!ELEMENT location-name (#PCDATA)>
 <!ELEMENT exclude (#PCDATA)>
 <!ELEMENT photo (#PCDATA)>
 <!ELEMENT first (#PCDATA)>
