@@ -3027,7 +3027,7 @@
 <sighting><date>9/23/2001</date><abbreviation>moudov</abbreviation><location>San Mateo County</location><notes><p>8am</p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>norfli</abbreviation><location>San Mateo County</location><notes><p>heard repeatedly but not seen</p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>norhar</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
-<sighting><date>9/23/2001</date><abbreviation>normoc</abbreviation><location>San Mateo County</location><notes><p>heard only</p></notes></sighting>
+<sighting><date>9/23/2001</date><abbreviation>normoc</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>norpin</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>norsho</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>orcwar</abbreviation><location>San Mateo County</location><notes><p></p></notes><exclude>true</exclude></sighting>
@@ -3070,4 +3070,8 @@
 <sighting><date>9/23/2001</date><abbreviation>willet</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>wlswar</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
 <sighting><date>9/23/2001</date><abbreviation>wrenti</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
-<sighting><date>9/23/2001</date><abbreviation>yelwar</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting></sightingset>
+<sighting><date>9/23/2001</date><abbreviation>yelwar</abbreviation><location>San Mateo County</location><notes><p></p></notes></sighting>
+<sighting><date>9/30/2001</date><abbreviation>chbchi</abbreviation><location>Portola Redwoods State Park</location><notes><p></p></notes></sighting>
+<sighting><date>9/30/2001</date><abbreviation>daejun</abbreviation><location>Portola Redwoods State Park</location><notes><p></p></notes></sighting>
+<sighting><date>9/30/2001</date><abbreviation>stejay</abbreviation><location>Portola Redwoods State Park</location><notes><p></p></notes></sighting>
+<sighting><date>9/30/2001</date><abbreviation>towwar</abbreviation><location>Portola Redwoods State Park</location><notes><p></p></notes></sighting></sightingset>
