@@ -82,7 +82,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.10 2001/10/02 16:13:29 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.11 2001/10/04 15:40:30 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -162,7 +162,7 @@
 			<xsl:call-template name="tableheader">
 				<xsl:with-param name="in-title-string">
 					<xsl:value-of select="count($location-list)"/>
-					location<xsl:if test="count($location-list)>1">s</xsl:if>
+					location<xsl:if test="count($location-list)!=1">s</xsl:if>
 				</xsl:with-param>
 				<xsl:with-param name="in-header-style" select="$in-header-style"/>
 			</xsl:call-template>
@@ -193,7 +193,7 @@
 				<xsl:call-template name="tableheader">
 					<xsl:with-param name="in-title-string">
 						<xsl:value-of select="count($sighting-list)"/>
-						sighting note<xsl:if test="count($sighting-list)>1">s</xsl:if>
+						sighting note<xsl:if test="count($sighting-list)!=1">s</xsl:if>
 					</xsl:with-param>
 					<xsl:with-param name="in-header-style" select="$in-header-style"/>
 				</xsl:call-template>
@@ -215,7 +215,7 @@
 			<xsl:call-template name="tableheader">
 				<xsl:with-param name="in-title-string">
 					<xsl:value-of select="count($trip-list)"/>
-					trip<xsl:if test="count($trip-list)>1">s</xsl:if>
+					trip<xsl:if test="count($trip-list)!=1">s</xsl:if>
 				</xsl:with-param>
 				<xsl:with-param name="in-header-style" select="$in-header-style"/>
 			</xsl:call-template>
