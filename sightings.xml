@@ -261,7 +261,7 @@
 <sighting><date>1997-10-15</date><abbreviation>whimbr</abbreviation><location>Alviso Marina</location></sighting>
 <sighting><date>1997-10-15</date><abbreviation>whtkit</abbreviation><location>Alviso Marina</location></sighting>
 <sighting><date>1997-10-15</date><abbreviation>willet</abbreviation><location>Alviso Marina</location></sighting>
-<sighting><date>1997-10-19</date><abbreviation>sandpi</abbreviation><location>Coyote Creek</location></sighting>
+<sighting><date>1997-10-19</date><abbreviation>sandpi</abbreviation><location>Coyote Creek</location><exclude>true</exclude></sighting>
 <sighting><date>1997-10-19</date><abbreviation>gocspa</abbreviation><location>Coyote Creek</location><first>true</first></sighting>
 <sighting><date>1997-10-19</date><abbreviation>merlin</abbreviation><location>Coyote Creek</location><first>true</first></sighting>
 <sighting><date>1997-10-19</date><abbreviation>mewgul</abbreviation><location>Coyote Creek</location><first>true</first></sighting>
@@ -466,7 +466,7 @@
 <sighting><date>1997-11-17</date><abbreviation>whfibi</abbreviation><location>Sacramento NWR</location><exclude>true</exclude></sighting>
 <sighting><date>1997-11-17</date><abbreviation>whtkit</abbreviation><location>Sacramento NWR</location><exclude>true</exclude></sighting>
 <sighting><date>1997-11-17</date><abbreviation>yebmag</abbreviation><location>Sacramento NWR</location><exclude>true</exclude></sighting>
-<sighting><date>1997-12-12</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1997-12-12</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1997-12-12</date><abbreviation>ameavo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1997-12-12</date><abbreviation>blkpho</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1997-12-12</date><abbreviation>bcnher</abbreviation><location>Charleston Slough</location></sighting>
@@ -486,8 +486,8 @@
 <sighting><date>1997-12-12</date><abbreviation>rethaw</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1997-12-12</date><abbreviation>rudduc</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1997-12-12</date><abbreviation>snoplo</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
-<sighting><date>1997-12-15</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
-<sighting><date>1997-12-15</date><abbreviation>sandpi</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1997-12-15</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
+<sighting><date>1997-12-15</date><abbreviation>sandpi</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1997-12-15</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1997-12-15</date><abbreviation>amewig</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1997-12-15</date><abbreviation>belkin</abbreviation><location>Charleston Slough</location></sighting>
@@ -527,7 +527,7 @@
 <sighting><date>1998-01-02</date><abbreviation>rethaw</abbreviation><location>Sunnyvale Baylands</location></sighting>
 <sighting><date>1998-01-02</date><abbreviation>saypho</abbreviation><location>Sunnyvale Baylands</location></sighting>
 <sighting><date>1998-01-02</date><abbreviation>snoegr</abbreviation><location>Sunnyvale Baylands</location></sighting>
-<sighting><date>1998-01-13</date><abbreviation>scaup</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>1998-01-13</date><abbreviation>scaup</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1998-01-13</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-01-13</date><abbreviation>amecoo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-01-13</date><abbreviation>blkpho</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -705,6 +705,16 @@
 <sighting><date>1998-03-14</date><abbreviation>whtkit</abbreviation><location>Alviso Marina</location></sighting>
 <sighting><date>1998-03-14</date><abbreviation>willet</abbreviation><location>Alviso Marina</location></sighting>
 <sighting><date>1998-03-14</date><abbreviation>yelwar</abbreviation><location>Alviso Marina</location></sighting>
+<sighting><date>1998-04-20</date><abbreviation>annhum</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>bewwre</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>blkpho</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>calqua</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>calthr</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>caltow</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>cedwax</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>lesgol</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>spotow</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
+<sighting><date>1998-04-20</date><abbreviation>yerwar</abbreviation><location>Rancho Santa Ana Botanic Gardens</location><exclude>true</exclude></sighting>
 <sighting><date>1998-05-12</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-05-12</date><abbreviation>barswa</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1998-05-12</date><abbreviation>bknsti</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -764,7 +774,7 @@
 <sighting><date>1998-06-23</date><abbreviation>rudduc</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-06-23</date><abbreviation>snoegr</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-06-23</date><abbreviation>swallo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1998-06-27</date><abbreviation>yelleg</abbreviation><location>Sunnyvale Baylands</location></sighting>
+<sighting><date>1998-06-27</date><abbreviation>yelleg</abbreviation><location>Sunnyvale Baylands</location><exclude>true</exclude></sighting>
 <sighting><date>1998-06-27</date><abbreviation>ameavo</abbreviation><location>Sunnyvale Baylands</location></sighting>
 <sighting><date>1998-06-27</date><abbreviation>amecoo</abbreviation><location>Sunnyvale Baylands</location></sighting>
 <sighting><date>1998-06-27</date><abbreviation>amwpel</abbreviation><location>Sunnyvale Baylands</location></sighting>
@@ -870,12 +880,12 @@
 <sighting><date>1998-08-30</date><abbreviation>ribgul</abbreviation><location>Elkhorn Slough</location></sighting>
 <sighting><date>1998-08-30</date><abbreviation>snoegr</abbreviation><location>Elkhorn Slough</location></sighting>
 <sighting><date>1998-08-30</date><abbreviation>sonspa</abbreviation><location>Elkhorn Slough</location></sighting>
-<sighting><date>1998-08-30</date><abbreviation>spotow</abbreviation><location>Elkhorn Slough</location><first>true</first></sighting>
+<sighting><date>1998-08-30</date><abbreviation>spotow</abbreviation><location>Elkhorn Slough</location></sighting>
 <sighting><date>1998-08-30</date><abbreviation>turvul</abbreviation><location>Elkhorn Slough</location></sighting>
 <sighting><date>1998-08-30</date><abbreviation>wesgul</abbreviation><location>Elkhorn Slough</location></sighting>
 <sighting><date>1998-08-30</date><abbreviation>whtkit</abbreviation><location>Elkhorn Slough</location></sighting>
 <sighting><date>1998-08-30</date><abbreviation>willet</abbreviation><location>Elkhorn Slough</location></sighting>
-<sighting><date>1998-09-01</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>1998-09-01</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1998-09-01</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-09-01</date><abbreviation>bknsti</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-09-01</date><abbreviation>forter</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -894,11 +904,11 @@
 <sighting><date>1998-09-01</date><abbreviation>snoegr</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-09-01</date><abbreviation>wessan</abbreviation><location>Palo Alto Duck Pond</location><first>true</first></sighting>
 <sighting><date>1998-09-01</date><abbreviation>willet</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1998-10-18</date><abbreviation>greeg</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>amwpel</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>comloo</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>doccor</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>grbher</abbreviation><location>Moss Landing State Beach</location></sighting>
+<sighting><date>1998-10-18</date><abbreviation>greegr</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>heegul</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>lobcur</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>pibgre</abbreviation><location>Moss Landing State Beach</location></sighting>
@@ -909,7 +919,7 @@
 <sighting><date>1998-10-18</date><abbreviation>sursco</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>wesgre</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1998-10-18</date><abbreviation>willet</abbreviation><location>Moss Landing State Beach</location></sighting>
-<sighting><date>1998-10-23</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>1998-10-23</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1998-10-23</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-10-23</date><abbreviation>amecoo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-10-23</date><abbreviation>bcnher</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -924,7 +934,7 @@
 <sighting><date>1998-10-23</date><abbreviation>snoegr</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-10-23</date><abbreviation>wesmea</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-10-23</date><abbreviation>whtkit</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1998-10-25</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1998-10-25</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1998-10-25</date><abbreviation>ameavo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1998-10-25</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1998-10-25</date><abbreviation>blkpho</abbreviation><location>Charleston Slough</location></sighting>
@@ -1043,7 +1053,7 @@
 <sighting><date>1998-11-29</date><abbreviation>whbnut</abbreviation><location>Sacramento NWR</location><first>true</first></sighting>
 <sighting><date>1998-11-29</date><abbreviation>whcspa</abbreviation><location>Sacramento NWR</location></sighting>
 <sighting><date>1998-11-29</date><abbreviation>whfibi</abbreviation><location>Sacramento NWR</location></sighting>
-<sighting><date>1998-12-07</date><abbreviation>kingle</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>1998-12-07</date><abbreviation>kingle</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1998-12-07</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-12-07</date><abbreviation>amecoo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-12-07</date><abbreviation>bkbplo</abbreviation><location>Palo Alto Duck Pond</location><first>true</first></sighting>
@@ -1066,7 +1076,7 @@
 <sighting><date>1998-12-07</date><abbreviation>ribgul</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-12-07</date><abbreviation>rudduc</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1998-12-07</date><abbreviation>willet</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1998-12-17</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1998-12-17</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1998-12-17</date><abbreviation>ameavo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1998-12-17</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1998-12-17</date><abbreviation>bargol</abbreviation><location>Charleston Slough</location></sighting>
@@ -1095,7 +1105,7 @@
 <sighting><date>1998-12-17</date><abbreviation>sursco</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1998-12-17</date><abbreviation>wesmea</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1998-12-17</date><abbreviation>whtkit</abbreviation><location>Charleston Slough</location></sighting>
-<sighting><date>1999-01-07</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>1999-01-07</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1999-01-07</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-01-07</date><abbreviation>amecoo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-01-07</date><abbreviation>blkpho</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -1118,7 +1128,7 @@
 <sighting><date>1999-01-07</date><abbreviation>rudduc</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-01-07</date><abbreviation>turvul</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-01-07</date><abbreviation>willet</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1999-01-28</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1999-01-28</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1999-01-28</date><abbreviation>ameavo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-01-28</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-01-28</date><abbreviation>blkski</abbreviation><location>Charleston Slough</location></sighting>
@@ -1158,7 +1168,7 @@
 <sighting><date>1999-01-31</date><abbreviation>doccor</abbreviation><location>Carmel</location></sighting>
 <sighting><date>1999-01-31</date><abbreviation>sptsan</abbreviation><location>Carmel</location></sighting>
 <sighting><date>1999-01-31</date><abbreviation>towwar</abbreviation><location>Carmel</location></sighting>
-<sighting><date>1999-02-07</date><abbreviation>woodpe</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
+<sighting><date>1999-02-07</date><abbreviation>woodpe</abbreviation><location>Woodbridge Ecological Preserve</location><exclude>true</exclude></sighting>
 <sighting><date>1999-02-07</date><abbreviation>amekes</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
 <sighting><date>1999-02-07</date><abbreviation>amewig</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
 <sighting><date>1999-02-07</date><abbreviation>belkin</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
@@ -1187,8 +1197,8 @@
 <sighting><date>1999-02-07</date><abbreviation>whcspa</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
 <sighting><date>1999-02-07</date><abbreviation>whtkit</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
 <sighting><date>1999-02-07</date><abbreviation>yerwar</abbreviation><location>Woodbridge Ecological Preserve</location></sighting>
-<sighting><date>1999-02-11</date><abbreviation>scaup</abbreviation><location>Stanford University</location></sighting>
-<sighting><date>1999-02-11</date><abbreviation>hummin</abbreviation><location>Stanford University</location></sighting>
+<sighting><date>1999-02-11</date><abbreviation>scaup</abbreviation><location>Stanford University</location><exclude>true</exclude></sighting>
+<sighting><date>1999-02-11</date><abbreviation>hummin</abbreviation><location>Stanford University</location><exclude>true</exclude></sighting>
 <sighting><date>1999-02-11</date><abbreviation>blkpho</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-02-11</date><abbreviation>buffle</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-02-11</date><abbreviation>bushti</abbreviation><location>Stanford University</location></sighting>
@@ -1203,14 +1213,14 @@
 <sighting><date>1999-02-11</date><abbreviation>ruckin</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-02-11</date><abbreviation>wesjay</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-02-11</date><abbreviation>yerwar</abbreviation><location>Stanford University</location></sighting>
-<sighting><date>1999-02-15</date><abbreviation>yelleg</abbreviation><location>Stevens Creek County Park</location></sighting>
-<sighting><date>1999-02-15</date><abbreviation>hummin</abbreviation><location>Stevens Creek County Park</location></sighting>
+<sighting><date>1999-02-15</date><abbreviation>yelleg</abbreviation><location>Stevens Creek County Park</location><exclude>true</exclude></sighting>
+<sighting><date>1999-02-15</date><abbreviation>hummin</abbreviation><location>Stevens Creek County Park</location><exclude>true</exclude></sighting>
 <sighting><date>1999-02-15</date><abbreviation>ameavo</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>amecoo</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>amekes</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>blkpho</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>bknsti</abbreviation><location>Stevens Creek County Park</location></sighting>
-<sighting><date>1999-02-15</date><abbreviation>cedwax</abbreviation><location>Stevens Creek County Park</location><first>true</first></sighting>
+<sighting><date>1999-02-15</date><abbreviation>cedwax</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>comgol</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>commoo</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>gadwal</abbreviation><location>Stevens Creek County Park</location></sighting>
@@ -1221,10 +1231,10 @@
 <sighting><date>1999-02-15</date><abbreviation>rudduc</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>turvul</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>1999-02-15</date><abbreviation>wesmea</abbreviation><location>Stevens Creek County Park</location></sighting>
-<sighting><date>1999-02-20</date><abbreviation>hawk</abbreviation><location>Stanford University</location></sighting>
-<sighting><date>1999-02-20</date><abbreviation>woospe?</abbreviation><location>Stanford University</location></sighting>
-<sighting><date>1999-02-20</date><abbreviation>kingle</abbreviation><location>Stanford University</location></sighting>
-<sighting><date>1999-02-20</date><abbreviation>nuthatch</abbreviation><location>Stanford University</location></sighting>
+<sighting><date>1999-02-20</date><abbreviation>hawk</abbreviation><location>Stanford University</location><exclude>true</exclude></sighting>
+<sighting><date>1999-02-20</date><abbreviation>woospe?</abbreviation><location>Stanford University</location><exclude>true</exclude></sighting>
+<sighting><date>1999-02-20</date><abbreviation>kingle</abbreviation><location>Stanford University</location><exclude>true</exclude></sighting>
+<sighting><date>1999-02-20</date><abbreviation>nuthatch</abbreviation><location>Stanford University</location><exclude>true</exclude></sighting>
 <sighting><date>1999-02-20</date><abbreviation>acowoo</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-02-20</date><abbreviation>amerob</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-02-20</date><abbreviation>buffle</abbreviation><location>Stanford University</location></sighting>
@@ -1269,8 +1279,8 @@
 <sighting><date>1999-03-18</date><abbreviation>orejun</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-03-18</date><abbreviation>stejay</abbreviation><location>Stanford University</location></sighting>
 <sighting><date>1999-03-18</date><abbreviation>whbnut</abbreviation><location>Stanford University</location></sighting>
-<sighting><date>1999-03-23</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
-<sighting><date>1999-03-23</date><abbreviation>scaup</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1999-03-23</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
+<sighting><date>1999-03-23</date><abbreviation>scaup</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1999-03-23</date><abbreviation>ameavo </abbreviation><location>Charleston Slough</location><notes><p>breeding plumage</p></notes></sighting>
 <sighting><date>1999-03-23</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-03-23</date><abbreviation>blkpho</abbreviation><location>Charleston Slough</location></sighting>
@@ -1385,7 +1395,7 @@
 <sighting><date>1999-05-29</date><abbreviation>rocdov</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>1999-05-29</date><abbreviation>snoegr</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>1999-05-29</date><abbreviation>turvul</abbreviation><location>Don Edwards Center</location></sighting>
-<sighting><date>1999-05-30</date><abbreviation>hummer</abbreviation><location>San Francisco</location></sighting>
+<sighting><date>1999-05-30</date><abbreviation>hummer</abbreviation><location>San Francisco</location><exclude>true</exclude></sighting>
 <sighting><date>1999-05-30</date><abbreviation>amerob</abbreviation><location>San Francisco</location></sighting>
 <sighting><date>1999-05-30</date><abbreviation>banswa</abbreviation><location>San Francisco</location></sighting>
 <sighting><date>1999-05-30</date><abbreviation>blkpho</abbreviation><location>San Francisco</location></sighting>
@@ -1406,7 +1416,7 @@
 <sighting><date>1999-05-30</date><abbreviation>wesjay</abbreviation><location>San Francisco</location></sighting>
 <sighting><date>1999-05-30</date><abbreviation>whbnut?</abbreviation><location>San Francisco</location></sighting>
 <sighting><date>1999-05-30</date><abbreviation>whcspa</abbreviation><location>San Francisco</location></sighting>
-<sighting><date>1999-06-02</date><abbreviation>pelican</abbreviation><location>Burney Falls</location></sighting>
+<sighting><date>1999-06-02</date><abbreviation>pelican</abbreviation><location>Burney Falls</location><exclude>true</exclude></sighting>
 <sighting><date>1999-06-02</date><abbreviation>amedip</abbreviation><location>Burney Falls</location></sighting>
 <sighting><date>1999-06-02</date><abbreviation>amerob</abbreviation><location>Burney Falls</location></sighting>
 <sighting><date>1999-06-02</date><abbreviation>baleag</abbreviation><location>Burney Falls</location><notes><p>he swooped down upon an unsuspecting Osprey, and convinced it to drop its fish</p></notes></sighting>
@@ -1489,9 +1499,9 @@
 <sighting><date>1999-08-08</date><abbreviation>sterna</abbreviation><location>Moss Landing State Beach</location><exclude>true</exclude></sighting>
 <sighting><date>1999-08-08</date><abbreviation>sursco</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>1999-08-08</date><abbreviation>wesgre</abbreviation><location>Moss Landing State Beach</location></sighting>
-<sighting><date>1999-08-19</date><abbreviation>yelleg</abbreviation><location>Lower Klamath NWR</location></sighting>
-<sighting><date>1999-08-19</date><abbreviation>sandpi</abbreviation><location>Lower Klamath NWR</location></sighting>
-<sighting><date>1999-08-19</date><abbreviation>oriole</abbreviation><location>Lower Klamath NWR</location></sighting>
+<sighting><date>1999-08-19</date><abbreviation>yelleg</abbreviation><location>Lower Klamath NWR</location><exclude>true</exclude></sighting>
+<sighting><date>1999-08-19</date><abbreviation>sandpi</abbreviation><location>Lower Klamath NWR</location><exclude>true</exclude></sighting>
+<sighting><date>1999-08-19</date><abbreviation>oriole</abbreviation><location>Lower Klamath NWR</location><exclude>true</exclude></sighting>
 <sighting><date>1999-08-19</date><abbreviation>amecoo</abbreviation><location>Lower Klamath NWR</location></sighting>
 <sighting><date>1999-08-19</date><abbreviation>amecro</abbreviation><location>Lower Klamath NWR</location></sighting>
 <sighting><date>1999-08-19</date><abbreviation>amedip</abbreviation><location>Lower Klamath NWR</location></sighting>
@@ -1636,8 +1646,8 @@
 <sighting><date>1999-10-23</date><abbreviation>whcspa</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-10-23</date><abbreviation>whtkit</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-10-23</date><abbreviation>yerwar</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1999-10-26</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1999-10-26</date><abbreviation>sandpi (wessan?)</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>1999-10-26</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
+<sighting><date>1999-10-26</date><abbreviation>sandpi (wessan?)</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>1999-10-26</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-10-26</date><abbreviation>amecoo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-10-26</date><abbreviation>blkpho</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -1681,8 +1691,8 @@
 <sighting><date>1999-11-11</date><abbreviation>whcspa</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-11-11</date><abbreviation>whtkit</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-11-11</date><abbreviation>willet</abbreviation><location>Charleston Slough</location></sighting>
-<sighting><date>1999-11-13</date><abbreviation>hummin</abbreviation><location>Point Reyes National Seashore</location></sighting>
-<sighting><date>1999-11-13</date><abbreviation>loospe</abbreviation><location>Point Reyes National Seashore</location></sighting>
+<sighting><date>1999-11-13</date><abbreviation>hummin</abbreviation><location>Point Reyes National Seashore</location><exclude>true</exclude></sighting>
+<sighting><date>1999-11-13</date><abbreviation>loospe</abbreviation><location>Point Reyes National Seashore</location><exclude>true</exclude></sighting>
 <sighting><date>1999-11-13</date><abbreviation>amecoo</abbreviation><location>Point Reyes National Seashore</location></sighting>
 <sighting><date>1999-11-13</date><abbreviation>amekes</abbreviation><location>Point Reyes National Seashore</location></sighting>
 <sighting><date>1999-11-13</date><abbreviation>amewig</abbreviation><location>Point Reyes National Seashore</location></sighting>
@@ -1726,7 +1736,7 @@
 <sighting><date>1999-11-13</date><abbreviation>whcspa</abbreviation><location>Point Reyes National Seashore</location></sighting>
 <sighting><date>1999-11-13</date><abbreviation>willet</abbreviation><location>Point Reyes National Seashore</location></sighting>
 <sighting><date>1999-11-13</date><abbreviation>yerwar</abbreviation><location>Point Reyes National Seashore</location></sighting>
-<sighting><date>1999-11-14</date><abbreviation>scaup</abbreviation><location>Point Reyes National Seashore</location></sighting>
+<sighting><date>1999-11-14</date><abbreviation>scaup</abbreviation><location>Point Reyes National Seashore</location><exclude>true</exclude></sighting>
 <sighting><date>1999-11-14</date><abbreviation>amekes</abbreviation><location>Point Reyes National Seashore</location></sighting>
 <sighting><date>1999-11-14</date><abbreviation>amewig</abbreviation><location>Point Reyes National Seashore</location></sighting>
 <sighting><date>1999-11-14</date><abbreviation>buffle</abbreviation><location>Point Reyes National Seashore</location></sighting>
@@ -1776,7 +1786,7 @@
 <sighting><date>1999-11-19</date><abbreviation>rudduc</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-11-19</date><abbreviation>snoegr</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-11-19</date><abbreviation>whtkit</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1999-12-02</date><abbreviation>scaup</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>1999-12-02</date><abbreviation>scaup</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>1999-12-02</date><abbreviation>ameavo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-12-02</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>1999-12-02</date><abbreviation>amewig</abbreviation><location>Charleston Slough</location></sighting>
@@ -1833,8 +1843,8 @@
 <sighting><date>1999-12-12</date><abbreviation>whcspa</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-12-12</date><abbreviation>willet</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>1999-12-12</date><abbreviation>yerwar</abbreviation><location>Palo Alto Duck Pond</location></sighting>
-<sighting><date>1999-12-19</date><abbreviation>humming</abbreviation><location>Drawbridge</location></sighting>
-<sighting><date>1999-12-19</date><abbreviation>yelleg</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>1999-12-19</date><abbreviation>humming</abbreviation><location>Drawbridge</location><exclude>true</exclude></sighting>
+<sighting><date>1999-12-19</date><abbreviation>yelleg</abbreviation><location>Drawbridge</location><exclude>true</exclude></sighting>
 <sighting><date>1999-12-19</date><abbreviation>ameavo</abbreviation><location>Drawbridge</location></sighting>
 <sighting><date>1999-12-19</date><abbreviation>amecoo</abbreviation><location>Drawbridge</location></sighting>
 <sighting><date>1999-12-19</date><abbreviation>amekes</abbreviation><location>Drawbridge</location></sighting>
@@ -1889,8 +1899,8 @@
 <sighting><date>1999-12-27</date><abbreviation>norcar</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>1999-12-27</date><abbreviation>rinphe</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>1999-12-27</date><abbreviation>sonspa</abbreviation><location>Champaign County</location></sighting>
-<sighting><date>2000-01-02</date><abbreviation>yelleg</abbreviation><location>Don Edwards Center</location></sighting>
-<sighting><date>2000-01-02</date><abbreviation>war?</abbreviation><location>Don Edwards Center</location></sighting>
+<sighting><date>2000-01-02</date><abbreviation>yelleg</abbreviation><location>Don Edwards Center</location><exclude>true</exclude></sighting>
+<sighting><date>2000-01-02</date><abbreviation>war?</abbreviation><location>Don Edwards Center</location><exclude>true</exclude></sighting>
 <sighting><date>2000-01-02</date><abbreviation>ameavo</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-01-02</date><abbreviation>amecoo</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-01-02</date><abbreviation>amepip</abbreviation><location>Don Edwards Center</location></sighting>
@@ -1916,7 +1926,7 @@
 <sighting><date>2000-01-02</date><abbreviation>whcspa</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-01-02</date><abbreviation>willet</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-01-02</date><abbreviation>yerwar</abbreviation><location>Don Edwards Center</location></sighting>
-<sighting><date>2000-01-09</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location></sighting>
+<sighting><date>2000-01-09</date><abbreviation>yelleg</abbreviation><location>Palo Alto Duck Pond</location><exclude>true</exclude></sighting>
 <sighting><date>2000-01-09</date><abbreviation>ameavo</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>2000-01-09</date><abbreviation>bknsti</abbreviation><location>Palo Alto Duck Pond</location></sighting>
 <sighting><date>2000-01-09</date><abbreviation>buffle?</abbreviation><location>Palo Alto Duck Pond</location></sighting>
@@ -1990,7 +2000,7 @@
 <sighting><date>2000-03-11</date><abbreviation>spotow</abbreviation><location>Filoli</location></sighting>
 <sighting><date>2000-03-11</date><abbreviation>turvul</abbreviation><location>Filoli</location></sighting>
 <sighting><date>2000-03-11</date><abbreviation>whcspa</abbreviation><location>Filoli</location></sighting>
-<sighting><date>2000-03-11</date><abbreviation>scaup</abbreviation><location>Pillar Point</location></sighting>
+<sighting><date>2000-03-11</date><abbreviation>scaup</abbreviation><location>Pillar Point</location><exclude>true</exclude></sighting>
 <sighting><date>2000-03-11</date><abbreviation>blkoys</abbreviation><location>Pillar Point</location></sighting>
 <sighting><date>2000-03-11</date><abbreviation>brant</abbreviation><location>Pillar Point</location></sighting>
 <sighting><date>2000-03-11</date><abbreviation>buffle</abbreviation><location>Pillar Point</location></sighting>
@@ -2002,7 +2012,7 @@
 <sighting><date>2000-03-11</date><abbreviation>sursco</abbreviation><location>Pillar Point</location></sighting>
 <sighting><date>2000-03-11</date><abbreviation>wesgre</abbreviation><location>Pillar Point</location></sighting>
 <sighting><date>2000-03-11</date><abbreviation>willet</abbreviation><location>Pillar Point</location></sighting>
-<sighting><date>2000-03-12</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location></sighting>
+<sighting><date>2000-03-12</date><abbreviation>yelleg</abbreviation><location>Charleston Slough</location><exclude>true</exclude></sighting>
 <sighting><date>2000-03-12</date><abbreviation>ameavo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>2000-03-12</date><abbreviation>amecoo</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>2000-03-12</date><abbreviation>amewig</abbreviation><location>Charleston Slough</location></sighting>
@@ -2040,7 +2050,7 @@
 <sighting><date>2000-03-12</date><abbreviation>wesgre</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>2000-03-12</date><abbreviation>wessan</abbreviation><location>Charleston Slough</location></sighting>
 <sighting><date>2000-03-12</date><abbreviation>willet</abbreviation><location>Charleston Slough</location></sighting>
-<sighting><date>2000-04-02</date><abbreviation>scaup</abbreviation><location>Half Moon Bay</location></sighting>
+<sighting><date>2000-04-02</date><abbreviation>scaup</abbreviation><location>Half Moon Bay</location><exclude>true</exclude></sighting>
 <sighting><date>2000-04-02</date><abbreviation>amecoo</abbreviation><location>Half Moon Bay</location></sighting>
 <sighting><date>2000-04-02</date><abbreviation>amegfi</abbreviation><location>Half Moon Bay</location></sighting>
 <sighting><date>2000-04-02</date><abbreviation>bkbplo</abbreviation><location>Half Moon Bay</location></sighting>
@@ -2111,7 +2121,6 @@
 <sighting><date>2000-05-13</date><abbreviation>wlswar</abbreviation><location>Pigeon Point</location></sighting>
 <sighting><date>2000-05-13</date><abbreviation>yelwar</abbreviation><location>Pigeon Point</location></sighting>
 <sighting><date>2000-05-13</date><abbreviation>yebcha</abbreviation><location>Pigeon Point</location><notes><p>heard but not seen</p></notes></sighting>
-<sighting><date>2000-06-10</date><abbreviation>sea otter</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>2000-06-10</date><abbreviation>brebla</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>2000-06-10</date><abbreviation>cabpel</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>2000-06-10</date><abbreviation>commur</abbreviation><location>Moss Landing State Beach</location></sighting>
@@ -2125,7 +2134,7 @@
 <sighting><date>2000-06-10</date><abbreviation>turvul</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>2000-06-10</date><abbreviation>wesgre</abbreviation><location>Moss Landing State Beach</location></sighting>
 <sighting><date>2000-06-10</date><abbreviation>whtkit</abbreviation><location>Moss Landing State Beach</location></sighting>
-<sighting><date>2000-06-19</date><abbreviation>hummingbirds</abbreviation><location>Phoenecian Resort</location></sighting>
+<sighting><date>2000-06-19</date><abbreviation>hummingbirds</abbreviation><location>Phoenecian Resort</location><exclude>true</exclude></sighting>
 <sighting><date>2000-06-19</date><abbreviation>cacwre</abbreviation><location>Phoenecian Resort</location><notes><p>this is one big, loud wren! It stood around in the cactus garden and posed for photos.</p></notes><exclude>true</exclude></sighting>
 <sighting><date>2000-06-19</date><abbreviation>grtgra</abbreviation><location>Phoenecian Resort</location><exclude>true</exclude></sighting>
 <sighting><date>2000-06-19</date><abbreviation>verdin</abbreviation><location>Phoenecian Resort</location><exclude>true</exclude></sighting>
@@ -2155,8 +2164,8 @@
 <sighting><date>2000-08-04</date><abbreviation>rthhum</abbreviation><location>Pikes Peak</location><first>true</first></sighting>
 <sighting><date>2000-08-04</date><abbreviation>turvul</abbreviation><location>Pikes Peak</location></sighting>
 <sighting><date>2000-08-04</date><abbreviation>whbnut</abbreviation><location>Pikes Peak</location></sighting>
-<sighting><date>2000-08-26</date><abbreviation>yelleg</abbreviation><location>Bolinas Lagoon</location></sighting>
-<sighting><date>2000-08-26</date><abbreviation>hummingbird?</abbreviation><location>Bolinas Lagoon</location></sighting>
+<sighting><date>2000-08-26</date><abbreviation>yelleg</abbreviation><location>Bolinas Lagoon</location><exclude>true</exclude></sighting>
+<sighting><date>2000-08-26</date><abbreviation>hummingbird?</abbreviation><location>Bolinas Lagoon</location><exclude>true</exclude></sighting>
 <sighting><date>2000-08-26</date><abbreviation>ameavo</abbreviation><location>Bolinas Lagoon</location></sighting>
 <sighting><date>2000-08-26</date><abbreviation>amekes</abbreviation><location>Bolinas Lagoon</location></sighting>
 <sighting><date>2000-08-26</date><abbreviation>belkin</abbreviation><location>Bolinas Lagoon</location></sighting>
@@ -2189,7 +2198,7 @@
 <sighting><date>2000-08-26</date><abbreviation>willet</abbreviation><location>Bolinas Lagoon</location></sighting>
 <sighting><date>2000-08-26</date><abbreviation>wlswar</abbreviation><location>Bolinas Lagoon</location></sighting>
 <sighting><date>2000-08-26</date><abbreviation>wrenti??</abbreviation><location>Bolinas Lagoon</location><first>true</first></sighting>
-<sighting><date>2000-08-27</date><abbreviation>sandpi sp</abbreviation><location>Don Edwards Center</location></sighting>
+<sighting><date>2000-08-27</date><abbreviation>sandpi sp</abbreviation><location>Don Edwards Center</location><exclude>true</exclude></sighting>
 <sighting><date>2000-08-27</date><abbreviation>ameavo</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-08-27</date><abbreviation>amecoo</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-08-27</date><abbreviation>blkski</abbreviation><location>Don Edwards Center</location></sighting>
@@ -2204,7 +2213,7 @@
 <sighting><date>2000-08-27</date><abbreviation>renpha</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-08-27</date><abbreviation>rinphe</abbreviation><location>Don Edwards Center</location></sighting>
 <sighting><date>2000-08-27</date><abbreviation>wilpha</abbreviation><location>Don Edwards Center</location></sighting>
-<sighting><date>2000-09-24</date><abbreviation>thrush sp</abbreviation><location>Coyote Hills</location></sighting>
+<sighting><date>2000-09-24</date><abbreviation>thrush sp</abbreviation><location>Coyote Hills</location><exclude>true</exclude></sighting>
 <sighting><date>2000-09-24</date><abbreviation>ameavo</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>amecoo</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>amekes</abbreviation><location>Coyote Hills</location></sighting>
@@ -2227,7 +2236,7 @@
 <sighting><date>2000-09-24</date><abbreviation>greyel</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>killde</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>leasan</abbreviation><location>Coyote Hills</location></sighting>
-<sighting><date>2000-09-24</date><abbreviation>lesgol</abbreviation><location>Coyote Hills</location><notes><p>Frank Vanslager and another trip attendee got into a big fight about the wingbars of this bird. It wasn't in breeding plumage, so it was pretty hard to tell.</p></notes></sighting>
+<sighting><date>2000-09-24</date><abbreviation>lesgol</abbreviation><location>Coyote Hills</location><notes><p>Two birders got into a big discussion about the wingbars of this bird. It wasn't in breeding plumage, so it was pretty hard to tell.</p></notes></sighting>
 <sighting><date>2000-09-24</date><abbreviation>lobdow</abbreviation><location>Coyote Hills</location><exclude>true</exclude></sighting>
 <sighting><date>2000-09-24</date><abbreviation>margod</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>marwre</abbreviation><location>Coyote Hills</location></sighting>
@@ -2253,8 +2262,7 @@
 <sighting><date>2000-09-24</date><abbreviation>willet</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>yelwar</abbreviation><location>Coyote Hills</location></sighting>
 <sighting><date>2000-09-24</date><abbreviation>yerwar</abbreviation><location>Coyote Hills</location></sighting>
-<sighting><date>2000-10-06</date><abbreviation>warblers--yerwar?</abbreviation><location>Champaign County</location></sighting>
-<sighting><date>2000-10-06</date><abbreviation>(tohscr)</abbreviation><location>Champaign County</location></sighting>
+<sighting><date>2000-10-06</date><abbreviation>tohscr</abbreviation><location>Champaign County</location><notes><p>tow-headed screamer</p></notes><exclude>true</exclude></sighting>
 <sighting><date>2000-10-06</date><abbreviation>amegfi</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>2000-10-06</date><abbreviation>amerob</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>2000-10-06</date><abbreviation>blujay</abbreviation><location>Champaign County</location></sighting>
@@ -2266,8 +2274,9 @@
 <sighting><date>2000-10-06</date><abbreviation>houspa</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>2000-10-06</date><abbreviation>norcar</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>2000-10-06</date><abbreviation>whtspa</abbreviation><location>Champaign County</location><first>true</first></sighting>
-<sighting><date>2000-10-09</date><abbreviation>hawk</abbreviation><location>Champaign County</location></sighting>
-<sighting><date>2000-10-09</date><abbreviation>kinqlet</abbreviation><location>Champaign County</location></sighting>
+<sighting><date>2000-10-06</date><abbreviation>yerwar</abbreviation><location>Champaign County</location><notes><p>Probably</p></notes><exclude>true</exclude></sighting>
+<sighting><date>2000-10-09</date><abbreviation>hawk</abbreviation><location>Champaign County</location><exclude>true</exclude></sighting>
+<sighting><date>2000-10-09</date><abbreviation>kinqlet</abbreviation><location>Champaign County</location><exclude>true</exclude></sighting>
 <sighting><date>2000-10-09</date><abbreviation>amecro</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>2000-10-09</date><abbreviation>amegfi</abbreviation><location>Champaign County</location></sighting>
 <sighting><date>2000-10-09</date><abbreviation>amerob</abbreviation><location>Champaign County</location></sighting>
@@ -2300,7 +2309,7 @@
 <sighting><date>2000-11-05</date><abbreviation>wesjay</abbreviation><location>Pescadero Marsh</location></sighting>
 <sighting><date>2000-11-05</date><abbreviation>whtkit</abbreviation><location>Pescadero Marsh</location></sighting>
 <sighting><date>2000-11-05</date><abbreviation>yerwar</abbreviation><location>Pescadero Marsh</location></sighting>
-<sighting><date>2000-11-12</date><abbreviation>swan sp</abbreviation><location>Schollenberger Park</location></sighting>
+<sighting><date>2000-11-12</date><abbreviation>swan</abbreviation><location>Schollenberger Park</location><exclude>true</exclude></sighting>
 <sighting><date>2000-11-12</date><abbreviation>ameavo</abbreviation><location>Schollenberger Park</location></sighting>
 <sighting><date>2000-11-12</date><abbreviation>amecoo</abbreviation><location>Schollenberger Park</location></sighting>
 <sighting><date>2000-11-12</date><abbreviation>bknsti</abbreviation><location>Schollenberger Park</location></sighting>
@@ -2381,7 +2390,7 @@
 <sighting><date>2001-01-10</date><abbreviation>lobcur</abbreviation><location>State and Speckles Pond</location></sighting>
 <sighting><date>2001-01-10</date><abbreviation>shbdow</abbreviation><location>State and Speckles Pond</location></sighting>
 <sighting><date>2001-01-10</date><abbreviation>wessan</abbreviation><location>State and Speckles Pond</location></sighting>
-<sighting><date>2001-01-13</date><abbreviation>scaup-</abbreviation><location>Panoche Valley</location></sighting>
+<sighting><date>2001-01-13</date><abbreviation>scaup</abbreviation><location>Panoche Valley</location><exclude>true</exclude></sighting>
 <sighting><date>2001-01-13</date><abbreviation>amecro-</abbreviation><location>Panoche Valley</location></sighting>
 <sighting><date>2001-01-13</date><abbreviation>amekes</abbreviation><location>Panoche Valley</location></sighting>
 <sighting><date>2001-01-13</date><abbreviation>amepip</abbreviation><location>Panoche Valley</location></sighting>
@@ -2427,7 +2436,6 @@
 <sighting><date>2001-01-13</date><abbreviation>wesjay</abbreviation><location>Panoche Valley</location></sighting>
 <sighting><date>2001-01-13</date><abbreviation>whtkit</abbreviation><location>Panoche Valley</location></sighting>
 <sighting><date>2001-01-13</date><abbreviation>yerwar</abbreviation><location>Panoche Valley</location></sighting>
-<sighting><date>2001-01-14</date><abbreviation>auto tour</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>ameavo</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>amebit</abbreviation><location>Merced NWR</location><notes><p>We saw this during one of the auto tours; our car had driven passed it, but we backed up and got a nice look.</p></notes><first>true</first></sighting>
 <sighting><date>2001-01-14</date><abbreviation>amecoo</abbreviation><location>Merced NWR</location></sighting>
@@ -2446,7 +2454,7 @@
 <sighting><date>2001-01-14</date><abbreviation>brebla</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>bnhcow</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>buffle</abbreviation><location>Merced NWR</location></sighting>
-<sighting><date>2001-01-14</date><abbreviation>calthr ?</abbreviation><location>Merced NWR</location><first>true</first></sighting>
+<sighting><date>2001-01-14</date><abbreviation>calthr ?</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>cangoo</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>categr</abbreviation><location>Merced NWR</location><notes><p>Life Bird! Saw a dozen of them in the parking lot across from the Mcdonalds</p></notes><first>true</first></sighting>
 <sighting><date>2001-01-14</date><abbreviation>cintea</abbreviation><location>Merced NWR</location></sighting>
@@ -2518,7 +2526,7 @@
 <sighting><date>2001-01-14</date><abbreviation>yebmag</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>yehbla</abbreviation><location>Merced NWR</location></sighting>
 <sighting><date>2001-01-14</date><abbreviation>yerwar</abbreviation><location>Merced NWR</location></sighting>
-<sighting><date>2001-02-03</date><abbreviation>scaup</abbreviation><location>Sunnyvale Water Treatment Plant</location></sighting>
+<sighting><date>2001-02-03</date><abbreviation>scaup</abbreviation><location>Sunnyvale Water Treatment Plant</location><exclude>true</exclude></sighting>
 <sighting><date>2001-02-03</date><abbreviation>amecoo</abbreviation><location>Sunnyvale Water Treatment Plant</location></sighting>
 <sighting><date>2001-02-03</date><abbreviation>amekes</abbreviation><location>Sunnyvale Water Treatment Plant</location><notes><p>sitting on a power wire, gobbling a lizard</p></notes></sighting>
 <sighting><date>2001-02-03</date><abbreviation>blkpho</abbreviation><location>Sunnyvale Water Treatment Plant</location></sighting>
@@ -2535,7 +2543,7 @@
 <sighting><date>2001-02-03</date><abbreviation>rudduc</abbreviation><location>Sunnyvale Water Treatment Plant</location><notes><p>some males have blue bills now</p></notes></sighting>
 <sighting><date>2001-02-03</date><abbreviation>snoegr</abbreviation><location>Sunnyvale Water Treatment Plant</location></sighting>
 <sighting><date>2001-02-03</date><abbreviation>wesgre</abbreviation><location>Sunnyvale Water Treatment Plant</location></sighting>
-<sighting><date>2001-02-04</date><abbreviation>scaup</abbreviation><location>Coyote Point Marina</location></sighting>
+<sighting><date>2001-02-04</date><abbreviation>scaup</abbreviation><location>Coyote Point Marina</location><exclude>true</exclude></sighting>
 <sighting><date>2001-02-04</date><abbreviation>ameavo</abbreviation><location>Coyote Point Marina</location></sighting>
 <sighting><date>2001-02-04</date><abbreviation>amecoo</abbreviation><location>Coyote Point Marina</location></sighting>
 <sighting><date>2001-02-04</date><abbreviation>amewig</abbreviation><location>Coyote Point Marina</location></sighting>
@@ -2572,7 +2580,7 @@
 <sighting><date>2001-02-19</date><abbreviation>blkpho</abbreviation><location>Sunnyvale Baylands</location></sighting>
 <sighting><date>2001-02-19</date><abbreviation>greegr</abbreviation><location>Sunnyvale Baylands</location></sighting>
 <sighting><date>2001-02-25</date><abbreviation>cedwax</abbreviation><location>University Lutheran Church</location><notes><p>in the top of the tree, right after the arduous annual meeting. Seemed like a positive omen.</p></notes></sighting>
-<sighting><date>2001-03-03</date><abbreviation>accip</abbreviation><location>Rohnert Park</location><notes><p>hawk heard high overhead, calling repeatedly. Probably the call was too high and too frequent to be Red-Tailed Hawk; Red-Shouldered Hawk, perhaps?</p></notes></sighting>
+<sighting><date>2001-03-03</date><abbreviation>accip</abbreviation><location>Rohnert Park</location><notes><p>hawk heard high overhead, calling repeatedly. Probably the call was too high and too frequent to be Red-Tailed Hawk; Red-Shouldered Hawk, perhaps?</p></notes><exclude>true</exclude></sighting>
 <sighting><date>2001-03-03</date><abbreviation>annhum</abbreviation><location>Rohnert Park</location></sighting>
 <sighting><date>2001-03-03</date><abbreviation>blkpho</abbreviation><location>Rohnert Park</location></sighting>
 <sighting><date>2001-03-03</date><abbreviation>caltow</abbreviation><location>Rohnert Park</location></sighting>
@@ -2841,8 +2849,7 @@
 <sighting><date>2001-07-28</date><abbreviation>moudov</abbreviation><location>Skyline Ridge Open Space Preserve</location></sighting>
 <sighting><date>2001-07-29</date><abbreviation>barswa</abbreviation><location>Rancho San Antonio</location><notes><p>Mary found a nest in the women's bathroom</p></notes></sighting>
 <sighting><date>2001-07-29</date><abbreviation>cliswa</abbreviation><location>Rancho San Antonio</location></sighting>
-<sighting><date>2001-07-29</date><abbreviation>flycat</abbreviation><location>Stevens Creek County Park</location></sighting>
-<sighting><date>2001-07-29</date><abbreviation>flycat</abbreviation><location>Stevens Creek County Park</location></sighting>
+<sighting><date>2001-07-29</date><abbreviation>flycat</abbreviation><location>Stevens Creek County Park</location><exclude>true</exclude></sighting>
 <sighting><date>2001-07-29</date><abbreviation>acowoo</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>2001-07-29</date><abbreviation>amerob</abbreviation><location>Stevens Creek County Park</location></sighting>
 <sighting><date>2001-07-29</date><abbreviation>batpig</abbreviation><location>Stevens Creek County Park</location></sighting>
@@ -3187,7 +3194,7 @@
 <sighting><date>2001-11-10</date><abbreviation>oaktit</abbreviation><location>Grant Ranch County Park</location></sighting>
 <sighting><date>2001-11-10</date><abbreviation>pibgre</abbreviation><location>Grant Ranch County Park</location></sighting>
 <sighting><date>2001-11-10</date><abbreviation>pinsis</abbreviation><location>Grant Ranch County Park</location><first>true</first></sighting>
-<sighting><date>2001-11-10</date><abbreviation>rebsap</abbreviation><location>Grant Ranch County Park</location><first>true</first></sighting>
+<sighting><date>2001-11-10</date><abbreviation>rebsap</abbreviation><location>Grant Ranch County Park</location><exclude>true</exclude></sighting>
 <sighting><date>2001-11-10</date><abbreviation>rethaw</abbreviation><location>Grant Ranch County Park</location></sighting>
 <sighting><date>2001-11-10</date><abbreviation>rewbla</abbreviation><location>Grant Ranch County Park</location></sighting>
 <sighting><date>2001-11-10</date><abbreviation>rinduc</abbreviation><location>Grant Ranch County Park</location></sighting>
@@ -3285,4 +3292,161 @@
 <sighting><date>2001-11-29</date><abbreviation>amwpel</abbreviation><location>Reactivity</location></sighting>
 <sighting><date>2001-11-29</date><abbreviation>mallar</abbreviation><location>Reactivity</location></sighting>
 <sighting><date>2001-11-29</date><abbreviation>norhar</abbreviation><location>Reactivity</location></sighting>
-<sighting><date>2001-11-29</date><abbreviation>turvul</abbreviation><location>Reactivity</location></sighting></sightingset>
+<sighting><date>2001-11-29</date><abbreviation>turvul</abbreviation><location>Reactivity</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>ameavo</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>amecoo</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>amecro</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>amewig</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>bknsti</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>canvas</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>doccor</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>gnwtea</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>margod</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>norpin</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>norsho</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>pibgre</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>rocdov</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>snoegr</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>turvul</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-11-30</date><abbreviation>willet</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>yerwar</abbreviation><location>Reactivity</location><notes><p>on the railing just behind Klep.</p></notes></sighting>
+<sighting><date>2001-12-03</date><abbreviation>ameavo</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>cangoo</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>canvas</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>gnwtea</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>margod</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>norpin</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>norsho</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>rocdov</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>rudduc</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>snoegr</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-03</date><abbreviation>wesgre</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-05</date><abbreviation>amerob</abbreviation><location>Reactivity</location></sighting>
+<sighting><date>2001-12-05</date><abbreviation>comrav</abbreviation><location>Reactivity</location><notes><p>Sitting atop the front of the building, three birds. One had shaggy feathers hanging down from its neck (breeding plumage?) and fluffed up its throat patch.</p></notes></sighting>
+<sighting><date>2001-12-10</date><abbreviation>amecoo</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-10</date><abbreviation>buwtea</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-10</date><abbreviation>comgol</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-10</date><abbreviation>doccor</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-10</date><abbreviation>norpin</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-10</date><abbreviation>norsho</abbreviation><location>Starbucks Pond</location></sighting>
+<sighting><date>2001-12-11</date><abbreviation>amegfi</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>amerob</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>annhum</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>blkpho</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>cedwax</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>chbchi</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>daejun</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>goleag</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>gocspa</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>herthr</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>houfin</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>houspa</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>killde</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>nutwoo</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>ruckin</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>towwar</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>turvul</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-11</date><abbreviation>yerwar</abbreviation><location>Nortel Networks</location><exclude>true</exclude></sighting>
+<sighting><date>2001-12-16</date><abbreviation>ameavo</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>amecoo</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>amecro</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>amekes</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>amepip</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>amewig</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>annhum</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>blkpho</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>bknsti</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>brebla</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>bushti</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>calgul</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>canvas</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>comyel</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>doccor</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>eargre</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>eursta</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>gocspa</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>grbher</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>greegr</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>greyel</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>gnwtea</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>herthr</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>horgre</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>houfin</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>leasan</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>linspa</abbreviation><location>Drawbridge</location><first>true</first></sighting>
+<sighting><date>2001-12-16</date><abbreviation>logshr</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>mallar</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>marwre</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>moudov</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>norhar</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>normoc</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>norpin</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>norsho</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>perfal</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>rethaw</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>ribgul</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>rinphe</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>rocdov</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>ruckin</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>rudduc</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>savspa</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>shbdow</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>snoegr</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>sonspa</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>turvul</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>virrai</abbreviation><location>Drawbridge</location><first>true</first></sighting>
+<sighting><date>2001-12-16</date><abbreviation>wesgre</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>wesmea</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>wessan</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>whcspa</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>whtkit</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>willet</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-16</date><abbreviation>yerwar</abbreviation><location>Drawbridge</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>amecoo</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>amecro</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>amekes</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>amerob</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>amwpel</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>annhum</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>blkpho</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>bushti</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>calgul</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>caltow</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>cangoo</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>cedwax</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>chbchi</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>coohaw</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>daejun</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>doccor</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>dowwoo</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>eursta</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>gadwal</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>gocspa</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>grbher</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>greegr</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>herthr</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>houfin</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>lesgol</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>mallar</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>moudov</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>norfli</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>normoc</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>nutwoo</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>oaktit</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>reshaw</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>rethaw</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>ribgul</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>rocdov</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>ruckin</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>rudduc</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>saypho</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>sonspa</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>stejay</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>towwar</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>turvul</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>wesgre</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>wesjay</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>whbnut</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>whcspa</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>whtkit</abbreviation><location>Coyote Creek County Park</location></sighting>
+<sighting><date>2001-12-29</date><abbreviation>yerwar</abbreviation><location>Coyote Creek County Park</location></sighting></sightingset>
