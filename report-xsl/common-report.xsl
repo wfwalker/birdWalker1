@@ -81,7 +81,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.23 2002/07/16 15:37:04 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.24 2002/07/19 00:56:40 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -142,6 +142,22 @@
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>first sighting</SPAN>
 	</xsl:template>
 
+	<!-- how to display a link to a photo -->
+
+	<xsl:template mode="text-link" match="species/sighting/photo">
+	    <xsl:message>text-link species/sighting/photo</xsl:message>
+		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
+	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>photo</A>
+		</SPAN>
+	</xsl:template>
+
+	<xsl:template mode="text-link" match="generate-species-report/trip/sighting/photo">
+	    <xsl:message>text-link generate-species-report/trip/sighting/photo</xsl:message>
+		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
+	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../../species/abbreviation"/>.jpg</xsl:attribute>photo</A>
+		</SPAN>
+	</xsl:template>
+
 	<!-- how to display the fact that a sighting has been excluded from life list counting -->
 
 	<xsl:template mode="with-date" match="sighting/exclude">
@@ -180,10 +196,21 @@
 		</DIV>
 	</xsl:template>
 
+    <!-- THIS TEMPLATE IS BEING IGNORED BECAUSE OF the general species template below already looking for photo -->
+	<xsl:template mode="with-date" match="species/sighting/photo">
+	    <xsl:message>with-date species/sighting/photo</xsl:message>
+		<DIV CLASS="sighting-notes">
+	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>
+			<xsl:value-of select="../date"/> photo
+		</A>
+		</DIV>
+	</xsl:template>
+
 	<xsl:template match="/generate-location-report/species/sighting">
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="date"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
+		<xsl:apply-templates mode="with-date" select="photo"/>
 	</xsl:template>
 
 	<xsl:template match="/generate-order-report/species/sighting">
@@ -192,10 +219,12 @@
 		</DIV>
 	</xsl:template>
 
+
 	<!-- how to display species names -->
 
 	<xsl:template match="species">
 		<A>
+		    <!-- TODO, xsl:if is slow -->
 			<xsl:if test="sighting/notes or sighting/first">
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
@@ -206,24 +235,12 @@
 
 		<xsl:apply-templates mode="without-date" select="sighting/first"/>
 		<xsl:apply-templates mode="without-date" select="sighting/exclude"/>
+
+		<!-- TODO, unwanted line break before this -->
+		<xsl:apply-templates mode="text-link" select="sighting/photo"/>
 		<BR/>
 
 		<xsl:apply-templates select="sighting[notes]"/>
-	</xsl:template>
-
-	<xsl:template match="generate-year-report/species">
-		<A>
-			<xsl:if test="sighting/first">
-				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
-			</xsl:if>
-
-			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-			<xsl:value-of select="common-name"/>
-		</A>
-
-		<xsl:apply-templates mode="with-date" select="sighting/first"/>
-		<xsl:apply-templates mode="with-date" select="sighting/exclude"/>
-		<BR/>
 	</xsl:template>
 
 	<xsl:template match="generate-order-report/species">
@@ -248,9 +265,9 @@
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="date"/></SPAN>
 		</A>
 
+		<xsl:apply-templates mode="text-link" select="sighting/photo"/>
 		<BR/>
 		<xsl:apply-templates select="sighting[notes]"/>
-
 	</xsl:template>
 
 	<xsl:template match="location">
