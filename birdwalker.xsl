@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.7 2003/02/04 06:15:44 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.8 2003/02/08 08:14:52 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -307,19 +307,6 @@
 
 	<!-- *** YEAR REPORT *** -->
 
-	<xsl:template name="alternating-background-colors">
-	    <xsl:param name="in-index"/>
-
-		<xsl:choose>
-			<xsl:when test="($in-index mod 2) = 0">
-				<xsl:attribute name="class">year-col-color</xsl:attribute>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:attribute name="class">year-plain</xsl:attribute>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
 	<xsl:template match="generate-year-report/species/sighting[@first]">F</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[@exclude]">e</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[not(@exclude)]">X</xsl:template>
@@ -327,107 +314,16 @@
 	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="@date"/>-<xsl:value-of select="../@abbreviation"/>.jpg</xsl:attribute>P</A>
 	</xsl:template>
 
-
-	<xsl:template match="generate-year-report/trip" mode="checkmark">
-	    <xsl:param name="the-species"/>
-
-		<TD>
-			<!-- alternating background colors -->
-			<xsl:call-template name="alternating-background-colors"><xsl:with-param name="in-index" select="position()"/></xsl:call-template>
-			<xsl:apply-templates select="$the-species/sighting[@date=current()/@date]"/>
-		</TD>
-	</xsl:template>
-
-	<xsl:template match="generate-year-report/trip" mode="day-of-month">
-		<TD VALIGN="BOTTOM">
-			<!-- alternating background colors -->
-			<xsl:call-template name="alternating-background-colors"><xsl:with-param name="in-index" select="position()"/></xsl:call-template>
-
-			<A>
-				<xsl:attribute name="HREF">../trips/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
-				<xsl:value-of select="substring(@date, 9, 1)"/><BR/>
-				<xsl:value-of select="substring(@date, 10, 1)"/>
-			</A>
-		</TD>
-	</xsl:template>
-
-	<xsl:template match="generate-year-report/trip" mode="month-name">
-	    <xsl:param name="previous-trip"/>
-
-		<xsl:if test="substring($previous-trip/@date, 6, 2)!=substring(@date, 6, 2)">
-			<TD VALIGN="BOTTOM">
-				<xsl:variable name="month-num" select="substring(current()/@date, 6, 2)"/>
-				<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(@date, 6, 2)=substring(current()/@date, 6, 2)])"/>
-
-				<xsl:attribute name="COLSPAN">
-					<xsl:value-of select="$month-trip-count"/>
-				</xsl:attribute>
-
-				<!-- alternating background colors -->
-				<xsl:call-template name="alternating-background-colors"><xsl:with-param name="in-index" select="$month-num"/></xsl:call-template>
-
-				<xsl:variable name="the-month" select="document('misc.xml')/miscellaneous/monthset/month[@index=$month-num]/@abbreviation"/>
-
-				<!-- insert one, two, or three chars of month name, as appropriate -->
-				<xsl:value-of select="substring($the-month, 1, 1)"/>
-				<xsl:if test="$month-trip-count > 1">
-					<xsl:value-of select="substring($the-month, 2, 1)"/>
-				</xsl:if>
-				<xsl:if test="$month-trip-count > 2">
-					<xsl:value-of select="substring($the-month, 3, 1)"/>
-				</xsl:if>
-			</TD>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template match="generate-year-report/trip" mode="month-species-count">
-	    <xsl:param name="previous-trip"/>
-		
-		<xsl:if test="substring($previous-trip/@date, 6, 2)!=substring(@date, 6, 2)">
-			<TD VALIGN="BOTTOM" CLASS="year-plain">
-				<xsl:variable name="month-num" select="substring(current()/@date, 6, 2)"/>
-				<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(@date, 6, 2)=substring(current()/@date, 6, 2)])"/>
-				<xsl:variable name="month-species-count" select="count(/generate-year-report/species[sighting[substring(@date, 6, 2)=substring(current()/@date, 6, 2)]])"/>
-
-				<xsl:attribute name="COLSPAN">
-					<xsl:value-of select="$month-trip-count"/>
-				</xsl:attribute>
-
-				<xsl:choose>
-					<xsl:when test="($month-num mod 2) = 0">
-						<xsl:attribute name="class">year-col-color</xsl:attribute>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:attribute name="class">year-plain</xsl:attribute>
-					</xsl:otherwise>
-				</xsl:choose>
-
-				<xsl:value-of select="substring($month-species-count, 1, 1)"/><BR/>
-				<xsl:value-of select="substring($month-species-count, 2, 1)"/><BR/>
-				<xsl:value-of select="substring($month-species-count, 3, 1)"/><BR/>
-			</TD>
-		</xsl:if>
-	</xsl:template>
-
-
 	<xsl:template match="generate-year-report/species">
 		<!-- print the headings every 20 rows -->
+		<xsl:variable name="the-sightings" select="sighting"/>
 
 		<xsl:if test="(position() mod 20) = 1">
 			<TR>
 				<TD> </TD>
-				<xsl:for-each select="/generate-year-report/trip">
-					<xsl:variable name="the-trip-index" select="position()"/>
-
-					<xsl:apply-templates select="current()" mode="month-name">
-					    <xsl:with-param name="previous-trip" select="/generate-year-report/trip[position()=($the-trip-index - 1)]"/>
-					</xsl:apply-templates>
+				<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
+					<td class="year-report-month-row-color" align="center"><xsl:value-of select="substring(@name, 1, 3)"/></td>
 				</xsl:for-each>
-			</TR>
-
-			<TR>
-				<TD> </TD>
-				<xsl:apply-templates select="/generate-year-report/trip" mode="day-of-month"/>
 			</TR>
 		</xsl:if>
 
@@ -449,16 +345,17 @@
 			</A></TD>
 
 			<!-- iterate through all the trips, looking for sightings of this species -->
-
-			<xsl:apply-templates select="/generate-year-report/trip" mode="checkmark">
-			    <xsl:with-param name="the-species" select="current()"/>
-			</xsl:apply-templates>
+			<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
+			    <xsl:variable name="the-month" select="current()"/>
+			    <td align="center"><xsl:apply-templates select="$the-sightings[substring(@date, 6, 2)=$the-month/@index][position()=1]"/></td>
+			</xsl:for-each>
 		</TR>
 	</xsl:template>
 
 	<xsl:template match="generate-year-report">
 		<!-- define my report parameter -->
 		<xsl:variable name="year-name" select="@year-name"/>
+		<xsl:variable name="year-species" select="species"/>
 
 		<xsl:message>generate report for year <xsl:value-of select="$year-name"/></xsl:message>
 		<xsl:message>species with non excluded sighting<xsl:value-of select="count(species[sighting[not(@exclude)]])"/></xsl:message>
@@ -494,18 +391,14 @@
 			<!-- paper checklist-style table, showing trips and species -->
 			<xsl:apply-templates select="/generate-year-report/species"/>
 
-				<!-- loop through the trips one last time, showing month species totals -->
-				<TR>
-					<TD>Month</TD>
-					<xsl:for-each select="/generate-year-report/trip">
-						<xsl:variable name="the-trip-index" select="position()"/>
+			<tr>
+			<td></td>
+			<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
+			    <xsl:variable name="the-month" select="current()"/>
+			    <td align="center"><xsl:value-of select="count($year-species[sighting[substring(@date, 6, 2)=$the-month/@index]])"/></td>
+			</xsl:for-each>
+            </tr>
 
-						<xsl:apply-templates select="current()" mode="month-species-count">
-						    <xsl:with-param name="previous-trip" select="/generate-year-report/trip[position()=($the-trip-index - 1)]"/>
-						</xsl:apply-templates>
-
-					</xsl:for-each>
-				</TR>
 			</TABLE>
 
 			<P>
@@ -566,8 +459,11 @@
 					<xsl:if test="string-length(location/@latitude)>0">
 						<TD NOWRAP="TRUE">|<BR/>|</TD>
 						<TD ALIGN="RIGHT" NOWRAP="TRUE">
-							<xsl:text>N </xsl:text><xsl:value-of select="location/@latitude"/>&#176;<BR/>
-							<xsl:text>W </xsl:text><xsl:value-of select="location/@longitude"/>&#176;
+							<A>
+							    <xsl:attribute name="HREF">http://terraserver.homeadvisor.msn.com/image.aspx?Lon=-<xsl:value-of select="location/@longitude"/>&amp;Lat=<xsl:value-of select="location/@latitude"/></xsl:attribute>
+							    <xsl:text>N </xsl:text><xsl:value-of select="location/@latitude"/>&#176;<BR/>
+							    <xsl:text>W </xsl:text><xsl:value-of select="location/@longitude"/>&#176;
+							</A>
 						</TD>
 					</xsl:if>
 					<TD NOWRAP="TRUE">|<BR/>|</TD>
@@ -910,7 +806,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.7 2003/02/04 06:15:44 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.8 2003/02/08 08:14:52 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
