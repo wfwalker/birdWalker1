@@ -58,36 +58,38 @@
 		<BODY>
 			<xsl:call-template name="navigation-block"/>
 
-			<DIV CLASS="tablehead">
-			<TABLE>
+			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0" BGCOLOR="#EEEEEE">
 			<TR>
-				<TD>
+				<TD NOWRAP="TRUE">
 					<I><xsl:value-of select="$order-record/latin-name"/></I><BR/>
 					<xsl:value-of select="$order-record/common-name"/>
 				</TD>
-				<TD>&gt;</TD>
-				<TD>
+				<TD NOWRAP="TRUE">|<BR/>|</TD>
+				<TD NOWRAP="TRUE">
 					<I><xsl:value-of select="$family-record/latin-name"/></I><BR/>
 					<xsl:value-of select="$family-record/common-name"/>
 				</TD>
-				<TD>&gt;</TD>
+				<TD NOWRAP="TRUE">|<BR/>|</TD>
 				<xsl:if test="count($subfamily-record)>0">
-					<TD>
+					<TD NOWRAP="TRUE">
 						<I><xsl:value-of select="$subfamily-record/latin-name"/></I><BR/>
 						<xsl:value-of select="$subfamily-record/common-name"/>
 					</TD>
-					<TD>&gt;</TD>
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
 				</xsl:if>
-				<TD>
+				<TD NOWRAP="TRUE">
 					<I><xsl:value-of select="$genus-record/latin-name"/></I><BR/>
 					<xsl:value-of select="$genus-record/common-name"/>
 				</TD>
+				<TD NOWRAP="TRUE" WIDTH="90%">
+					<P><BR/></P>
+				</TD>
 			</TR>
 			</TABLE>
-			</DIV>
 
 			<H1>
-				<IMG SRC="images/species.gif"/><xsl:value-of select="$species-record/common-name"/>
+				<IMG SRC="images/species.gif"/>
+				Species Report for <xsl:value-of select="$species-record/common-name"/>
 				<xsl:text> </xsl:text><I>(<xsl:value-of select="$species-record/latin-name"/>)</I>
 			</H1>
 
@@ -102,7 +104,7 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="sightings-table">
-				<xsl:with-param name="sighting-list" select="$species-sightings"/>
+				<xsl:with-param name="sighting-list" select="$species-sightings[string-length(notes/p)>0]"/>
 			</xsl:call-template>
 
 			<xsl:call-template name="navigation-block"/>
@@ -110,4 +112,17 @@
 
 		</HTML>
 	</xsl:template>
+
+	<xsl:template match="sighting">
+		<xsl:variable name="this" select="."/>
+
+		<xsl:call-template name="sighting-entry">
+			<xsl:with-param name="sighting-record" select="$this"/>
+
+			<!-- <xsl:with-param name="aux-record-3" select="$species/taxonomyset/species[abbreviation=$this/abbreviation]"/> -->
+			<xsl:with-param name="aux-record-1" select="$trips/tripset/trip[date=$this/date]"/>
+			<xsl:with-param name="aux-record-2" select="$locations/locationset/location[name=$this/location]"/>
+		</xsl:call-template>
+	</xsl:template>
+
 </xsl:stylesheet>

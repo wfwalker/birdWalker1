@@ -31,35 +31,34 @@
 		<BODY>
 			<xsl:call-template name="navigation-block"/>
 
-			<DIV CLASS="tablehead">
-			<TABLE>
+			<TABLE WIDTH="100%" BGCOLOR="#EEEEEE" BORDER="0" CELLPADDING="5" CELLSPACING="0">
 				<TR>
-					<TD>
+					<TD NOWRAP="TRUE">
+						<xsl:value-of select="$location-record/city"/>,<BR/>
 						<xsl:value-of select="$location-record/state"/>
 					</TD>
-					<TD>&gt;</TD>
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
 					<xsl:if test="string-length($location-record/count) > 0">
-						<TD>
+						<TD NOWRAP="TRUE">
 							<xsl:value-of select="$location-record/county"/> county
 						</TD>
-						<TD>&gt;</TD>
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
 					</xsl:if>
-					<TD>
-						<xsl:value-of select="$location-record/city"/>
+					<TD NOWRAP="TRUE">
+						lat <xsl:value-of select="$location-record/latitude"/><BR/>
+						long <xsl:value-of select="$location-record/longitude"/>
+						(<xsl:value-of select="$location-record/system"/>)
 					</TD>
-					<TD>&gt;</TD>
-					<TD>
-						<CODE>
-							lat <xsl:value-of select="$location-record/latitude"/>
-							long <xsl:value-of select="$location-record/longitude"/><xsl:text> </xsl:text>
-							(<xsl:value-of select="$location-record/system"/>)
-						</CODE>
+					<TD NOWRAP="TRUE" WIDTH="90%">
+					<P><BR/></P>
 					</TD>
 				</TR>
 			</TABLE>
-			</DIV>
 
-			<H1><IMG SRC="images/location.gif"/><xsl:value-of select="$location-record/name"/></H1>
+			<H1>
+				<IMG SRC="images/location.gif"/>
+				Location Report for <xsl:value-of select="$location-record/name"/>
+			</H1>
 
 			<xsl:apply-templates select="$location-record/notes[p[string-length(text())>0]]"/>
 
@@ -72,13 +71,25 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="sightings-table">
-				<xsl:with-param name="sighting-list" select="$location-sightings"/>
+				<xsl:with-param name="sighting-list" select="$location-sightings[string-length(notes/p)>0]"/>
 			</xsl:call-template>
 	
 			<xsl:call-template name="navigation-block"/>
 		</BODY>
 
 		</HTML>
+	</xsl:template>
+
+	<xsl:template match="sighting">
+		<xsl:variable name="this" select="."/>
+
+		<xsl:call-template name="sighting-entry">
+			<xsl:with-param name="sighting-record" select="$this"/>
+
+			<xsl:with-param name="aux-record-1" select="$species/taxonomyset/species[abbreviation=$this/abbreviation]"/>
+			<xsl:with-param name="aux-record-2" select="$trips/tripset/trip[date=$this/date]"/>
+			<!-- <xsl:with-param name="aux-record-3" select="$locations/locationset/location[name=$this/location]"/> -->
+		</xsl:call-template>
 	</xsl:template>
 
 </xsl:stylesheet>
