@@ -18,15 +18,13 @@
 			name="year-sightings"
 			select="species/sighting"/>
 
-		<!-- select="$sightings/sightingset/sighting[not(exclude)]/abbreviation"/ -->
-
 		<xsl:variable
 			name="year-species"
 			select="species[sighting[not(exclude)]]"/>
 
 		<HEAD>
-		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Species seen in <xsl:value-of select="$year-name"/></TITLE>
+			<xsl:call-template name="style-block"/>
+			<TITLE>Index of Species seen in <xsl:value-of select="$year-name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -341,8 +339,8 @@
 				</DIV>
 
 				<xsl:call-template name="two-column-table">
-					<xsl:with-param name="in-extra-title"><xsl:value-of select="$this-location-name"/></xsl:with-param>
-					<xsl:with-param name="in-extra-url"><xsl:value-of select="report-url"/></xsl:with-param>
+					<xsl:with-param name="in-extra-title" select="$this-location-name"/>
+					<xsl:with-param name="in-extra-url" select="report-url"/>
 					<xsl:with-param name="in-entry-list" select="$this-location-species"/>
 					<xsl:with-param name="in-entry-kind" select="'species'"/>
 				</xsl:call-template>
