@@ -1,7 +1,7 @@
 
 BUG FIXES
 
-validate the results of "ant build-sources" before running them. use project.dtd
+DONE    validate the results of "ant build-sources" before running them. use project.dtd
 
 	common-report.xsl; when showing notable sightings, do something if no species record is found
 DONE	remove order-table from order reports
@@ -23,7 +23,7 @@ DONE	species-list.html; break life list into sections by Order?
 	build reports for bogus locations, dates, abbrevations in the sightings
 	order-table should show only orders for which we've seen species
 DONE	order listing in top banner on species report should point to order page
-	trip report - which sightings are first sightings
+DONE	trip report - which sightings are first sightings
 DONE	species report - when was earliest sighting
 DONE	generate report-url for Order records ( == toLower(latin-name))
 	can we count number of lines for dividing into two columns? or move first sighting up to same line
