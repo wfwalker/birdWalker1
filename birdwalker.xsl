@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.6 2003/01/21 23:10:30 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.7 2003/02/04 06:15:44 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -142,7 +142,7 @@
 	<!-- how to display a link to a photo -->
 
 	<xsl:template match="species/sighting/@photo">
-	    <xsl:message>number one</xsl:message>
+	    <xsl:message>number one z<xsl:value-of select="../@date"/>z</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
 	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../@date"/>-<xsl:value-of select="../../@abbreviation"/>.jpg</xsl:attribute>photo</A>
 		</SPAN>
@@ -160,7 +160,7 @@
 	    <xsl:message>number three</xsl:message>
 		<DIV CLASS="sighting-notes">
 	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../@date"/>-<xsl:value-of select="../../@abbreviation"/>.jpg</xsl:attribute>
-			<xsl:value-of select="../date"/> photo
+			<xsl:value-of select="../@date"/> photo
 		</A>
 		</DIV>
 	</xsl:template>
@@ -301,168 +301,6 @@
 				<xsl:attribute name="HEIGHT"><xsl:value-of select="1 + ((20 * $in-bar-count * $in-height) div $in-maximum)"/></xsl:attribute>
 			</IMG>
 		</TD>
-	</xsl:template>
-
-	<xsl:template name="time-distributions">
-		<xsl:param name="in-dated-items"/>
-
-		<xsl:variable name="item-count" select="count($in-dated-items)"/>
-
-		<DIV CLASS="report-content">
-		<TABLE WIDTH="90%">
-			<!-- one big cell for monthly distribution -->
-			<TD WIDTH="50%">
-				<TABLE>
-					<TR>
-						<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
-							<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
-		
-							<xsl:call-template name="vertical-bar">
-								<xsl:with-param name="in-height" select="count($in-dated-items[contains(@date, $date-prefix)])"/>
-								<xsl:with-param name="in-maximum" select="$item-count"/>
-								<xsl:with-param name="in-bar-count" select="'12'"/>
-							</xsl:call-template>
-						</xsl:for-each>
-					</TR>
-					<TR>
-						<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
-							<TD ALIGN="CENTER">
-								<xsl:value-of select="@abbreviation"/>
-							</TD>
-						</xsl:for-each>
-					</TR>
-				</TABLE>
-			</TD>
-
-			<!-- one big cell for yearly distribution -->
-			<TD WIDTH="50%">
-				<TABLE>
-					<TR>
-						<xsl:for-each select="document('misc.xml')/miscellaneous/yearset/year">
-							<xsl:variable name="year-name" select="@name"/>
-		
-							<xsl:call-template name="vertical-bar">
-								<xsl:with-param name="in-height" select="count($in-dated-items[contains(@date, $year-name)])"/>
-								<xsl:with-param name="in-maximum" select="$item-count"/>
-								<xsl:with-param name="in-bar-count" select="count(document('misc.xml')/miscellaneous/yearset/year)"/>
-							</xsl:call-template>
-						</xsl:for-each>
-					</TR>
-					<TR>
-						<xsl:for-each select="document('misc.xml')/miscellaneous/yearset/year">
-							<TD ALIGN="CENTER">
-								<xsl:value-of select="@name"/>
-							</TD>
-						</xsl:for-each>
-					</TR>
-				</TABLE>
-			</TD>
-		</TABLE>
-		</DIV>
-	</xsl:template>
-
-	<xsl:template name="order-by-month-table">
-		<xsl:param name="in-species-with-sightings"/>
-		<xsl:param name="in-trips"/>
-
-		<DIV CLASS="report-content">
-		<TABLE WIDTH="90%" CELLSPACING="0" BORDER="0">
-			<TR>
-				<TD ALIGN="RIGHT">Order</TD>
-				<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
-					<TD ALIGN="RIGHT"><xsl:value-of select="@abbreviation"/></TD>	
-				</xsl:for-each>
-			</TR>
-
-			<!-- spacer row -->
-			<TR>
-				<TD COLSPAN="13"><IMG SRC="../images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
-			</TR>
-
-			<xsl:for-each select="document('misc.xml')/miscellaneous/orderset/order[order-id=$in-species-with-sightings/order-id]">
-				<TR>
-					<xsl:variable name="the-order" select="."/>
-
-					<xsl:variable
-						name="order-sightings-this-location"
-						select="$in-species-with-sightings[order-id=$the-order/order-id]/sighting"/>
-
-					<TD ALIGN="RIGHT">
-						<A>
-							<xsl:attribute name="HREF">../orders/<xsl:value-of select="$the-order/filename-stem"/>.html</xsl:attribute>
-							<xsl:value-of select="$the-order/@common-name"/>
-						</A>
-					</TD>
-
-					<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
-						<xsl:variable
-							name="date-prefix"
-							select="concat('-', @index, '-')"/>
-
-						<xsl:variable
-							name="trips-this-month"
-							select="$in-trips[contains(date, $date-prefix)]"/>
-
-						<xsl:variable
-							name="order-sightings-this-month"
-							select="$order-sightings-this-location[@date=$trips-this-month/date]"/>
-
-						<TD ALIGN="RIGHT">
-							<xsl:choose>
-								<xsl:when test="count($trips-this-month)=0">
-									<xsl:attribute name="CLASS">density0</xsl:attribute>
-									-
-								</xsl:when>
-								<xsl:when test="count($order-sightings-this-month) > 0">
-									<xsl:variable
-										name="density"
-										select="ceiling(count($order-sightings-this-month) div count($trips-this-month))"/>
-
-									<xsl:attribute name="CLASS">density<xsl:value-of select="$density"/></xsl:attribute>
-									<xsl:value-of select="$density"/>
-								</xsl:when>
-							</xsl:choose>
-						</TD>
-					</xsl:for-each>
-				</TR>
-
-				<!-- spacer row -->
-				<TR>
-					<TD COLSPAN="13"><IMG SRC="../images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
-				</TR>
-			</xsl:for-each>
-
-			<TR>
-				<TD ALIGN="RIGHT">Total Trips</TD>
-				<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
-					<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
-
-					<TD ALIGN="RIGHT">
-						<xsl:value-of select="count($in-trips[contains(date, $date-prefix)])"/>
-					</TD>	
-				</xsl:for-each>
-			</TR>
-
-			<TR>
-				<TD ALIGN="RIGHT">Total Sightings</TD>
-				<xsl:for-each select="document('misc.xml')/miscellaneous/monthset/month">
-					<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
-
-					<xsl:variable
-						name="trips-this-month"
-						select="$in-trips[contains(date, $date-prefix)]"/>
-
-					<xsl:variable
-						name="sightings-this-month"
-						select="$in-species-with-sightings/sighting[@date=$trips-this-month/date]"/>
-
-					<TD ALIGN="RIGHT">
-						<xsl:value-of select="count($sightings-this-month)"/>
-					</TD>	
-				</xsl:for-each>
-			</TR>
-		</TABLE>
-		</DIV>
 	</xsl:template>
 
 	<!-- ************************** REPORT TEMPLATES BEGIN HERE ************************* -->
@@ -761,26 +599,6 @@
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="trip"/>
 			</xsl:call-template>
-
-			<xsl:if test="count(trip) > 15">
-				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="location/@name"/> trips over time
-				</DIV>
-
-				<xsl:call-template name="time-distributions">
-					<xsl:with-param name="in-dated-items" select="trip"/>
-				</xsl:call-template>
-	
-				<!-- monthly distribution by order -->
-				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="location/name"/> sightings over time
-				</DIV>
-
-				<xsl:call-template name="order-by-month-table">
-					<xsl:with-param name="in-species-with-sightings" select="species"/>
-					<xsl:with-param name="in-trips" select="trip"/>
-				</xsl:call-template>
-			</xsl:if>
 	
 			<P></P>
 
@@ -874,16 +692,6 @@
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="trip"/>
 			</xsl:call-template>
-
-			<xsl:if test="count(trip/sighting) > 15">
-				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="species/@common-name"/> sightings over time
-				</DIV>
-
-				<xsl:call-template name="time-distributions">
-					<xsl:with-param name="in-dated-items" select="trip/sighting"/>
-				</xsl:call-template>
-			</xsl:if>
 
 			<P></P>
 			
@@ -1032,16 +840,6 @@
 				<xsl:with-param name="in-entry-list" select="species[sighting]"/>
 			</xsl:call-template>
 
-			<xsl:if test="count(species/sighting) > 15">
-				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="order/@latin-name"/> sightings over time
-				</DIV>
-
-				<xsl:call-template name="time-distributions">
-					<xsl:with-param name="in-dated-items" select="species/sighting"/>
-				</xsl:call-template>
-			</xsl:if>
-
 			<P></P>
 
 			<xsl:call-template name="species-navigation-block"/>
@@ -1112,7 +910,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.6 2003/01/21 23:10:30 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.7 2003/02/04 06:15:44 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -1203,14 +1001,6 @@
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="$table-entries"/>
-			</xsl:call-template>
-
-			<DIV CLASs="headertext">
-				Distribution of Sightings over time
-			</DIV>
-
-			<xsl:call-template name="time-distributions">
-				<xsl:with-param name="in-dated-items" select="document('sightings.xml')/sightingset/sighting"/>
 			</xsl:call-template>
 
 			<P></P>
@@ -1326,14 +1116,6 @@
 					<xsl:with-param name="in-entry-list" select="document('flat-trips.xml')/tripset/trip[starts-with(@date, $this-year)]"/>
 				</xsl:call-template>
 			</xsl:for-each>
-
-			<DIV CLASS="headertext">
-				Distribution of trips
-			</DIV>
-
-			<xsl:call-template name="time-distributions">
-				<xsl:with-param name="in-dated-items" select="document('flat-trips.xml')/tripset/trip"/>
-			</xsl:call-template>
 
 			<P></P>
 
