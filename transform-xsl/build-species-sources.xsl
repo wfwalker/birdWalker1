@@ -97,10 +97,6 @@
 			name="species-locations"
 			select="$locations/locationset/location[name=$species-sightings/location]"/>
 
-		<xsl:variable
-			name="species-trips"
-			select="$trips/tripset/trip[date=$species-sightings/date]"/>
-
 		<xsl:message>Building Source XML for Species '<xsl:value-of select="common-name"/>' <xsl:value-of select="position()"/></xsl:message>
 
 		<echo>
@@ -125,7 +121,7 @@
 
 			<xsl:apply-templates select="$species-locations"/>
 
-			<xsl:apply-templates select="$species-trips">
+			<xsl:apply-templates select="document('../flat-trips.xml')/tripset/trip[date=$species-sightings/date]">
 				<xsl:with-param name="in-sightings" select="$species-sightings"/>
 			</xsl:apply-templates>
 
