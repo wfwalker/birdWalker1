@@ -54,12 +54,12 @@
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$species-list[position() &lt;= (count($species-list) div 2)]">
+						<xsl:apply-templates select="$species-list[position() &lt; 1 + (count($species-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$species-list[position() &gt; (count($species-list) div 2)]">
+						<xsl:apply-templates select="$species-list[position() &gt;= 1 + (count($species-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
@@ -82,12 +82,12 @@
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$location-list[position() &lt;= (count($location-list) div 2)]">
+						<xsl:apply-templates select="$location-list[position() &lt; 1 + (count($location-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$location-list[position() &gt; (count($location-list) div 2)]">
+						<xsl:apply-templates select="$location-list[position() &gt;= 1 + (count($location-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
@@ -131,12 +131,12 @@
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$trip-list[position() &lt;= (count($trip-list) div 2)]">
+						<xsl:apply-templates select="$trip-list[position() &lt; 1 + (count($trip-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$trip-list[position() &gt; (count($trip-list) div 2)]">
+						<xsl:apply-templates select="$trip-list[position() &gt;= 1 + (count($trip-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
