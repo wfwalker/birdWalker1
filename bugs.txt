@@ -16,6 +16,6 @@ try using two letters for each column in year report
 
 styles from species names in year report are overridden by styles used to show alternating colors
 
-in year report, use "e" instead of "X" for excluded sightings?
+DONE in year report, use "e" instead of "X" for excluded sightings?
 
 why don't the june 2002 trips appear in the 2002 year list? DEPENDENCY PROBLEM
