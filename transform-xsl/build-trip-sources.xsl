@@ -24,7 +24,8 @@
 		&lt;sighting&gt;
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
 			&lt;location&gt;<xsl:value-of select="location"/>&lt;/location&gt;
-			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
+			<xsl:if test="first">&lt;first&gt;true&lt;/first&gt;</xsl:if>
+			<xsl:apply-templates select="notes"/>
 		&lt;/sighting&gt;
 	</xsl:template>
 
@@ -47,7 +48,7 @@
 			&lt;taxonomy-id&gt;<xsl:value-of select="taxonomy-id"/>&lt;/taxonomy-id&gt;
 			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
 
-			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
+			<xsl:apply-templates select="notes"/>
 
 			<xsl:apply-templates select="$in-sightings[abbreviation=$this/abbreviation]"/>
 		&lt;/species&gt;
@@ -64,7 +65,7 @@
 			&lt;longitude&gt;<xsl:value-of select="longitude"/>&lt;/longitude&gt;
 			&lt;system&gt;<xsl:value-of select="system"/>&lt;/system&gt;
 			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
-			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
+			<xsl:apply-templates select="notes"/>
 		&lt;/location&gt;
 	</xsl:template>
 
@@ -97,7 +98,7 @@
 				&lt;leader&gt;<xsl:value-of select="leader"/>&lt;/leader&gt;
 				&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
 				&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
-				<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
+				<xsl:apply-templates select="notes"/>
 			&lt;/trip&gt;
 
 			<xsl:apply-templates select="$trip-species">

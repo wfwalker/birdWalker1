@@ -34,7 +34,8 @@
 	<xsl:template match="sighting">
 		&lt;sighting&gt;
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
-			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
+			<xsl:if test="first">&lt;first&gt;true&lt;/first&gt;</xsl:if>
+			<xsl:apply-templates select="notes"/>
 		&lt;/sighting&gt;
 	</xsl:template>
 
