@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!ELEMENT sightingset (sighting)*>
+
+<!ELEMENT sighting (abbreviation | date | location | first | exclude | notes)*>
+
+<!ELEMENT abbreviation (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT location (#PCDATA)>
+<!ELEMENT exclude (#PCDATA)>
+<!ELEMENT first (#PCDATA)>
+<!ELEMENT notes (p)*>
+<!ELEMENT p (#PCDATA)>

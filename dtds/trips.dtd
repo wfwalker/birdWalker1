@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!ELEMENT tripset (trip)*>
+
+<!ELEMENT trip (name | date | leader | url | notes | report-url)*>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT leader (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT notes (p)*>
+<!ELEMENT p (#PCDATA)>
+<!ELEMENT report-url (#PCDATA)>

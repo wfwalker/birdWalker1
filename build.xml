@@ -3,9 +3,18 @@
 <project name="birding-xml" default="build-all">
 
 	<!-- BUILDING SOURCES -->
+
+	<target name="validate">
+		<antstructure output="dtds/project.dtd"/>
+		<xmlvalidate taskname="validate sightings" file="sightings.xml"/>
+		<xmlvalidate taskname="validate locations" file="locations.xml"/>
+		<xmlvalidate taskname="validate trips" file="flat-trips.xml"/>
+		<xmlvalidate taskname="validate species" file="flat-species.xml"/>
+	</target>
 	
 	<target
 		name="build-sources"
+		depends="validate"
 		description="build three ant XML project files that will build the source xml files for trips">
 	
 		<style
