@@ -74,7 +74,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.8 2002/01/03 17:33:32 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.9 2002/01/22 17:27:14 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -144,6 +144,13 @@
 				<A HREF="http://xml.apache.org/xalan-j/index.html">
 					<I>Xalan: An XSLT Engine</I>, the Apache XML Project<BR/>
 					http://xml.apache.org/xalan-j/index.html
+				</A>
+			</P>
+
+			<P>
+				<A HREF="http://www.aou.org/aou/birdlist.html">
+					Americal Ornithological Union Checklist of North American Birds<BR/>
+					http://www.aou.org/aou/birdlist.html
 				</A>
 			</P>
 
