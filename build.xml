@@ -13,34 +13,47 @@
 	</target>
 	
 	<target
+		name="compile">
+		<javac
+			srcdir="java/src"
+			destdir="java/bin"/>
+	</target>
+
+	<target
+		name="run-batch-transformer"
+		depends="compile">
+		<java
+			fork="true"
+			classname="BatchTransformer"
+			classpath="java/bin;java/lib/xalan.jar;java/lib/xml-apis.jar"/>
+	</target>
+
+	<target
 		name="build-sources"
 		depends="validate"
 		description="build three ant XML project files that will build the source xml files for trips">
 	
 		<style
-			taskname="build-year-sources"
-			style="transform-xsl/build-year-sources.xsl"
-			in="misc.xml"
-			out="build-year-sources.xml"
-			processor="xalan">
-		</style>
-		<ant taskname="create-year-sources" antfile="build-year-sources.xml"/>
-	
-		<style
 			taskname="build-species-sources"
 			style="transform-xsl/build-species-sources.xsl"
 			in="flat-species.xml"
-			out="build-species-sources.xml"
-			processor="xalan">
+			out="build-species-sources.xml">
 		</style>
 		<ant taskname="create-species-sources" antfile="build-species-sources.xml"/>
+	
+		<style
+			taskname="build-year-sources"
+			style="transform-xsl/build-year-sources.xsl"
+			in="misc.xml"
+			out="build-year-sources.xml">
+		</style>
+		<ant taskname="create-year-sources" antfile="build-year-sources.xml"/>
 	
 		<style
 			taskname="build-trip-sources"
 			style="transform-xsl/build-trip-sources.xsl"
 			in="flat-trips.xml"
-			out="build-trip-sources.xml"
-			processor="xalan">
+			out="build-trip-sources.xml">
 		</style>
 		<ant taskname="create-trip-sources" antfile="build-trip-sources.xml"/>
 	
@@ -48,8 +61,7 @@
 			taskname="build-location-sources"
 			style="transform-xsl/build-location-sources.xsl"
 			in="locations.xml"
-			out="build-location-sources.xml"
-			processor="xalan">
+			out="build-location-sources.xml">
 		</style>
 		<ant taskname="create-location-sources" antfile="build-location-sources.xml"/>
 
@@ -57,8 +69,7 @@
 			taskname="build-order-sources"
 			style="transform-xsl/build-order-sources.xsl"
 			in="flat-species.xml"
-			out="build-order-sources.xml"
-			processor="xalan">
+			out="build-order-sources.xml">
 		</style>
 		<ant taskname="create-order-sources" antfile="build-order-sources.xml"/>
 	
@@ -93,8 +104,7 @@
 			style="report-xsl/indices.xsl"
 			destdir="html"
 			basedir="sources/indices"
-			force="true"
-			processor="xalan">
+			force="true">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 			<include name="${source}"/>
@@ -111,8 +121,7 @@
 			style="report-xsl/reports.xsl"
 			destdir="html"
 			basedir="sources/${kind}"
-			force="true"
-			processor="xalan">
+			force="true">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 			<include name="${source}"/>
@@ -138,8 +147,7 @@
 			taskname="indices"
 			style="report-xsl/indices.xsl"
 			destdir="html"
-			basedir="sources/indices"
-			processor="xalan">
+			basedir="sources/indices">
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 			<include name="*.xml"/>
 		</style>
@@ -153,62 +161,57 @@
 			taskname="year-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/years"
-			processor="xalan">
+			basedir="sources/years">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.html"/>
+			<include name="*.xml"/>
 		</style>
 
 		<style
 			taskname="order-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/orders"
-			processor="xalan">
+			basedir="sources/orders">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.html"/>
+			<include name="*.xml"/>
 		</style>
 
 		<style
 			taskname="species-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/species"
-			processor="xalan">
+			basedir="sources/species">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.html"/>
+			<include name="*.xml"/>
 		</style>
 
 		<style
 			taskname="location-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/locations"
-			processor="xalan">
+			basedir="sources/locations">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.html"/>
+			<include name="*.xml"/>
 		</style>
 
 		<style
 			taskname="trip-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/trips"
-			processor="xalan">
+			basedir="sources/trips">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.html"/>
+			<include name="*.xml"/>
 		</style>
 	</target>
 
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="build-sources, build-reports, build-indices">
+		depends="build-sources, run-batch-transformer">
 	</target>
 
 	<target name="upload-to-shout">
