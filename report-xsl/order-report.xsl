@@ -74,6 +74,20 @@
 				<xsl:with-param name="sighting-list" select="$order-sightings[string-length(notes/p)>0]"/>
 			</xsl:call-template>
 
+			<xsl:call-template name="order-table"/>
+
+			<xsl:if test="count($order-sightings) > 15">
+				<xsl:call-template name="monthly-distribution">
+					<xsl:with-param name="dated-items" select="$order-sightings"/>
+					<xsl:with-param name="item-kind">sightings</xsl:with-param>
+				</xsl:call-template>
+	
+				<xsl:call-template name="yearly-distribution">
+					<xsl:with-param name="dated-items" select="$order-sightings"/>
+					<xsl:with-param name="item-kind">sightings</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+
 			<xsl:call-template name="navigation-block"/>
 		</BODY>
 

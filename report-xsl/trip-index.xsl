@@ -21,6 +21,16 @@
 				<xsl:with-param name="trip-list" select="$trips/tripset/trip"/>
 			</xsl:call-template>
 
+			<xsl:call-template name="monthly-distribution">
+				<xsl:with-param name="dated-items" select="$trips/tripset/trip"/>
+				<xsl:with-param name="item-kind">total trips</xsl:with-param>
+			</xsl:call-template>
+	
+			<xsl:call-template name="yearly-distribution">
+				<xsl:with-param name="dated-items" select="$trips/tripset/trip"/>
+				<xsl:with-param name="item-kind">total trips</xsl:with-param>
+			</xsl:call-template>
+
 			<xsl:call-template name="navigation-block"/>
 		</BODY>
 

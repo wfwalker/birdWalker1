@@ -87,6 +87,18 @@
 				<xsl:with-param name="sighting-list" select="$location-sightings[string-length(notes/p)>0]"/>
 			</xsl:call-template>
 	
+			<xsl:if test="count($location-trips) > 15">
+				<xsl:call-template name="monthly-distribution">
+					<xsl:with-param name="dated-items" select="$location-trips"/>
+					<xsl:with-param name="item-kind">trips</xsl:with-param>
+				</xsl:call-template>
+	
+				<xsl:call-template name="yearly-distribution">
+					<xsl:with-param name="dated-items" select="$location-trips"/>
+					<xsl:with-param name="item-kind">trips</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+	
 			<xsl:call-template name="navigation-block"/>
 		</BODY>
 
