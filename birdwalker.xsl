@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.8 2003/02/08 08:14:52 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.9 2003/03/20 01:33:29 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -209,13 +209,6 @@
 		</DIV>
 	</xsl:template>
 
-	<xsl:template match="/generate-order-report/species/sighting">
-		<DIV CLASS="sighting-notes">
-			<xsl:value-of select="@date"/>, <xsl:value-of select="@location-name"/>, <xsl:value-of select="notes/p"/>
-		</DIV>
-	</xsl:template>
-
-
 	<!-- how to display species names -->
 
 	<xsl:template match="species">
@@ -242,14 +235,30 @@
 
 	<xsl:template match="generate-order-report/species">
 		<A>
-			<xsl:if test="sighting[not(@exclude)]">
-				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
-			</xsl:if>
-
 			<xsl:attribute name="HREF">../species/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="@common-name"/>
-		</A>
 
+		</A>
+		<table width="90%">
+		  <tr>
+		    <td><xsl:apply-templates select="trip/@date"/></td>
+		    <td align="right"><xsl:value-of
+		    select="trip/@name"/></td>
+		  </tr>
+		  <tr>
+		    <td><xsl:value-of  select="location/@name"/></td>
+		    <td align="right">
+		      <xsl:value-of select="location/@city"/>,
+		      <xsl:value-of select="location/@state"/>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td colspan="2"><xsl:value-of select="trip/@leader"/></td>
+		  </tr>
+		  <tr>
+		    <td colspan="2"><xsl:apply-templates select="sighting/notes"/></td>
+		  </tr>
+		</table>
 		<BR/>
 	</xsl:template>
 
@@ -806,7 +815,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.8 2003/02/08 08:14:52 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.9 2003/03/20 01:33:29 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
