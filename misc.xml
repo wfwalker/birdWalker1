@@ -1,0 +1,26 @@
+<miscellaneous>
+	<monthset>
+		<month abbreviation="Jan" name="January" index="1"/>
+		<month abbreviation="Feb" name="February" index="2"/>
+		<month abbreviation="Mar" name="March" index="3"/>
+		<month abbreviation="Apr" name="April" index="4"/>
+		<month abbreviation="May" name="May" index="5"/>
+		<month abbreviation="Jun" name="June" index="6"/>
+		<month abbreviation="Jul" name="July" index="7"/>
+		<month abbreviation="Aug" name="August" index="8"/>
+		<month abbreviation="Sep" name="September" index="9"/>
+		<month abbreviation="Oct" name="October" index="10"/>
+		<month abbreviation="Nov" name="November" index="11"/>
+		<month abbreviation="Dec" name="December" index="12"/>
+	</monthset>
+
+	<yearset>
+		<year name="1996"/>
+		<year name="1997"/>
+		<year name="1998"/>
+		<year name="1999"/>
+		<year name="2000"/>
+		<year name="2001"/>
+	</yearset>
+
+</miscellaneous>
