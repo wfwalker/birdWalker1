@@ -74,7 +74,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.7 2001/12/04 17:10:56 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.8 2002/01/03 17:33:32 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -99,7 +99,8 @@
 					<A HREF="1998.html">1998</A>,
 					<A HREF="1999.html">1999</A>,
 					<A HREF="2000.html">2000</A>,
-					<A HREF="2001.html">2001</A>),
+					<A HREF="2001.html">2001</A>,
+					<A HREF="2002.html">2002</A>),
 				each state we've taken trips in (
 					<A HREF="ca-species-index.html">California</A>,
 					<A HREF="ma-species-index.html">Massachusetts</A>,
