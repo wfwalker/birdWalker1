@@ -61,8 +61,13 @@
 			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0" BGCOLOR="#EEEEEE">
 			<TR>
 				<TD NOWRAP="TRUE">
-					<I><xsl:value-of select="$order-record/latin-name"/></I><BR/>
-					<xsl:value-of select="$order-record/common-name"/>
+					<A>
+						<xsl:attribute name="HREF">
+							<xsl:value-of select="$order-record/latin-name"/>.html
+						</xsl:attribute>
+						<I><xsl:value-of select="$order-record/latin-name"/></I><BR/>
+						<xsl:value-of select="$order-record/common-name"/>
+					</A>
 				</TD>
 				<TD NOWRAP="TRUE">|<BR/>|</TD>
 				<TD NOWRAP="TRUE">
@@ -106,6 +111,18 @@
 			<xsl:call-template name="sightings-table">
 				<xsl:with-param name="sighting-list" select="$species-sightings[string-length(notes/p)>0]"/>
 			</xsl:call-template>
+
+			<xsl:if test="count($species-sightings) > 15">
+				<xsl:call-template name="monthly-distribution">
+					<xsl:with-param name="dated-items" select="$species-sightings"/>
+					<xsl:with-param name="item-kind">sightings</xsl:with-param>
+				</xsl:call-template>
+	
+				<xsl:call-template name="yearly-distribution">
+					<xsl:with-param name="dated-items" select="$species-sightings"/>
+					<xsl:with-param name="item-kind">sightings</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
 
 			<xsl:call-template name="navigation-block"/>
 		</BODY>
