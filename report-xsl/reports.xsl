@@ -6,7 +6,7 @@
 
 	<xsl:template match="*">
 		<HTML>
-		<xsl:comment> $Id$ </xsl:comment>
+		<xsl:comment> $Id: reports.xsl,v 1.1 2001/10/05 01:29:45 walker Exp $ </xsl:comment>
 		<xsl:apply-templates select="*"/>
 		</HTML>
 	</xsl:template>
@@ -89,6 +89,11 @@
 							(<xsl:value-of select="$location-record/system"/>)
 						</TD>
 					</xsl:if>
+					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE">
+						first visited <xsl:value-of select="$location-sightings[position()=1]/date"/><BR/>
+						last visited <xsl:value-of select="$location-sightings[position()=last()]/date"/><BR/>
+					</TD>
 					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
 					</TD>
@@ -224,6 +229,12 @@
 				<TD CLASS="info-block" NOWRAP="TRUE">
 					<I><xsl:value-of select="$genus-record/latin-name"/></I><BR/>
 					<xsl:value-of select="$genus-record/common-name"/>
+				</TD>
+				<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+				<TD CLASS="info-block" NOWRAP="TRUE">
+					<!-- note, the following expressions assume sightings are in chronological order -->
+					first seen <xsl:value-of select="$species-sightings[position()=1]/date"/><BR/>
+					last seen <xsl:value-of select="$species-sightings[position()=last()]/date"/><BR/>
 				</TD>
 				<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
@@ -366,4 +377,103 @@
 			<xsl:call-template name="page-footer"/>
 		</BODY>
 	</xsl:template>
+
+	<xsl:template match="generate-order-report">
+		<!-- define my report parameters -->
+		<xsl:variable name="in-order-id" select="@in-order-id"/>
+	
+		<xsl:variable
+			name="order-record"
+			select="$species/taxonomyset/order[order-id=$in-order-id]"/>
+
+		<xsl:variable
+			name="order-all-families"
+			select="$species/taxonomyset/family[order-id=$in-order-id]"/>
+
+		<xsl:variable
+			name="order-all-subfamilies"
+			select="$species/taxonomyset/subfamily[order-id=$in-order-id]"/>
+
+		<xsl:variable
+			name="order-all-genera"
+			select="$species/taxonomyset/genus[order-id=$in-order-id]"/>
+
+		<xsl:variable
+			name="order-all-species"
+			select="$species/taxonomyset/species[order-id=$in-order-id]"/>
+
+		<xsl:variable
+			name="order-sightings"
+			select="$sightings/sightingset/sighting[abbreviation=$order-all-species/abbreviation]"/>
+
+		<xsl:variable
+			name="order-life-species"
+			select="$order-all-species[abbreviation=$order-sightings/abbreviation]"/>
+
+		<HEAD>
+			<xsl:call-template name="style-block"/>
+			<TITLE>Species Report for Order <xsl:value-of select="$order-record/latin-name"/></TITLE>
+		</HEAD>
+
+		<BODY BGCOLOR="#FFFFFF">
+			<xsl:call-template name="species-navigation-block"/>
+
+			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0">
+				<xsl:attribute name="CLASS">species-navigationblock</xsl:attribute>
+
+				<TR>
+					<TD CLASS="info-block" NOWRAP="TRUE">
+						<xsl:value-of select="count($order-all-families)"/> families<BR/>
+						<xsl:value-of select="count($order-all-subfamilies)"/> subfamilies
+					</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE">
+						<xsl:value-of select="count($order-all-genera)"/> genera<BR/>
+						<xsl:value-of select="count($order-all-species)"/> species
+					</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
+						<P><BR/></P>
+					</TD>
+				</TR>
+			</TABLE>
+
+			<H1>
+				<IMG SRC="images/species.gif"/>
+				Species Report for Order <xsl:value-of select="$order-record/latin-name"/>
+				"<xsl:value-of select="$order-record/common-name"/>"
+			</H1>
+
+			<xsl:call-template name="species-table">
+				<xsl:with-param name="in-species-list" select="$order-life-species"/>
+				<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+			</xsl:call-template>
+
+			<xsl:call-template name="sightings-table">
+				<xsl:with-param name="sighting-list" select="$order-sightings[string-length(notes/p)>0]"/>
+				<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+			</xsl:call-template>
+
+			<xsl:call-template name="order-table">
+				<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+			</xsl:call-template>
+
+			<xsl:if test="count($order-sightings) > 15">
+				<xsl:call-template name="monthly-distribution">
+					<xsl:with-param name="dated-items" select="$order-sightings"/>
+					<xsl:with-param name="item-kind">sightings</xsl:with-param>
+					<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+				</xsl:call-template>
+	
+				<xsl:call-template name="yearly-distribution">
+					<xsl:with-param name="dated-items" select="$order-sightings"/>
+					<xsl:with-param name="item-kind">sightings</xsl:with-param>
+					<xsl:with-param name="in-header-style">species-navigationblock</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+
+			<xsl:call-template name="species-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
+		</BODY>
+	</xsl:template>
+
 </xsl:stylesheet>
