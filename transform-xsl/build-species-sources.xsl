@@ -85,6 +85,7 @@
 		&lt;order&gt;
 			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
 			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
+			&lt;report-url&gt;<xsl:value-of select="report-url"/>&lt;/report-url&gt;
 		&lt;/order&gt;
 	</xsl:template>
 
