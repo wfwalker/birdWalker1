@@ -18,15 +18,6 @@
 		<ant taskname="create-species-sources" antfile="build-species-sources.xml"/>
 	
 		<style
-			taskname="build-order-sources"
-			style="transform-xsl/build-order-sources.xsl"
-			in="flat-species.xml"
-			out="build-order-sources.xml"
-			processor="xalan">
-		</style>
-		<ant taskname="create-order-sources" antfile="build-order-sources.xml"/>
-	
-		<style
 			taskname="build-trip-sources"
 			style="transform-xsl/build-trip-sources.xsl"
 			in="flat-trips.xml"
@@ -44,6 +35,15 @@
 		</style>
 		<ant taskname="create-location-sources" antfile="build-location-sources.xml"/>
 
+		<style
+			taskname="build-order-sources"
+			style="transform-xsl/build-order-sources.xsl"
+			in="flat-species.xml"
+			out="build-order-sources.xml"
+			processor="xalan">
+		</style>
+		<ant taskname="create-order-sources" antfile="build-order-sources.xml"/>
+	
 	</target>
 
 	<!-- PRE-REQUISITES -->
