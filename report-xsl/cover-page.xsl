@@ -18,7 +18,7 @@
 				<IMG SRC="images/location.gif"/>
 				<IMG SRC="images/species.gif"/>
 
-				<H1><TT>&lt;birdWalker&gt;</TT></H1>
+				<H1><IMG SRC="images/bigtitle.gif"/></H1>
 				<P>an XSL-based report generator for birding observations</P>
 			</CENTER>
 
@@ -28,20 +28,24 @@
 
 			<P>
 				All the pages on this site have links at the top and bottom leading to the
-					<A HREF="./species-index.html">life species list</A>,
-					<A HREF="./trip-index.html">life trip list</A>, and
-					<A HREF="./location-index.html">life location list</A>.
+				indices of 
+					<A HREF="./species-index.html">species reports</A>,
+					<A HREF="./trip-index.html">trip reports</A>, and
+					<A HREF="./location-index.html">location reports</A>.
 				In addition, I have generated a species list for each
 				year we've been bird watching (
 					<A HREF="1996-species-index.html">1996</A>,
 					<A HREF="1997-species-index.html">1997</A>,
 					<A HREF="1998-species-index.html">1998</A>,
 					<A HREF="1999-species-index.html">1999</A>,
-					<A HREF="2000-species-index.html">2001</A>,
+					<A HREF="2000-species-index.html">2000</A>,
 					<A HREF="2001-species-index.html">2001</A>),
-				and each state we've taken trips in (
+				each state we've taken trips in (
 					<A HREF="ca-species-index.html">CA</A>,
-					<A HREF="or-species-index.html">OR</A>).
+					<A HREF="or-species-index.html">OR</A>),
+				and some of our favorite counties (
+					<A HREF="santa-clara-county-species-index.html">Santa Clara</A>,
+					<A HREF="santa-clara-county-species-index.html">San Mateo</A>).
 			</P>
 
 			<xsl:call-template name="tableheader">
@@ -63,6 +67,31 @@
 				To generate these web page reports, I first export the data from the FileMaker database into XML.
 				I transform the XML data into a series of web pages using XSL templates and Apache's Xalan
 				(an XSLT engine).
+			</P>
+
+			<xsl:call-template name="tableheader">
+				<xsl:with-param name="title-string">references</xsl:with-param>
+			</xsl:call-template>
+
+			<P>
+				<A HREF="http://www.nmt.edu/~shipman/z/nom/6home.html">
+					<I>A robust bird code system: the six-letter code</I>, John Shipman<BR/>
+					http://www.nmt.edu/~shipman/z/nom/6home.html
+				</A>
+			</P>
+
+			<P>
+				<A HREF="http://xml.apache.org/xalan-j/index.html">
+					<I>Xalan: An XSLT Engine</I>, the Apache XML Project<BR/>
+					http://xml.apache.org/xalan-j/index.html
+				</A>
+			</P>
+
+			<P>
+				<A HREF="http://www.filemaker.com/index.html">
+					<I>FileMaker Pro</I> database, FileMaker Inc.<BR/>
+					http://www.filemaker.com/index.html
+				</A>
 			</P>
 
 			<xsl:call-template name="navigation-block"/>
