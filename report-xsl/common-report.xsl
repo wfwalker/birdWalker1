@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.14 2001/10/24 16:16:47 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.15 2001/11/02 01:50:28 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -185,6 +185,12 @@
 	<xsl:template match="/generate-location-report/species/sighting">
 		<DIV CLASS="sighting-notes">
 			<xsl:value-of select="date"/>, <xsl:value-of select="notes/p"/>
+		</DIV>
+	</xsl:template>
+
+	<xsl:template match="/generate-order-report/species/sighting">
+		<DIV CLASS="sighting-notes">
+			<xsl:value-of select="date"/>, <xsl:value-of select="location"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
 	</xsl:template>
 
