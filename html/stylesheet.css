@@ -10,7 +10,7 @@ H2 {font: 12pt Arial}
 
 /* Styles relating to anchors */
 
-A {text-decoration:none; color:#111155}
+A {text-decoration:underline; color:#111155}
 A:hover {text-decoration:underline; color:#ff6666}
 .anchor-subtitle {font: 8pt Arial; font-style: italic}
 
