@@ -2,6 +2,57 @@
 
 <project name="birding-xml" default="build-all">
 
+	<target
+		name="require-source"
+		unless="source"
+		description="ensure the user has defined a source for testing">
+
+		<fail message="please define a page source on the command line"/>
+	</target>
+
+	<target
+		name="require-kind"
+		unless="kind"
+		description="ensure the user has defined a report kind for testing">
+
+		<fail message="please define a report kind on the command line"/>
+	</target>
+
+	<target
+		name="build-index"
+		depends="require-source, set-timestamp">
+
+		<style
+			taskname="test-index"
+			style="report-xsl/indices.xsl"
+			destdir="html"
+			basedir="sources/indices"
+			force="true"
+			processor="xalan">
+
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="${source}"/>
+		</style>
+	</target>
+
+	<target
+		name="build-report"
+		if="source"
+		depends="require-source, require-kind, set-timestamp">
+
+		<style
+			taskname="test-report"
+			style="report-xsl/reports.xsl"
+			destdir="html"
+			basedir="sources/${kind}"
+			force="true"
+			processor="xalan">
+
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="${source}"/>
+		</style>
+	</target>
+
 	<!-- PRODUCTION TARGETS -->
 
 	<target
@@ -29,51 +80,47 @@
 	</target>
 
 	<target
-		name="build-species-reports"
+		name="build-reports"
 		depends="set-timestamp">
 
 		<style
 			taskname="species-reports"
-			style="report-xsl/species-report.xsl"
+			style="report-xsl/reports.xsl"
 			destdir="html"
 			basedir="sources/species"
 			processor="xalan">
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-		</style>
-	</target>
 
-	<target
-		name="build-location-reports"
-		depends="set-timestamp">
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="*.xml"/>
+		</style>
 
 		<style
 			taskname="location-reports"
-			style="report-xsl/location-report.xsl"
+			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/locations"
+			basedir="sources/location"
 			processor="xalan">
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-		</style>
-	</target>
 
-	<target
-		name="build-trip-reports"
-		depends="set-timestamp">
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="*.xml"/>
+		</style>
 
 		<style
 			taskname="trip-reports"
-			style="report-xsl/trip-report.xsl"
+			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/trips"
+			basedir="sources/trip"
 			processor="xalan">
+
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="*.xml"/>
 		</style>
 	</target>
 
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="build-species-reports, build-trip-reports, build-location-reports, build-indices">
+		depends="build-reports, build-indices">
 	</target>
 
 	<target name="upload-to-shout">
