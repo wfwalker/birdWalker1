@@ -46,7 +46,7 @@
 	<xsl:template match="sighting">
 		&lt;sighting&gt;
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
-			&lt;location&gt;<xsl:value-of select="location"/>&lt;/location&gt;
+			&lt;location-name&gt;<xsl:value-of select="location-name"/>&lt;/location-name&gt;
 
 			<xsl:apply-templates select="exclude | first | photo | notes"/>
 		&lt;/sighting&gt;
@@ -88,13 +88,13 @@
 
 		<xsl:variable
 			name="species-locations"
-			select="$locations/locationset/location[name=$species-sightings/location]"/>
+			select="$locations/locationset/location[name=$species-sightings/location-name]"/>
 
 		<xsl:message>Building Source XML for Species '<xsl:value-of select="common-name"/>' <xsl:value-of select="position()"/></xsl:message>
 
 		<echo>
 			<xsl:attribute name="file">sources/species/<xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE sightingset SYSTEM "file:dtds/species-report-source.dtd"&gt;
+			&lt;!DOCTYPE generate-species-report SYSTEM "file:dtds/generate-species-report.dtd"&gt;
 			&lt;generate-species-report abbreviation="<xsl:value-of select="abbreviation"/>"&gt;
 
 			&lt;species&gt;
