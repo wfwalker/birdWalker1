@@ -32,7 +32,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Trip Report for <xsl:value-of select="$trip-record/name"/></TITLE>
-		<xsl:comment> $Id: trip-report.xsl,v 1.5 2001/09/13 15:44:12 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: trip-report.xsl,v 1.6 2001/09/18 01:53:22 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -45,8 +45,8 @@
 						<xsl:value-of select="$trip-record/date"/><BR/>
 						<xsl:value-of select="$trip-record/leader"/>
 					</TD>
-					<TD NOWRAP="TRUE">|<BR/>|</TD>
 					<xsl:if test="string-length($trip-record/url)>0">
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
 						<TD NOWRAP="TRUE">
 							<A>
 								<xsl:attribute name="HREF">
@@ -56,6 +56,11 @@
 							</A>
 						</TD>
 					</xsl:if>
+					<TD NOWRAP="TRUE">|<BR/>|</TD>
+					<TD NOWRAP="TRUE">
+						<xsl:value-of select="count($trip-species)"/> species<BR/>
+						<xsl:value-of select="count($trip-locations)"/> locations
+					</TD>
 					<TD NOWRAP="TRUE" WIDTH="90%">
 						<P><BR/></P>
 					</TD>
@@ -70,13 +75,17 @@
 
 			<xsl:apply-templates select="$trip-record/notes[p[string-length(text())>0]]"/>
 
-			<xsl:call-template name="species-table">
-				<xsl:with-param name="species-list" select="$trip-species"/>
-			</xsl:call-template>
+			<xsl:for-each select="$trip-locations">
+				<xsl:variable name="this-location-name" select="name"/>
+				<xsl:variable name="this-location-sightings" select="$trip-sightings[location=$this-location-name]"/>
+				<xsl:variable name="this-location-species" select="$trip-species[abbreviation=$this-location-sightings/abbreviation]"/>
 
-			<xsl:call-template name="location-table">
-				<xsl:with-param name="location-list" select="$trip-locations"/>
-			</xsl:call-template>
+				<xsl:call-template name="species-table">
+					<xsl:with-param name="extra-title"><xsl:value-of select="$this-location-name"/></xsl:with-param>
+					<xsl:with-param name="extra-url"><xsl:value-of select="report-url"/></xsl:with-param>
+					<xsl:with-param name="species-list" select="$this-location-species"/>
+				</xsl:call-template>
+			</xsl:for-each>
 
 			<xsl:call-template name="sightings-table">
 				<xsl:with-param name="sighting-list" select="$trip-sightings[string-length(notes/p)>0]"/>
@@ -87,6 +96,36 @@
 
 		</HTML>
 	</xsl:template>
+
+	<!-- copy the species template from common-report and add a pointer to the footnote -->
+	<!-- this is a work in progress -->
+
+	<!-- 
+	<xsl:template match="species">
+		<xsl:param name="create-link"/>
+
+		<xsl:variable name="this" select="."/>
+
+		<xsl:choose>
+			<xsl:when test="count($trip-sightings[(string-length(notes/p)>0) and (abbreviation=$this/abbreviation)])>0">
+				<IMG SRC="images/blue.gif" WIDTH="10" HEIGHT="10" BORDER="0"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<IMG SRC="images/spacer.gif" WIDTH="10" HEIGHT="10" BORDER="0"/>
+			</xsl:otherwise>
+		</xsl:choose>
+
+		<IMG SRC="images/spacer.gif" WIDTH="5" HEIGHT="10" BORDER="0"/>
+
+		<A>
+			<xsl:if test="string-length($create-link) > 0">
+				<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+			</xsl:if>
+			<xsl:value-of select="common-name"/>
+		</A>
+		<BR/>
+	</xsl:template>
+	-->
 
 	<xsl:template match="sighting">
 		<xsl:variable name="this" select="."/>
