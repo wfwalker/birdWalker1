@@ -1,29 +1,44 @@
 
-
 BUG FIXES
+
+validate the results of "ant build-sources" before running them. use project.dtd
+
 	common-report.xsl; when showing notable sightings, do something if no species record is found
-	common-report.xsl; in noteworthy species thingie, remove needless information
-	common-report.xsl; don't do first sighting / last sighting except for species-report
-	filemaker; generate report-url for species, too
+DONE	remove order-table from order reports
+	order info block should show "1 genus" not "1 genera"
+	better bar graph height adjustment
+DONE	make sources/orders/*.xml
+DONE	common-report.xsl; in noteworthy species thingie, remove needless information
+DONE	common-report.xsl; don't do first sighting / last sighting except for species-report
+DONE	filemaker; generate report-url for species, too
+DONE	integrate county lists into build-all, cover-page
+DONE	trip report, show species in each location (combine location and species blocks)
+DONE	use plural for zero counts
 
 
 ENHANCEMENTS
-	species-list.html; break life list into sections by Order?
+
+	replace subtags with attributes
+DONE	species-list.html; break life list into sections by Order?
 	build reports for bogus locations, dates, abbrevations in the sightings
+	order-table should show only orders for which we've seen species
+DONE	order listing in top banner on species report should point to order page
+	trip report - which sightings are first sightings
+DONE	species report - when was earliest sighting
+DONE	generate report-url for Order records ( == toLower(latin-name))
+	can we count number of lines for dividing into two columns? or move first sighting up to same line
 
+COMMON-REPORT
 
-common
-	get plurals right for tableheads
-	don't draw table head if there are no notes
-	use yyyy-mm-dd everywhere?
-	do these styles work with Netscape?
-
-
-	sort the trips in some kind of order!
-	sort the locations in some kind of order!
-	remove \? from file names
+DONE	use yyyy-mm-dd everywhere?
+DONE	get plurals right for tableheads
+DONE	don't draw table head if there are no notes
+DONE	do these styles work with Netscape?
+DONE	sort the trips in some kind of order!
+DONE	sort the locations in some kind of order!
+DONE	remove \? from file names
 DONE	add lat/long display to location report
 
 
 
-	deal with exclude tag
+DONE	deal with exclude tag
