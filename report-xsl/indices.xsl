@@ -32,9 +32,16 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<H1><IMG SRC="images/species.gif"/><BR/>Index of Species seen in <xsl:value-of select="$in-year"/></H1>
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<xsl:value-of select="$in-year"/> Species List
+					</TD>
+				</TR>
+			</TABLE>
 
-			<DIV CLASS="species-headertext">
+			<DIV CLASS="headertext">
 				Our annual list for <xsl:value-of select="$in-year"/> contains <xsl:value-of select="count($year-species)"/> species
 			</DIV>
 
@@ -69,8 +76,16 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<H1><IMG SRC="images/species.gif"/><BR/>Index of Species seen in <xsl:value-of select="$in-county"/> County, <xsl:value-of select="$in-state"/></H1>
-			<DIV CLASS="species-headertext">
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<xsl:value-of select="$in-county"/>, <xsl:value-of select="$in-state"/> Species List
+					</TD>
+				</TR>
+			</TABLE>
+
+			<DIV CLASS="headertext">
 				Our county list for <xsl:value-of select="$in-county"/> county contains <xsl:value-of select="count($county-species)"/> species
 			</DIV>
 
@@ -78,7 +93,7 @@
 				<xsl:with-param name="in-entry-list" select="$species/taxonomyset/species[abbreviation=$county-sightings/abbreviation]"/>
 			</xsl:call-template>
 
-			<DIV CLASS="species-headertext">
+			<DIV CLASS="headertext">
 				Our county list is based on sightings from <xsl:value-of select="count($county-locations)"/> locations
 			</DIV>
 
@@ -103,20 +118,16 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.3 2001/10/24 16:16:23 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.4 2001/11/19 17:15:36 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
 			<CENTER>
-				<IMG SRC="images/trip.gif"/>
-				<IMG SRC="images/location.gif"/>
-				<IMG SRC="images/species.gif"/>
-
 				<H1><IMG SRC="images/bigtitle.gif"/></H1>
 				<P>an XSL-based report generator for birding observations</P>
 			</CENTER>
 
-			<DIV CLASS="home-headertext">How to navigate</DIV>
+			<DIV CLASS="headertext">How to navigate</DIV>
 
 			<DIV CLASS="report-content">
 				<P>
@@ -145,7 +156,7 @@
 				</P>
 			</DIV>
 
-			<DIV CLASS="home-headertext">How it works</DIV>
+			<DIV CLASS="headertext">How it works</DIV>
 
 			<DIV CLASS="report-content">
 				<P>While in the field, I record my observations using a Palm V and its Memo Pad application.
@@ -162,7 +173,7 @@
 				(an XSLT engine).</P>
 			</DIV>
 
-			<DIV CLASS="home-headertext">References</DIV>
+			<DIV CLASS="headertext">References</DIV>
 
 			<DIV CLASS="report-content">
 			<P>
@@ -205,7 +216,18 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="location-navigation-block"/>
 
-			<H1><IMG SRC="images/location.gif"/><BR/>Index of Location Reports</H1>
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-infoblock">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/location.gif" ALIGN="MIDDLE"/>
+						Index of Location Reports
+					</TD>
+				</TR>
+			</TABLE>
+
+			<DIV CLASS="headertext">
+				This database contains reports on <xsl:value-of select="count($locations/locationset/location)"/> locations
+			</DIV>
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="$locations/locationset/location"/>
@@ -235,15 +257,22 @@
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Species Reports</TITLE>
+		<TITLE>Index of Species Reports (Mary and Bill Life List)</TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<H1><IMG SRC="images/species.gif"/><BR/>Index of Species Reports</H1>
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						Mary and Bill's Life List
+					</TD>
+				</TR>
+			</TABLE>
 
-			<DIV CLASS="species-headertext">
+			<DIV CLASS="headertext">
 				Our life list contains <xsl:value-of select="count($non-excluded-species)"/> species
 			</DIV>
 
@@ -251,7 +280,7 @@
 				<xsl:with-param name="in-entry-list" select="$table-entries"/>
 			</xsl:call-template>
 
-			<DIV CLASs="species-headertext">
+			<DIV CLASs="headertext">
 				Distribution of Sightings over time
 			</DIV>
 
@@ -293,9 +322,16 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
-			<H1><IMG SRC="images/species.gif"/><BR/>Index of Species seen in <xsl:value-of select="$in-state"/></H1>
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-infoblock">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<xsl:value-of select="$in-state"/> State Species List
+					</TD>
+				</TR>
+			</TABLE>
 
-			<DIV CLASS="species-headertext">
+			<DIV CLASS="headertext">
 				Our species list for <xsl:value-of select="$in-state"/> contains <xsl:value-of select="count($state-species)"/> species
 			</DIV>
 
@@ -303,7 +339,7 @@
 				<xsl:with-param name="in-entry-list" select="$state-species"/>
 			</xsl:call-template>
 
-			<DIV CLASS="species-headertext">
+			<DIV CLASS="headertext">
 				<xsl:value-of select="$in-state"/> sightings recorded at <xsl:value-of select="count($state-locations)"/> locations
 			</DIV>
 
@@ -329,13 +365,24 @@
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="trip-navigation-block"/>
 
-			<H1><IMG SRC="images/trip.gif"/><BR/>Index of Trip Reports</H1>
+			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="trip-infoblock">
+				<TR>
+					<TD COLSPAN="9" CLASS="pagetitle">
+						<IMG SRC="images/trip.gif" ALIGN="MIDDLE"/>
+						Index of Trip Reports
+					</TD>
+				</TR>
+			</TABLE>
+
+			<DIV CLASS="headertext">
+				This database contains reports on <xsl:value-of select="count($trips/tripset/trip)"/> trips
+			</DIV>
 
 			<xsl:call-template name="two-column-table">
 				<xsl:with-param name="in-entry-list" select="$trips/tripset/trip"/>
 			</xsl:call-template>
 
-			<DIV CLASS="trip-headertext">
+			<DIV CLASS="headertext">
 				Distribution of trips
 			</DIV>
 
