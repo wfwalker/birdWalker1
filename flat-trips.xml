@@ -194,7 +194,9 @@
 <trip><name>Sunday Stroll</name><date>2002-08-18</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-08-18-sunday-stroll</filename-stem></trip>
 <trip><name>Vacation Stroll</name><date>2002-08-19</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-08-19-vacation-stroll</filename-stem></trip>
 <trip><name>Post Ashland</name><date>2002-08-20</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-08-20-post-ashland</filename-stem></trip>
-<trip><name>Anniversary Trip 1</name><date>2002-08-31</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-08-31-anniversary-trip-1</filename-stem></trip>
-<trip><name>Anniversary Trip 2</name><date>2002-09-01</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-09-01-anniversary-trip-2</filename-stem></trip>
+<trip><name>Anniversary Trip 1</name><date>2002-08-31</date><leader>Les Chibana</leader><url></url><notes><p>Although fog prevented us from finding the Condors, we had a great time looking around the coast and visiting the Big Sur Ornithological Station.</p></notes><filename-stem>2002-08-31-anniversary-trip-1</filename-stem></trip>
+<trip><name>Anniversary Trip 2</name><date>2002-09-01</date><leader>Les Chibana</leader><url></url><notes><p>This was our first introduction to the Carmel River, and it proved to be a great spot for passerines.</p></notes><filename-stem>2002-09-01-anniversary-trip-2</filename-stem></trip>
 <trip><name>Anniversary Trip 3</name><date>2002-09-02</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-09-02-anniversary-trip-3</filename-stem></trip>
-<trip><name>Coffee Run</name><date>2002-09-04</date><leader>Bill</leader><url></url><filename-stem>2002-09-04-coffee-run</filename-stem></trip></tripset>
+<trip><name>Coffee Run</name><date>2002-09-04</date><leader>Bill</leader><url></url><filename-stem>2002-09-04-coffee-run</filename-stem></trip>
+<trip><name>Fall Challenge Kickoff</name><date>2002-09-14</date><leader>Jan Hintermeister</leader><url></url><filename-stem>2002-09-14-fall-challenge-kickoff</filename-stem></trip>
+<trip><name>Sunday Stroll</name><date>2002-09-15</date><leader>Mary and Bill</leader><url></url><filename-stem>2002-09-15-sunday-stroll</filename-stem></trip></tripset>
