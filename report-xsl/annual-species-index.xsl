@@ -5,7 +5,7 @@
 	<xsl:include href="./common-report.xsl"/>
 
 	<!-- define my background color for table headers, etc -->
-	<xsl:variable name="my-background-color" select="$species-background-color"/>
+	<xsl:variable name="my-header-style">species-navigationblock</xsl:variable>
 
 	<!-- define my report parameter -->
 	<xsl:param name="in-year"/>

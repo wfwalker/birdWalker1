@@ -5,7 +5,7 @@
 	<xsl:include href="./common-report.xsl"/>
 
 	<!-- define my background color, used for table headers, etc -->
-	<xsl:variable name="my-background-color" select="$location-background-color"/>
+	<xsl:variable name="my-header-style">location-navigationblock</xsl:variable>
 
 	<!-- define my report parameters -->
 	<xsl:param name="in-location"/>
@@ -32,14 +32,14 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Location Report for <xsl:value-of select="$in-location"/></TITLE>
-		<xsl:comment> $Id: location-report.xsl,v 1.5 2001/09/09 02:01:01 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: location-report.xsl,v 1.6 2001/09/13 15:45:30 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="location-navigation-block"/>
 
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0">
-				<xsl:attribute name="BGCOLOR"><xsl:value-of select="$my-background-color"/></xsl:attribute>
+				<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 				<TR>
 					<TD NOWRAP="TRUE">
 						<xsl:value-of select="$location-record/city"/>,<BR/>

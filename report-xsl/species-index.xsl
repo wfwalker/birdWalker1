@@ -5,7 +5,7 @@
 	<xsl:include href="./common-report.xsl"/>
 
 	<!-- define my background color, used for table headers, etc -->
-	<xsl:param name="my-background-color" select="$species-background-color"/>
+	<xsl:variable name="my-header-style">species-navigationblock</xsl:variable>
 
 	<xsl:variable
 		name="non-excluded-abbreviations"

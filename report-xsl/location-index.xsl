@@ -5,7 +5,7 @@
 	<xsl:include href="./common-report.xsl"/>
 
 	<!-- define my background color, used for table headers, etc -->
-	<xsl:param name="my-background-color" select="$location-background-color"/>
+	<xsl:variable name="my-header-style">location-navigationblock</xsl:variable>
 
 	<xsl:template match="*">
 		<HTML>

@@ -5,7 +5,7 @@
 	<xsl:include href="./common-report.xsl"/>
 
 	<!-- define my background color, used for table headers, etc -->
-	<xsl:variable name="my-background-color" select="$species-background-color"/>
+	<xsl:variable name="my-header-style">species-navigationblock</xsl:variable>
 
 	<!-- define my report parameters -->
 	<xsl:param name="in-abbreviation"/>
@@ -58,14 +58,14 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Species Report for <xsl:value-of select="$species-record/common-name"/></TITLE>
-		<xsl:comment> $Id: species-report.xsl,v 1.5 2001/09/09 02:01:01 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: species-report.xsl,v 1.6 2001/09/13 15:44:55 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="species-navigation-block"/>
 
 			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0">
-				<xsl:attribute name="BGCOLOR"><xsl:value-of select="$my-background-color"/></xsl:attribute>
+				<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 			<TR>
 				<TD NOWRAP="TRUE">
 					<A>

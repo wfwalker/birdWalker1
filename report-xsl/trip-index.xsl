@@ -5,7 +5,7 @@
 	<xsl:include href="./common-report.xsl"/>
 
 	<!-- define my background color, used for table headers, etc -->
-	<xsl:param name="my-background-color" select="$trip-background-color"/>
+	<xsl:variable name="my-header-style">trip-navigationblock</xsl:variable>
 
 	<!-- define my report parameters -->
 	<xsl:param name="in-trip-date"/>
