@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.2 2002/08/22 15:32:35 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.3 2002/08/23 01:14:01 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -885,10 +885,7 @@
 	</xsl:template>
 
 	<xsl:template match="generate-trip-report/location">
-		<xsl:variable name="this-location-sightings" select="../species/sighting[location=current()/name]"/>
 		<xsl:variable name="this-location-species" select="../species[sighting/location=current()/name]"/>
-
-		<!-- xsl:message>loop name <xsl:value-of select="name"/> sightings <xsl:value-of select="count($this-location-sightings)"/> species <xsl:value-of select="count($this-location-species)"/></xsl:message -->
 
 		<DIV CLASS="headertext">
 			<xsl:value-of select="count($this-location-species)"/> species seen at
@@ -1107,7 +1104,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.2 2002/08/22 15:32:35 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.3 2002/08/23 01:14:01 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -1231,11 +1228,11 @@
 
 		<xsl:variable
 			name="state-sightings"
-			select="document('sightings.xml')/sightingset/sighting[location=$state-locations/name]"/>
+			select="document('sightings.xml')/sightingset/sighting[location=$state-locations/name]/abbreviation"/>
 
 		<xsl:variable
 			name="state-species"
-			select="document('flat-species.xml')/taxonomyset/species[abbreviation=$state-sightings/abbreviation]"/>
+			select="document('flat-species.xml')/taxonomyset/species[abbreviation=$state-sightings]"/>
 
 		<xsl:variable
 		    name="state-name"
