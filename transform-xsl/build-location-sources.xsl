@@ -35,6 +35,7 @@
 		&lt;sighting&gt;
 			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
 			<xsl:if test="first">&lt;first&gt;true&lt;/first&gt;</xsl:if>
+			<xsl:if test="exclude">&lt;exclude&gt;true&lt;/exclude&gt;</xsl:if>
 			<xsl:apply-templates select="notes"/>
 		&lt;/sighting&gt;
 	</xsl:template>
