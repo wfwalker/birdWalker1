@@ -98,7 +98,7 @@
 			taskname="location-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/location"
+			basedir="sources/locations"
 			processor="xalan">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
@@ -109,7 +109,7 @@
 			taskname="trip-reports"
 			style="report-xsl/reports.xsl"
 			destdir="html"
-			basedir="sources/trip"
+			basedir="sources/trips"
 			processor="xalan">
 
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
