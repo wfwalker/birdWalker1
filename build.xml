@@ -70,8 +70,6 @@
 	<!-- DEBUGGING / DEVELOPMENT, SINGLE PAGE TARGETS -->
 
 	<target	name="build-index">
-
-		<fail unless="kind" message="please define a report kind on the command line"/>
 		<fail unless="source" message="please define a page source on the command line"/>
 
 		<style
@@ -191,15 +189,18 @@
 	</target>
 
 	<target name="upload-to-shout">
+		<input message="ftp password" addproperty="ftp-password"/>
+
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/birdwalker"
        		userid="walker"
-       		password="0flandiwi"
+       		password="${ftp-password}"
 			passive="no"
 			verbose="yes"
 			skipFailedTransfers="yes"
        		depends="yes"
-       		binary="no">
+       		binary="no"
+			description="Copy the stylesheet">
     		<fileset dir="html">
       			<include name="stylesheet.css"/>
     		</fileset>
@@ -208,24 +209,28 @@
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/birdwalker/images"
        		userid="walker"
-       		password="0flandiwi"
+       		password="${ftp-password}"
 			passive="yes"
 			verbose="yes"
        		depends="yes"
-       		binary="no">
+       		binary="no"
+			description="Copy the images">
     		<fileset dir="html/images">
       			<include name="*.gif"/>
+      			<include name="*.jpg"/>
+      			<include name="*.JPG"/>
     		</fileset>
   		</ftp>
 
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/birdwalker"
        		userid="walker"
-       		password="0flandiwi"
+       		password="${ftp-password}"
 			passive="yes"
 			verbose="yes"
        		depends="yes"
-       		binary="no">
+       		binary="no"
+			description="Copy the web pages">
     		<fileset dir="html">
       			<include name="**/*.html"/>
     		</fileset>
