@@ -197,6 +197,7 @@
 <family order-id="6" family-id="1" url="" latin-name="Phoenicopteridae" common-name="Flamingos" taxonomy-id="6010000000" filename-stem="" ></family>
 <genus order-id="6" family-id="1" url="" latin-name="Phoenicopterus" common-name="Phoenicopterus" taxonomy-id="6010010000" filename-stem="" ></genus>
 <species order-id="6" family-id="1" abbreviation="grefla" url="" latin-name="Phoenicopterus ruber" common-name="Greater Flamingo" taxonomy-id="6010010100" filename-stem="grefla" ></species>
+<species order-id="6" family-id="1" abbreviation="chifla" url="" latin-name="Phoenicopterus chilensis" common-name="Chilean Flamingo" taxonomy-id="6010010101" filename-stem="chifla" ></species>
 <order order-id="7" url="" latin-name="Anseriformes" common-name="Screamers, Swans, Geese and Ducks" taxonomy-id="7000000000" filename-stem="anseriformes" ></order>
 <family order-id="7" family-id="1" url="" latin-name="Anatidae" common-name="Swans, Geese and Ducks" taxonomy-id="7010000000" filename-stem="" ></family>
 <subfamily order-id="7" family-id="1" url="" latin-name="Dendrocygninae" common-name="Whistling-Ducks and Allies" taxonomy-id="7011000000" filename-stem="" ></subfamily>
