@@ -2,16 +2,13 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	version="1.0">
 
+	<xsl:param name="in-tstamp"/>
+
 	<!-- define variables containing all the source data -->
 	<xsl:variable name="sightings" select="document('../sightings.xml')"/>
 	<xsl:variable name="trips" select="document('../flat-trips.xml')"/>
 	<xsl:variable name="species" select="document('../flat-species.xml')"/>
 	<xsl:variable name="locations" select="document('../locations.xml')"/>
-
-	<xsl:variable name="trip-background-color" select="#EEBBBB"/>
-	<xsl:variable name="species-background-color" select="#EEBBBB"/>
-	<xsl:variable name="location-background-color" select="#EEBBBB"/>
-	<xsl:variable name="home-background-color" select="#EEBBBB"/>
 
 	<!-- a template for inserting cascading style sheets -->
 
@@ -85,7 +82,17 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.8 2001/09/18 01:55:07 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.9 2001/09/26 00:20:07 walker Exp $ </xsl:comment>
+		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
+	</xsl:template>
+
+	<!-- a footer to contain timestamps and links to me -->
+	<xsl:template name="page-footer">
+		<P>
+			Generated on <xsl:value-of select="$in-tstamp"/> by
+			<A HREF="http://www.shout.net/~walker/">Bill Walker</A>,
+			<A HREF="mailto:walker@shout.net">walker@shout.net</A>
+		</P>
 	</xsl:template>
 
 	<!-- define the template for tableheaders -->
@@ -110,6 +117,15 @@
 		<xsl:param name="species-list"/>
 		<xsl:param name="extra-title"/>
 		<xsl:param name="extra-url"/>
+		<xsl:param name="sighting-list"/>
+
+		<xsl:variable
+			name="notable-sighting-list"
+			select="$sighting-list[string-length(notes/p)>0]"/>
+
+		<xsl:variable
+			name="notable-species-list"
+			select="$species-list[abbreviation=$notable-sighting-list/abbreviation]"/>
 
 		<P>
 			<!-- used to call the tableheader template here -->
@@ -137,11 +153,13 @@
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$species-list[position() &lt; 1 + (count($species-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
+							<xsl:with-param name="notable-species-list" select="$notable-species-list"/>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$species-list[position() &gt;= 1 + (count($species-list) div 2)]">
 							<xsl:with-param name="create-link">true</xsl:with-param>
+							<xsl:with-param name="notable-species-list" select="$notable-species-list"/>
 						</xsl:apply-templates>
 					</TD>
 				</TR>
@@ -198,6 +216,8 @@
 		</xsl:if>
 	</xsl:template>
 
+	<!-- displays a list of trips -->
+
 	<xsl:template name="trip-table">
 		<xsl:param name="trip-list"/>
 
@@ -240,6 +260,20 @@
 
 	<xsl:template match="species">
 		<xsl:param name="create-link"/>
+		<xsl:param name="notable-species-list"/>
+		<xsl:param name="this" select="."/>
+
+		<xsl:choose>
+			<xsl:when test="count($notable-species-list[abbreviation=$this/abbreviation])>0">
+				<IMG SRC="images/blue.gif" WIDTH="10" HEIGHT="10" BORDER="0"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<IMG SRC="images/spacer.gif" WIDTH="10" HEIGHT="10" BORDER="0"/>
+			</xsl:otherwise>
+		</xsl:choose>
+
+		<IMG SRC="images/spacer.gif" WIDTH="5" HEIGHT="10" BORDER="0"/>
+
 
 		<A>
 			<xsl:if test="string-length($create-link) > 0">
@@ -254,8 +288,7 @@
 
 	<xsl:template name="sighting-entry">
 		<xsl:param name="sighting-record"/>
-		<xsl:param name="aux-record-1"/>
-		<xsl:param name="aux-record-2"/>
+		<xsl:param name="title-string"/>
 
 		<TR>
 			<TD>
@@ -263,10 +296,7 @@
 				<TABLE WIDTH="100%">
 					<TR>
 						<TD VALIGN="TOP" WIDTH="25%" ALIGN="LEFT" CLASS="sightinghead">
-							<xsl:apply-templates select="$aux-record-1">
-							</xsl:apply-templates>
-							<xsl:apply-templates select="$aux-record-2">
-							</xsl:apply-templates>
+							<xsl:value-of select="$title-string"/>
 						</TD>
 						<TD WIDTH="75%" VALIGN="TOP" ALIGN="LEFT">
 							<xsl:value-of select="notes"/>
