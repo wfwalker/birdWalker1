@@ -118,7 +118,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.4 2001/11/19 17:15:36 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.5 2001/11/26 17:27:59 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -378,9 +378,19 @@
 				This database contains reports on <xsl:value-of select="count($trips/tripset/trip)"/> trips
 			</DIV>
 
-			<xsl:call-template name="two-column-table">
-				<xsl:with-param name="in-entry-list" select="$trips/tripset/trip"/>
-			</xsl:call-template>
+			<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
+				<xsl:sort data-type="number" select="@name" order="descending"/>
+
+				<xsl:variable name="this-year" select="@name"/>
+
+				<DIV CLASS="headertext">
+					<xsl:value-of select="$this-year"/> trips
+				</DIV>
+
+			 	<xsl:call-template name="two-column-table">
+					<xsl:with-param name="in-entry-list" select="$trips/tripset/trip[starts-with(date, $this-year)]"/>
+				</xsl:call-template>
+			</xsl:for-each>
 
 			<DIV CLASS="headertext">
 				Distribution of trips
