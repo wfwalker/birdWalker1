@@ -38,6 +38,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Species Report for Order <xsl:value-of select="$order-record/latin-name"/></TITLE>
+		<xsl:comment> $Id$ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">

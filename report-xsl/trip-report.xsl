@@ -26,6 +26,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Trip Report for <xsl:value-of select="$trip-record/name"/></TITLE>
+		<xsl:comment> $Id$ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">

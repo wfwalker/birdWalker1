@@ -26,6 +26,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Location Report for <xsl:value-of select="$in-location"/></TITLE>
+		<xsl:comment> $Id$ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">

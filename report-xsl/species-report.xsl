@@ -53,6 +53,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Species Report for <xsl:value-of select="$species-record/common-name"/></TITLE>
+		<xsl:comment> $Id$ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
