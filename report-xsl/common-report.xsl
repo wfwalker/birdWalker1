@@ -81,7 +81,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.21 2002/01/22 17:27:30 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.22 2002/05/01 01:39:59 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -396,10 +396,10 @@
 			<TR>
 				<TD ALIGN="RIGHT">Total Trips</TD>
 				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
-					<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
+					<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
 
 					<TD ALIGN="RIGHT">
-						<xsl:value-of select="count($in-trips[starts-with(date, $date-prefix)])"/>
+						<xsl:value-of select="count($in-trips[contains(date, $date-prefix)])"/>
 					</TD>	
 				</xsl:for-each>
 			</TR>
@@ -407,11 +407,11 @@
 			<TR>
 				<TD ALIGN="RIGHT">Total Sightings</TD>
 				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
-					<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
+					<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
 
 					<xsl:variable
 						name="trips-this-month"
-						select="$in-trips[starts-with(date, $date-prefix)]"/>
+						select="$in-trips[contains(date, $date-prefix)]"/>
 
 					<xsl:variable
 						name="sightings-this-month"
