@@ -1,31 +1,6 @@
 <project name="birding-xml" default="report">
 
 	<target
-		name="prepare-trips"
-		description="make trips table groovy">
-
-		<native2ascii includes="flat-trips.txt" dest="." ext=".xml"/>
-
-		<style
-			in="flat-trips.xml"
-			out="hierarchical-trips.xml"
-			destdir="."
-			style="flat-to-hierarchical-trips.xsl"/>
-	</target>
-
-	<target
-		name="prepare-species"
-		description="turn flat species table into hierarchical one">
-
-		<style
-			in="flat-species.xml"
-			out="hierarchical-species.xml"
-			destdir="."
-			style="flat-to-hierarchical-taxonomy.xsl"/>
-
-	</target>
-
-	<target
 		name="indices"
 		description="generate reports from birding-data.xml">
 
@@ -126,7 +101,7 @@
 			out="html/SAMPLE TRIP REPORT.html"
 			destdir="html"
 			style="report-xsl/trip-report.xsl">
-			<param name="in-trip-date" expression="'1/14/2001'"/>
+			<param name="in-trip-date" expression="'11/11/1999'"/>
 		</style>
 
 	</target>
@@ -160,16 +135,40 @@
 	</target>
 
 	<target
+		name="order-report"
+		description="generate reports from birding-data.xml">
+
+		<style
+			in="build.xml"
+			out="html/SAMPLE ORDER REPORT.html"
+			destdir="html"
+			style="report-xsl/order-report.xsl">
+			<param name="in-order-id" expression="'22'"/>
+		</style>
+
+	</target>
+
+	<target
+		name="cover-page"
+		description="generate a cover page">
+
+		<style
+			in="build.xml"
+			out="html/cover-page.html"
+			destdir="html"
+			style="report-xsl/cover-page.xsl"/>
+
+	</target>
+
+	<target
 		name="sample-reports"
 		depends="trip-report, location-report, species-report">
 		<echo message="them is some reports"/>
 	</target>
 
-
-	<target
-		name="full-reports">
-		<ant antfile="build-trips.xml"/>
-		<ant antfile="build-species.xml"/>
-		<ant antfile="build-locations.xml"/>
+	<target name="build-all-reports">
+		<exec executable="${basedir}/build-locations.sh"/>
+		<exec executable="${basedir}/build-species.sh"/>
+		<exec executable="${basedir}/build-trips.sh"/>
 	</target>
 </project>
