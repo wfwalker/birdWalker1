@@ -83,7 +83,7 @@
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.1 2001/10/04 15:38:43 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: indices.xsl,v 1.2 2001/10/11 01:09:33 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -116,10 +116,13 @@
 					<A HREF="2000-species-index.html">2000</A>,
 					<A HREF="2001-species-index.html">2001</A>),
 				each state we've taken trips in (
-					<A HREF="ca-species-index.html">CA</A>,
-					<A HREF="or-species-index.html">OR</A>),
+					<A HREF="ca-species-index.html">California</A>,
+					<A HREF="ma-species-index.html">Massachusetts</A>,
+					<A HREF="il-species-index.html">Illinois</A>,
+					<A HREF="or-species-index.html">Oregon</A>),
 				and some of our favorite counties (
 					<A HREF="santa-clara-county-species-index.html">Santa Clara</A>,
+					<A HREF="monterey-county-species-index.html">Monterey</A>,
 					<A HREF="san-mateo-county-species-index.html">San Mateo</A>).
 			</P>
 
