@@ -139,3 +139,4 @@ java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/trip-repo
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/trip-report.xsl -OUT html/2001-8-5-bottom-of-the-bay-checking-3.html -PARAM in-trip-date "'8/5/2001'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/trip-report.xsl -OUT html/2001-8-18-hiking-with-phil.html -PARAM in-trip-date "'8/18/2001'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/trip-report.xsl -OUT html/2001-9-3-bottom-of-the-bay-checking-4.html -PARAM in-trip-date "'9/3/2001'"
+java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/trip-report.xsl -OUT html/2001-9-15-trial-run-for-big-day.html -PARAM in-trip-date "'9/15/2001'"

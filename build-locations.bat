@@ -1,6 +1,3 @@
-echo %CLASSPATH%
-echo "---"
-
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/2138-king-court.html -PARAM in-location "'2138 King Court'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/alviso-marina.html -PARAM in-location "'Alviso Marina'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/andrew-molera.html -PARAM in-location "'Andrew Molera'"
@@ -54,6 +51,7 @@ java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/san-gregorio-state-beach.html -PARAM in-location "'San Gregorio State Beach'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/saratoga-parks.html -PARAM in-location "'Saratoga Parks'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/schollenberger-park.html -PARAM in-location "'Schollenberger Park'"
+java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/skyline-ridge-open-space-preserve.html -PARAM in-location "'Skyline Ridge Open Space Preserve'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/st-joseph-open-space-preserve.html -PARAM in-location "'St Joseph Open Space Preserve'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/stanford-university.html -PARAM in-location "'Stanford University'"
 java org.apache.xalan.xslt.Process -IN placeholder.xml -XSL report-xsl/location-report.xsl -OUT html/state-and-speckles-pond.html -PARAM in-location "'State and Speckles Pond'"
