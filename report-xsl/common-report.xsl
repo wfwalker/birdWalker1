@@ -9,6 +9,7 @@
 	<xsl:variable name="trips" select="document('../flat-trips.xml')"/>
 	<xsl:variable name="species" select="document('../flat-species.xml')"/>
 	<xsl:variable name="locations" select="document('../locations.xml')"/>
+	<xsl:variable name="miscellaneous" select="document('../misc.xml')"/>
 
 	<!-- a template for inserting cascading style sheets -->
 
@@ -82,7 +83,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.12 2001/10/10 16:11:27 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.13 2001/10/11 01:09:51 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -334,13 +335,15 @@
 	</xsl:template>
 
 	<!-- draw a blue vertical bar using an image tag with height and width attributes -->
-	<xsl:template name="vertical-bar">
-		<xsl:with-param name="height"/>
-		<xsl:with-param name="total"/>
 
-		<TD VALIGN="BOTTOM">
+	<xsl:template name="vertical-bar">
+		<xsl:with-param name="in-height"/>
+		<xsl:with-param name="in-maximum"/>
+		<xsl:with-param name="in-bar-count"/>
+
+		<TD ALIGN="CENTER" VALIGN="BOTTOM">
 			<IMG SRC="images/blue.gif" WIDTH="20">
-				<xsl:attribute name="HEIGHT"><xsl:value-of select="1 + ((300 * $height) div $total)"/></xsl:attribute>
+				<xsl:attribute name="HEIGHT"><xsl:value-of select="1 + ((20 * $in-bar-count * $in-height) div $in-maximum)"/></xsl:attribute>
 			</IMG>
 		</TD>
 	</xsl:template>
@@ -361,68 +364,22 @@
 
 		<CENTER><TABLE>
 			<TR>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '1/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '2/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '3/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '4/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '5/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '6/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '7/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '8/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '9/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '10/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '11/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[starts-with(date, '12/')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
+				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
+					<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
+
+					<xsl:call-template name="vertical-bar">
+						<xsl:with-param name="in-height" select="count($dated-items[starts-with(date, $date-prefix)])"/>
+						<xsl:with-param name="in-maximum" select="$species-count"/>
+						<xsl:with-param name="in-bar-count">12</xsl:with-param>
+					</xsl:call-template>
+				</xsl:for-each>
 			</TR>
 			<TR>
-				<TD>Jan</TD>
-				<TD>Feb</TD>
-				<TD>Mar</TD>
-				<TD>Apr</TD>
-				<TD>May</TD>
-				<TD>Jun</TD>
-				<TD>Jul</TD>
-				<TD>Aug</TD>
-				<TD>Sep</TD>
-				<TD>Oct</TD>
-				<TD>Nov</TD>
-				<TD>Dec</TD>
+				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
+					<TD ALIGN="CENTER">
+						<xsl:value-of select="@abbreviation"/>
+					</TD>
+				</xsl:for-each>
 			</TR>
 		</TABLE></CENTER>
 	</xsl:template>
@@ -443,38 +400,22 @@
 
 		<CENTER><TABLE>
 			<TR>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[contains(date, '1996')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[contains(date, '1997')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[contains(date, '1998')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[contains(date, '1999')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[contains(date, '2000')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
-				<xsl:call-template name="vertical-bar">
-					<xsl:with-param name="height" select="count($dated-items[contains(date, '2001')])"/>
-					<xsl:with-param name="total" select="$species-count"/>
-				</xsl:call-template>
+				<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
+					<xsl:variable name="year-name" select="@name"/>
+
+					<xsl:call-template name="vertical-bar">
+						<xsl:with-param name="in-height" select="count($dated-items[contains(date, $year-name)])"/>
+						<xsl:with-param name="in-maximum" select="$species-count"/>
+						<xsl:with-param name="in-bar-count" select="count($miscellaneous/miscellaneous/yearset/year)"/>
+					</xsl:call-template>
+				</xsl:for-each>
 			</TR>
 			<TR>
-				<TD>1996</TD>
-				<TD>1997</TD>
-				<TD>1998</TD>
-				<TD>1999</TD>
-				<TD>2000</TD>
-				<TD>2001</TD>
+				<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
+					<TD ALIGN="CENTER">
+						<xsl:value-of select="@name"/>
+					</TD>
+				</xsl:for-each>
 			</TR>
 		</TABLE></CENTER>
 	</xsl:template>
