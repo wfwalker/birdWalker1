@@ -5,7 +5,7 @@
 
 	<xsl:param name="in-year"/>
 
-	<xsl:param name="year-sightings" select="$sightings/sightingset/sighting[contains(date, $in-year)]"/>
+	<xsl:variable name="year-abbreviations" select="$sightings/sightingset/sighting[not(exclude) and contains(date, $in-year)]/abbreviation"/>
 
 	<xsl:template match="*">
 		<HTML>
@@ -20,7 +20,7 @@
 			<H1><IMG SRC="images/species.gif"/>Index of Species seen in <xsl:value-of select="$in-year"/></H1>
 
 			<xsl:call-template name="species-table">
-				<xsl:with-param name="species-list" select="$species/taxonomyset/species[abbreviation=$year-sightings/abbreviation]"/>
+				<xsl:with-param name="species-list" select="$species/taxonomyset/species[abbreviation=$year-abbreviations]"/>
 			</xsl:call-template>
 
 			<xsl:call-template name="navigation-block"/>
