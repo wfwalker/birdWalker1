@@ -1,0 +1,71 @@
+<project name="build locations" default="build-locations">
+
+<target name="build-locations">
+
+ <style in='build.xml' out='html/sunnyvale-baylands.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Sunnyvale Baylands"'/>  </style>
+ <style in='build.xml' out='html/don-edwards-center.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Don Edwards Center"'/>  </style>
+ <style in='build.xml' out='html/palo-alto-duck-pond.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Palo Alto Duck Pond"'/>  </style>
+ <style in='build.xml' out='html/burney-falls.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Burney Falls"'/>  </style>
+ <style in='build.xml' out='html/elkhorn-slough.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Elkhorn Slough"'/>  </style>
+ <style in='build.xml' out='html/pigeon-point.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Pigeon Point"'/>  </style>
+ <style in='build.xml' out='html/monterey-bay.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Monterey bay"'/>  </style>
+ <style in='build.xml' out='html/charleston-slough.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Charleston Slough"'/>  </style>
+ <style in='build.xml' out='html/tuvelle-state-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Tuvelle State Park"'/>  </style>
+ <style in='build.xml' out='html/prairie-du-chien.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Prairie du Chien"'/>  </style>
+ <style in='build.xml' out='html/golden-gate-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Golden Gate Park"'/>  </style>
+ <style in='build.xml' out='html/drawbridge.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Drawbridge"'/>  </style>
+ <style in='build.xml' out='html/arastradero-preserve.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Arastradero Preserve"'/>  </style>
+ <style in='build.xml' out='html/bolinas-lagoon.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Bolinas Lagoon"'/>  </style>
+ <style in='build.xml' out='html/woodbridge-ecological-preserve.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Woodbridge Ecological Preserve"'/>  </style>
+ <style in='build.xml' out='html/coyote-hills.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Coyote Hills"'/>  </style>
+ <style in='build.xml' out='html/point-reyes-national-seashore.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Point Reyes National Seashore"'/>  </style>
+ <style in='build.xml' out='html/merced-nwr.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Merced NWR"'/>  </style>
+ <style in='build.xml' out='html/calero-resevoir.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Calero Resevoir"'/>  </style>
+ <style in='build.xml' out='html/pescadero-marsh.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Pescadero Marsh"'/>  </style>
+ <style in='build.xml' out='html/phoenecian-resort.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Phoenecian Resort"'/>  </style>
+ <style in='build.xml' out='html/vasona-creek.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Vasona Creek"'/>  </style>
+ <style in='build.xml' out='html/pikes-peak.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Pikes Peak"'/>  </style>
+ <style in='build.xml' out='html/schollenberger-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Schollenberger Park"'/>  </style>
+ <style in='build.xml' out='html/andrew-molera.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Andrew Molera"'/>  </style>
+ <style in='build.xml' out='html/wellfleet-bay.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Wellfleet Bay"'/>  </style>
+ <style in='build.xml' out='html/sacramento-nwr.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Sacramento NWR"'/>  </style>
+ <style in='build.xml' out='html/coyote-point-marina.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Coyote Point Marina"'/>  </style>
+ <style in='build.xml' out='html/sunnyvale-water-treatment-plant.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Sunnyvale Water Treatment Plant"'/>  </style>
+ <style in='build.xml' out='html/2138-king-court.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"2138 King Court"'/>  </style>
+ <style in='build.xml' out='html/colusa-nwr.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Colusa NWR"'/>  </style>
+ <style in='build.xml' out='html/butte-valley-wildlife-area.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Butte Valley Wildlife Area"'/>  </style>
+ <style in='build.xml' out='html/haystack-reservoir.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Haystack Reservoir"'/>  </style>
+ <style in='build.xml' out='html/bend-wastewater-treatment-plant.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Bend Wastewater Treatment Plant"'/>  </style>
+ <style in='build.xml' out='html/panoche-valley.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Panoche Valley"'/>  </style>
+ <style in='build.xml' out='html/champaign-county.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Champaign County"'/>  </style>
+ <style in='build.xml' out='html/stanford-university.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Stanford University"'/>  </style>
+ <style in='build.xml' out='html/lower-klamath-nwr.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Lower Klamath NWR"'/>  </style>
+ <style in='build.xml' out='html/ed-levin-state-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Ed Levin State Park"'/>  </style>
+ <style in='build.xml' out='html/coyote-creek.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Coyote Creek"'/>  </style>
+ <style in='build.xml' out='html/pillar-point.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Pillar Point"'/>  </style>
+ <style in='build.xml' out='html/alviso-marina.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Alviso Marina"'/>  </style>
+ <style in='build.xml' out='html/hawk-hill.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Hawk Hill"'/>  </style>
+ <style in='build.xml' out='html/state-and-speckles-pond.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"State and Speckles Pond"'/>  </style>
+ <style in='build.xml' out='html/university-lutheran-church.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"University Lutheran Church"'/>  </style>
+ <style in='build.xml' out='html/big-sur.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Big Sur"'/>  </style>
+ <style in='build.xml' out='html/crown-memorial-state-beach.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Crown Memorial State Beach"'/>  </style>
+ <style in='build.xml' out='html/san-gregorio-state-beach.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"San Gregorio State Beach"'/>  </style>
+ <style in='build.xml' out='html/moss-landing-state-beach.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Moss Landing State Beach"'/>  </style>
+ <style in='build.xml' out='html/chez-frankel.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Chez Frankel"'/>  </style>
+ <style in='build.xml' out='html/reactivity.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Reactivity"'/>  </style>
+ <style in='build.xml' out='html/mcclellan-ranch.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"McClellan Ranch"'/>  </style>
+ <style in='build.xml' out='html/trinidad-state-beach.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Trinidad State Beach"'/>  </style>
+ <style in='build.xml' out='html/arcata-marsh.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Arcata Marsh"'/>  </style>
+ <style in='build.xml' out='html/azelea-state-reserve.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Azelea State Reserve"'/>  </style>
+ <style in='build.xml' out='html/humboldt-county.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Humboldt County"'/>  </style>
+ <style in='build.xml' out='html/patricks-point-state-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Patricks Point State Park"'/>  </style>
+ <style in='build.xml' out='html/prairie-creek-redwoods-state-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Prairie Creek Redwoods State Park"'/>  </style>
+ <style in='build.xml' out='html/morro-bay.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Morro Bay"'/>  </style>
+ <style in='build.xml' out='html/monte-bello-open-space-preserve.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Monte Bello Open Space Preserve"'/>  </style>
+ <style in='build.xml' out='html/russian-ridge-open-space-preserve.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Russian Ridge Open Space Preserve"'/>  </style>
+ <style in='build.xml' out='html/rancho-san-antonio.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Rancho San Antonio"'/>  </style>
+ <style in='build.xml' out='html/stevens-creek-county-park.html' destdir='html' style='report-xsl/location-report.xsl'>  <param name='in-location' expression='"Stevens Creek County Park"'/>  </style>
+
+</target>
+
+</project>

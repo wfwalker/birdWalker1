@@ -1,0 +1,29 @@
+
+
+BUG FIXES
+	common-report.xsl; when showing notable sightings, do something if no species record is found
+	common-report.xsl; in noteworthy species thingie, remove needless information
+	common-report.xsl; don't do first sighting / last sighting except for species-report
+	filemaker; generate report-url for species, too
+
+
+ENHANCEMENTS
+	species-list.html; break life list into sections by Order?
+	build reports for bogus locations, dates, abbrevations in the sightings
+
+
+common
+	get plurals right for tableheads
+	don't draw table head if there are no notes
+	use yyyy-mm-dd everywhere?
+	do these styles work with Netscape?
+
+
+	sort the trips in some kind of order!
+	sort the locations in some kind of order!
+	remove \? from file names
+DONE	add lat/long display to location report
+
+
+
+	deal with exclude tag

@@ -1,0 +1,175 @@
+<project name="birding-xml" default="report">
+
+	<target
+		name="prepare-trips"
+		description="make trips table groovy">
+
+		<native2ascii includes="flat-trips.txt" dest="." ext=".xml"/>
+
+		<style
+			in="flat-trips.xml"
+			out="hierarchical-trips.xml"
+			destdir="."
+			style="flat-to-hierarchical-trips.xsl"/>
+	</target>
+
+	<target
+		name="prepare-species"
+		description="turn flat species table into hierarchical one">
+
+		<style
+			in="flat-species.xml"
+			out="hierarchical-species.xml"
+			destdir="."
+			style="flat-to-hierarchical-taxonomy.xsl"/>
+
+	</target>
+
+	<target
+		name="indices"
+		description="generate reports from birding-data.xml">
+
+		<style
+			in="build.xml"
+			out="html/trip-index.html"
+			destdir="html"
+			style="report-xsl/trip-index.xsl"/>
+
+		<style
+			in="build.xml"
+			out="html/location-index.html"
+			destdir="html"
+			style="report-xsl/location-index.xsl"/>
+
+		<style
+			in="build.xml"
+			out="html/species-index.html"
+			destdir="html"
+			style="report-xsl/species-index.xsl"/>
+	</target>
+	
+	<target name="state-indices">
+		<style
+			in="flat-species.xml"
+			out="html/ca-species-index.html"
+			destdir="html"
+			style="report-xsl/state-species-index.xsl">
+			<param name="in-state" expression="'CA'"/>
+		</style>
+
+		<style
+			in="flat-species.xml"
+			out="html/or-species-index.html"
+			destdir="html"
+			style="report-xsl/state-species-index.xsl">
+			<param name="in-state" expression="'OR'"/>
+		</style>
+	</target>
+
+	<target name="annual-indices">
+		<style
+			in="build.xml"
+			out="html/1996-species-index.html"
+			destdir="html"
+			style="report-xsl/annual-species-index.xsl">
+			<param name="in-year" expression="'1996'"/>
+		</style>
+
+		<style
+			in="build.xml"
+			out="html/1997-species-index.html"
+			destdir="html"
+			style="report-xsl/annual-species-index.xsl">
+			<param name="in-year" expression="'1997'"/>
+		</style>
+
+		<style
+			in="build.xml"
+			out="html/1998-species-index.html"
+			destdir="html"
+			style="report-xsl/annual-species-index.xsl">
+			<param name="in-year" expression="'1998'"/>
+		</style>
+
+		<style
+			in="build.xml"
+			out="html/1999-species-index.html"
+			destdir="html"
+			style="report-xsl/annual-species-index.xsl">
+			<param name="in-year" expression="'1999'"/>
+		</style>
+
+		<style
+			in="build.xml"
+			out="html/2000-species-index.html"
+			destdir="html"
+			style="report-xsl/annual-species-index.xsl">
+			<param name="in-year" expression="'2000'"/>
+		</style>
+
+		<style
+			in="build.xml"
+			out="html/2001-species-index.html"
+			destdir="html"
+			style="report-xsl/annual-species-index.xsl">
+			<param name="in-year" expression="'2001'"/>
+		</style>
+
+	</target>
+
+	<target
+		name="trip-report"
+		description="generate reports from birding-data.xml">
+
+		<style
+			in="flat-trips.xml"
+			out="html/SAMPLE TRIP REPORT.html"
+			destdir="html"
+			style="report-xsl/trip-report.xsl">
+			<param name="in-trip-date" expression="'1/14/2001'"/>
+		</style>
+
+	</target>
+
+	<target
+		name="location-report"
+		description="generate reports from birding-data.xml">
+
+		<style
+			in="build.xml"
+			out="html/SAMPLE LOCATION REPORT.html"
+			destdir="html"
+			style="report-xsl/location-report.xsl">
+			<param name="in-location" expression="'Morro Bay'"/>
+		</style>
+
+	</target>
+
+	<target
+		name="species-report"
+		description="generate reports from birding-data.xml">
+
+		<style
+			in="build.xml"
+			out="html/SAMPLE SPECIES REPORT.html"
+			destdir="html"
+			style="report-xsl/species-report.xsl">
+			<param name="in-abbreviation" expression="'gadwal'"/>
+		</style>
+
+	</target>
+
+	<target
+		name="sample-reports"
+		depends="trip-report, location-report, species-report">
+		<echo message="them is some reports"/>
+	</target>
+
+
+	<target
+		name="full-reports">
+		<ant antfile="build-trips.xml"/>
+		<ant antfile="build-species.xml"/>
+		<ant antfile="build-locations.xml"/>
+	</target>
+</project>
