@@ -16,37 +16,37 @@
 
 	<xsl:template name="home-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class">home-navigationblock</xsl:with-param>
-			<xsl:with-param name="species-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="location-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="trip-class">default-navigationblock</xsl:with-param>
+			<xsl:with-param name="home-class" select="'home-navigationblock'"/>
+			<xsl:with-param name="species-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="location-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="trip-class" select="'default-navigationblock'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="species-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="species-class">species-navigationblock</xsl:with-param>
-			<xsl:with-param name="location-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="trip-class">default-navigationblock</xsl:with-param>
+			<xsl:with-param name="home-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="species-class" select="'species-navigationblock'"/>
+			<xsl:with-param name="location-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="trip-class" select="'default-navigationblock'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="location-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="species-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="location-class">location-navigationblock</xsl:with-param>
-			<xsl:with-param name="trip-class">default-navigationblock</xsl:with-param>
+			<xsl:with-param name="home-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="species-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="location-class" select="'location-navigationblock'"/>
+			<xsl:with-param name="trip-class" select="'default-navigationblock'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="trip-navigation-block">
 		<xsl:call-template name="navigation-block">
-			<xsl:with-param name="home-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="species-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="location-class">default-navigationblock</xsl:with-param>
-			<xsl:with-param name="trip-class">trip-navigationblock</xsl:with-param>
+			<xsl:with-param name="home-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="species-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="location-class" select="'default-navigationblock'"/>
+			<xsl:with-param name="trip-class" select="'trip-navigationblock'"/>
 		</xsl:call-template>
 	</xsl:template>
 
@@ -58,7 +58,7 @@
 		<xsl:param name="location-class"/>
 		<xsl:param name="trip-class"/>
 
-		<TABLE WIDTH="100%" CELLPADDING="10" BORDER="0" CELLSPACING="0">
+		<TABLE WIDTH="100%" HEIGHT="40" BORDER="0" CELLSPACING="0">
 			<TR>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$home-class"/></xsl:attribute>
@@ -66,19 +66,22 @@
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$species-class"/></xsl:attribute>
+					<xsl:if test="starts-with($species-class, 'default')"><IMG SRC="images/species.gif" ALIGN="MIDDLE"/></xsl:if>
 					<A HREF="./species-index.html">Species Reports</A>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$location-class"/></xsl:attribute>
+					<xsl:if test="starts-with($location-class, 'default')"><IMG SRC="images/location.gif" ALIGN="MIDDLE"/></xsl:if>
 					<A HREF="./location-index.html">Location Reports</A>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$trip-class"/></xsl:attribute>
+					<xsl:if test="starts-with($trip-class, 'default')"><IMG SRC="images/trip.gif" ALIGN="MIDDLE"/></xsl:if>
 					<A HREF="./trip-index.html">Trip Reports</A>
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.15 2001/11/02 01:50:28 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.16 2001/11/06 17:18:59 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -91,56 +94,13 @@
 		</P>
 	</xsl:template>
 
-	<!-- define the template for tableheaders -->
-	<!-- note that this template uses a background color that must be defined in any XSL that includes common-report.xsl -->
-
-	<xsl:template name="tableheader">
-		<xsl:param name="in-title-string"/>
-		<xsl:param name="in-extra-title"/>
-		<xsl:param name="in-extra-url"/>
-		<xsl:param name="in-header-style"/>
-
-		<TABLE WIDTH="100%">
-			<TR>
-				<TD WIDTH="100%">
-					<xsl:attribute name="CLASS"><xsl:value-of select="$in-header-style"/></xsl:attribute>
-
-					<xsl:if test="string-length($in-extra-title)">
-						<A>
-							<xsl:attribute name="HREF"><xsl:value-of select="$in-extra-url"/></xsl:attribute>
-							<xsl:value-of select="$in-extra-title"/>
-						</A>
-						<xsl:text>, </xsl:text>
-					</xsl:if>
-
-					<xsl:value-of select="$in-title-string"/>
-				</TD>
-			</TR>
-		</TABLE>
-	</xsl:template>
-
 	<!-- templates to create table sections used in many kinds of reports -->
 
 	<xsl:template name="two-column-table">
 		<xsl:param name="in-entry-list"/>
-		<xsl:param name="in-entry-kind"/>
-		<xsl:param name="in-extra-title"/>
-		<xsl:param name="in-extra-url"/>
-		<xsl:param name="in-header-style"/>
 
-		<P>
-			<xsl:call-template name="tableheader">
-				<xsl:with-param name="in-title-string">
-					<xsl:value-of select="count($in-entry-list)"/>
-					<xsl:text> </xsl:text>
-					<xsl:value-of select="$in-entry-kind"/>
-				</xsl:with-param>
-				<xsl:with-param name="in-extra-url" select="$in-extra-url"/>
-				<xsl:with-param name="in-extra-title" select="$in-extra-title"/>
-				<xsl:with-param name="in-header-style" select="$in-header-style"/>
-			</xsl:call-template>
-
-			<TABLE CELLPADDING="10" WIDTH="100%">
+		<DIV CLASS="report-content">
+			<TABLE WIDTH="90%">
 				<TR>
 					<TD VALIGN="TOP" WIDTH="50%">
 						<xsl:apply-templates select="$in-entry-list[position() &lt; 1 + (count($in-entry-list) div 2)]"/>
@@ -150,22 +110,15 @@
 					</TD>
 				</TR>
 			</TABLE>
-		</P>
+		</DIV>
 	</xsl:template>
 
 	<!-- displays a set of notes (typically species notes, location notes, or trip notes) -->
 
 	<xsl:template match="notes">
-		<xsl:param name="in-header-style"/>
-
-		<P>
-			<xsl:call-template name="tableheader">
-				<xsl:with-param name="in-title-string">notes</xsl:with-param>
-				<xsl:with-param name="in-header-style" select="$in-header-style"/>
-			</xsl:call-template>
-
-			<xsl:copy-of select="."/>
-		</P>
+		<DIV CLASS="report-content">
+			<xsl:copy-of select="p"/>
+		</DIV>
 	</xsl:template>
 
 	<!-- templates for names of and hyperlinks to various entities -->
@@ -204,9 +157,9 @@
 			<xsl:value-of select="common-name"/>
 		</A>
 
+		<BR/>
 		<xsl:apply-templates select="sighting[notes[p[string-length(text())>0]]]"/>
 
-		<BR/>
 	</xsl:template>
 
 	<xsl:template match="trip">
@@ -215,9 +168,9 @@
 			<xsl:value-of select="name"/> (<xsl:value-of select="date"/>)
 		</A>
 
+		<BR/>
 		<xsl:apply-templates select="sighting[notes[p[string-length(text())>0]]]"/>
 
-		<BR/>
 	</xsl:template>
 
 	<xsl:template match="location">
@@ -229,38 +182,13 @@
 	</xsl:template>
 
 	<xsl:template match="order">
-		<A>
+		<B><A>
 			<xsl:attribute name="HREF"><xsl:value-of select="report-url"/></xsl:attribute>
+			<xsl:value-of select="common-name"/>
+			<xsl:text> </xsl:text>
 			<I>(<xsl:value-of select="latin-name"/>)</I>
-			<xsl:text> </xsl:text><xsl:value-of select="common-name"/>
-		</A>
+		</A></B>
 		<BR/>
-	</xsl:template>
-
-	<xsl:template name="order-table">
-		<xsl:param name="in-header-style"/>
-
-		<xsl:variable name="order-list" select="$species/taxonomyset/order"/>
-
-		<xsl:call-template name="tableheader">
-			<xsl:with-param name="in-title-string">
-				<xsl:value-of select="count($order-list)"/> orders
-			</xsl:with-param>
-			<xsl:with-param name="in-header-style" select="$in-header-style"/>
-		</xsl:call-template>
-
-		<TABLE CELLPADDING="10" WIDTH="100%">
-			<TR>
-				<TD WIDTH="50%">
-					<xsl:apply-templates select="$order-list[position() &lt; 1 + (count($order-list) div 2)]">
-					</xsl:apply-templates>
-				</TD>
-				<TD WIDTH="50%">
-					<xsl:apply-templates select="$order-list[position() &gt;= 1 + (count($order-list) div 2)]">
-					</xsl:apply-templates>
-				</TD>
-			</TR>
-		</TABLE>
 	</xsl:template>
 
 	<!-- draw a blue vertical bar using an image tag with height and width attributes -->
@@ -277,75 +205,166 @@
 		</TD>
 	</xsl:template>
 
-	<xsl:template name="monthly-distribution">
-		<xsl:param name="dated-items"/>
-		<xsl:param name="item-kind"/>
-		<xsl:param name="in-header-style"/>
+	<xsl:template name="time-distributions">
+		<xsl:param name="in-dated-items"/>
 
-		<xsl:variable name="species-count" select="count($dated-items)"/>
+		<xsl:variable name="item-count" select="count($in-dated-items)"/>
 
-		<xsl:call-template name="tableheader">
-			<xsl:with-param name="in-title-string">
-				Monthly distribution of <xsl:value-of select="$species-count"/><xsl:text> </xsl:text><xsl:value-of select="$item-kind"/>
-			</xsl:with-param>
-			<xsl:with-param name="in-header-style" select="$in-header-style"/>
-		</xsl:call-template>
+		<DIV CLASS="report-content">
+		<TABLE WIDTH="90%">
+			<!-- one big cell for monthly distribution -->
+			<TD WIDTH="50%">
+				<TABLE>
+					<TR>
+						<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
+							<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
+		
+							<xsl:call-template name="vertical-bar">
+								<xsl:with-param name="in-height" select="count($in-dated-items[starts-with(date, $date-prefix)])"/>
+								<xsl:with-param name="in-maximum" select="$item-count"/>
+								<xsl:with-param name="in-bar-count">12</xsl:with-param>
+							</xsl:call-template>
+						</xsl:for-each>
+					</TR>
+					<TR>
+						<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
+							<TD ALIGN="CENTER">
+								<xsl:value-of select="@abbreviation"/>
+							</TD>
+						</xsl:for-each>
+					</TR>
+				</TABLE>
+			</TD>
 
-		<CENTER><TABLE>
+			<!-- one big cell for yearly distribution -->
+			<TD WIDTH="50%">
+				<TABLE>
+					<TR>
+						<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
+							<xsl:variable name="year-name" select="@name"/>
+		
+							<xsl:call-template name="vertical-bar">
+								<xsl:with-param name="in-height" select="count($in-dated-items[contains(date, $year-name)])"/>
+								<xsl:with-param name="in-maximum" select="$item-count"/>
+								<xsl:with-param name="in-bar-count" select="count($miscellaneous/miscellaneous/yearset/year)"/>
+							</xsl:call-template>
+						</xsl:for-each>
+					</TR>
+					<TR>
+						<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
+							<TD ALIGN="CENTER">
+								<xsl:value-of select="@name"/>
+							</TD>
+						</xsl:for-each>
+					</TR>
+				</TABLE>
+			</TD>
+		</TABLE>
+		</DIV>
+	</xsl:template>
+
+	<xsl:template name="order-by-month-table">
+		<xsl:param name="in-species-with-sightings"/>
+		<xsl:param name="in-trips"/>
+
+		<DIV CLASS="report-content">
+		<TABLE WIDTH="90%" CELLSPACING="0" BORDER="0">
 			<TR>
+				<TD ALIGN="RIGHT">Order</TD>
+				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
+					<TD ALIGN="RIGHT"><xsl:value-of select="@abbreviation"/></TD>	
+				</xsl:for-each>
+			</TR>
+
+			<!-- spacer row -->
+			<TR>
+				<TD COLSPAN="13"><IMG SRC="images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
+			</TR>
+
+			<xsl:for-each select="$miscellaneous/miscellaneous/orderset/order[order-id=$in-species-with-sightings/order-id]">
+				<TR>
+					<xsl:variable name="the-order" select="."/>
+
+					<xsl:variable
+						name="order-sightings-this-location"
+						select="$in-species-with-sightings[order-id=$the-order/order-id]/sighting"/>
+
+					<TD ALIGN="RIGHT">
+						<A>
+							<xsl:attribute name="HREF"><xsl:value-of select="$the-order/report-url"/></xsl:attribute>
+							<xsl:value-of select="$the-order/common-name"/>
+						</A>
+					</TD>
+
+					<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
+						<xsl:variable
+							name="date-prefix"
+							select="concat(@index, '/')"/>
+
+						<xsl:variable
+							name="trips-this-month"
+							select="$in-trips[starts-with(date, $date-prefix)]"/>
+
+						<xsl:variable
+							name="order-sightings-this-month"
+							select="$order-sightings-this-location[date=$trips-this-month/date]"/>
+
+						<TD ALIGN="RIGHT">
+							<xsl:choose>
+								<xsl:when test="count($trips-this-month)=0">
+									<xsl:attribute name="CLASS">density0</xsl:attribute>
+									-
+								</xsl:when>
+								<xsl:when test="count($order-sightings-this-month) > 0">
+									<xsl:variable
+										name="density"
+										select="ceiling(count($order-sightings-this-month) div count($trips-this-month))"/>
+
+									<xsl:attribute name="CLASS">density<xsl:value-of select="$density"/></xsl:attribute>
+									<xsl:value-of select="$density"/>
+								</xsl:when>
+							</xsl:choose>
+						</TD>
+					</xsl:for-each>
+				</TR>
+
+				<!-- spacer row -->
+				<TR>
+					<TD COLSPAN="13"><IMG SRC="images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
+				</TR>
+			</xsl:for-each>
+
+			<TR>
+				<TD ALIGN="RIGHT">Total Trips</TD>
 				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
 					<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
 
-					<xsl:call-template name="vertical-bar">
-						<xsl:with-param name="in-height" select="count($dated-items[starts-with(date, $date-prefix)])"/>
-						<xsl:with-param name="in-maximum" select="$species-count"/>
-						<xsl:with-param name="in-bar-count">12</xsl:with-param>
-					</xsl:call-template>
+					<TD ALIGN="RIGHT">
+						<xsl:value-of select="count($in-trips[starts-with(date, $date-prefix)])"/>
+					</TD>	
 				</xsl:for-each>
 			</TR>
+
 			<TR>
+				<TD ALIGN="RIGHT">Total Sightings</TD>
 				<xsl:for-each select="$miscellaneous/miscellaneous/monthset/month">
-					<TD ALIGN="CENTER">
-						<xsl:value-of select="@abbreviation"/>
-					</TD>
+					<xsl:variable name="date-prefix" select="concat(@index, '/')"/>
+
+					<xsl:variable
+						name="trips-this-month"
+						select="$in-trips[starts-with(date, $date-prefix)]"/>
+
+					<xsl:variable
+						name="sightings-this-month"
+						select="$in-species-with-sightings/sighting[date=$trips-this-month/date]"/>
+
+					<TD ALIGN="RIGHT">
+						<xsl:value-of select="count($sightings-this-month)"/>
+					</TD>	
 				</xsl:for-each>
 			</TR>
-		</TABLE></CENTER>
+		</TABLE>
+		</DIV>
 	</xsl:template>
 
-	<xsl:template name="yearly-distribution">
-		<xsl:param name="dated-items"/>
-		<xsl:param name="item-kind"/>
-		<xsl:param name="in-header-style"/>
-
-		<xsl:variable name="species-count" select="count($dated-items)"/>
-
-		<xsl:call-template name="tableheader">
-			<xsl:with-param name="in-title-string">
-				Yearly distribution of <xsl:value-of select="count($dated-items)"/><xsl:text> </xsl:text><xsl:value-of select="$item-kind"/>
-			</xsl:with-param>
-			<xsl:with-param name="in-header-style" select="$in-header-style"/>
-		</xsl:call-template>
-
-		<CENTER><TABLE>
-			<TR>
-				<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
-					<xsl:variable name="year-name" select="@name"/>
-
-					<xsl:call-template name="vertical-bar">
-						<xsl:with-param name="in-height" select="count($dated-items[contains(date, $year-name)])"/>
-						<xsl:with-param name="in-maximum" select="$species-count"/>
-						<xsl:with-param name="in-bar-count" select="count($miscellaneous/miscellaneous/yearset/year)"/>
-					</xsl:call-template>
-				</xsl:for-each>
-			</TR>
-			<TR>
-				<xsl:for-each select="$miscellaneous/miscellaneous/yearset/year">
-					<TD ALIGN="CENTER">
-						<xsl:value-of select="@name"/>
-					</TD>
-				</xsl:for-each>
-			</TR>
-		</TABLE></CENTER>
-	</xsl:template>
 </xsl:stylesheet>
