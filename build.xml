@@ -1,152 +1,84 @@
-<?xml-stylesheet type="text/xsl" href="build.xsl"?>
+<!-- <?xml-stylesheet type="text/xsl" href="build.xsl"?> -->
 
-<project name="birding-xml" default="report">
+<project name="birding-xml" default="build-all">
 
 	<!-- PRODUCTION TARGETS -->
 
 	<target
-		name="main-indices"
-		description="generate main index, species report index, location report index, trip report index">
+		name="set-timestamp"
+		description="Set the timestamp for marking HTML output files">
 
-		<style
-			in="build.xml"
-			out="html/index.html"
-			destdir="html"
-			style="report-xsl/index.xsl"/>
-
-		<style
-			in="build.xml"
-			out="html/trip-index.html"
-			destdir="html"
-			style="report-xsl/trip-index.xsl"/>
-
-		<style
-			in="build.xml"
-			out="html/location-index.html"
-			destdir="html"
-			style="report-xsl/location-index.xsl"/>
-
-		<style
-			in="build.xml"
-			out="html/species-index.html"
-			destdir="html"
-			style="report-xsl/species-index.xsl"/>
+		<tstamp>
+			<format property="my.tstamp" pattern="MM/dd/yyyy hh:mm aa"/>
+		</tstamp>
 	</target>
-	
-	<target name="county-indices" description="generate species lists for favorite counties">
-		<style
-			in="flat-species.xml"
-			out="html/santa-clara-county-species-index.html"
-			destdir="html"
-			style="report-xsl/county-species-index.xsl">
-			<param name="in-state" expression="'CA'"/>
-			<param name="in-county" expression="'Santa Clara'"/>
-		</style>
+
+	<target
+		name="build-indices"
+		depends="set-timestamp">
 
 		<style
-			in="flat-species.xml"
-			out="html/san-mateo-county-species-index.html"
+			taskname="indices"
+			style="report-xsl/indices.xsl"
 			destdir="html"
-			style="report-xsl/county-species-index.xsl">
-			<param name="in-state" expression="'CA'"/>
-			<param name="in-county" expression="'San Mateo'"/>
+			basedir="sources/indices"
+			processor="xalan">
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
+			<include name="*.xml"/>
 		</style>
 	</target>
 
-	<target name="state-indices" description="generate species lists for favorite states">
-		<style
-			in="flat-species.xml"
-			out="html/ca-species-index.html"
-			destdir="html"
-			style="report-xsl/state-species-index.xsl">
-			<param name="in-state" expression="'CA'"/>
-		</style>
+	<target
+		name="build-species-reports"
+		depends="set-timestamp">
 
 		<style
-			in="flat-species.xml"
-			out="html/or-species-index.html"
+			taskname="species-reports"
+			style="report-xsl/species-report.xsl"
 			destdir="html"
-			style="report-xsl/state-species-index.xsl">
-			<param name="in-state" expression="'OR'"/>
+			basedir="sources/species"
+			processor="xalan">
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 		</style>
 	</target>
 
-	<target name="annual-indices" description="generate indices for favorite years">
-		<style
-			in="build.xml"
-			out="html/1996-species-index.html"
-			destdir="html"
-			style="report-xsl/annual-species-index.xsl">
-			<param name="in-year" expression="'1996'"/>
-		</style>
+	<target
+		name="build-location-reports"
+		depends="set-timestamp">
 
 		<style
-			in="build.xml"
-			out="html/1997-species-index.html"
+			taskname="location-reports"
+			style="report-xsl/location-report.xsl"
 			destdir="html"
-			style="report-xsl/annual-species-index.xsl">
-			<param name="in-year" expression="'1997'"/>
+			basedir="sources/locations"
+			processor="xalan">
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 		</style>
+	</target>
+
+	<target
+		name="build-trip-reports"
+		depends="set-timestamp">
 
 		<style
-			in="build.xml"
-			out="html/1998-species-index.html"
+			taskname="trip-reports"
+			style="report-xsl/trip-report.xsl"
 			destdir="html"
-			style="report-xsl/annual-species-index.xsl">
-			<param name="in-year" expression="'1998'"/>
+			basedir="sources/trips"
+			processor="xalan">
+			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 		</style>
-
-		<style
-			in="build.xml"
-			out="html/1999-species-index.html"
-			destdir="html"
-			style="report-xsl/annual-species-index.xsl">
-			<param name="in-year" expression="'1999'"/>
-		</style>
-
-		<style
-			in="build.xml"
-			out="html/2000-species-index.html"
-			destdir="html"
-			style="report-xsl/annual-species-index.xsl">
-			<param name="in-year" expression="'2000'"/>
-		</style>
-
-		<style
-			in="build.xml"
-			out="html/2001-species-index.html"
-			destdir="html"
-			style="report-xsl/annual-species-index.xsl">
-			<param name="in-year" expression="'2001'"/>
-		</style>
-
 	</target>
 
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="main-indices, state-indices, annual-indices, county-indices">
-
-		<exec executable="build-locations.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
-		</exec>
-
-		<exec executable="build-species.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
-		</exec>
-
-		<exec executable="build-trips.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
-		</exec>
-
-		<exec executable="build-orders.bat">
-			<env key="CLASSPATH" path="c:\jakarta-ant\lib\aaaa-xerces.jar;c:\jakarta-ant\lib\aaaa-xalan.jar"/>
-		</exec>
+		depends="build-species-reports, build-trip-reports, build-location-reports, build-indices">
 	</target>
 
 	<target name="upload-to-shout">
 		<ftp server="duracef.shout.net"
-       		remotedir="public_html/sekrit/birds"
+       		remotedir="public_html/birdwalker"
        		userid="walker"
        		password="ludwig0"
 			passive="yes"
@@ -159,7 +91,7 @@
   		</ftp>
 
 		<ftp server="duracef.shout.net"
-       		remotedir="public_html/sekrit/birds/images"
+       		remotedir="public_html/birdwalker/images"
        		userid="walker"
        		password="ludwig0"
 			passive="yes"
@@ -172,7 +104,7 @@
   		</ftp>
 
 		<ftp server="duracef.shout.net"
-       		remotedir="public_html/sekrit/birds"
+       		remotedir="public_html/birdwalker"
        		userid="walker"
        		password="ludwig0"
 			passive="yes"
@@ -183,70 +115,5 @@
       			<include name="**/*.html"/>
     		</fileset>
   		</ftp>
-	</target>
-
-	<!-- TARGETS FOR SAMPLE REPORTS, USED IN DEVELOPMENT -->
-
-	<target
-		name="trip-report"
-		description="generate a sample trip report">
-
-		<style
-			in="flat-trips.xml"
-			out="html/SAMPLE TRIP REPORT.html"
-			destdir="html"
-			style="report-xsl/trip-report.xsl">
-			<param name="in-trip-date" expression="'9/15/2001'"/>
-		</style>
-
-	</target>
-
-	<target
-		name="location-report"
-		description="generate a sample location report">
-
-		<style
-			in="build.xml"
-			out="html/SAMPLE LOCATION REPORT.html"
-			destdir="html"
-			style="report-xsl/location-report.xsl">
-			<param name="in-location" expression="'Palo Alto Duck Pond'"/>
-		</style>
-
-	</target>
-
-	<target
-		name="species-report"
-		description="generate a sample species report">
-
-		<style
-			in="build.xml"
-			out="html/SAMPLE SPECIES REPORT.html"
-			destdir="html"
-			style="report-xsl/species-report.xsl">
-			<param name="in-abbreviation" expression="'ameavo'"/>
-		</style>
-
-	</target>
-
-	<target
-		name="order-report"
-		description="generate a sample taxonomic order report">
-
-		<style
-			in="build.xml"
-			out="html/SAMPLE ORDER REPORT.html"
-			destdir="html"
-			style="report-xsl/order-report.xsl">
-			<param name="in-order-id" expression="'2'"/>
-		</style>
-
-	</target>
-
-	<target
-		name="sample-reports"
-		description="generate all the sample reports"
-		depends="trip-report, location-report, species-report, order-report">
-		<echo message="them is some reports"/>
 	</target>
 </project>
