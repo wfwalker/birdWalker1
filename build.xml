@@ -79,7 +79,7 @@
 		<fail unless="source" message="please define a page source on the command line"/>
 
 		<style
-			taskname="test-index"
+			taskname="build-one-page"
 			style="birdwalker.xsl"
 			destdir="html"
 			basedir="sources"
