@@ -82,7 +82,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: common-report.xsl,v 1.9 2001/09/26 00:20:07 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: common-report.xsl,v 1.10 2001/10/02 16:13:29 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -99,13 +99,25 @@
 	<!-- note that this template uses a background color that must be defined in any XSL that includes common-report.xsl -->
 
 	<xsl:template name="tableheader">
-		<xsl:param name="title-string"/>
+		<xsl:param name="in-title-string"/>
+		<xsl:param name="in-extra-title"/>
+		<xsl:param name="in-extra-url"/>
+		<xsl:param name="in-header-style"/>
 
 		<TABLE WIDTH="100%">
 			<TR>
 				<TD WIDTH="100%">
-					<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
-					<xsl:value-of select="$title-string"/>
+					<xsl:attribute name="CLASS"><xsl:value-of select="$in-header-style"/></xsl:attribute>
+
+					<xsl:if test="string-length($in-extra-title)">
+						<A>
+							<xsl:attribute name="HREF"><xsl:value-of select="$in-extra-url"/></xsl:attribute>
+							<xsl:value-of select="$in-extra-title"/>
+						</A>
+						<xsl:text>, </xsl:text>
+					</xsl:if>
+
+					<xsl:value-of select="$in-title-string"/>
 				</TD>
 			</TR>
 		</TABLE>
@@ -114,53 +126,28 @@
 	<!-- templates to create table sections used in many kinds of reports -->
 
 	<xsl:template name="species-table">
-		<xsl:param name="species-list"/>
-		<xsl:param name="extra-title"/>
-		<xsl:param name="extra-url"/>
-		<xsl:param name="sighting-list"/>
-
-		<xsl:variable
-			name="notable-sighting-list"
-			select="$sighting-list[string-length(notes/p)>0]"/>
-
-		<xsl:variable
-			name="notable-species-list"
-			select="$species-list[abbreviation=$notable-sighting-list/abbreviation]"/>
+		<xsl:param name="in-species-list"/>
+		<xsl:param name="in-extra-title"/>
+		<xsl:param name="in-extra-url"/>
+		<xsl:param name="in-header-style"/>
 
 		<P>
-			<!-- used to call the tableheader template here -->
-			<!-- can't use the table header template anymore, since I wanna have url's in the header -->
-			<TABLE WIDTH="100%">
-				<TR>
-					<TD WIDTH="100%">
-						<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
-
-						<xsl:if test="string-length($extra-title)">
-							<A>
-								<xsl:attribute name="HREF"><xsl:value-of select="$extra-url"/></xsl:attribute>
-								<xsl:value-of select="$extra-title"/>
-							</A>
-							<xsl:text>, </xsl:text>
-						</xsl:if>
-
-						<xsl:value-of select="count($species-list)"/> species
-					</TD>
-				</TR>
-			</TABLE>
+			<xsl:call-template name="tableheader">
+				<xsl:with-param name="in-title-string">
+					<xsl:value-of select="count($in-species-list)"/> species
+				</xsl:with-param>
+				<xsl:with-param name="in-extra-url" select="$in-extra-url"/>
+				<xsl:with-param name="in-extra-title" select="$in-extra-title"/>
+				<xsl:with-param name="in-header-style" select="$in-header-style"/>
+			</xsl:call-template>
 
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$species-list[position() &lt; 1 + (count($species-list) div 2)]">
-							<xsl:with-param name="create-link">true</xsl:with-param>
-							<xsl:with-param name="notable-species-list" select="$notable-species-list"/>
-						</xsl:apply-templates>
+						<xsl:apply-templates select="$in-species-list[position() &lt; 1 + (count($in-species-list) div 2)]"/>
 					</TD>
 					<TD WIDTH="50%">
-						<xsl:apply-templates select="$species-list[position() &gt;= 1 + (count($species-list) div 2)]">
-							<xsl:with-param name="create-link">true</xsl:with-param>
-							<xsl:with-param name="notable-species-list" select="$notable-species-list"/>
-						</xsl:apply-templates>
+						<xsl:apply-templates select="$in-species-list[position() &gt;= 1 + (count($in-species-list) div 2)]"/>
 					</TD>
 				</TR>
 			</TABLE>
@@ -169,25 +156,25 @@
 
 	<xsl:template name="location-table">
 		<xsl:param name="location-list"/>
+		<xsl:param name="in-header-style"/>
 
 		<P>
 			<xsl:call-template name="tableheader">
-				<xsl:with-param name="title-string">
+				<xsl:with-param name="in-title-string">
 					<xsl:value-of select="count($location-list)"/>
 					location<xsl:if test="count($location-list)>1">s</xsl:if>
 				</xsl:with-param>
+				<xsl:with-param name="in-header-style" select="$in-header-style"/>
 			</xsl:call-template>
 
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$location-list[position() &lt; 1 + (count($location-list) div 2)]">
-							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$location-list[position() &gt;= 1 + (count($location-list) div 2)]">
-							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 				</TR>
@@ -199,14 +186,16 @@
 
 	<xsl:template name="sightings-table">
 		<xsl:param name="sighting-list"/>
+		<xsl:param name="in-header-style"/>
 
 		<xsl:if test="count($sighting-list) > 0">
 			<P>
 				<xsl:call-template name="tableheader">
-					<xsl:with-param name="title-string">
+					<xsl:with-param name="in-title-string">
 						<xsl:value-of select="count($sighting-list)"/>
 						sighting note<xsl:if test="count($sighting-list)>1">s</xsl:if>
 					</xsl:with-param>
+					<xsl:with-param name="in-header-style" select="$in-header-style"/>
 				</xsl:call-template>
 	
 				<TABLE WIDTH="100%" CELLPADDING="10">
@@ -220,25 +209,25 @@
 
 	<xsl:template name="trip-table">
 		<xsl:param name="trip-list"/>
+		<xsl:param name="in-header-style"/>
 
 		<P>
 			<xsl:call-template name="tableheader">
-				<xsl:with-param name="title-string">
+				<xsl:with-param name="in-title-string">
 					<xsl:value-of select="count($trip-list)"/>
 					trip<xsl:if test="count($trip-list)>1">s</xsl:if>
 				</xsl:with-param>
+				<xsl:with-param name="in-header-style" select="$in-header-style"/>
 			</xsl:call-template>
 
 			<TABLE CELLPADDING="10" WIDTH="100%">
 				<TR>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$trip-list[position() &lt; 1 + (count($trip-list) div 2)]">
-							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 					<TD WIDTH="50%">
 						<xsl:apply-templates select="$trip-list[position() &gt;= 1 + (count($trip-list) div 2)]">
-							<xsl:with-param name="create-link">true</xsl:with-param>
 						</xsl:apply-templates>
 					</TD>
 				</TR>
@@ -247,9 +236,12 @@
 	</xsl:template>
 
 	<xsl:template match="notes">
+		<xsl:param name="in-header-style"/>
+
 		<P>
 			<xsl:call-template name="tableheader">
-				<xsl:with-param name="title-string">notes</xsl:with-param>
+				<xsl:with-param name="in-title-string">notes</xsl:with-param>
+				<xsl:with-param name="in-header-style" select="$in-header-style"/>
 			</xsl:call-template>
 
 			<xsl:copy-of select="."/>
@@ -259,26 +251,9 @@
 	<!-- templates for names of and hyperlinks to various entities -->
 
 	<xsl:template match="species">
-		<xsl:param name="create-link"/>
-		<xsl:param name="notable-species-list"/>
 		<xsl:param name="this" select="."/>
-
-		<xsl:choose>
-			<xsl:when test="count($notable-species-list[abbreviation=$this/abbreviation])>0">
-				<IMG SRC="images/blue.gif" WIDTH="10" HEIGHT="10" BORDER="0"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<IMG SRC="images/spacer.gif" WIDTH="10" HEIGHT="10" BORDER="0"/>
-			</xsl:otherwise>
-		</xsl:choose>
-
-		<IMG SRC="images/spacer.gif" WIDTH="5" HEIGHT="10" BORDER="0"/>
-
-
 		<A>
-			<xsl:if test="string-length($create-link) > 0">
-				<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
-			</xsl:if>
+			<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 		</A>
 		<BR/>
@@ -308,35 +283,29 @@
 	</xsl:template>
 
 	<xsl:template match="trip">
-		<xsl:param name="create-link"/>
-
 		<A>
-			<xsl:if test="string-length($create-link)>0">
-				<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
-			</xsl:if>
+			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/> (<xsl:value-of select="date"/>)
 		</A>
 		<BR/>
 	</xsl:template>
 
 	<xsl:template match="location">
-		<xsl:param name="create-link"/>
-
 		<A>
-			<xsl:if test="string-length($create-link) > 0">
-				<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
-			</xsl:if>
-
+			<xsl:attribute name="HREF">./<xsl:value-of select="report-url"/></xsl:attribute>
 			<xsl:value-of select="name"/> (<xsl:value-of select="city"/>, <xsl:value-of select="state"/>)
 		</A>
 		<BR/>
 	</xsl:template>
 
 	<xsl:template name="order-table">
+		<xsl:param name="in-header-style"/>
+
 		<xsl:call-template name="tableheader">
-			<xsl:with-param name="title-string">
+			<xsl:with-param name="in-title-string">
 				22 orders
 			</xsl:with-param>
+			<xsl:with-param name="in-header-style" select="$in-header-style"/>
 		</xsl:call-template>
 
 		<TABLE CELLPADDING="10" WIDTH="100%">
@@ -386,13 +355,15 @@
 	<xsl:template name="monthly-distribution">
 		<xsl:param name="dated-items"/>
 		<xsl:param name="item-kind"/>
+		<xsl:param name="in-header-style"/>
 
 		<xsl:variable name="species-count" select="count($dated-items)"/>
 
 		<xsl:call-template name="tableheader">
-			<xsl:with-param name="title-string">
+			<xsl:with-param name="in-title-string">
 				Monthly distribution of <xsl:value-of select="$species-count"/><xsl:text> </xsl:text><xsl:value-of select="$item-kind"/>
 			</xsl:with-param>
+			<xsl:with-param name="in-header-style" select="$in-header-style"/>
 		</xsl:call-template>
 
 		<CENTER><TABLE>
@@ -466,13 +437,15 @@
 	<xsl:template name="yearly-distribution">
 		<xsl:param name="dated-items"/>
 		<xsl:param name="item-kind"/>
+		<xsl:param name="in-header-style"/>
 
 		<xsl:variable name="species-count" select="count($dated-items)"/>
 
 		<xsl:call-template name="tableheader">
-			<xsl:with-param name="title-string">
+			<xsl:with-param name="in-title-string">
 				Yearly distribution of <xsl:value-of select="count($dated-items)"/><xsl:text> </xsl:text><xsl:value-of select="$item-kind"/>
 			</xsl:with-param>
+			<xsl:with-param name="in-header-style" select="$in-header-style"/>
 		</xsl:call-template>
 
 		<CENTER><TABLE>
