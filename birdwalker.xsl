@@ -6,7 +6,7 @@
 	<!-- a template for inserting cascading style sheets -->
 
 	<xsl:template name="style-block">
-		<LINK REL="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style"/>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="../stylesheet.css" TITLE="Style"/>
 	</xsl:template>
 
 	<!-- define four different navigation blocks, one for each kind of page -->
@@ -59,26 +59,26 @@
 			<TR>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$home-class"/></xsl:attribute>
-					<SPAN CLASS="navigation-text"><A HREF="./index.html"><CODE>&lt;birdWalker&gt;</CODE></A></SPAN>
+					<SPAN CLASS="navigation-text"><A HREF="../indices/index.html"><CODE>&lt;birdWalker&gt;</CODE></A></SPAN>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$species-class"/></xsl:attribute>
-					<xsl:if test="starts-with($species-class, 'default')"><IMG SRC="images/species.gif" ALIGN="MIDDLE"/></xsl:if>
-					<SPAN CLASS="navigation-text"><A HREF="./species-index.html">Species Reports</A></SPAN>
+					<xsl:if test="starts-with($species-class, 'default')"><IMG SRC="../images/species.gif" ALIGN="MIDDLE"/></xsl:if>
+					<SPAN CLASS="navigation-text"><A HREF="../species/index.html">Species Reports</A></SPAN>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$location-class"/></xsl:attribute>
-					<xsl:if test="starts-with($location-class, 'default')"><IMG SRC="images/location.gif" ALIGN="MIDDLE"/></xsl:if>
-					<SPAN CLASS="navigation-text"><A HREF="./location-index.html">Location Reports</A></SPAN>
+					<xsl:if test="starts-with($location-class, 'default')"><IMG SRC="../images/location.gif" ALIGN="MIDDLE"/></xsl:if>
+					<SPAN CLASS="navigation-text"><A HREF="../locations/index.html">Location Reports</A></SPAN>
 				</TD>
 				<TD ALIGN="CENTER" WIDTH="25%">
 					<xsl:attribute name="CLASS"><xsl:value-of select="$trip-class"/></xsl:attribute>
-					<xsl:if test="starts-with($trip-class, 'default')"><IMG SRC="images/trip.gif" ALIGN="MIDDLE"/></xsl:if>
-					<SPAN CLASS="navigation-text"><A HREF="./trip-index.html">Trip Reports</A></SPAN>
+					<xsl:if test="starts-with($trip-class, 'default')"><IMG SRC="../images/trip.gif" ALIGN="MIDDLE"/></xsl:if>
+					<SPAN CLASS="navigation-text"><A HREF="../trips/index.html">Trip Reports</A></SPAN>
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: reports.xsl,v 1.14 2002/08/14 01:38:03 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.1 2002/08/14 15:58:23 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -144,14 +144,14 @@
 	<xsl:template match="species/sighting/photo">
 	    <xsl:message>number one</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
-	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>photo</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>photo</A>
 		</SPAN>
 	</xsl:template>
 
 	<xsl:template match="generate-species-report/trip/sighting/photo">
 	    <xsl:message>number two</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
-	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../../species/abbreviation"/>.jpg</xsl:attribute>photo</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../../species/abbreviation"/>.jpg</xsl:attribute>photo</A>
 		</SPAN>
 	</xsl:template>
 
@@ -159,7 +159,7 @@
 	<xsl:template match="generate-location-report/species/sighting/photo">
 	    <xsl:message>number three</xsl:message>
 		<DIV CLASS="sighting-notes">
-	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>
 			<xsl:value-of select="../date"/> photo
 		</A>
 		</DIV>
@@ -225,7 +225,7 @@
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
 
-			<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+			<xsl:attribute name="HREF">../species/<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 		</A>
 
@@ -246,7 +246,7 @@
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
 
-			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+			<xsl:attribute name="HREF">../species/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 		</A>
 
@@ -256,7 +256,7 @@
 	<!-- how to display trip names -->
 	<xsl:template match="trip">
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+			<xsl:attribute name="HREF">../trips/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="name"/>
 			<xsl:text> </xsl:text>
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="date"/></SPAN>
@@ -269,7 +269,7 @@
 
 	<xsl:template match="location">
 		<A>
-			<xsl:attribute name="HREF">./<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+			<xsl:attribute name="HREF">../locations/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="name"/>
 			<xsl:text> </xsl:text>
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="city"/>, <xsl:value-of select="state"/></SPAN>
@@ -279,7 +279,7 @@
 
 	<xsl:template match="order">
 		<B><A>
-			<xsl:attribute name="HREF"><xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+			<xsl:attribute name="HREF">../orders/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 			<xsl:value-of select="common-name"/>
 			<xsl:text> </xsl:text>
 			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="latin-name"/></SPAN>
@@ -297,7 +297,7 @@
 		<TD ALIGN="CENTER" VALIGN="BOTTOM">
 			<xsl:value-of select="$in-height"/><BR/>
 
-			<IMG SRC="images/blue.gif" WIDTH="20">
+			<IMG SRC="../images/blue.gif" WIDTH="20">
 				<xsl:attribute name="HEIGHT"><xsl:value-of select="1 + ((20 * $in-bar-count * $in-height) div $in-maximum)"/></xsl:attribute>
 			</IMG>
 		</TD>
@@ -376,7 +376,7 @@
 
 			<!-- spacer row -->
 			<TR>
-				<TD COLSPAN="13"><IMG SRC="images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
+				<TD COLSPAN="13"><IMG SRC="../images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
 			</TR>
 
 			<xsl:for-each select="document('misc.xml')/miscellaneous/orderset/order[order-id=$in-species-with-sightings/order-id]">
@@ -389,7 +389,7 @@
 
 					<TD ALIGN="RIGHT">
 						<A>
-							<xsl:attribute name="HREF"><xsl:value-of select="$the-order/filename-stem"/>.html</xsl:attribute>
+							<xsl:attribute name="HREF">../orders/<xsl:value-of select="$the-order/filename-stem"/>.html</xsl:attribute>
 							<xsl:value-of select="$the-order/common-name"/>
 						</A>
 					</TD>
@@ -428,7 +428,7 @@
 
 				<!-- spacer row -->
 				<TR>
-					<TD COLSPAN="13"><IMG SRC="images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
+					<TD COLSPAN="13"><IMG SRC="../images/spacer.gif" HEIGHT="5" WIDTH="5"/></TD>
 				</TR>
 			</xsl:for-each>
 
@@ -486,7 +486,7 @@
 	<xsl:template match="generate-year-report/species/sighting[exclude]">e</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[not(exclude)]">X</xsl:template>
 	<xsl:template match="generate-year-report/species/sighting[photo]">
-	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>P</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>P</A>
 	</xsl:template>
 
 
@@ -506,7 +506,7 @@
 			<xsl:call-template name="alternating-background-colors"><xsl:with-param name="in-index" select="position()"/></xsl:call-template>
 
 			<A>
-				<xsl:attribute name="HREF"><xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+				<xsl:attribute name="HREF">../trips/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 				<xsl:value-of select="substring(date/text(), 9, 1)"/><BR/>
 				<xsl:value-of select="substring(date/text(), 10, 1)"/>
 			</A>
@@ -606,7 +606,7 @@
 			</xsl:choose>
 
 			<TD><A>
-				<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
+				<xsl:attribute name="HREF">../species/<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
 				<xsl:value-of select="common-name"/>
 			</A></TD>
 
@@ -637,7 +637,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
 						<xsl:value-of select="$year-name"/> Species List
 					</TD>
 				</TR>
@@ -699,7 +699,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-color">
 				<TR>
 				    <TD VALIGN="TOP" ROWSPAN="2">
-						<IMG SRC="images/location.gif" ALIGN="LEFT"/>
+						<IMG SRC="../images/location.gif" ALIGN="LEFT"/>
 					</TD>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<xsl:value-of select="location/name"/>
@@ -808,7 +808,7 @@
 			<TR>
 			    <TD VALIGN="TOP" ROWSPAN="2">
 				    <!-- optionally replace this image with the photo -->
-					<IMG SRC="images/species.gif" ALIGN="LEFT"/>
+					<IMG SRC="../images/species.gif" ALIGN="LEFT"/>
 				</TD>
 				<TD COLSPAN="10" CLASS="pagetitle">
 					<xsl:value-of select="species/common-name"/>
@@ -821,9 +821,7 @@
 				<TD ALIGN="RIGHT" NOWRAP="TRUE">Order<BR/>Family</TD>
 				<TD NOWRAP="TRUE">
 					<A>
-						<xsl:attribute name="HREF">
-							<xsl:value-of select="order/filename-stem"/>.html
-						</xsl:attribute>
+						<xsl:attribute name="HREF">../orders/<xsl:value-of select="order/filename-stem"/>.html</xsl:attribute>
 						<I><xsl:value-of select="order/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="order/common-name"/>
 					</A><BR/>
 					<I><xsl:value-of select="family/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="family/common-name"/>
@@ -895,7 +893,7 @@
 		<DIV CLASS="headertext">
 			<xsl:value-of select="count($this-location-species)"/> species seen at
 			<A>
-				<xsl:attribute name="HREF"><xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+				<xsl:attribute name="HREF">../locations/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
 				<xsl:value-of select="name"/>
 			</A>
 		</DIV>
@@ -924,7 +922,7 @@
 			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="trip-color" CELLPADDING="5" BORDER="0">
 				<TR>
 				    <TD VALIGN="TOP" ROWSPAN="2">
-						<IMG SRC="images/trip.gif" ALIGN="LEFT"/>
+						<IMG SRC="../images/trip.gif" ALIGN="LEFT"/>
 					</TD>
 					<TD COLSPAN="6" CLASS="pagetitle">
 						<xsl:value-of select="trip/name"/>
@@ -988,7 +986,7 @@
 			<TABLE WIDTH="100%" CELLSPACING="0" CLASS="species-color" CELLPADDING="5" BORDER="0">
 				<TR>
 				    <TD VALIGN="TOP" ROWSPAN="2">
-						<IMG SRC="images/species.gif" ALIGN="LEFT"/>
+						<IMG SRC="../images/species.gif" ALIGN="LEFT"/>
 					</TD>
 					<TD CLASS="pagetitle" NOWRAP="TRUE" COLSPAN="6">
 						<xsl:value-of select="order/latin-name"/>
@@ -1069,7 +1067,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
 						<xsl:value-of select="$in-county"/>, <xsl:value-of select="$in-state"/> Species List
 					</TD>
 				</TR>
@@ -1108,102 +1106,16 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: indices.xsl,v 1.11 2002/08/14 01:38:31 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.1 2002/08/14 15:58:23 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
 			<CENTER>
-				<H1><IMG SRC="images/bigtitle.gif"/></H1>
+				<H1><IMG SRC="../images/bigtitle.gif"/></H1>
 				<P>an XSL-based report generator for birding observations</P>
 			</CENTER>
 
-			<DIV CLASS="headertext">How to navigate</DIV>
-
-			<DIV CLASS="report-content">
-				<P>
-				All the pages on this site have links at the top and bottom leading to the
-				indices of 
-					<A HREF="./species-index.html">species reports</A>,
-					<A HREF="./trip-index.html">trip reports</A>, and
-					<A HREF="./location-index.html">location reports</A>.
-				In addition, I have generated a species list for each
-				year we've been bird watching (
-					<A HREF="1996.html">1996</A>,
-					<A HREF="1997.html">1997</A>,
-					<A HREF="1998.html">1998</A>,
-					<A HREF="1999.html">1999</A>,
-					<A HREF="2000.html">2000</A>,
-					<A HREF="2001.html">2001</A>,
-					<A HREF="2002.html">2002</A>),
-				each state we've taken trips in (
-					<A HREF="ca-species-index.html">California</A>,
-					<A HREF="ma-species-index.html">Massachusetts</A>,
-					<A HREF="il-species-index.html">Illinois</A>,
-					<A HREF="or-species-index.html">Oregon</A>),
-				and some of our favorite counties (
-					<A HREF="santa-clara-county-species-index.html">Santa Clara</A>,
-					<A HREF="monterey-county-species-index.html">Monterey</A>,
-					<A HREF="san-mateo-county-species-index.html">San Mateo</A>).
-				I've included my
-					<A HREF="./photo-index.html">experimental digiscoping photos</A> using a Canon Powershot S40 and Pentax ED spotting scope.
-				</P>
-			</DIV>
-
-			<DIV CLASS="headertext">How it works</DIV>
-
-			<DIV CLASS="report-content">
-				<P>While in the field, I record my observations using a Palm V and its Memo Pad application.
-				Each of these trip lists includes a date, location, and collection of six-letter abbreviations,
-				one for each species seen.</P>
-
-				<P>After the trip, I import these trip lists into a FileMaker database. The database consists of
-				four tables; Sightings, Locations, Trips, and Species. The Species table is prepopulated with
-				Mr. Shipman's collection of abbreviations, latin names, and common names for all the species on
-				the ABA list. The other three tables are generated from my field notes.</P>
-				
-				<P>To generate these web page reports, I first export the data from the FileMaker database into XML.
-				I transform the XML data into a series of web pages using XSL templates and Apache's Xalan
-				(an XSLT engine).</P>
-			</DIV>
-
-			<DIV CLASS="headertext">References</DIV>
-
-			<DIV CLASS="report-content">
-			<P>
-				<A HREF="http://www.nmt.edu/~shipman/z/nom/6home.html">
-					<I>A robust bird code system: the six-letter code</I>, John Shipman<BR/>
-					http://www.nmt.edu/~shipman/z/nom/6home.html
-				</A>
-			</P>
-
-			<P>
-				<A HREF="http://xml.apache.org/xalan-j/index.html">
-					<I>Xalan: An XSLT Engine</I>, the Apache XML Project<BR/>
-					http://xml.apache.org/xalan-j/index.html
-				</A>
-			</P>
-
-			<P>
-				<A HREF="http://www.aou.org/aou/birdlist.html">
-					Americal Ornithological Union Checklist of North American Birds<BR/>
-					http://www.aou.org/aou/birdlist.html
-				</A>
-			</P>
-
-			<P>
-				<A HREF="http://www.filemaker.com/index.html">
-					<I>FileMaker Pro</I> database, FileMaker Inc.<BR/>
-					http://www.filemaker.com/index.html
-				</A>
-			</P>
-
-			<P>
-				<A HREF="http://www.paradisebirding.com/sys-tmpl/door/">
-					Steve Shunk, Paradise Birding<BR/>
-					http://www.paradisebirding.com/sys-tmpl/door/
-				</A>
-			</P>
-			</DIV>
+			<xsl:copy-of select="DIV"/>
 
 			<P></P>
 
@@ -1226,7 +1138,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="location-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/location.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/location.gif" ALIGN="MIDDLE"/>
 						Index of Location Reports
 					</TD>
 				</TR>
@@ -1273,7 +1185,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
 						Mary and Bill's Life List
 					</TD>
 				</TR>
@@ -1337,7 +1249,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
 						<xsl:value-of select="$in-state"/> State Species List
 					</TD>
 				</TR>
@@ -1380,7 +1292,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="trip-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/trip.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/trip.gif" ALIGN="MIDDLE"/>
 						Index of Trip Reports
 					</TD>
 				</TR>
@@ -1421,8 +1333,8 @@
 
 	<!-- special-purpose template for formatting photo links, used only in the photo index -->
 	<xsl:template match="sightingset/sighting/photo">
-	    <A><xsl:attribute name="HREF">./images/<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>
-			<img><xsl:attribute name="SRC">./images/TN_<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.JPG</xsl:attribute></img>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>
+			<img><xsl:attribute name="SRC">../images/TN_<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.JPG</xsl:attribute></img>
 			<xsl:apply-templates select="../date"/>
 			<xsl:text>, </xsl:text>
 			<xsl:apply-templates select="document('flat-species.xml')/taxonomyset/species[abbreviation=current()/../abbreviation]/common-name"/><xsl:text> at </xsl:text>
@@ -1445,7 +1357,7 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="species-color">
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<IMG SRC="images/species.gif" ALIGN="MIDDLE"/>
+						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
 						Index of Photos
 					</TD>
 				</TR>
