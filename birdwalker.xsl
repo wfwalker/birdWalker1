@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.5 2002/09/21 07:00:11 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.6 2003/01/21 23:10:30 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -131,35 +131,35 @@
 
 	<!-- displays a first sighting note, with or without date -->
 
-	<xsl:template mode="with-date" match="sighting/first">
-		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text><xsl:value-of select="../date"/>, first sighting</SPAN>
+	<xsl:template mode="with-date" match="sighting/@first">
+		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text><xsl:value-of select="../@date"/>, first sighting</SPAN>
 	</xsl:template>
 
-	<xsl:template match="sighting/first">
+	<xsl:template match="sighting/@first">
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>first sighting</SPAN>
 	</xsl:template>
 
 	<!-- how to display a link to a photo -->
 
-	<xsl:template match="species/sighting/photo">
+	<xsl:template match="species/sighting/@photo">
 	    <xsl:message>number one</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>photo</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../@date"/>-<xsl:value-of select="../../@abbreviation"/>.jpg</xsl:attribute>photo</A>
 		</SPAN>
 	</xsl:template>
 
-	<xsl:template match="generate-species-report/trip/sighting/photo">
+	<xsl:template match="generate-species-report/trip/sighting/@photo">
 	    <xsl:message>number two</xsl:message>
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../../species/abbreviation"/>.jpg</xsl:attribute>photo</A>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../@date"/>-<xsl:value-of select="../../../species/@abbreviation"/>.jpg</xsl:attribute>photo</A>
 		</SPAN>
 	</xsl:template>
 
     <!-- THIS TEMPLATE IS BEING IGNORED BECAUSE OF the general species template below already looking for photo -->
-	<xsl:template match="generate-location-report/species/sighting/photo">
+	<xsl:template match="generate-location-report/species/sighting/@photo">
 	    <xsl:message>number three</xsl:message>
 		<DIV CLASS="sighting-notes">
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../../abbreviation"/>.jpg</xsl:attribute>
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../@date"/>-<xsl:value-of select="../../@abbreviation"/>.jpg</xsl:attribute>
 			<xsl:value-of select="../date"/> photo
 		</A>
 		</DIV>
@@ -167,20 +167,20 @@
 
 	<!-- how to display the fact that a sighting has been excluded from life list counting -->
 
-	<xsl:template mode="with-date" match="sighting/exclude">
-		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text><xsl:value-of select="../date"/>, excluded</SPAN>
+	<xsl:template mode="with-date" match="sighting/@exclude">
+		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text><xsl:value-of select="../@date"/>, excluded</SPAN>
 	</xsl:template>
 
-	<xsl:template match="sighting/exclude">
+	<xsl:template match="sighting/@exclude">
 		<SPAN CLASS="anchor-subtitle"><xsl:text> </xsl:text>excluded</SPAN>
 	</xsl:template>
 
 	<!-- template to display dates -->
 
-	<xsl:template match="date">
-		<xsl:variable name="month-index" select="substring(text(), 6, 2)"/>
-		<xsl:variable name="day-index" select="substring(text(), 9, 2)"/>
-		<xsl:variable name="year-index" select="substring(text(), 1, 4)"/>
+	<xsl:template match="@date">
+		<xsl:variable name="month-index" select="substring(current(), 6, 2)"/>
+		<xsl:variable name="day-index" select="substring(current(), 9, 2)"/>
+		<xsl:variable name="year-index" select="substring(current(), 1, 4)"/>
 
 		<xsl:value-of select="document('misc.xml')/miscellaneous/monthset/month[@index=$month-index]/@name"/>
 		<xsl:text> </xsl:text>
@@ -205,13 +205,13 @@
 
 	<xsl:template match="/generate-location-report/species/sighting">
 		<DIV CLASS="sighting-notes">
-			<xsl:value-of select="date"/>, <xsl:value-of select="notes/p"/>
+			<xsl:value-of select="@date"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
 	</xsl:template>
 
 	<xsl:template match="/generate-order-report/species/sighting">
 		<DIV CLASS="sighting-notes">
-			<xsl:value-of select="date"/>, <xsl:value-of select="location"/>, <xsl:value-of select="notes/p"/>
+			<xsl:value-of select="@date"/>, <xsl:value-of select="@location-name"/>, <xsl:value-of select="notes/p"/>
 		</DIV>
 	</xsl:template>
 
@@ -221,20 +221,20 @@
 	<xsl:template match="species">
 		<A>
 		    <!-- TODO, xsl:if is slow -->
-			<xsl:if test="sighting/notes or sighting/first">
+			<xsl:if test="sighting/notes or sighting/@first">
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
 
-			<xsl:attribute name="HREF">../species/<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
-			<xsl:value-of select="common-name"/>
+			<xsl:attribute name="HREF">../species/<xsl:value-of select="@abbreviation"/>.html</xsl:attribute>
+			<xsl:value-of select="@common-name"/>
 		</A>
 
 		<!-- looks like the following trick won't work, because the variable substitution is not happening? -->
- 		<xsl:apply-templates select="sighting/first"/>
- 		<xsl:apply-templates select="sighting/exclude"/>
+ 		<xsl:apply-templates select="sighting/@first"/>
+ 		<xsl:apply-templates select="sighting/@exclude"/>
 
 		<!-- TODO, unwanted line break before this -->
-		<xsl:apply-templates select="sighting/photo"/>
+		<xsl:apply-templates select="sighting/@photo"/>
  		<xsl:apply-templates select="sighting[notes]"/>
             
 		<BR/>
@@ -242,12 +242,12 @@
 
 	<xsl:template match="generate-order-report/species">
 		<A>
-			<xsl:if test="sighting[not(exclude)]">
+			<xsl:if test="sighting[not(@exclude)]">
 				<xsl:attribute name="CLASS">noteworthy-species</xsl:attribute>
 			</xsl:if>
 
-			<xsl:attribute name="HREF">../species/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-			<xsl:value-of select="common-name"/>
+			<xsl:attribute name="HREF">../species/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
+			<xsl:value-of select="@common-name"/>
 		</A>
 
 		<BR/>
@@ -256,33 +256,33 @@
 	<!-- how to display trip names -->
 	<xsl:template match="trip">
 		<A>
-			<xsl:attribute name="HREF">../trips/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-			<xsl:value-of select="name"/>
+			<xsl:attribute name="HREF">../trips/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
+			<xsl:value-of select="@name"/>
 			<xsl:text> </xsl:text>
-			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="date"/></SPAN>
+			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="@date"/></SPAN>
 		</A>
 
-		<xsl:apply-templates select="sighting/photo"/>
+		<xsl:apply-templates select="sighting/@photo"/>
 		<BR/>
 		<xsl:apply-templates select="sighting[notes]"/>
 	</xsl:template>
 
 	<xsl:template match="location">
 		<A>
-			<xsl:attribute name="HREF">../locations/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-			<xsl:value-of select="name"/>
+			<xsl:attribute name="HREF">../locations/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
+			<xsl:value-of select="@name"/>
 			<xsl:text> </xsl:text>
-			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="city"/>, <xsl:value-of select="state"/></SPAN>
+			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="@city"/>, <xsl:value-of select="@state"/></SPAN>
 		</A>
 		<BR/>
 	</xsl:template>
 
 	<xsl:template match="order">
 		<B><A>
-			<xsl:attribute name="HREF">../orders/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-			<xsl:value-of select="common-name"/>
+			<xsl:attribute name="HREF">../orders/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
+			<xsl:value-of select="@common-name"/>
 			<xsl:text> </xsl:text>
-			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="latin-name"/></SPAN>
+			<SPAN CLASS="anchor-subtitle"><xsl:value-of select="@latin-name"/></SPAN>
 		</A></B>
 		<BR/>
 	</xsl:template>
@@ -318,7 +318,7 @@
 							<xsl:variable name="date-prefix" select="concat('-', @index, '-')"/>
 		
 							<xsl:call-template name="vertical-bar">
-								<xsl:with-param name="in-height" select="count($in-dated-items[contains(date, $date-prefix)])"/>
+								<xsl:with-param name="in-height" select="count($in-dated-items[contains(@date, $date-prefix)])"/>
 								<xsl:with-param name="in-maximum" select="$item-count"/>
 								<xsl:with-param name="in-bar-count" select="'12'"/>
 							</xsl:call-template>
@@ -342,7 +342,7 @@
 							<xsl:variable name="year-name" select="@name"/>
 		
 							<xsl:call-template name="vertical-bar">
-								<xsl:with-param name="in-height" select="count($in-dated-items[contains(date, $year-name)])"/>
+								<xsl:with-param name="in-height" select="count($in-dated-items[contains(@date, $year-name)])"/>
 								<xsl:with-param name="in-maximum" select="$item-count"/>
 								<xsl:with-param name="in-bar-count" select="count(document('misc.xml')/miscellaneous/yearset/year)"/>
 							</xsl:call-template>
@@ -390,7 +390,7 @@
 					<TD ALIGN="RIGHT">
 						<A>
 							<xsl:attribute name="HREF">../orders/<xsl:value-of select="$the-order/filename-stem"/>.html</xsl:attribute>
-							<xsl:value-of select="$the-order/common-name"/>
+							<xsl:value-of select="$the-order/@common-name"/>
 						</A>
 					</TD>
 
@@ -405,7 +405,7 @@
 
 						<xsl:variable
 							name="order-sightings-this-month"
-							select="$order-sightings-this-location[date=$trips-this-month/date]"/>
+							select="$order-sightings-this-location[@date=$trips-this-month/date]"/>
 
 						<TD ALIGN="RIGHT">
 							<xsl:choose>
@@ -454,7 +454,7 @@
 
 					<xsl:variable
 						name="sightings-this-month"
-						select="$in-species-with-sightings/sighting[date=$trips-this-month/date]"/>
+						select="$in-species-with-sightings/sighting[@date=$trips-this-month/date]"/>
 
 					<TD ALIGN="RIGHT">
 						<xsl:value-of select="count($sightings-this-month)"/>
@@ -482,11 +482,11 @@
 		</xsl:choose>
 	</xsl:template>
 
-	<xsl:template match="generate-year-report/species/sighting[first]">F</xsl:template>
-	<xsl:template match="generate-year-report/species/sighting[exclude]">e</xsl:template>
-	<xsl:template match="generate-year-report/species/sighting[not(exclude)]">X</xsl:template>
-	<xsl:template match="generate-year-report/species/sighting[photo]">
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>P</A>
+	<xsl:template match="generate-year-report/species/sighting[@first]">F</xsl:template>
+	<xsl:template match="generate-year-report/species/sighting[@exclude]">e</xsl:template>
+	<xsl:template match="generate-year-report/species/sighting[not(@exclude)]">X</xsl:template>
+	<xsl:template match="generate-year-report/species/sighting[@photo]">
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="@date"/>-<xsl:value-of select="../@abbreviation"/>.jpg</xsl:attribute>P</A>
 	</xsl:template>
 
 
@@ -496,7 +496,7 @@
 		<TD>
 			<!-- alternating background colors -->
 			<xsl:call-template name="alternating-background-colors"><xsl:with-param name="in-index" select="position()"/></xsl:call-template>
-			<xsl:apply-templates select="$the-species/sighting[date=current()/date]"/>
+			<xsl:apply-templates select="$the-species/sighting[@date=current()/@date]"/>
 		</TD>
 	</xsl:template>
 
@@ -506,9 +506,9 @@
 			<xsl:call-template name="alternating-background-colors"><xsl:with-param name="in-index" select="position()"/></xsl:call-template>
 
 			<A>
-				<xsl:attribute name="HREF">../trips/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-				<xsl:value-of select="substring(date/text(), 9, 1)"/><BR/>
-				<xsl:value-of select="substring(date/text(), 10, 1)"/>
+				<xsl:attribute name="HREF">../trips/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
+				<xsl:value-of select="substring(@date, 9, 1)"/><BR/>
+				<xsl:value-of select="substring(@date, 10, 1)"/>
 			</A>
 		</TD>
 	</xsl:template>
@@ -516,10 +516,10 @@
 	<xsl:template match="generate-year-report/trip" mode="month-name">
 	    <xsl:param name="previous-trip"/>
 
-		<xsl:if test="substring($previous-trip/date, 6, 2)!=substring(date/text(), 6, 2)">
+		<xsl:if test="substring($previous-trip/@date, 6, 2)!=substring(@date, 6, 2)">
 			<TD VALIGN="BOTTOM">
-				<xsl:variable name="month-num" select="substring(current()/date/text(), 6, 2)"/>
-				<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(date, 6, 2)=substring(current()/date, 6, 2)])"/>
+				<xsl:variable name="month-num" select="substring(current()/@date, 6, 2)"/>
+				<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(@date, 6, 2)=substring(current()/@date, 6, 2)])"/>
 
 				<xsl:attribute name="COLSPAN">
 					<xsl:value-of select="$month-trip-count"/>
@@ -545,11 +545,11 @@
 	<xsl:template match="generate-year-report/trip" mode="month-species-count">
 	    <xsl:param name="previous-trip"/>
 		
-		<xsl:if test="substring($previous-trip/date, 6, 2)!=substring(date/text(), 6, 2)">
+		<xsl:if test="substring($previous-trip/@date, 6, 2)!=substring(@date, 6, 2)">
 			<TD VALIGN="BOTTOM" CLASS="year-plain">
-				<xsl:variable name="month-num" select="substring(current()/date/text(), 6, 2)"/>
-				<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(date, 6, 2)=substring(current()/date, 6, 2)])"/>
-				<xsl:variable name="month-species-count" select="count(/generate-year-report/species[sighting[substring(date, 6, 2)=substring(current()/date, 6, 2)]])"/>
+				<xsl:variable name="month-num" select="substring(current()/@date, 6, 2)"/>
+				<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(@date, 6, 2)=substring(current()/@date, 6, 2)])"/>
+				<xsl:variable name="month-species-count" select="count(/generate-year-report/species[sighting[substring(@date, 6, 2)=substring(current()/@date, 6, 2)]])"/>
 
 				<xsl:attribute name="COLSPAN">
 					<xsl:value-of select="$month-trip-count"/>
@@ -606,8 +606,8 @@
 			</xsl:choose>
 
 			<TD><A>
-				<xsl:attribute name="HREF">../species/<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
-				<xsl:value-of select="common-name"/>
+				<xsl:attribute name="HREF">../species/<xsl:value-of select="@abbreviation"/>.html</xsl:attribute>
+				<xsl:value-of select="@common-name"/>
 			</A></TD>
 
 			<!-- iterate through all the trips, looking for sightings of this species -->
@@ -623,8 +623,9 @@
 		<xsl:variable name="year-name" select="@year-name"/>
 
 		<xsl:message>generate report for year <xsl:value-of select="$year-name"/></xsl:message>
-		<!-- xsl:message>species with non excluded sighting<xsl:value-of select="count(species[sighting[not(exclude)]])"/></xsl:message -->
-		<!-- xsl:message>species <xsl:value-of select="count(species)"/></xsl:message -->
+		<xsl:message>species with non excluded sighting<xsl:value-of select="count(species[sighting[not(@exclude)]])"/></xsl:message>
+		<xsl:message>species <xsl:value-of select="count(species)"/></xsl:message>
+		<xsl:message>trips <xsl:value-of select="count(trip)"/></xsl:message>
 
 		<HEAD>
 			<xsl:call-template name="style-block"/>
@@ -644,8 +645,8 @@
 			</TABLE>
 
 			<DIV CLASS="headertext">
-				Our annual list for <xsl:value-of select="$year-name"/> contains <xsl:value-of select="count(species[sighting[not(exclude)]])"/> species,
-				including <xsl:value-of select="count(species/sighting/first)"/> new species.
+				Our annual list for <xsl:value-of select="$year-name"/> contains <xsl:value-of select="count(species[sighting[not(@exclude)]])"/> species,
+				including <xsl:value-of select="count(species/sighting/@first)"/> new species.
 			</DIV>
 
 			<P></P>
@@ -702,39 +703,39 @@
 						<IMG SRC="../images/location.gif" ALIGN="LEFT"/>
 					</TD>
 					<TD COLSPAN="9" CLASS="pagetitle">
-						<xsl:value-of select="location/name"/>
+						<xsl:value-of select="location/@name"/>
 						<BR/>
 						<SPAN CLASS="pagesubtitle">
-							<xsl:value-of select="location/city"/><xsl:text>, </xsl:text><xsl:value-of select="location/state"/>
+							<xsl:value-of select="location/@city"/><xsl:text>, </xsl:text><xsl:value-of select="location/@state"/>
 						</SPAN>
 					</TD>
 				</TR>
 
 				<TR>
 					<TD NOWRAP="TRUE">
-						<xsl:value-of select="location/county"/> County
+						<xsl:value-of select="location/@county"/> County
 
-						<xsl:if test="string-length(location/url)>0">
+						<xsl:if test="string-length(location/@url)>0">
 							<BR/>
 							<A>
 								<xsl:attribute name="HREF">
-									<xsl:value-of select="location/url"/>
+									<xsl:value-of select="location/@url"/>
 								</xsl:attribute>
 								Location Website
 							</A>
 					</xsl:if>
 					</TD>
-					<xsl:if test="string-length(location/latitude)>0">
+					<xsl:if test="string-length(location/@latitude)>0">
 						<TD NOWRAP="TRUE">|<BR/>|</TD>
 						<TD ALIGN="RIGHT" NOWRAP="TRUE">
-							<xsl:text>N </xsl:text><xsl:value-of select="location/latitude"/>&#176;<BR/>
-							<xsl:text>W </xsl:text><xsl:value-of select="location/longitude"/>&#176;
+							<xsl:text>N </xsl:text><xsl:value-of select="location/@latitude"/>&#176;<BR/>
+							<xsl:text>W </xsl:text><xsl:value-of select="location/@longitude"/>&#176;
 						</TD>
 					</xsl:if>
 					<TD NOWRAP="TRUE">|<BR/>|</TD>
 					<TD NOWRAP="TRUE">
-						first visited <xsl:value-of select="species/sighting[position()=1]/date"/><BR/>
-						last visited <xsl:value-of select="species/sighting[position()=last()]/date"/><BR/>
+						first visited <xsl:value-of select="species/sighting[position()=1]/@date"/><BR/>
+						last visited <xsl:value-of select="species/sighting[position()=last()]/@date"/><BR/>
 					</TD>
 					<TD NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
@@ -745,8 +746,8 @@
 			<xsl:apply-templates mode="report-content" select="location/notes"/>
 
 			<DIV CLASS="headertext">
-				<xsl:value-of select="count(species)"/> species observed at <xsl:value-of select="location/name"/>,
-				including <xsl:value-of select="count(species/sighting/first)"/> first sightings.
+				<xsl:value-of select="count(species)"/> species observed at <xsl:value-of select="location/@name"/>,
+				including <xsl:value-of select="count(species/sighting/@first)"/> first sightings.
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -754,7 +755,7 @@
 			</xsl:call-template>
 
 			<DIV CLASS="headertext">
-				<xsl:value-of select="count(trip)"/> trips taken to <xsl:value-of select="location/name"/>
+				<xsl:value-of select="count(trip)"/> trips taken to <xsl:value-of select="location/@name"/>
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -763,7 +764,7 @@
 
 			<xsl:if test="count(trip) > 15">
 				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="location/name"/> trips over time
+					Distribution of <xsl:value-of select="location/@name"/> trips over time
 				</DIV>
 
 				<xsl:call-template name="time-distributions">
@@ -791,13 +792,13 @@
 
 	<xsl:template match="generate-species-report">
 		<xsl:message>
-			Generating Species Report for '<xsl:value-of select="species/common-name"/>'
+			Generating Species Report for '<xsl:value-of select="species/@common-name"/>'
 			species-sightings <xsl:value-of select="count(trip/sighting)"/>
 		</xsl:message>
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Species Report for <xsl:value-of select="species/common-name"/></TITLE>
+		<TITLE>Species Report for <xsl:value-of select="species/@common-name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -808,19 +809,19 @@
 			<TR>
 			    <TD VALIGN="TOP" ROWSPAN="2">
 				    <!-- optionally replace this image with the photo -->
-					<xsl:if test="count(trip[sighting/photo])=0">
+					<xsl:if test="count(trip[sighting/@photo])=0">
 					    <IMG SRC="../images/species.gif" ALIGN="LEFT"/>
 					</xsl:if>
-					<xsl:if test="count(trip[sighting/photo])>0">
+					<xsl:if test="count(trip[sighting/@photo])>0">
 					<IMG>
-					    <xsl:attribute name="SRC">../images/tn_<xsl:value-of select="trip[sighting/photo]/date"/>-<xsl:value-of select="species/abbreviation"/>.jpg</xsl:attribute>
+					    <xsl:attribute name="SRC">../images/tn_<xsl:value-of select="trip[sighting/@photo]/@date"/>-<xsl:value-of select="species/@abbreviation"/>.jpg</xsl:attribute>
 					</IMG>
 					</xsl:if>
 				</TD>
 				<TD COLSPAN="10" CLASS="pagetitle">
-					<xsl:value-of select="species/common-name"/>
+					<xsl:value-of select="species/@common-name"/>
 					<BR/>
-					<SPAN CLASS="pagesubtitle"><xsl:value-of select="species/latin-name"/></SPAN>
+					<SPAN CLASS="pagesubtitle"><xsl:value-of select="species/@latin-name"/></SPAN>
 				</TD>
 			</TR>
 
@@ -828,17 +829,17 @@
 				<TD ALIGN="RIGHT" NOWRAP="TRUE">Order<BR/>Family</TD>
 				<TD NOWRAP="TRUE">
 					<A>
-						<xsl:attribute name="HREF">../orders/<xsl:value-of select="order/filename-stem"/>.html</xsl:attribute>
-						<I><xsl:value-of select="order/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="order/common-name"/>
+						<xsl:attribute name="HREF">../orders/<xsl:value-of select="order/@filename-stem"/>.html</xsl:attribute>
+						<I><xsl:value-of select="order/@latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="order/@common-name"/>
 					</A><BR/>
-					<I><xsl:value-of select="family/latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="family/common-name"/>
+					<I><xsl:value-of select="family/@latin-name"/></I><xsl:text>, </xsl:text><xsl:value-of select="family/@common-name"/>
 				</TD>
-				<xsl:if test="string-length(species/url)>0">
+				<xsl:if test="string-length(species/@url)>0">
 					<TD NOWRAP="TRUE">|<BR/>|</TD>
 					<TD NOWRAP="TRUE">
 						<A>
 						<xsl:attribute name="HREF">
-						<xsl:value-of select="species/url"/>
+						<xsl:value-of select="species/@url"/>
 						</xsl:attribute>
 						Species Website
 						</A>
@@ -847,8 +848,8 @@
 				<TD NOWRAP="TRUE">|<BR/>|</TD>
 				<TD NOWRAP="TRUE">
 					<!-- note, the following expressions assume sightings are in chronological order -->
-					first seen <xsl:value-of select="trip[position()=1]/sighting/date"/><BR/>
-					last seen <xsl:value-of select="trip[position()=last()]/sighting/date"/><BR/>
+					first seen <xsl:value-of select="trip[position()=1]/sighting/@date"/><BR/>
+					last seen <xsl:value-of select="trip[position()=last()]/sighting/@date"/><BR/>
 				</TD>
 				<TD NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
@@ -859,7 +860,7 @@
 			<xsl:apply-templates mode="report-content" select="species/notes"/>
 
 			<DIV CLASS="headertext">
-				<xsl:value-of select="species/common-name"/> observed at <xsl:value-of select="count(location)"/> locations
+				<xsl:value-of select="species/@common-name"/> observed at <xsl:value-of select="count(location)"/> locations
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -867,7 +868,7 @@
 			</xsl:call-template>
 
 			<DIV CLASS="headertext">
-				<xsl:value-of select="species/common-name"/> observed on <xsl:value-of select="count(trip)"/> trips
+				<xsl:value-of select="species/@common-name"/> observed on <xsl:value-of select="count(trip)"/> trips
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -876,7 +877,7 @@
 
 			<xsl:if test="count(trip/sighting) > 15">
 				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="species/common-name"/> sightings over time
+					Distribution of <xsl:value-of select="species/@common-name"/> sightings over time
 				</DIV>
 
 				<xsl:call-template name="time-distributions">
@@ -892,13 +893,13 @@
 	</xsl:template>
 
 	<xsl:template match="generate-trip-report/location">
-		<xsl:variable name="this-location-species" select="../species[sighting/location=current()/name]"/>
+		<xsl:variable name="this-location-species" select="../species[sighting/@location-name=current()/@name]"/>
 
 		<DIV CLASS="headertext">
 			<xsl:value-of select="count($this-location-species)"/> species seen at
 			<A>
-				<xsl:attribute name="HREF">../locations/<xsl:value-of select="filename-stem"/>.html</xsl:attribute>
-				<xsl:value-of select="name"/>
+				<xsl:attribute name="HREF">../locations/<xsl:value-of select="@filename-stem"/>.html</xsl:attribute>
+				<xsl:value-of select="@name"/>
 			</A>
 		</DIV>
 
@@ -909,7 +910,7 @@
 
 	<xsl:template match="generate-trip-report">
 		<xsl:message>
-			Generating Trip Report for '<xsl:value-of select="trip/name"/>'
+			Generating Trip Report for '<xsl:value-of select="trip/@name"/>'
 			species <xsl:value-of select="count(species)"/>
 			location <xsl:value-of select="count(location)"/>
 			sightings <xsl:value-of select="count(species/sighting)"/>
@@ -917,7 +918,7 @@
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Trip Report for <xsl:value-of select="trip/name"/></TITLE>
+		<TITLE>Trip Report for <xsl:value-of select="trip/@name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -929,9 +930,9 @@
 						<IMG SRC="../images/trip.gif" ALIGN="LEFT"/>
 					</TD>
 					<TD COLSPAN="6" CLASS="pagetitle">
-						<xsl:value-of select="trip/name"/>
+						<xsl:value-of select="trip/@name"/>
 						<BR/>
-						<SPAN CLASS="pagesubtitle"><xsl:apply-templates select="trip/date"/></SPAN>
+						<SPAN CLASS="pagesubtitle"><xsl:apply-templates select="trip/@date"/></SPAN>
 					</TD>
 				</TR>
 				<TR>
@@ -939,14 +940,14 @@
 						Leader
 					</TD>
 					<TD NOWRAP="TRUE">
-						<xsl:value-of select="trip/leader"/>
+						<xsl:value-of select="trip/@leader"/>
 					</TD>
-					<xsl:if test="string-length(trip/url)>0">
+					<xsl:if test="string-length(trip/@url)>0">
 						<TD NOWRAP="TRUE">|<BR/>|</TD>
 						<TD NOWRAP="TRUE">
 							<A>
 								<xsl:attribute name="HREF">
-									<xsl:value-of select="trip/url"/>
+									<xsl:value-of select="trip/@url"/>
 								</xsl:attribute>
 								Trip Website
 							</A>
@@ -976,12 +977,12 @@
 
 	<xsl:template match="generate-order-report">
 		<xsl:message>
-			Generating Order Report for '<xsl:value-of select="order/latin-name"/>'
+			Generating Order Report for '<xsl:value-of select="order/@latin-name"/>'
 		</xsl:message>
 
 		<HEAD>
 			<xsl:call-template name="style-block"/>
-			<TITLE>Species Report for Order <xsl:value-of select="order/latin-name"/></TITLE>
+			<TITLE>Species Report for Order <xsl:value-of select="order/@latin-name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -993,9 +994,9 @@
 						<IMG SRC="../images/species.gif" ALIGN="LEFT"/>
 					</TD>
 					<TD CLASS="pagetitle" NOWRAP="TRUE" COLSPAN="6">
-						<xsl:value-of select="order/latin-name"/>
+						<xsl:value-of select="order/@latin-name"/>
 						<BR/>
-						<SPAN CLASS="pagesubtitle"><xsl:value-of select="order/common-name"/></SPAN>
+						<SPAN CLASS="pagesubtitle"><xsl:value-of select="order/@common-name"/></SPAN>
 					</TD>
 				</TR>
 
@@ -1024,7 +1025,7 @@
 			<DIV CLASS="headertext">
 				Our Life List includes <xsl:value-of select="count(species[sighting])"/>
 				<xsl:text> </xsl:text>
-				<xsl:value-of select="order/common-name"/>
+				<xsl:value-of select="order/@common-name"/>
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -1033,7 +1034,7 @@
 
 			<xsl:if test="count(species/sighting) > 15">
 				<DIV CLASS="headertext">
-					Distribution of <xsl:value-of select="order/latin-name"/> sightings over time
+					Distribution of <xsl:value-of select="order/@latin-name"/> sightings over time
 				</DIV>
 
 				<xsl:call-template name="time-distributions">
@@ -1056,9 +1057,9 @@
 		<xsl:message>generate index for county <xsl:value-of select="$in-county"/></xsl:message>
 
 		<!-- define my variables -->
-		<xsl:variable name="county-locations" select="document('locations.xml')/locationset/location[(state[text()=$in-state]) and (county[text()=$in-county])]"/>
-		<xsl:variable name="county-sightings" select="document('sightings.xml')/sightingset/sighting[location=$county-locations/name]"/>
-		<xsl:variable name="county-species" select="document('flat-species.xml')/taxonomyset/species[abbreviation=$county-sightings/abbreviation]"/>
+		<xsl:variable name="county-locations" select="document('locations.xml')/locationset/location[(@state=$in-state) and (@county=$in-county)]"/>
+		<xsl:variable name="county-sightings" select="document('sightings.xml')/sightingset/sighting[@location-name=$county-locations/@name]"/>
+		<xsl:variable name="county-species" select="document('flat-species.xml')/taxonomyset/species[@abbreviation=$county-sightings/@abbreviation]"/>
 		<xsl:variable name="state-name" select="document('misc.xml')/miscellaneous/stateset/state[@abbreviation=$in-state]/@name"/>
 
 		<HEAD>
@@ -1083,7 +1084,7 @@
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
-				<xsl:with-param name="in-entry-list" select="document('flat-species.xml')/taxonomyset/species[abbreviation=$county-sightings/abbreviation]"/>
+				<xsl:with-param name="in-entry-list" select="document('flat-species.xml')/taxonomyset/species[@abbreviation=$county-sightings/@abbreviation]"/>
 			</xsl:call-template>
 
 			<DIV CLASS="headertext">
@@ -1111,7 +1112,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.5 2002/09/21 07:00:11 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.6 2003/01/21 23:10:30 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -1167,15 +1168,15 @@
 	<xsl:template match="generate-species-index">
 		<xsl:variable
 			name="non-excluded-abbreviations"
-			select="document('sightings.xml')/sightingset/sighting[not(exclude)]/abbreviation"/>
+			select="document('sightings.xml')/sightingset/sighting[not(@exclude)]/@abbreviation"/>
 	
 		<xsl:variable
 			name="non-excluded-species"
-			select="document('flat-species.xml')/taxonomyset/species[abbreviation=$non-excluded-abbreviations]"/>
+			select="document('flat-species.xml')/taxonomyset/species[@abbreviation=$non-excluded-abbreviations]"/>
 	
 		<xsl:variable
 			name="table-entries"
-			select="document('flat-species.xml')/taxonomyset/order[order-id=$non-excluded-species/order-id] |  $non-excluded-species"/>
+			select="document('flat-species.xml')/taxonomyset/order[@order-id=$non-excluded-species/@order-id] | $non-excluded-species"/>
 	
 		<xsl:message>generate species index</xsl:message>
 
@@ -1231,15 +1232,15 @@
 		<!-- define my variables -->
 		<xsl:variable
 			name="state-locations"
-			select="document('locations.xml')/locationset/location[state[text()=$in-state]]"/>
+			select="document('locations.xml')/locationset/location[@state=$in-state]"/>
 
 		<xsl:variable
 			name="state-sightings"
-			select="document('sightings.xml')/sightingset/sighting[location=$state-locations/name]/abbreviation"/>
+			select="document('sightings.xml')/sightingset/sighting[@location-name=$state-locations/@name]/@abbreviation"/>
 
 		<xsl:variable
 			name="state-species"
-			select="document('flat-species.xml')/taxonomyset/species[abbreviation=$state-sightings]"/>
+			select="document('flat-species.xml')/taxonomyset/species[@abbreviation=$state-sightings]"/>
 
 		<xsl:variable
 		    name="state-name"
@@ -1322,7 +1323,7 @@
 				</DIV>
 
 			 	<xsl:call-template name="two-column-table">
-					<xsl:with-param name="in-entry-list" select="document('flat-trips.xml')/tripset/trip[starts-with(date, $this-year)]"/>
+					<xsl:with-param name="in-entry-list" select="document('flat-trips.xml')/tripset/trip[starts-with(@date, $this-year)]"/>
 				</xsl:call-template>
 			</xsl:for-each>
 
@@ -1342,11 +1343,11 @@
 	</xsl:template>
 
 	<!-- special-purpose template for formatting photo links, used only in the photo index -->
-	<xsl:template match="sightingset/sighting/photo">
-	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute>
-			<img align="left"><xsl:attribute name="SRC">../images/tn_<xsl:value-of select="../date"/>-<xsl:value-of select="../abbreviation"/>.jpg</xsl:attribute></img>
-			<xsl:apply-templates select="../date"/><br/>
-			<xsl:apply-templates select="document('flat-species.xml')/taxonomyset/species[abbreviation=current()/../abbreviation]/common-name"/><br/>
+	<xsl:template match="sightingset/sighting/@photo">
+	    <A><xsl:attribute name="HREF">../images/<xsl:value-of select="../@date"/>-<xsl:value-of select="../@abbreviation"/>.jpg</xsl:attribute>
+			<img align="left"><xsl:attribute name="SRC">../images/tn_<xsl:value-of select="../@date"/>-<xsl:value-of select="../@abbreviation"/>.jpg</xsl:attribute></img>
+			<xsl:apply-templates select="../@date"/><br/>
+			<xsl:apply-templates select="document('flat-species.xml')/taxonomyset/species[@abbreviation=current()/../@abbreviation]/@common-name"/><br/>
 			<xsl:value-of select="../location"/><br clear="all"/>
 		</A>
 		<BR/>
@@ -1373,11 +1374,11 @@
 			</TABLE>
 
 			<DIV CLASS="headertext">
-				This database contains <xsl:value-of select="count(document('sightings.xml')/sightingset/sighting/photo)"/> photos
+				This database contains <xsl:value-of select="count(document('sightings.xml')/sightingset/sighting/@photo)"/> photos
 			</DIV>
 
 		 	<xsl:call-template name="two-column-table">
-				<xsl:with-param name="in-entry-list" select="document('sightings.xml')/sightingset/sighting/photo"/>
+				<xsl:with-param name="in-entry-list" select="document('sightings.xml')/sightingset/sighting/@photo"/>
 			</xsl:call-template>
 
 			<P></P>

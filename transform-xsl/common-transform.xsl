@@ -17,16 +17,10 @@
 		&lt;notes&gt;<xsl:apply-templates select="p"/>&lt;/notes&gt;
 	</xsl:template>
 
-	<xsl:template match="exclude">
-	     &lt;exclude&gt;true&lt;/exclude&gt;
-	</xsl:template>
+	<xsl:template match="@exclude"> exclude=&quot;true&quot; </xsl:template>
 
-	<xsl:template match="first">
-	    &lt;first&gt;true&lt;/first&gt;
-	</xsl:template>
+	<xsl:template match="@first"> first=&quot;true&quot; </xsl:template>
 
-	<xsl:template match="photo">
-	    &lt;photo&gt;true&lt;/photo&gt;
-	</xsl:template>
+	<xsl:template match="@photo"> photo=&quot;true&quot; </xsl:template>
 
 </xsl:stylesheet>

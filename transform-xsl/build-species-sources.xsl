@@ -9,7 +9,7 @@
 	<xsl:template match="taxonomyset">
 		<project name="build-species-sources" default="build-all">
 			<target name="build-all">
-				<xsl:apply-templates select="species[abbreviation=$sightings/sightingset/sighting/abbreviation]"/>
+				<xsl:apply-templates select="species[@abbreviation=$sightings/sightingset/sighting/@abbreviation]"/>
 				<!-- xsl:apply-templates select="species"/ -->
 			</target>
 		</project>
@@ -19,122 +19,102 @@
 		<xsl:param
 			name="in-sightings"/>
 
-		&lt;trip&gt;
-			&lt;name&gt;<xsl:value-of select="name"/>&lt;/name&gt;
-			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
-			&lt;leader&gt;<xsl:value-of select="leader"/>&lt;/leader&gt;
-			&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
-			<xsl:apply-templates select="$in-sightings[date=current()/date]"/>
+		&lt;trip
+			name=&quot;<xsl:value-of select="@name"/>&quot;
+			date=&quot;<xsl:value-of select="@date"/>&quot;
+			leader=&quot;<xsl:value-of select="@leader"/>&quot;
+			url=&quot;<xsl:value-of select="@url"/>&quot;
+			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
+			<xsl:apply-templates select="$in-sightings[@date=current()/@date]"/>
 		&lt;/trip&gt;
 	</xsl:template>
 
 	<xsl:template match="location">
-		&lt;location&gt;
-			&lt;name&gt;<xsl:value-of select="name"/>&lt;/name&gt;
-			&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-			&lt;city&gt;<xsl:value-of select="city"/>&lt;/city&gt;
-			&lt;state&gt;<xsl:value-of select="state"/>&lt;/state&gt;
-			&lt;county&gt;<xsl:value-of select="county"/>&lt;/county&gt;
-			&lt;latitude&gt;<xsl:value-of select="latitude"/>&lt;/latitude&gt;
-			&lt;longitude&gt;<xsl:value-of select="longitude"/>&lt;/longitude&gt;
-			&lt;system&gt;<xsl:value-of select="system"/>&lt;/system&gt;
-			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
-		&lt;/location&gt;
+		&lt;location
+			name=&quot;<xsl:value-of select="@name"/>&quot;
+			url=&quot;<xsl:value-of select="@url"/>&quot;
+			city=&quot;<xsl:value-of select="@city"/>&quot;
+			state=&quot;<xsl:value-of select="@state"/>&quot;
+			county=&quot;<xsl:value-of select="@county"/>&quot;
+			latitude=&quot;<xsl:value-of select="@latitude"/>&quot;
+			longitude=&quot;<xsl:value-of select="@longitude"/>&quot;
+			system=&quot;<xsl:value-of select="@system"/>&quot;
+			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;/&gt;
 	</xsl:template>
 
 	<xsl:template match="sighting">
-		&lt;sighting&gt;
-			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
-			&lt;location-name&gt;<xsl:value-of select="location-name"/>&lt;/location-name&gt;
-
-			<xsl:apply-templates select="exclude | first | photo | notes"/>
+		&lt;sighting date=&quot;<xsl:value-of select="@date"/>&quot; location-name=&quot;<xsl:value-of select="@location-name"/>&quot; <xsl:apply-templates select="@exclude | @first | @photo"/>&gt;
+			<xsl:apply-templates select="notes"/>
 		&lt;/sighting&gt;
 	</xsl:template>
 
 	<xsl:template match="genus">
-		&lt;genus&gt;
-			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
-			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
-		&lt;/genus&gt;
+		&lt;genus latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot; common-name=&quot;<xsl:value-of select="@common-name"/>&quot;/&gt;
 	</xsl:template>
 
 	<xsl:template match="subfamily">
-		&lt;subfamily&gt;
-			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
-			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
-		&lt;/subfamily&gt;
+		&lt;subfamily latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot; common-name=&quot;<xsl:value-of select="@common-name"/>&quot;/&gt;
 	</xsl:template>
 
 	<xsl:template match="family">
-		&lt;family&gt;
-			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
-			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
-		&lt;/family&gt;
+		&lt;family latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot; common-name=&quot;<xsl:value-of select="@common-name"/>&quot;/&gt;
 	</xsl:template>
 
 	<xsl:template match="order">
-		&lt;order&gt;
-			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
-			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
-			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
-		&lt;/order&gt;
+		&lt;order latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot; common-name=&quot;<xsl:value-of select="@common-name"/>&quot; filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;/&gt;
 	</xsl:template>
 
 	<xsl:template match="species">
 		<xsl:variable
 			name="species-sightings"
-			select="$sightings/sightingset/sighting[abbreviation=current()/abbreviation]"/>
+			select="$sightings/sightingset/sighting[@abbreviation=current()/@abbreviation]"/>
 
 		<xsl:variable
 			name="species-locations"
-			select="$locations/locationset/location[name=$species-sightings/location-name]"/>
+			select="$locations/locationset/location[@name=$species-sightings/@location-name]"/>
 
-		<xsl:message>Building Source XML for Species '<xsl:value-of select="common-name"/>' <xsl:value-of select="position()"/></xsl:message>
+		<xsl:message>Building Source XML for Species '<xsl:value-of select="@common-name"/>' <xsl:value-of select="position()"/></xsl:message>
 
 		<echo>
-			<xsl:attribute name="file">sources/species/<xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
-			&lt;!DOCTYPE generate-species-report SYSTEM "file:dtds/generate-species-report.dtd"&gt;
-			&lt;generate-species-report abbreviation="<xsl:value-of select="abbreviation"/>"&gt;
+			<xsl:attribute name="file">sources/species/<xsl:value-of select="@filename-stem"/>.xml</xsl:attribute>
+			&lt;!DOCTYPE generate-species-report SYSTEM "file:dtds/generate-report.dtd"&gt;
+			&lt;generate-species-report abbreviation="<xsl:value-of select="@abbreviation"/>"&gt;
 
-			&lt;species&gt;
-				&lt;order-id&gt;<xsl:value-of select="order-id"/>&lt;/order-id&gt;
-				&lt;family-id&gt;<xsl:value-of select="family-id"/>&lt;/family-id&gt;
-				&lt;subfamily-id&gt;<xsl:value-of select="subfamily-id"/>&lt;/subfamily-id&gt;
-				&lt;genus-id&gt;<xsl:value-of select="genus-id"/>&lt;/genus-id&gt;
-				&lt;species-id&gt;<xsl:value-of select="species-id"/>&lt;/species-id&gt;
-				&lt;abbreviation&gt;<xsl:value-of select="abbreviation"/>&lt;/abbreviation&gt;
-				&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
-				&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-				&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
-				&lt;taxonomy-id&gt;<xsl:value-of select="taxonomy-id"/>&lt;/taxonomy-id&gt;
+			&lt;species
+				order-id=&quot;<xsl:value-of select="@order-id"/>&quot;
+				species-id=&quot;<xsl:value-of select="@species-id"/>&quot;
+				abbreviation=&quot;<xsl:value-of select="@abbreviation"/>&quot;
+				latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot;
+				url=&quot;<xsl:value-of select="@url"/>&quot;
+				common-name=&quot;<xsl:value-of select="@common-name"/>&quot;
+				taxonomy-id=&quot;<xsl:value-of select="@taxonomy-id"/>&quot;
+				filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
 				<xsl:apply-templates select="notes"/>
-				&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
 
 			&lt;/species&gt;
 
 			<xsl:apply-templates select="$species-locations"/>
 
-			<xsl:apply-templates select="document('../flat-trips.xml')/tripset/trip[date=$species-sightings/date]">
+			<xsl:apply-templates select="document('../flat-trips.xml')/tripset/trip[@date=$species-sightings/@date]">
 				<xsl:with-param name="in-sightings" select="$species-sightings"/>
 			</xsl:apply-templates>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/order[order-id=current()/order-id]"/>
+				select="document('../flat-species.xml')/taxonomyset/order[@order-id=current()/@order-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/family[order-id=current()/order-id and
-														family-id=current()/family-id]"/>
+				select="document('../flat-species.xml')/taxonomyset/family[@order-id=current()/@order-id and
+														@family-id=current()/@family-id]"/>
 			<xsl:apply-templates
-				select="$species/taxonomyset/subfamily[order-id=current()/order-id and
-														family-id=current()/family-id and
-														subfamily-id=current()/subfamily-id]"/>
+				select="document('../flat-species.xml')/taxonomyset/subfamily[@order-id=current()/@order-id and
+														@family-id=current()/@family-id and
+														@subfamily-id=current()/@subfamily-id]"/>
 
 			<xsl:apply-templates
-				select="$species/taxonomyset/genus[order-id=current()/order-id and
-														family-id=current()/family-id and
-														subfamily-id=current()/subfamily-id and
-														genus-id=current()/genus-id]"/>
+				select="document('../flat-species.xml')/taxonomyset/genus[@order-id=current()/@order-id and
+														@family-id=current()/@family-id and
+														@subfamily-id=current()/@subfamily-id and
+														@genus-id=current()/@genus-id]"/>
 
 	
 			&lt;/generate-species-report&gt;

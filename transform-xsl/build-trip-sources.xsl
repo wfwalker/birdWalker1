@@ -15,78 +15,77 @@
 	</xsl:template>
 
 	<xsl:template match="sighting">
-		&lt;sighting&gt;
-			&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
-			&lt;location&gt;<xsl:value-of select="location"/>&lt;/location&gt;
-			<xsl:apply-templates select="notes | first | exclude | photo"/>
+		&lt;sighting location-name=&quot;<xsl:value-of select="@location-name"/>&quot;<xsl:apply-templates select="@first | @exclude | @photo"/> &gt;
+			<xsl:apply-templates select="notes"/>
 		&lt;/sighting&gt;
 	</xsl:template>
 
 	<xsl:template match="species">
 		<xsl:param name="in-sightings"/>
 
-		&lt;species&gt;
-			&lt;order-id&gt;<xsl:value-of select="order-id"/>&lt;/order-id&gt;
-			&lt;family-id&gt;<xsl:value-of select="family-id"/>&lt;/family-id&gt;
-			&lt;subfamily-id&gt;<xsl:value-of select="subfamily-id"/>&lt;/subfamily-id&gt;
-			&lt;genus-id&gt;<xsl:value-of select="genus-id"/>&lt;/genus-id&gt;
-			&lt;species-id&gt;<xsl:value-of select="species-id"/>&lt;/species-id&gt;
-			&lt;abbreviation&gt;<xsl:value-of select="abbreviation"/>&lt;/abbreviation&gt;
-			&lt;latin-name&gt;<xsl:value-of select="latin-name"/>&lt;/latin-name&gt;
-			&lt;common-name&gt;<xsl:value-of select="common-name"/>&lt;/common-name&gt;
-			&lt;taxonomy-id&gt;<xsl:value-of select="taxonomy-id"/>&lt;/taxonomy-id&gt;
-			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
+		&lt;species
+			order-id=&quot;<xsl:value-of select="@order-id"/>&quot;
+			family-id=&quot;<xsl:value-of select="@family-id"/>&quot;
+			subfamily-id=&quot;<xsl:value-of select="@subfamily-id"/>&quot;
+			genus-id=&quot;<xsl:value-of select="@genus-id"/>&quot;
+			species-id=&quot;<xsl:value-of select="@species-id"/>&quot;
+			abbreviation=&quot;<xsl:value-of select="@abbreviation"/>&quot;
+			latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot;
+			common-name=&quot;<xsl:value-of select="@common-name"/>&quot;
+			taxonomy-id=&quot;<xsl:value-of select="@taxonomy-id"/>&quot;
+			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
 
 			<xsl:apply-templates select="notes"/>
 
-			<xsl:apply-templates select="$in-sightings[abbreviation=current()/abbreviation]"/>
+			<xsl:apply-templates select="$in-sightings[@abbreviation=current()/@abbreviation]"/>
 		&lt;/species&gt;
 	</xsl:template>
 
 	<xsl:template match="location">
-		&lt;location&gt;
-			&lt;name&gt;<xsl:value-of select="name"/>&lt;/name&gt;
-			&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-			&lt;city&gt;<xsl:value-of select="city"/>&lt;/city&gt;
-			&lt;state&gt;<xsl:value-of select="state"/>&lt;/state&gt;
-			&lt;county&gt;<xsl:value-of select="county"/>&lt;/county&gt;
-			&lt;latitude&gt;<xsl:value-of select="latitude"/>&lt;/latitude&gt;
-			&lt;longitude&gt;<xsl:value-of select="longitude"/>&lt;/longitude&gt;
-			&lt;system&gt;<xsl:value-of select="system"/>&lt;/system&gt;
-			&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
-			<xsl:apply-templates select="notes"/>
+		&lt;location
+			name=&quot;<xsl:value-of select="@name"/>&quot;
+			url=&quot;<xsl:value-of select="@url"/>&quot;
+			city=&quot;<xsl:value-of select="@city"/>&quot;
+			state=&quot;<xsl:value-of select="@state"/>&quot;
+			county=&quot;<xsl:value-of select="@county"/>&quot;
+			latitude=&quot;<xsl:value-of select="@latitude"/>&quot;
+			longitude=&quot;<xsl:value-of select="@longitude"/>&quot;
+			system=&quot;<xsl:value-of select="@system"/>&quot;
+			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
+			<xsl:apply-templates select="@notes"/>
 		&lt;/location&gt;
 	</xsl:template>
 
 	<xsl:template match="trip">
 		<xsl:variable
 			name="in-trip-date"
-			select="date"/>
+			select="@date"/>
 
 		<xsl:variable
 			name="trip-sightings"
-			select="$sightings/sightingset/sighting[date=$in-trip-date]"/>
+			select="$sightings/sightingset/sighting[@date=$in-trip-date]"/>
 
 		<xsl:variable
 			name="trip-species"
-			select="$species/taxonomyset/species[abbreviation=$trip-sightings/abbreviation]"/>
+			select="$species/taxonomyset/species[@abbreviation=$trip-sightings/@abbreviation]"/>
 
 		<xsl:variable
 			name="trip-locations"
-			select="$locations/locationset/location[name=$trip-sightings/location]"/>
+			select="$locations/locationset/location[@name=$trip-sightings/@location-name]"/>
 
-		<xsl:message>Building Source XML for Trip '<xsl:value-of select="name"/>'</xsl:message>
+		<xsl:message>Building Source XML for Trip '<xsl:value-of select="@name"/>'</xsl:message>
 
 		<echo>
-			<xsl:attribute name="file">sources/trips/<xsl:value-of select="filename-stem"/>.xml</xsl:attribute>
+			<xsl:attribute name="file">sources/trips/<xsl:value-of select="@filename-stem"/>.xml</xsl:attribute>
+			&lt;!DOCTYPE generate-trip-report SYSTEM "file:dtds/generate-report.dtd"&gt;
 			&lt;generate-trip-report trip-date="<xsl:value-of select="date"/>"&gt;
 
-			&lt;trip&gt;
-				&lt;name&gt;<xsl:value-of select="name"/>&lt;/name&gt;
-				&lt;date&gt;<xsl:value-of select="date"/>&lt;/date&gt;
-				&lt;leader&gt;<xsl:value-of select="leader"/>&lt;/leader&gt;
-				&lt;url&gt;<xsl:value-of select="url"/>&lt;/url&gt;
-				&lt;filename-stem&gt;<xsl:value-of select="filename-stem"/>&lt;/filename-stem&gt;
+			&lt;trip
+				name=&quot;<xsl:value-of select="@name"/>&quot;
+				date=&quot;<xsl:value-of select="@date"/>&quot;
+				leader=&quot;<xsl:value-of select="@leader"/>&quot;
+				url=&quot;<xsl:value-of select="@url"/>&quot;
+				filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
 				<xsl:apply-templates select="notes"/>
 			&lt;/trip&gt;
 
