@@ -1,8 +1,12 @@
+<?xml-stylesheet type="text/xsl" href="build.xsl"?>
+
 <project name="birding-xml" default="report">
+
+	<!-- PRODUCTION TARGETS -->
 
 	<target
 		name="indices"
-		description="generate reports from birding-data.xml">
+		description="generate main life species, life trip, and life location indices">
 
 		<style
 			in="build.xml"
@@ -23,7 +27,27 @@
 			style="report-xsl/species-index.xsl"/>
 	</target>
 	
-	<target name="state-indices">
+	<target name="county-indices" description="generate species lists for favorite counties">
+		<style
+			in="flat-species.xml"
+			out="html/santa-clara-county-species-index.html"
+			destdir="html"
+			style="report-xsl/county-species-index.xsl">
+			<param name="in-state" expression="'CA'"/>
+			<param name="in-county" expression="'Santa Clara'"/>
+		</style>
+
+		<style
+			in="flat-species.xml"
+			out="html/san-mateo-county-species-index.html"
+			destdir="html"
+			style="report-xsl/county-species-index.xsl">
+			<param name="in-state" expression="'CA'"/>
+			<param name="in-county" expression="'San Mateo'"/>
+		</style>
+	</target>
+
+	<target name="state-indices" description="generate species lists for favorite states">
 		<style
 			in="flat-species.xml"
 			out="html/ca-species-index.html"
@@ -41,7 +65,7 @@
 		</style>
 	</target>
 
-	<target name="annual-indices">
+	<target name="annual-indices" description="generate indices for favorite years">
 		<style
 			in="build.xml"
 			out="html/1996-species-index.html"
@@ -93,8 +117,57 @@
 	</target>
 
 	<target
+		name="cover-page"
+		description="generate a cover page">
+
+		<style
+			in="build.xml"
+			out="html/cover-page.html"
+			destdir="html"
+			style="report-xsl/cover-page.xsl"/>
+
+	</target>
+
+	<target
+		name="build-all"
+		description="generate all the individual pages for species, locations, and trips"
+		depends="cover-page, indices, state-indices, annual-indices, county-indices">
+
+		<exec executable="build-locations.bat">
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+		</exec>
+
+		<exec executable="build-species.bat">
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+		</exec>
+
+		<exec executable="build-trips.bat">
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+		</exec>
+
+		<exec executable="build-orders.bat">
+			<env key="CLASSPATH" path="c:\jakarta-ant\lib\xerces.jar;c:\jakarta-ant\lib\xalan.jar"/>
+		</exec>
+	</target>
+
+	<target name="upload-to-shout">
+		<ftp server="duracef.shout.net"
+       		remotedir="public_html/sekrit/birds"
+       		userid="walker"
+       		password="ludwig0"
+       		depends="yes"
+       		binary="no">
+    		<fileset dir="html">
+      			<include name="**/*.html"/>
+    		</fileset>
+  		</ftp>
+	</target>
+
+	<!-- TARGETS FOR SAMPLE REPORTS, USED IN DEVELOPMENT -->
+
+	<target
 		name="trip-report"
-		description="generate reports from birding-data.xml">
+		description="generate a sample trip report">
 
 		<style
 			in="flat-trips.xml"
@@ -108,35 +181,35 @@
 
 	<target
 		name="location-report"
-		description="generate reports from birding-data.xml">
+		description="generate a sample location report">
 
 		<style
 			in="build.xml"
 			out="html/SAMPLE LOCATION REPORT.html"
 			destdir="html"
 			style="report-xsl/location-report.xsl">
-			<param name="in-location" expression="'Morro Bay'"/>
+			<param name="in-location" expression="'Palo Alto Duck Pond'"/>
 		</style>
 
 	</target>
 
 	<target
 		name="species-report"
-		description="generate reports from birding-data.xml">
+		description="generate a sample species report">
 
 		<style
 			in="build.xml"
 			out="html/SAMPLE SPECIES REPORT.html"
 			destdir="html"
 			style="report-xsl/species-report.xsl">
-			<param name="in-abbreviation" expression="'gadwal'"/>
+			<param name="in-abbreviation" expression="'ameavo'"/>
 		</style>
 
 	</target>
 
 	<target
 		name="order-report"
-		description="generate reports from birding-data.xml">
+		description="generate a sample taxonomic order report">
 
 		<style
 			in="build.xml"
@@ -149,26 +222,9 @@
 	</target>
 
 	<target
-		name="cover-page"
-		description="generate a cover page">
-
-		<style
-			in="build.xml"
-			out="html/cover-page.html"
-			destdir="html"
-			style="report-xsl/cover-page.xsl"/>
-
-	</target>
-
-	<target
 		name="sample-reports"
-		depends="trip-report, location-report, species-report">
+		description="generate all the sample reports"
+		depends="trip-report, location-report, species-report, order-report">
 		<echo message="them is some reports"/>
-	</target>
-
-	<target name="build-all-reports">
-		<exec executable="${basedir}/build-locations.sh"/>
-		<exec executable="${basedir}/build-species.sh"/>
-		<exec executable="${basedir}/build-trips.sh"/>
 	</target>
 </project>
