@@ -1,8 +1,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method = "html" indent="yes"/>
 
+	<!-- include common templates -->
 	<xsl:include href="./common-report.xsl"/>
 
+	<!-- define my background color, used for table headers, etc -->
+	<xsl:variable name="my-background-color" select="$species-background-color"/>
+
+	<!-- define my report parameters -->
 	<xsl:param name="in-abbreviation"/>
 
 	<xsl:template match="*">
@@ -53,18 +58,19 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Species Report for <xsl:value-of select="$species-record/common-name"/></TITLE>
-		<xsl:comment> $Id$ </xsl:comment>
+		<xsl:comment> $Id: species-report.xsl,v 1.5 2001/09/09 02:01:01 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="species-navigation-block"/>
 
-			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0" BGCOLOR="#EEEEEE">
+			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0">
+				<xsl:attribute name="BGCOLOR"><xsl:value-of select="$my-background-color"/></xsl:attribute>
 			<TR>
 				<TD NOWRAP="TRUE">
 					<A>
 						<xsl:attribute name="HREF">
-							<xsl:value-of select="$order-record/latin-name"/>.html
+							<xsl:value-of select="$order-record/report-url"/>
 						</xsl:attribute>
 						<I><xsl:value-of select="$order-record/latin-name"/></I><BR/>
 						<xsl:value-of select="$order-record/common-name"/>
@@ -125,7 +131,7 @@
 				</xsl:call-template>
 			</xsl:if>
 
-			<xsl:call-template name="navigation-block"/>
+			<xsl:call-template name="species-navigation-block"/>
 		</BODY>
 
 		</HTML>
