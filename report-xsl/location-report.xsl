@@ -28,7 +28,7 @@
 		<TITLE>Location Report for <xsl:value-of select="$in-location"/></TITLE>
 		</HEAD>
 
-		<BODY>
+		<BODY BGCOLOR="#FFFFFF">
 			<xsl:call-template name="navigation-block"/>
 
 			<TABLE WIDTH="100%" BGCOLOR="#EEEEEE" BORDER="0" CELLPADDING="5" CELLSPACING="0">
@@ -37,18 +37,31 @@
 						<xsl:value-of select="$location-record/city"/>,<BR/>
 						<xsl:value-of select="$location-record/state"/>
 					</TD>
-					<TD NOWRAP="TRUE">|<BR/>|</TD>
-					<xsl:if test="string-length($location-record/count) > 0">
+					<xsl:if test="string-length($location-record/county) > 0">
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
 						<TD NOWRAP="TRUE">
 							<xsl:value-of select="$location-record/county"/> county
 						</TD>
-						<TD NOWRAP="TRUE">|<BR/>|</TD>
 					</xsl:if>
-					<TD NOWRAP="TRUE">
-						lat <xsl:value-of select="$location-record/latitude"/><BR/>
-						long <xsl:value-of select="$location-record/longitude"/>
-						(<xsl:value-of select="$location-record/system"/>)
-					</TD>
+					<xsl:if test="string-length($location-record/url)>0">
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
+						<TD NOWRAP="TRUE">
+							<A>
+								<xsl:attribute name="HREF">
+									<xsl:value-of select="$location-record/url"/>
+								</xsl:attribute>
+								<xsl:value-of select="$location-record/url"/>
+							</A>
+						</TD>
+					</xsl:if>
+					<xsl:if test="string-length($location-record/latitude)>0">
+						<TD NOWRAP="TRUE">|<BR/>|</TD>
+						<TD NOWRAP="TRUE">
+							lat <xsl:value-of select="$location-record/latitude"/><BR/>
+							long <xsl:value-of select="$location-record/longitude"/>
+							(<xsl:value-of select="$location-record/system"/>)
+						</TD>
+					</xsl:if>
 					<TD NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
 					</TD>
