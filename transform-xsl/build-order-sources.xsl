@@ -15,7 +15,7 @@
 	</xsl:template>
 
 	<xsl:template match="sighting">
-		&lt;sighting date=&quot;<xsl:value-of select="@date"/>&quot; location-name=&quot;<xsl:value-of select="@location-name"/>&quot; <xsl:apply-templates select="first | exclude | photo"/>&gt;
+		&lt;sighting date=&quot;<xsl:value-of select="@date"/>&quot; location-name=&quot;<xsl:value-of select="@location-name"/>&quot; <xsl:apply-templates select="@first | @exclude | @photo"/>&gt;
 			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
 		&lt;/sighting&gt;
 	</xsl:template>
@@ -32,10 +32,43 @@
 		&lt;family latin-name=&quot;<xsl:value-of select="@latin-name"/>&quot; common-name=&quot;<xsl:value-of select="@common-name"/>&quot;/&gt;
 	</xsl:template>
 
+	<xsl:template match="trip">
+		&lt;trip
+			name=&quot;<xsl:value-of select="@name"/>&quot;
+			date=&quot;<xsl:value-of select="@date"/>&quot;
+			leader=&quot;<xsl:value-of select="@leader"/>&quot;
+			url=&quot;<xsl:value-of select="@url"/>&quot;
+			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
+			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
+		&lt;/trip&gt;
+	</xsl:template>
+
+	<xsl:template match="location">
+		&lt;location
+			name=&quot;<xsl:value-of select="@name"/>&quot;
+			url=&quot;<xsl:value-of select="@url"/>&quot;
+			city=&quot;<xsl:value-of select="@city"/>&quot;
+			state=&quot;<xsl:value-of select="@state"/>&quot;
+			county=&quot;<xsl:value-of select="@county"/>&quot;
+			latitude=&quot;<xsl:value-of select="@latitude"/>&quot;
+			longitude=&quot;<xsl:value-of select="@longitude"/>&quot;
+			system=&quot;<xsl:value-of select="@system"/>&quot;
+			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
+			<xsl:apply-templates select="@notes"/>
+		&lt;/location&gt;
+	</xsl:template>
+
 	<xsl:template match="species">
 		<xsl:variable
-			name="species-sightings"
-			select="$sightings/sightingset/sighting[@abbreviation=current()/@abbreviation]"/>
+			name="species-first-sighting"
+			select="$sightings/sightingset/sighting[@abbreviation=current()/@abbreviation][@first]"/>
+		<xsl:variable
+			name="species-first-location"
+			select="$locations/locationset/location[@name=$species-first-sighting/@location-name]"/>
+
+		<xsl:variable
+			name="species-first-trip"
+			select="$trips/tripset/trip[@date=$species-first-sighting/@date]"/>
 
 		&lt;species
 			species-id=&quot;<xsl:value-of select="@species-id"/>&quot;
@@ -45,7 +78,9 @@
 			taxonomy-id=&quot;<xsl:value-of select="@taxonomy-id"/>&quot;
 			filename-stem=&quot;<xsl:value-of select="@filename-stem"/>&quot;&gt;
 			<xsl:apply-templates select="notes[p[string-length(text())>0]]"/>
-			<xsl:apply-templates select="$species-sightings"/>
+			<xsl:apply-templates select="$species-first-sighting"/>
+			<xsl:apply-templates select="$species-first-location"/>
+			<xsl:apply-templates select="$species-first-trip"/>
 		&lt;/species&gt;
 	</xsl:template>
 
