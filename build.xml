@@ -41,76 +41,38 @@
 			classpath="java/bin;java/lib/xalan.jar;java/lib/xml-apis.jar"/>
 	</target>
 
-	<target
-		name="build-sources"
-		depends="validate"
-		description="build three ant XML project files that will build the source xml files for trips">
-	
-		<style
-			taskname="build-species-sources"
-			style="transform-xsl/build-species-sources.xsl"
-			in="flat-species.xml"
-			out="build-species-sources.xml">
-		</style>
-		<ant taskname="create-species-sources" antfile="build-species-sources.xml"/>
-	
-		<style
-			taskname="build-year-sources"
-			style="transform-xsl/build-year-sources.xsl"
-			in="misc.xml"
-			out="build-year-sources.xml">
-		</style>
-		<ant taskname="create-year-sources" antfile="build-year-sources.xml"/>
-	
-		<style
-			taskname="build-trip-sources"
-			style="transform-xsl/build-trip-sources.xsl"
-			in="flat-trips.xml"
-			out="build-trip-sources.xml">
-		</style>
-		<ant taskname="create-trip-sources" antfile="build-trip-sources.xml"/>
-	
-		<style
-			taskname="build-location-sources"
-			style="transform-xsl/build-location-sources.xsl"
-			in="locations.xml"
-			out="build-location-sources.xml">
-		</style>
-		<ant taskname="create-location-sources" antfile="build-location-sources.xml"/>
-
-		<style
-			taskname="build-order-sources"
-			style="transform-xsl/build-order-sources.xsl"
-			in="flat-species.xml"
-			out="build-order-sources.xml">
-		</style>
-		<ant taskname="create-order-sources" antfile="build-order-sources.xml"/>
-	
+	<target	name="build-species-sources" description="build ant build files that will build the source xml files for trips">
+		<style style="transform-xsl/build-species-sources.xsl" in="flat-species.xml" out="build-species-sources.xml"/>
+		<ant antfile="build-species-sources.xml"/>
 	</target>
 
-	<!-- PRE-REQUISITES -->
-
-	<target
-		name="require-source"
-		unless="source"
-		description="ensure the user has defined a source for testing">
-
-		<fail message="please define a page source on the command line"/>
+	<target	name="build-year-sources" description="build ant build files that will build the source xml files for trips">
+		<style style="transform-xsl/build-year-sources.xsl" in="misc.xml" out="build-year-sources.xml"/>
+		<ant antfile="build-year-sources.xml"/>
 	</target>
 
-	<target
-		name="require-kind"
-		unless="kind"
-		description="ensure the user has defined a report kind for testing">
-
-		<fail message="please define a report kind on the command line"/>
+	<target name="build-trip-sources" description="build ant build files that will build the source xml files for trips">
+		<style style="transform-xsl/build-trip-sources.xsl" in="flat-trips.xml" out="build-trip-sources.xml"/>
+		<ant antfile="build-trip-sources.xml"/>
 	</target>
+
+	<target name="build-location-sources" description="build ant build files that will build the source xml files for trips">
+		<style style="transform-xsl/build-location-sources.xsl" in="locations.xml" out="build-location-sources.xml"/>
+		<ant antfile="build-location-sources.xml"/>
+	</target>
+
+	<target	name="build-order-sources" description="build ant build files that will build the source xml files for trips">
+		<style style="transform-xsl/build-order-sources.xsl" in="flat-species.xml" out="build-order-sources.xml"/>
+		<ant antfile="build-order-sources.xml"/>
+	</target>
+
 
 	<!-- DEBUGGING / DEVELOPMENT, SINGLE PAGE TARGETS -->
 
-	<target
-		name="build-index"
-		depends="require-source, set-timestamp">
+	<target	name="build-index">
+
+		<fail unless="kind" message="please define a report kind on the command line"/>
+		<fail unless="source" message="please define a page source on the command line"/>
 
 		<style
 			taskname="test-index"
@@ -124,10 +86,10 @@
 		</style>
 	</target>
 
-	<target
-		name="build-report"
-		if="source"
-		depends="require-source, require-kind, set-timestamp">
+	<target name="build-report" depends="set-timestamp">
+
+		<fail unless="kind" message="please define a report kind on the command line"/>
+		<fail unless="source" message="please define a page source on the command line"/>
 
 		<style
 			taskname="test-report"
@@ -168,6 +130,7 @@
 
 	<target
 		name="build-reports"
+		description="build all the reports"
 		depends="set-timestamp">
 
 		<style
@@ -224,7 +187,7 @@
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="build-sources, run-batch-transformer">
+		depends="build-species-sources, build-trip-sources, build-year-sources, build-location-sources, build-order-sources, build-reports, build-indices">
 	</target>
 
 	<target name="upload-to-shout">
@@ -245,7 +208,7 @@
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/birdwalker/images"
        		userid="walker"
-       		password="ludwig0"
+       		password="0flandiwi"
 			passive="yes"
 			verbose="yes"
        		depends="yes"
@@ -258,7 +221,7 @@
 		<ftp server="duracef.shout.net"
        		remotedir="public_html/birdwalker"
        		userid="walker"
-       		password="ludwig0"
+       		password="0flandiwi"
 			passive="yes"
 			verbose="yes"
        		depends="yes"
