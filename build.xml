@@ -13,7 +13,7 @@
 	</target>
 	
 	<target
-		name="clean">
+		name="clean-sources">
 		<delete>
 			<fileset dir="${basedir}/sources/locations" includes="*.xml"/>
 			<fileset dir="${basedir}/sources/trips" includes="*.xml"/>
@@ -21,7 +21,13 @@
 			<fileset dir="${basedir}/sources/species" includes="*.xml"/>
 			<fileset dir="${basedir}/sources/orders" includes="*.xml"/>
 			<fileset dir="${basedir}" includes="build-*-sources.xml"/>
-			<fileset dir="${basedir}/html" includes="*.html"/>
+		</delete>
+	</target>
+	
+	<target
+		name="clean-pages">
+		<delete>
+			<fileset dir="${basedir}/html" includes="**/*.html"/>
 		</delete>
 	</target>
 
@@ -69,33 +75,15 @@
 
 	<!-- DEBUGGING / DEVELOPMENT, SINGLE PAGE TARGETS -->
 
-	<target	name="build-index">
+	<target	name="build-page" depends="set-timestamp">
 		<fail unless="source" message="please define a page source on the command line"/>
 
 		<style
 			taskname="test-index"
 			style="birdwalker.xsl"
 			destdir="html"
-			basedir="sources/indices"
+			basedir="sources"
 			force="true">
-
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="${source}"/>
-		</style>
-	</target>
-
-	<target name="build-report" depends="set-timestamp">
-
-		<fail unless="kind" message="please define a report kind on the command line"/>
-		<fail unless="source" message="please define a page source on the command line"/>
-
-		<style
-			taskname="test-report"
-			style="birdwalker.xsl"
-			destdir="html"
-			basedir="sources/${kind}"
-			force="true">
-
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
 			<include name="${source}"/>
 		</style>
@@ -113,79 +101,23 @@
 	</target>
 
 	<target
-		name="build-indices"
+		name="build-pages"
 		depends="set-timestamp">
 
 		<style
-			taskname="indices"
+			taskname="build-pages"
 			style="birdwalker.xsl"
 			destdir="html"
-			basedir="sources/indices">
+			basedir="sources">
 			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
-		</style>
-	</target>
-
-	<target
-		name="build-reports"
-		description="build all the reports"
-		depends="set-timestamp">
-
-		<style
-			taskname="year-reports"
-			style="birdwalker.xsl"
-			destdir="html"
-			basedir="sources/years">
-
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
-		</style>
-
-		<style
-			taskname="order-reports"
-			style="birdwalker.xsl"
-			destdir="html"
-			basedir="sources/orders">
-
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
-		</style>
-
-		<style
-			taskname="species-reports"
-			style="birdwalker.xsl"
-			destdir="html"
-			basedir="sources/species">
-
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
-		</style>
-
-		<style
-			taskname="location-reports"
-			style="birdwalker.xsl"
-			destdir="html"
-			basedir="sources/locations">
-
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
-		</style>
-
-		<style
-			taskname="trip-reports"
-			style="birdwalker.xsl"
-			destdir="html"
-			basedir="sources/trips">
-
-			<param name="in-tstamp" expression="'${my.tstamp}'"/>
-			<include name="*.xml"/>
+			<include name="**/*.xml"/>
 		</style>
 	</target>
 
 	<target
 		name="build-all"
 		description="generate all the individual pages for species, locations, and trips"
-		depends="build-species-sources, build-trip-sources, build-year-sources, build-location-sources, build-order-sources, build-reports, build-indices">
+		depends="build-species-sources, build-trip-sources, build-year-sources, build-location-sources, build-order-sources, build-pages">
 	</target>
 
 	<target name="upload-to-shout">
