@@ -72,11 +72,29 @@
 							<!-- only repeat the month part of the column heading if it is different from last time -->
 							<xsl:if test="substring($previous-trip/date, 6, 2)!=substring(date/text(), 6, 2)">
 								<TD VALIGN="BOTTOM">
-									<xsl:attribute name="COLSPAN">
-										<xsl:value-of select="count(/generate-year-report/trip[substring(date, 6, 2)=substring($the-trip/date, 6, 2)])"/>
-									</xsl:attribute>
+									<xsl:variable name="month-num" select="substring($the-trip/date/text(), 6, 2)"/>
+									<xsl:variable name="month-trip-count" select="count(/generate-year-report/trip[substring(date, 6, 2)=substring($the-trip/date, 6, 2)])"/>
 
-									<xsl:value-of select="$miscellaneous/miscellaneous/monthset/month[@index=substring($the-trip/date/text(), 6, 2)]/@abbreviation"/><BR/>
+									<xsl:attribute name="COLSPAN">
+										<xsl:value-of select="$month-trip-count"/>
+									</xsl:attribute>
+									<xsl:choose>
+										<xsl:when test="($month-num mod 2) = 0">
+											<xsl:attribute name="class">year-col-color</xsl:attribute>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:attribute name="class">year-plain</xsl:attribute>
+										</xsl:otherwise>
+									</xsl:choose>
+
+									<xsl:variable name="the-month" select="$miscellaneous/miscellaneous/monthset/month[@index=$month-num]/@abbreviation"/>
+									<xsl:value-of select="substring($the-month, 1, 1)"/>
+									<xsl:if test="$month-trip-count > 1">
+										<xsl:value-of select="substring($the-month, 2, 1)"/>
+									</xsl:if>
+									<xsl:if test="$month-trip-count > 2">
+										<xsl:value-of select="substring($the-month, 3, 1)"/>
+									</xsl:if>
 								</TD>
 							</xsl:if>
 						</xsl:for-each>
@@ -86,12 +104,19 @@
 						<TD> </TD>
 						<xsl:for-each select="/generate-year-report/trip">
 							<TD VALIGN="BOTTOM">
-								<xsl:if test="(position() mod 2) = 0">
-									<xsl:attribute name="class">year-col-color</xsl:attribute>
-								</xsl:if>
-
-								<xsl:value-of select="substring(date/text(), 9, 1)"/><BR/>
-								<xsl:value-of select="substring(date/text(), 10, 1)"/>
+								<xsl:choose>
+									<xsl:when test="(position() mod 2) = 0">
+										<xsl:attribute name="class">year-col-color</xsl:attribute>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="class">year-plain</xsl:attribute>
+									</xsl:otherwise>
+								</xsl:choose>
+								<A>
+									<xsl:attribute name="HREF"><xsl:value-of select="filename-stem"/>.html</xsl:attribute>
+									<xsl:value-of select="substring(date/text(), 9, 1)"/><BR/>
+									<xsl:value-of select="substring(date/text(), 10, 1)"/>
+								</A>
 							</TD>
 						</xsl:for-each>
 					</TR>
@@ -101,9 +126,14 @@
 				<xsl:variable name="the-species" select="."/>
 				<TR>
 					<!-- alternating background colors -->
-					<xsl:if test="(position() mod 2) = 0">
-						<xsl:attribute name="class">year-row-color</xsl:attribute>
-					</xsl:if>
+					<xsl:choose>
+						<xsl:when test="(position() mod 2) = 0">
+							<xsl:attribute name="class">year-row-color</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="class">year-plain</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
 
 					<TD><A>
 						<xsl:attribute name="HREF">./<xsl:value-of select="abbreviation"/>.html</xsl:attribute>
@@ -114,14 +144,22 @@
 
 					<xsl:for-each select="/generate-year-report/trip">
 						<xsl:variable name="the-trip" select="."/>
+
 						<TD>
-						<xsl:if test="(position() mod 2) = 0">
-							<xsl:attribute name="class">year-col-color</xsl:attribute>
-						</xsl:if>
-						<xsl:choose>
-							<xsl:when test="count($the-species/sighting[date=$the-trip/date]) > 0">X</xsl:when>
-							<xsl:otherwise><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></xsl:otherwise>
-						</xsl:choose>
+							<!-- alternating background colors -->
+							<xsl:choose>
+								<xsl:when test="(position() mod 2) = 0">
+									<xsl:attribute name="class">year-col-color</xsl:attribute>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:attribute name="class">year-plain</xsl:attribute>
+								</xsl:otherwise>
+							</xsl:choose>
+	
+							<xsl:choose>
+								<xsl:when test="count($the-species/sighting[date=$the-trip/date]) > 0">X</xsl:when>
+								<xsl:otherwise><xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text></xsl:otherwise>
+							</xsl:choose>
 						</TD>
 					</xsl:for-each>
 				</TR>
@@ -138,12 +176,15 @@
 
 						<!-- only repeat the month part of the column heading if it is different from last time -->
 						<xsl:if test="substring($previous-trip/date, 6, 2)!=substring(date/text(), 6, 2)">
-							<TD VALIGN="BOTTOM">
+							<TD VALIGN="BOTTOM" CLASS="year-plain">
 								<xsl:attribute name="COLSPAN">
 									<xsl:value-of select="count(/generate-year-report/trip[substring(date, 6, 2)=substring($the-trip/date, 6, 2)])"/>
 								</xsl:attribute>
 
-								<xsl:value-of select="count(/generate-year-report/species[sighting[substring(date, 6, 2)=substring($the-trip/date/text(), 6, 2)]])"/><BR/>
+								<xsl:variable name="month-count" select="count(/generate-year-report/species[sighting[substring(date, 6, 2)=substring($the-trip/date/text(), 6, 2)]])"/><BR/>
+								<xsl:value-of select="substring($month-count, 1, 1)"/><BR/>
+								<xsl:value-of select="substring($month-count, 2, 1)"/><BR/>
+								<xsl:value-of select="substring($month-count, 3, 1)"/><BR/>
 							</TD>
 						</xsl:if>
 					</xsl:for-each>
@@ -153,7 +194,7 @@
 					<TD>Trip</TD>
 					<xsl:for-each select="/generate-year-report/trip">
 						<xsl:variable name="the-trip" select="."/>
-						<TD VALIGN="BOTTOM">
+						<TD VALIGN="BOTTOM" CLASS="year-plain">
 							<xsl:value-of select="count(/generate-year-report/species[sighting[date=$the-trip/date]])"/><BR/>
 						</TD>
 					</xsl:for-each>
