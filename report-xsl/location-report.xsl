@@ -7,32 +7,33 @@
 	<!-- define my background color, used for table headers, etc -->
 	<xsl:variable name="my-header-style">location-navigationblock</xsl:variable>
 
-	<!-- define my report parameters -->
-	<xsl:param name="in-location"/>
+	<xsl:template match="generate-location-report">
+		<!-- define my report parameters -->
+		<xsl:variable
+			name="in-location"
+			select="@location-name"/>
 
-	<xsl:variable
-		name="location-record"
-		select="$locations/locationset/location[name=$in-location]"/>
+		<xsl:variable
+			name="location-record"
+			select="$locations/locationset/location[name=$in-location]"/>
 
-	<xsl:variable
-		name="location-sightings"
-		select="$sightings/sightingset/sighting[location=$in-location]"/>
+		<xsl:variable
+			name="location-sightings"
+			select="$sightings/sightingset/sighting[location=$in-location]"/>
 
-	<xsl:variable
-		name="location-trips"
-		select="$trips/tripset/trip[date=$location-sightings/date]"/>
+		<xsl:variable
+			name="location-trips"
+			select="$trips/tripset/trip[date=$location-sightings/date]"/>
 
-	<xsl:variable
-		name="location-species"
-		select="$species/taxonomyset/species[abbreviation=$location-sightings/abbreviation]"/>
+		<xsl:variable
+			name="location-species"
+			select="$species/taxonomyset/species[abbreviation=$location-sightings/abbreviation]"/>
 
-
-	<xsl:template match="*">
 		<HTML>
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Location Report for <xsl:value-of select="$in-location"/></TITLE>
-		<xsl:comment> $Id: location-report.xsl,v 1.6 2001/09/13 15:45:30 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: location-report.xsl,v 1.7 2001/09/18 01:54:07 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -41,19 +42,19 @@
 			<TABLE WIDTH="100%" BORDER="0" CELLPADDING="5" CELLSPACING="0">
 				<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 				<TR>
-					<TD NOWRAP="TRUE">
+					<TD CLASS="info-block" NOWRAP="TRUE">
 						<xsl:value-of select="$location-record/city"/>,<BR/>
 						<xsl:value-of select="$location-record/state"/>
 					</TD>
 					<xsl:if test="string-length($location-record/county) > 0">
-						<TD NOWRAP="TRUE">|<BR/>|</TD>
-						<TD NOWRAP="TRUE">
+						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+						<TD CLASS="info-block" NOWRAP="TRUE">
 							<xsl:value-of select="$location-record/county"/> county
 						</TD>
 					</xsl:if>
 					<xsl:if test="string-length($location-record/url)>0">
-						<TD NOWRAP="TRUE">|<BR/>|</TD>
-						<TD NOWRAP="TRUE">
+						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+						<TD CLASS="info-block" NOWRAP="TRUE">
 							<A>
 								<xsl:attribute name="HREF">
 									<xsl:value-of select="$location-record/url"/>
@@ -63,14 +64,14 @@
 						</TD>
 					</xsl:if>
 					<xsl:if test="string-length($location-record/latitude)>0">
-						<TD NOWRAP="TRUE">|<BR/>|</TD>
-						<TD NOWRAP="TRUE">
+						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+						<TD CLASS="info-block" NOWRAP="TRUE">
 							lat <xsl:value-of select="$location-record/latitude"/><BR/>
 							long <xsl:value-of select="$location-record/longitude"/>
 							(<xsl:value-of select="$location-record/system"/>)
 						</TD>
 					</xsl:if>
-					<TD NOWRAP="TRUE" WIDTH="90%">
+					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
 					</TD>
 				</TR>
@@ -85,6 +86,7 @@
 
 			<xsl:call-template name="species-table">
 				<xsl:with-param name="species-list" select="$location-species"/>
+				<xsl:with-param name="sighting-list" select="$location-sightings"/>
 			</xsl:call-template>
 
 			<xsl:call-template name="trip-table">
@@ -108,6 +110,7 @@
 			</xsl:if>
 	
 			<xsl:call-template name="location-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>
@@ -119,9 +122,11 @@
 		<xsl:call-template name="sighting-entry">
 			<xsl:with-param name="sighting-record" select="$this"/>
 
-			<xsl:with-param name="aux-record-1" select="$species/taxonomyset/species[abbreviation=$this/abbreviation]"/>
-			<xsl:with-param name="aux-record-2" select="$trips/tripset/trip[date=$this/date]"/>
-			<!-- <xsl:with-param name="aux-record-3" select="$locations/locationset/location[name=$this/location]"/> -->
+			<xsl:with-param name="title-string">
+				<xsl:value-of select="$species/taxonomyset/species[abbreviation=$this/abbreviation]/common-name"/>
+				<xsl:text>, </xsl:text>
+				<xsl:value-of select="$this/date"/>
+			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 

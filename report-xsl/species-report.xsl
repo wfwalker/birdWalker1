@@ -7,10 +7,12 @@
 	<!-- define my background color, used for table headers, etc -->
 	<xsl:variable name="my-header-style">species-navigationblock</xsl:variable>
 
-	<!-- define my report parameters -->
-	<xsl:param name="in-abbreviation"/>
+	<xsl:template match="generate-species-report">
+		<!-- define my report parameters -->
+		<xsl:variable
+			name="in-abbreviation"
+			select="@abbreviation"/>
 
-	<xsl:template match="*">
 		<xsl:variable
 			name="species-record"
 			select="$species/taxonomyset/species[abbreviation=$in-abbreviation]"/>
@@ -58,7 +60,7 @@
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Species Report for <xsl:value-of select="$species-record/common-name"/></TITLE>
-		<xsl:comment> $Id: species-report.xsl,v 1.6 2001/09/13 15:44:55 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: species-report.xsl,v 1.7 2001/09/18 01:54:07 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -67,7 +69,7 @@
 			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0">
 				<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 			<TR>
-				<TD NOWRAP="TRUE">
+				<TD CLASS="info-block" NOWRAP="TRUE">
 					<A>
 						<xsl:attribute name="HREF">
 							<xsl:value-of select="$order-record/report-url"/>
@@ -76,24 +78,24 @@
 						<xsl:value-of select="$order-record/common-name"/>
 					</A>
 				</TD>
-				<TD NOWRAP="TRUE">|<BR/>|</TD>
-				<TD NOWRAP="TRUE">
+				<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+				<TD CLASS="info-block" NOWRAP="TRUE">
 					<I><xsl:value-of select="$family-record/latin-name"/></I><BR/>
 					<xsl:value-of select="$family-record/common-name"/>
 				</TD>
-				<TD NOWRAP="TRUE">|<BR/>|</TD>
+				<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
 				<xsl:if test="count($subfamily-record)>0">
-					<TD NOWRAP="TRUE">
+					<TD CLASS="info-block" NOWRAP="TRUE">
 						<I><xsl:value-of select="$subfamily-record/latin-name"/></I><BR/>
 						<xsl:value-of select="$subfamily-record/common-name"/>
 					</TD>
-					<TD NOWRAP="TRUE">|<BR/>|</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
 				</xsl:if>
-				<TD NOWRAP="TRUE">
+				<TD CLASS="info-block" NOWRAP="TRUE">
 					<I><xsl:value-of select="$genus-record/latin-name"/></I><BR/>
 					<xsl:value-of select="$genus-record/common-name"/>
 				</TD>
-				<TD NOWRAP="TRUE" WIDTH="90%">
+				<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 					<P><BR/></P>
 				</TD>
 			</TR>
@@ -132,6 +134,7 @@
 			</xsl:if>
 
 			<xsl:call-template name="species-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>
@@ -143,9 +146,11 @@
 		<xsl:call-template name="sighting-entry">
 			<xsl:with-param name="sighting-record" select="$this"/>
 
-			<!-- <xsl:with-param name="aux-record-3" select="$species/taxonomyset/species[abbreviation=$this/abbreviation]"/> -->
-			<xsl:with-param name="aux-record-1" select="$trips/tripset/trip[date=$this/date]"/>
-			<xsl:with-param name="aux-record-2" select="$locations/locationset/location[name=$this/location]"/>
+			<xsl:with-param name="title-string">
+				<xsl:value-of select="$this/location"/>
+				<xsl:text>, </xsl:text>
+				<xsl:value-of select="$this/date"/>
+			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 

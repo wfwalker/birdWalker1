@@ -7,32 +7,32 @@
 	<!-- define my background color, used for table headers, etc -->
 	<xsl:variable name="my-header-style">trip-navigationblock</xsl:variable>
 
-	<!-- define my report parameters -->
-	<xsl:param name="in-trip-date"/>
+	<xsl:template match="generate-trip-report">
+		<xsl:variable
+			name="in-trip-date"
+			select="@trip-date"/>
 
-	<xsl:variable
-		name="trip-record"
-		select="$trips/tripset/trip[date=$in-trip-date]"/>
+		<xsl:variable
+			name="trip-record"
+			select="$trips/tripset/trip[date=$in-trip-date]"/>
 
-	<xsl:variable
-		name="trip-sightings"
-		select="$sightings/sightingset/sighting[date=$in-trip-date]"/>
+		<xsl:variable
+			name="trip-sightings"
+			select="$sightings/sightingset/sighting[date=$in-trip-date]"/>
 
-	<xsl:variable
-		name="trip-species"
-		select="$species/taxonomyset/species[abbreviation=$trip-sightings/abbreviation]"/>
+		<xsl:variable
+			name="trip-species"
+			select="$species/taxonomyset/species[abbreviation=$trip-sightings/abbreviation]"/>
 
-	<xsl:variable
-		name="trip-locations"
-		select="$locations/locationset/location[name=$trip-sightings/location]"/>
-	
+		<xsl:variable
+			name="trip-locations"
+			select="$locations/locationset/location[name=$trip-sightings/location]"/>
 
-	<xsl:template match="*">
 		<HTML>
 		<HEAD>
 		<xsl:call-template name="style-block"/>
 		<TITLE>Trip Report for <xsl:value-of select="$trip-record/name"/></TITLE>
-		<xsl:comment> $Id: trip-report.xsl,v 1.6 2001/09/18 01:53:22 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: trip-report.xsl,v 1.7 2001/09/26 00:17:59 walker Exp $ </xsl:comment>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -41,13 +41,13 @@
 			<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BORDER="0">
 				<xsl:attribute name="CLASS"><xsl:value-of select="$my-header-style"/></xsl:attribute>
 				<TR>
-					<TD NOWRAP="TRUE">
+					<TD CLASS="info-block" NOWRAP="TRUE">
 						<xsl:value-of select="$trip-record/date"/><BR/>
 						<xsl:value-of select="$trip-record/leader"/>
 					</TD>
 					<xsl:if test="string-length($trip-record/url)>0">
-						<TD NOWRAP="TRUE">|<BR/>|</TD>
-						<TD NOWRAP="TRUE">
+						<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+						<TD CLASS="info-block" NOWRAP="TRUE">
 							<A>
 								<xsl:attribute name="HREF">
 									<xsl:value-of select="$trip-record/url"/>
@@ -56,12 +56,12 @@
 							</A>
 						</TD>
 					</xsl:if>
-					<TD NOWRAP="TRUE">|<BR/>|</TD>
-					<TD NOWRAP="TRUE">
+					<TD CLASS="info-block" NOWRAP="TRUE">|<BR/>|</TD>
+					<TD CLASS="info-block" NOWRAP="TRUE">
 						<xsl:value-of select="count($trip-species)"/> species<BR/>
 						<xsl:value-of select="count($trip-locations)"/> locations
 					</TD>
-					<TD NOWRAP="TRUE" WIDTH="90%">
+					<TD CLASS="info-block" NOWRAP="TRUE" WIDTH="90%">
 						<P><BR/></P>
 					</TD>
 				</TR>
@@ -84,6 +84,7 @@
 					<xsl:with-param name="extra-title"><xsl:value-of select="$this-location-name"/></xsl:with-param>
 					<xsl:with-param name="extra-url"><xsl:value-of select="report-url"/></xsl:with-param>
 					<xsl:with-param name="species-list" select="$this-location-species"/>
+					<xsl:with-param name="sighting-list" select="$this-location-sightings"/>
 				</xsl:call-template>
 			</xsl:for-each>
 
@@ -92,6 +93,7 @@
 			</xsl:call-template>
 
 			<xsl:call-template name="trip-navigation-block"/>
+			<xsl:call-template name="page-footer"/>
 		</BODY>
 
 		</HTML>
@@ -132,10 +134,7 @@
 
 		<xsl:call-template name="sighting-entry">
 			<xsl:with-param name="sighting-record" select="$this"/>
-
-			<xsl:with-param name="aux-record-1" select="$species/taxonomyset/species[abbreviation=$this/abbreviation]"/>
-			<!-- <xsl:with-param name="aux-record-3" select="$trips/tripset/trip[date=$this/date]"/> -->
-			<xsl:with-param name="aux-record-2" select="$locations/locationset/location[name=$this/location]"/>
+			<xsl:with-param name="title-string" select="$species/taxonomyset/species[abbreviation=$this/abbreviation]/common-name"/>
 		</xsl:call-template>
 	</xsl:template>
 </xsl:stylesheet>
