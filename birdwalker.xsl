@@ -78,7 +78,7 @@
 				</TD>
 			</TR>
 		</TABLE>
-		<xsl:comment> $Id: birdwalker.xsl,v 1.1 2002/08/14 15:58:23 walker Exp $ </xsl:comment>
+		<xsl:comment> $Id: birdwalker.xsl,v 1.2 2002/08/22 15:32:35 walker Exp $ </xsl:comment>
 		<xsl:comment> HTML Generated on <xsl:value-of select="$in-tstamp"/></xsl:comment>
 	</xsl:template>
 
@@ -1055,10 +1055,11 @@
 		<xsl:variable name="county-locations" select="document('locations.xml')/locationset/location[(state[text()=$in-state]) and (county[text()=$in-county])]"/>
 		<xsl:variable name="county-sightings" select="document('sightings.xml')/sightingset/sighting[location=$county-locations/name]"/>
 		<xsl:variable name="county-species" select="document('flat-species.xml')/taxonomyset/species[abbreviation=$county-sightings/abbreviation]"/>
+		<xsl:variable name="state-name" select="document('misc.xml')/miscellaneous/stateset/state[@abbreviation=$in-state]/@name"/>
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Species seen in <xsl:value-of select="$in-county"/> County, <xsl:value-of select="$in-state"/></TITLE>
+		<TITLE>Index of Species seen in <xsl:value-of select="$in-county"/> County, <xsl:value-of select="$state-name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -1068,13 +1069,13 @@
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
-						<xsl:value-of select="$in-county"/>, <xsl:value-of select="$in-state"/> Species List
+						Index of Species seen in <xsl:value-of select="$in-county"/> County, <xsl:value-of select="$state-name"/>
 					</TD>
 				</TR>
 			</TABLE>
 
 			<DIV CLASS="headertext">
-				Our county list for <xsl:value-of select="$in-county"/> county contains <xsl:value-of select="count($county-species)"/> species
+				Our list for <xsl:value-of select="$in-county"/> County contains <xsl:value-of select="count($county-species)"/> species
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -1106,7 +1107,7 @@
 		<xsl:message>generate cover page</xsl:message>
 
 		<BODY BGCOLOR="#FFFFFF">
-			<xsl:comment>$Id: birdwalker.xsl,v 1.1 2002/08/14 15:58:23 walker Exp $</xsl:comment>
+			<xsl:comment>$Id: birdwalker.xsl,v 1.2 2002/08/22 15:32:35 walker Exp $</xsl:comment>
 
 			<xsl:call-template name="home-navigation-block"/>
 
@@ -1236,11 +1237,15 @@
 			name="state-species"
 			select="document('flat-species.xml')/taxonomyset/species[abbreviation=$state-sightings/abbreviation]"/>
 
+		<xsl:variable
+		    name="state-name"
+			select="document('misc.xml')/miscellaneous/stateset/state[@abbreviation=$in-state]/@name"/>
+
 		<xsl:message>generate species index for state <xsl:value-of select="$in-state"/></xsl:message>
 
 		<HEAD>
 		<xsl:call-template name="style-block"/>
-		<TITLE>Index of Species seen in <xsl:value-of select="document('misc.xml')/miscellaneous/stateset/state[abbreviation=$in-state]/@name"/></TITLE>
+		<TITLE>Index of Species seen in <xsl:value-of select="$state-name"/></TITLE>
 		</HEAD>
 
 		<BODY BGCOLOR="#FFFFFF">
@@ -1250,13 +1255,14 @@
 				<TR>
 					<TD COLSPAN="9" CLASS="pagetitle">
 						<IMG SRC="../images/species.gif" ALIGN="MIDDLE"/>
-						<xsl:value-of select="$in-state"/> State Species List
+						Index of Species seen in <xsl:value-of select="$state-name"/>
 					</TD>
 				</TR>
 			</TABLE>
 
 			<DIV CLASS="headertext">
-				Our species list for <xsl:value-of select="$in-state"/> contains <xsl:value-of select="count($state-species)"/> species
+				Our species list for <xsl:value-of select="$state-name"/>
+				contains <xsl:value-of select="count($state-species)"/> species
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
@@ -1264,7 +1270,7 @@
 			</xsl:call-template>
 
 			<DIV CLASS="headertext">
-				<xsl:value-of select="$in-state"/> sightings recorded at <xsl:value-of select="count($state-locations)"/> locations
+				<xsl:value-of select="$state-name"/> sightings recorded at <xsl:value-of select="count($state-locations)"/> locations
 			</DIV>
 
 			<xsl:call-template name="two-column-table">
